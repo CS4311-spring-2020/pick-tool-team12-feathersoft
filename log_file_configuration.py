@@ -9,7 +9,7 @@ class Window(QWidget):
         super().__init__()
         self.setGeometry(50, 50, 800, 600)
         self.setWindowTitle("Log File Configuration")
-        self.setMaximumSize(800,600)
+        #self.setMaximumSize(800,600)
         self.UI()
 
     def UI(self):
@@ -49,6 +49,13 @@ class Window(QWidget):
             checkbox.setCheckState(Qt.Unchecked)
             combobox = QComboBox()
             combobox.addItems(['','1','2','3'])
+            tableitem = QTableWidget()
+            tableitem.setRowCount(4)
+            tableitem.setVerticalHeaderItem(0,QTableWidgetItem('Content'))
+            tableitem.setVerticalHeaderItem(1, QTableWidgetItem('Host'))
+            tableitem.setVerticalHeaderItem(2, QTableWidgetItem('Source'))
+            tableitem.setVerticalHeaderItem(3, QTableWidgetItem('Source Type'))
+            table.setCellWidget(i,2,tableitem)
             table.setCellWidget(i,3,combobox)
             table.setItem(i,4,checkbox)
 

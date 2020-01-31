@@ -23,6 +23,7 @@ class Window(QWidget):
         btn.move(480,330)
         self.show()
 
+
 if __name__ == '__main__':
     App = QApplication(sys.argv)
     window = Window()
