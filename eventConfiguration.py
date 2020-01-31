@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(472, 559)
+        MainWindow.resize(472, 664)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
@@ -46,6 +46,9 @@ class Ui_MainWindow(object):
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(10, 400, 111, 41))
         self.label_5.setObjectName("label_5")
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(130, 500, 241, 61))
+        self.pushButton.setObjectName("pushButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 472, 22))
@@ -86,6 +89,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "Event Description"))
         self.label_4.setText(_translate("MainWindow", "Event start timestamp"))
         self.label_5.setText(_translate("MainWindow", "Event end timestamp"))
+        self.pushButton.setText(_translate("MainWindow", "Save event"))
 
 
 if __name__ == "__main__":
