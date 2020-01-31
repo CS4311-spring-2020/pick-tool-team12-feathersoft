@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 
 class Window(QWidget):
 
+
     def __init__(self):
         super().__init__()
         self.setGeometry(650,300, 600,400)
@@ -22,6 +23,8 @@ class Window(QWidget):
         btn = QPushButton('Export',self)
         btn.move(480,330)
         self.show()
+
+
 
 
 if __name__ == '__main__':
