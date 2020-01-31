@@ -9,9 +9,18 @@ class Window(QWidget):
         super().__init__()
         self.setGeometry(50, 50, 800, 600)
         self.setWindowTitle("Log File Configuration")
+        self.setMaximumSize(800,600)
         self.UI()
 
     def UI(self):
+        mainMenu = QMenuBar(self)
+        fileMenu = mainMenu.addMenu('File')
+        editMenu = mainMenu.addMenu('Edit')
+        viewMenu = mainMenu.addMenu('View')
+        searchMenu = mainMenu.addMenu('Search')
+        toolsMenu = mainMenu.addMenu('Tools')
+        helpMenu = mainMenu.addMenu('Help')
+
         text = QLabel('Log File Configuration', self)
         text.setFont(QFont('MS Shell Dlg 2', 20))
         text.move(50,50)
@@ -45,6 +54,7 @@ class Window(QWidget):
 
         table.setGeometry(50,100,700, 450)
         vbox.addWidget(table)
+        #self.setLayout(vbox)
         self.show()
 
 
