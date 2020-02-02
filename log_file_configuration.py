@@ -41,7 +41,6 @@ class Window(QWidget):
         for i in range(table.rowCount()):
             table.setVerticalHeaderItem(i,QTableWidgetItem(''))
         log = [line.split(' ') for line in open('dummy_log.txt').readlines()]
-        print(log[0][1])
         for i in range(len(log)):
             table.setItem(i,0,QTableWidgetItem(str(i + 1)))
             table.setItem(i,1,QTableWidgetItem(str(log[i][0])))
