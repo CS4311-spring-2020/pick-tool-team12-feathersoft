@@ -5,3 +5,4 @@ class EnforcementActionReport:
         self._line_number = line_number
         self._error_message = error_message
 
+

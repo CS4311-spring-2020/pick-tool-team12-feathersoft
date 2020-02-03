@@ -1,4 +1,5 @@
 
+
 class EventConfiguration:
 
     def __init__(self, **kwargs):

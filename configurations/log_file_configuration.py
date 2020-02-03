@@ -13,13 +13,6 @@ class Window(QWidget):
         self.UI()
 
     def UI(self):
-        mainMenu = QMenuBar(self)
-        fileMenu = mainMenu.addMenu('File')
-        editMenu = mainMenu.addMenu('Edit')
-        viewMenu = mainMenu.addMenu('View')
-        searchMenu = mainMenu.addMenu('Search')
-        toolsMenu = mainMenu.addMenu('Tools')
-        helpMenu = mainMenu.addMenu('Help')
 
         text = QLabel('Log File Configuration', self)
         text.setFont(QFont('MS Shell Dlg 2', 20))
