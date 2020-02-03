@@ -7,10 +7,11 @@
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
-
+import PySide2
 from PySide2.QtCore import (QCoreApplication, QMetaObject, QRect)
 from PySide2.QtGui import (QFont)
 from PySide2.QtWidgets import *
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):

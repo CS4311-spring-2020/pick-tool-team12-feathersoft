@@ -14,7 +14,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QFont,
     QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
     QRadialGradient)
 from PySide2.QtWidgets import *
-from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -29,7 +29,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(60, 20, 231, 31))
+        self.label_3.move(60,20)
         font = QFont()
         font.setPointSize(21)
         font.setBold(True)
