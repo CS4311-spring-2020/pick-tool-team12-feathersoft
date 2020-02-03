@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
-class LogFileConfigurationWindow(QWidget):
+class LogEntryConfigurationWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 1000, 800)
@@ -67,5 +67,5 @@ class LogFileConfigurationWindow(QWidget):
 
 if __name__ == '__main__':
     App = QApplication(sys.argv)
-    window = LogFileConfigurationWindow()
+    window = LogEntryConfigurationWindow()
     sys.exit(App.exec())
