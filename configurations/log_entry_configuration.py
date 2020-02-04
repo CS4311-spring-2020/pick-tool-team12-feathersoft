@@ -1,20 +1,22 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
+import datetime
 
 
 class LogEntryConfigurationWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 1000, 800)
-        self.setWindowTitle("Log File Configuration")
+        self.setWindowTitle("Log Entry Configuration")
         self.setMaximumSize(1000,800)
         self.UI()
 
     def UI(self):
 
-        self.label = QLabel('Log File Configuration', self)
+        self.label = QLabel('Log Entry Configuration', self)
         self.label.setFont(QFont('MS Shell Dlg 2', 20))
         self.label.move(50,50)
         self.vbox = QVBoxLayout()
@@ -26,17 +28,22 @@ class LogEntryConfigurationWindow(QWidget):
         self.table.setHorizontalHeaderItem(2,QTableWidgetItem(QIcon('up_arrow.png'), "Log Entry Event"))
         self.table.setHorizontalHeaderItem(3,QTableWidgetItem("Vector"))
         self.table.setHorizontalHeaderItem(4,QTableWidgetItem(""))
-        header = self.table.horizontalHeader()
-        header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
-
+        self.header = self.table.horizontalHeader()
+        self.header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        self.header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        self.table.setSortingEnabled(False)
 
         for i in range(self.table.rowCount()):
-            self.table.setVerticalHeaderItem(i,QTableWidgetItem(''))
+            self.table.setVerticalHeaderItem(i, QTableWidgetItem(''))
         log = [line.split(' ') for line in open('dummy_log.txt').readlines()]
         for i in range(len(log)):
-            self.table.setItem(i,0,QTableWidgetItem(str(i + 1)))
-            self.table.setItem(i,1,QTableWidgetItem(str(log[i][0])))
+
+            list_value = QTableWidgetItem()
+            list_value.setData(Qt.DisplayRole, i)
+            time_stamp = QTableWidgetItem()
+            time_stamp.setData(Qt.DisplayRole,str(datetime.datetime.utcnow()))
+            self.table.setItem(i,0,list_value)
+            self.table.setItem(i,1,time_stamp)
             checkbox = QTableWidgetItem()
             checkbox.setCheckState(Qt.Unchecked)
             combobox = QComboBox()
@@ -51,7 +58,8 @@ class LogEntryConfigurationWindow(QWidget):
             self.table.setCellWidget(i,3,combobox)
             self.table.setItem(i,4,checkbox)
 
-        self.table.clicked.connect(self.header_clicked)
+        self.num_clicks = [1,1,1]
+        self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
         self.table.setGeometry(50,100,900, 650)
         self.vbox.addWidget(self.table)
         #self.setLayout(vbox)
@@ -59,7 +67,24 @@ class LogEntryConfigurationWindow(QWidget):
 
     def header_clicked(self):
         col = self.table.currentColumn()
-        print(col)
+
+        valid_col = col <= 2
+        if valid_col:
+            self.num_clicks[col] += 1
+            if self.num_clicks[col] % 2 != 0:
+                self.table.horizontalHeaderItem(col).setIcon(QIcon('up_arrow.png'))
+                self.table.sortByColumn(0,Qt.AscendingOrder)
+                #self.table.setSortingEnabled(False)
+                #self.table.setSortingEnabled(True)
+
+            else:
+                if valid_col:
+                    self.table.horizontalHeaderItem(col).setIcon(QIcon('down_arrow.png'))
+                    self.table.sortByColumn(0,Qt.DescendingOrder)
+        else:
+            pass
+
+
 
 
 
