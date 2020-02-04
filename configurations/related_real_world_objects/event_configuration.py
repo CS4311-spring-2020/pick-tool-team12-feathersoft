@@ -3,6 +3,10 @@
 class EventConfiguration:
 
     def __init__(self, **kwargs):
+        """
+
+        :param kwargs:
+        """
         self._event_name = kwargs['event_name']
         self._event_description = kwargs['event_description']
         self._event_start_timestamp = ['event_start_timestamp']

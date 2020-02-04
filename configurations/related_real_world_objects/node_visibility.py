@@ -2,6 +2,10 @@
 class NodeVisibility:
 
     def __init__(self, **kwargs):
+        """
+
+        :param kwargs:
+        """
         self._node_visibility = kwargs['node_visibility']
         self._node_id_visibility = kwargs['node_id_visibility']
         self._node_name_visibility = kwargs['node_name_visibility']

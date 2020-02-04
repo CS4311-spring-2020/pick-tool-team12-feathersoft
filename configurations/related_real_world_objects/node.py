@@ -2,6 +2,10 @@
 class Node:
 
     def __init__(self, **kwargs):
+        """
+
+        :param kwargs:
+        """
         self._node_id = kwargs['node_id']
         self._node_name = kwargs['node_name']
         self._node_timestamp = kwargs['node_timestamp']
