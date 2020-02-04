@@ -7,11 +7,10 @@
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
-import PySide2
+
 from PySide2.QtCore import (QCoreApplication, QMetaObject, QRect)
 from PySide2.QtGui import (QFont)
 from PySide2.QtWidgets import *
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -28,6 +27,8 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75);
         self.label.setFont(font)
+
+
         self.plainTextEdit = QPlainTextEdit(self.centralwidget)
         self.plainTextEdit.setObjectName(u"plainTextEdit")
         self.plainTextEdit.setGeometry(QRect(230, 20, 241, 21))
@@ -49,24 +50,38 @@ class Ui_MainWindow(object):
         self.dateTimeEdit_2 = QDateTimeEdit(self.centralwidget)
         self.dateTimeEdit_2.setObjectName(u"dateTimeEdit_2")
         self.dateTimeEdit_2.setGeometry(QRect(140, 150, 194, 22))
+
         self.radioButton = QRadioButton(self.centralwidget)
         self.radioButton.setObjectName(u"radioButton")
         self.radioButton.setGeometry(QRect(110, 90, 100, 20))
+        self.radioButton.setAutoExclusive(False)
+
         self.radioButton_2 = QRadioButton(self.centralwidget)
         self.radioButton_2.setObjectName(u"radioButton_2")
         self.radioButton_2.setGeometry(QRect(220, 90, 100, 20))
+        self.radioButton_2.setAutoExclusive(False)
+
         self.radioButton_3 = QRadioButton(self.centralwidget)
         self.radioButton_3.setObjectName(u"radioButton_3")
         self.radioButton_3.setGeometry(QRect(340, 90, 100, 20))
+        self.radioButton_3.setAutoExclusive(False)
+
         self.radioButton_4 = QRadioButton(self.centralwidget)
         self.radioButton_4.setObjectName(u"radioButton_4")
         self.radioButton_4.setGeometry(QRect(220, 60, 100, 20))
+        self.radioButton_4.setAutoExclusive(False)
+
         self.radioButton_5 = QRadioButton(self.centralwidget)
         self.radioButton_5.setObjectName(u"radioButton_5")
         self.radioButton_5.setGeometry(QRect(110, 60, 100, 20))
+        self.radioButton_5.setAutoExclusive(False)
+
         self.radioButton_6 = QRadioButton(self.centralwidget)
         self.radioButton_6.setObjectName(u"radioButton_6")
         self.radioButton_6.setGeometry(QRect(340, 60, 100, 20))
+        self.radioButton_6.setAutoExclusive(False)
+
+
         self.pushButton = QPushButton(self.centralwidget)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setGeometry(QRect(30, 200, 112, 32))

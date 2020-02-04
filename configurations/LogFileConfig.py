@@ -12,6 +12,101 @@ from PySide2.QtCore import (QCoreApplication, QMetaObject, QRect)
 from PySide2.QtGui import (QFont)
 from PySide2.QtWidgets import *
 
+class Window2(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Window2")
+    def setupUi(self, MainWindow):
+        if MainWindow.objectName():
+            MainWindow.setObjectName(u"MainWindow")
+        MainWindow.resize(412, 408)
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.pushButton_2 = QPushButton(self.centralwidget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setGeometry(QRect(210, 180, 112, 32))
+        self.label_3 = QLabel(self.centralwidget)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(190, 40, 91, 16))
+        font = QFont()
+        font.setPointSize(16)
+        self.label_3.setFont(font)
+        self.pushButton = QPushButton(self.centralwidget)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(100, 180, 112, 32))
+        self.tableWidget_2 = QTableWidget(self.centralwidget)
+        if (self.tableWidget_2.columnCount() < 2):
+            self.tableWidget_2.setColumnCount(2)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.tableWidget_2.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        if (self.tableWidget_2.rowCount() < 3):
+            self.tableWidget_2.setRowCount(3)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.tableWidget_2.setVerticalHeaderItem(0, __qtablewidgetitem2)
+        __qtablewidgetitem3 = QTableWidgetItem()
+        self.tableWidget_2.setVerticalHeaderItem(1, __qtablewidgetitem3)
+        __qtablewidgetitem4 = QTableWidgetItem()
+        self.tableWidget_2.setVerticalHeaderItem(2, __qtablewidgetitem4)
+        __qtablewidgetitem5 = QTableWidgetItem()
+        self.tableWidget_2.setItem(0, 0, __qtablewidgetitem5)
+        __qtablewidgetitem6 = QTableWidgetItem()
+        self.tableWidget_2.setItem(0, 1, __qtablewidgetitem6)
+        __qtablewidgetitem7 = QTableWidgetItem()
+        self.tableWidget_2.setItem(1, 0, __qtablewidgetitem7)
+        __qtablewidgetitem8 = QTableWidgetItem()
+        self.tableWidget_2.setItem(1, 1, __qtablewidgetitem8)
+        __qtablewidgetitem9 = QTableWidgetItem()
+        self.tableWidget_2.setItem(2, 0, __qtablewidgetitem9)
+        __qtablewidgetitem10 = QTableWidgetItem()
+        self.tableWidget_2.setItem(2, 1, __qtablewidgetitem10)
+        self.tableWidget_2.setObjectName(u"tableWidget_2")
+        self.tableWidget_2.setGeometry(QRect(110, 60, 211, 111))
+        self.label_2 = QLabel(self.centralwidget)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(110, 40, 81, 16))
+        self.label_2.setFont(font)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.statusbar = QStatusBar(MainWindow)
+        self.statusbar.setObjectName(u"statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+
+        QMetaObject.connectSlotsByName(MainWindow)
+    # setupUi
+
+    def retranslateUi(self, MainWindow):
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Log File 1.txt", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Validate", None))
+        ___qtablewidgetitem = self.tableWidget_2.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Line Number 	\u25bc", None));
+        ___qtablewidgetitem1 = self.tableWidget_2.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Error Message \u25bc", None));
+
+        __sortingEnabled = self.tableWidget_2.isSortingEnabled()
+        self.tableWidget_2.setSortingEnabled(False)
+        ___qtablewidgetitem2 = self.tableWidget_2.item(0, 0)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"10", None));
+        ___qtablewidgetitem3 = self.tableWidget_2.item(0, 1)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Invalid Format", None));
+        ___qtablewidgetitem4 = self.tableWidget_2.item(1, 0)
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"55", None));
+        ___qtablewidgetitem5 = self.tableWidget_2.item(1, 1)
+        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Invalid Character", None));
+        ___qtablewidgetitem6 = self.tableWidget_2.item(2, 0)
+        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"93", None));
+        ___qtablewidgetitem7 = self.tableWidget_2.item(2, 1)
+        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"Missing Space", None));
+        self.tableWidget_2.setSortingEnabled(__sortingEnabled)
+
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"File Name: ", None))
+    # retranslateUi
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
@@ -21,7 +116,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.move(201,31)
+        self.label.setGeometry(QRect(40, 10, 201, 31))
         font = QFont()
         font.setPointSize(17)
         font.setBold(True)
@@ -108,35 +203,7 @@ class Ui_MainWindow(object):
         self.tableWidget.setItem(4, 4, __qtablewidgetitem36)
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setGeometry(QRect(40, 80, 611, 171))
-        self.tableWidget_2 = QTableWidget(self.centralwidget)
-        if (self.tableWidget_2.columnCount() < 2):
-            self.tableWidget_2.setColumnCount(2)
-        __qtablewidgetitem37 = QTableWidgetItem()
-        self.tableWidget_2.setHorizontalHeaderItem(0, __qtablewidgetitem37)
-        __qtablewidgetitem38 = QTableWidgetItem()
-        self.tableWidget_2.setHorizontalHeaderItem(1, __qtablewidgetitem38)
-        if (self.tableWidget_2.rowCount() < 3):
-            self.tableWidget_2.setRowCount(3)
-        __qtablewidgetitem39 = QTableWidgetItem()
-        self.tableWidget_2.setVerticalHeaderItem(0, __qtablewidgetitem39)
-        __qtablewidgetitem40 = QTableWidgetItem()
-        self.tableWidget_2.setVerticalHeaderItem(1, __qtablewidgetitem40)
-        __qtablewidgetitem41 = QTableWidgetItem()
-        self.tableWidget_2.setVerticalHeaderItem(2, __qtablewidgetitem41)
-        __qtablewidgetitem42 = QTableWidgetItem()
-        self.tableWidget_2.setItem(0, 0, __qtablewidgetitem42)
-        __qtablewidgetitem43 = QTableWidgetItem()
-        self.tableWidget_2.setItem(0, 1, __qtablewidgetitem43)
-        __qtablewidgetitem44 = QTableWidgetItem()
-        self.tableWidget_2.setItem(1, 0, __qtablewidgetitem44)
-        __qtablewidgetitem45 = QTableWidgetItem()
-        self.tableWidget_2.setItem(1, 1, __qtablewidgetitem45)
-        __qtablewidgetitem46 = QTableWidgetItem()
-        self.tableWidget_2.setItem(2, 0, __qtablewidgetitem46)
-        __qtablewidgetitem47 = QTableWidgetItem()
-        self.tableWidget_2.setItem(2, 1, __qtablewidgetitem47)
-        self.tableWidget_2.setObjectName(u"tableWidget_2")
-        self.tableWidget_2.setGeometry(QRect(320, 320, 211, 111))
+
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(320, 300, 81, 16))
@@ -147,27 +214,7 @@ class Ui_MainWindow(object):
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(400, 300, 91, 16))
         self.label_3.setFont(font1)
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(310, 440, 112, 32))
-        self.pushButton_2 = QPushButton(self.centralwidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(420, 440, 112, 32))
-        self.pushButton_3 = QPushButton(self.centralwidget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setGeometry(QRect(560, 100, 71, 31))
-        self.pushButton_4 = QPushButton(self.centralwidget)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setGeometry(QRect(560, 130, 71, 31))
-        self.pushButton_5 = QPushButton(self.centralwidget)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setGeometry(QRect(560, 160, 71, 31))
-        self.pushButton_6 = QPushButton(self.centralwidget)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-        self.pushButton_6.setGeometry(QRect(560, 190, 71, 31))
-        self.pushButton_7 = QPushButton(self.centralwidget)
-        self.pushButton_7.setObjectName(u"pushButton_7")
-        self.pushButton_7.setGeometry(QRect(560, 220, 71, 31))
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -248,42 +295,23 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Not Ingested", None));
         self.tableWidget.setSortingEnabled(__sortingEnabled)
 
-        ___qtablewidgetitem31 = self.tableWidget_2.horizontalHeaderItem(0)
-        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"Line Number 	\u25bc", None));
-        ___qtablewidgetitem32 = self.tableWidget_2.horizontalHeaderItem(1)
-        ___qtablewidgetitem32.setText(QCoreApplication.translate("MainWindow", u"Error Message \u25bc", None));
 
-        __sortingEnabled1 = self.tableWidget_2.isSortingEnabled()
-        self.tableWidget_2.setSortingEnabled(False)
-        ___qtablewidgetitem33 = self.tableWidget_2.item(0, 0)
-        ___qtablewidgetitem33.setText(QCoreApplication.translate("MainWindow", u"10", None));
-        ___qtablewidgetitem34 = self.tableWidget_2.item(0, 1)
-        ___qtablewidgetitem34.setText(QCoreApplication.translate("MainWindow", u"Invalid Format", None));
-        ___qtablewidgetitem35 = self.tableWidget_2.item(1, 0)
-        ___qtablewidgetitem35.setText(QCoreApplication.translate("MainWindow", u"55", None));
-        ___qtablewidgetitem36 = self.tableWidget_2.item(1, 1)
-        ___qtablewidgetitem36.setText(QCoreApplication.translate("MainWindow", u"Invalid Character", None));
-        ___qtablewidgetitem37 = self.tableWidget_2.item(2, 0)
-        ___qtablewidgetitem37.setText(QCoreApplication.translate("MainWindow", u"93", None));
-        ___qtablewidgetitem38 = self.tableWidget_2.item(2, 1)
-        ___qtablewidgetitem38.setText(QCoreApplication.translate("MainWindow", u"Missing Space", None));
-        self.tableWidget_2.setSortingEnabled(__sortingEnabled1)
-
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"File Name: ", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Log File 1.txt", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Validate", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"View", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"View", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"View", None))
-        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"View", None))
-        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"View", None))
-
-        header = self.tableWidget.horizontalHeader()
-        for i in range(header.count()):
-            header.setSectionResizeMode(i,QHeaderView.ResizeToContents)
+    #Enforcement Report Column
+        enforcement = [1]
+        for i in range(5):
+            enforcement.append(i)
+            enforcement[i] = self.tableWidget.item(i, 5)
+            enforcement[i] = QPushButton(self.centralwidget, u"View")
+            enforcement[i].setText("View")
+            enforcement[i].clicked.connect(self.window2)
+            self.tableWidget.setCellWidget(i, 5, enforcement[i])
 
     # retranslateUi
+    def window2(self):
+        self.w = Window2()
+        ui = Window2()
+        ui.setupUi(self.w)
+        self.w.show()
 
 if __name__ == '__main__':
     import sys
