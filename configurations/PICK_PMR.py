@@ -15,26 +15,28 @@ class PMR(QTabWidget):
         self.UI()
 
     def UI(self):
-        mainLayout = QVBoxLayout()
+        self.mainLayout = QVBoxLayout()
         self.tabs = QTabWidget()
         self.teamConfiguration = QWidget()
         self.eventConfiguration = QWidget()
         self.directoryConfiguration = QWidget()
         self.vectorConfiguration = QWidget()
-        self.logFileConfiguration = QWidget()
+        self.logEventConfiguration = QWidget()
         self.filterConfiguration = QWidget()
 
-        # self.tabs.addTab(self.teamConfiguration, "Team Configuration")
-        # self.tabs.addTab(self.eventConfiguration, "Event Configuration")
-        # self.tabs.addTab(self.directoryConfiguration, "Directory Configuration")
-        # self.tabs.addTab(self.vectorConfiguration, "Vector Configuration")
-        # self.tabs.addTab(self.logFileConfiguration, "Log Event Configuration")
-        
+        self.tabs.addTab(self.teamConfiguration, "Team Configuration")
+        self.tabs.addTab(self.eventConfiguration, "Event Configuration")
+        self.tabs.addTab(self.directoryConfiguration, "Directory Configuration")
+        self.tabs.addTab(self.vectorConfiguration, "Vector Configuration")
+        self.tabs.addTab(self.logEventConfiguration, "Log Event Configuration")
 
-        mainLayout.addWidget(self.tabs)
-        self.setLayout(mainLayout)
+        self.tabs.tabBarClicked(4).connect(self.logEventConfiguration)
+        self.mainLayout.addWidget(self.tabs)
+        self.setLayout(self.mainLayout)
         self.show()
 
+    def logEventConfigurationUI(self):
+        pass
 
 
 
