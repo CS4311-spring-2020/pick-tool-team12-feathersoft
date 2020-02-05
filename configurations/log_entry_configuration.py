@@ -63,8 +63,8 @@ class LogEntryConfigurationWindow(QWidget):
         self.vbox.addWidget(self.table)
         #self.setLayout(vbox)
         self.show()
-        App = QApplication(sys.argv)
-        sys.exit(App.exec())
+        #App = QApplication(sys.argv)
+        #sys.exit(App.exec())
 
     def header_clicked(self):
         col = self.table.currentColumn()

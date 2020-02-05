@@ -23,9 +23,7 @@ class ChangeConfigurationWindow(QWidget):
         commit_btn = QPushButton('COMMIT', self)
         commit_btn.move(450,330)
         self.show()
+        App = QApplication(sys.argv)
+        sys.exit(App.exec())
 
 
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = ChangeConfigurationWindow()
-    sys.exit(App.exec())
