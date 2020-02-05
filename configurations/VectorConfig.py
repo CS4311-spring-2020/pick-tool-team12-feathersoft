@@ -16,7 +16,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QFont,
 from PySide2.QtWidgets import *
 
 
-class VectorConfiguationWindow(object):
+class VectorConfigurationWindow(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -145,7 +145,7 @@ if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
-    ui = VectorConfiguationWindow()
+    ui = VectorConfigurationWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

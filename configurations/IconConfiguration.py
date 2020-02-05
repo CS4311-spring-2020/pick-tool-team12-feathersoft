@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
-class Window(QWidget):
+class IconConfigurationWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 850, 600)
@@ -120,5 +120,5 @@ class Window(QWidget):
 
 if __name__ == '__main__':
     App = QApplication(sys.argv)
-    window = Window()
+    window = IconConfigurationWindow()
     sys.exit(App.exec())

@@ -85,7 +85,7 @@ class LogEntryConfigurationWindow(QWidget):
         else:
             pass
 
-# if __name__ == '__main__':
-#     App = QApplication(sys.argv)
-#     window = LogEntryConfigurationWindow()
-#     sys.exit(App.exec())
+if __name__ == '__main__':
+     App = QApplication(sys.argv)
+     window = LogEntryConfigurationWindow()
+     sys.exit(App.exec())
