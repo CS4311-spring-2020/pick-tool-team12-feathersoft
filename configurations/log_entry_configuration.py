@@ -33,8 +33,7 @@ class LogEntryConfigurationWindow(QWidget):
         self.header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
         self.table.setSortingEnabled(False)
 
-        for i in range(self.table.rowCount()):
-            self.table.setVerticalHeaderItem(i, QTableWidgetItem(''))
+        self.table.resizeRowsToContents()
         log = [line.split(' ') for line in open('dummy_log.txt').readlines()]
         for i in range(len(log)):
 
@@ -64,6 +63,8 @@ class LogEntryConfigurationWindow(QWidget):
         self.vbox.addWidget(self.table)
         #self.setLayout(vbox)
         self.show()
+        App = QApplication(sys.argv)
+        sys.exit(App.exec())
 
     def header_clicked(self):
         col = self.table.currentColumn()
@@ -84,13 +85,7 @@ class LogEntryConfigurationWindow(QWidget):
         else:
             pass
 
-
-
-
-
-
-
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = LogEntryConfigurationWindow()
-    sys.exit(App.exec())
+# if __name__ == '__main__':
+#     App = QApplication(sys.argv)
+#     window = LogEntryConfigurationWindow()
+#     sys.exit(App.exec())
