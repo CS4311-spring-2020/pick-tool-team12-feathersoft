@@ -26,7 +26,7 @@ class PMR(QTabWidget):
 
         self.tabs.addTab(TeamConfigurationWindow(), "Team Configuration")
         # self.tabs.addTab(EventConfigurationWindow(), "Event Configuration")
-        # self.tabs.addTab(DirectoryConfigurationWindow(), "Directory Configuration")
+        self.tabs.addTab(DirectoryConfigurationWindow(), "Directory Configuration")
         #self.tabs.addTab(ChangeConfigurationWindow(), "Change Configuration")
         self.tabs.addTab(Window(), 'VectorDBConfiguration')
         self.tabs.addTab(LogEntryConfigurationWindow(), "Log Event Configuration")

@@ -8,9 +8,10 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
 
 
-class DirectoryConfigurationWindow(object):
+class DirectoryConfigurationWindow(QWidget):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(744, 600)
@@ -79,11 +80,13 @@ class DirectoryConfigurationWindow(object):
         self.pushButton.setText(_translate("MainWindow", "Start Data Ingestion"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = DirectoryConfigurationWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+    # import sys
+    # app = QtWidgets.QApplication(sys.argv)
+    # MainWindow = QtWidgets.QMainWindow()
+    # ui = DirectoryConfigurationWindow()
+    #
+    #
+    # #ui.setupUi(MainWindow)
+    # MainWindow.show()
+    # sys.exit(app.exec_())

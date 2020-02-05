@@ -5,8 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/PICK_PMR.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/PICK_PMR.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/VectorConfig.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/VectorConfig.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/change_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/change_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/log_entry_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_entry_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/directoryConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/directoryConfiguration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/teamConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/teamConfiguration.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +19,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/directoryConfiguration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+            <state relative-caret-position="207">
+              <caret line="82" selection-start-line="82" selection-start-column="2" selection-end-line="82" selection-end-column="28" />
+              <folding>
+                <element signature="e#212#254#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -29,7 +31,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="918">
               <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -38,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/PICK_PMR.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+            <state relative-caret-position="-99">
+              <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -53,7 +55,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/VectorDBConfigurationLead.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1782">
+            <state relative-caret-position="-1629">
+              <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -64,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/VectorConfig.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+            <state relative-caret-position="241">
+              <caret line="147" column="33" selection-start-line="147" selection-start-column="33" selection-end-line="147" selection-end-column="33" />
               <folding>
                 <element signature="e#396#499#0" expanded="true" />
               </folding>
@@ -73,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/configurations/teamConfiguration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+            <state relative-caret-position="309">
+              <caret line="82" column="12" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
               <folding>
                 <element signature="e#207#238#0" expanded="true" />
               </folding>
@@ -178,12 +181,13 @@
         <option value="$PROJECT_DIR$/configurations/related_real_world_objects/node_visibility.py" />
         <option value="$PROJECT_DIR$/configurations/related_real_world_objects/event_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/eventConfiguration.py" />
-        <option value="$PROJECT_DIR$/configurations/directoryConfiguration.py" />
         <option value="$PROJECT_DIR$/configurations/change_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/log_entry_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/VectorConfig.py" />
-        <option value="$PROJECT_DIR$/configurations/teamConfiguration.py" />
+        <option value="$PROJECT_DIR$/configurations/VectorDBConfigurationLead.py" />
         <option value="$PROJECT_DIR$/configurations/PICK_PMR.py" />
+        <option value="$PROJECT_DIR$/configurations/directoryConfiguration.py" />
+        <option value="$PROJECT_DIR$/configurations/teamConfiguration.py" />
       </list>
     </option>
   </component>
@@ -244,27 +248,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.PICK_PMR">
-    <configuration name="GraphConfiguration" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="pick-tool-team12-feathersoft" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/configurations" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/GraphConfiguration.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="PICK_PMR" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pick-tool-team12-feathersoft" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -286,7 +269,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="change_configuration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="VectorConfig" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pick-tool-team12-feathersoft" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -298,7 +281,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/change_configuration.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/VectorConfig.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -307,7 +290,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="directoryConfiguration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="VectorDBConfigurationLead" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pick-tool-team12-feathersoft" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -319,7 +302,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/directoryConfiguration.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/VectorDBConfigurationLead.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -349,13 +332,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="teamConfiguration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pick-tool-team12-feathersoft" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/configurations" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/teamConfiguration.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.PICK_PMR" />
+        <item itemvalue="Python.teamConfiguration" />
+        <item itemvalue="Python.VectorDBConfigurationLead" />
+        <item itemvalue="Python.VectorConfig" />
         <item itemvalue="Python.log_entry_configuration" />
-        <item itemvalue="Python.directoryConfiguration" />
-        <item itemvalue="Python.change_configuration" />
-        <item itemvalue="Python.GraphConfiguration" />
       </list>
     </recent_temporary>
   </component>
@@ -482,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580867746239</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added some documentation to the related real world objects files.">
+      <created>1580871524233</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1580871524233</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -702,10 +713,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/directoryConfiguration.py">
+    <entry file="file://$PROJECT_DIR$/configurations/eventConfiguration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="89" />
+        <state relative-caret-position="1666">
+          <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/VectorConfig.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="147" column="33" selection-start-line="147" selection-start-column="33" selection-end-line="147" selection-end-column="33" />
+          <folding>
+            <element signature="e#396#499#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -719,46 +750,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/eventConfiguration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
-          <caret line="98" column="33" selection-start-line="98" selection-start-column="33" selection-end-line="98" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/VectorDBConfigurationLead.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1782">
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/VectorConfig.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding>
-            <element signature="e#396#499#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/teamConfiguration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
-          <folding>
-            <element signature="e#207#238#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
+        <state relative-caret-position="-1629">
+          <caret line="9" column="42" lean-forward="true" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -767,10 +762,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/PICK_PMR.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+        <state relative-caret-position="-99">
+          <caret line="28" column="10" lean-forward="true" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/directoryConfiguration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="82" selection-start-line="82" selection-start-column="2" selection-end-line="82" selection-end-column="28" />
+          <folding>
+            <element signature="e#212#254#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/teamConfiguration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="82" column="12" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
+          <folding>
+            <element signature="e#207#238#0" expanded="true" />
           </folding>
         </state>
       </provider>
