@@ -12,7 +12,7 @@ from PySide2.QtCore import (QCoreApplication, QMetaObject, QRect)
 from PySide2.QtGui import (QFont)
 from PySide2.QtWidgets import *
 
-class Window2(QMainWindow):
+class LogFileConfigWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Window2")
@@ -308,8 +308,8 @@ class Ui_MainWindow(object):
 
     # retranslateUi
     def window2(self):
-        self.w = Window2()
-        ui = Window2()
+        self.w = LogFileConfigWindow()
+        ui = LogFileConfigWindow()
         ui.setupUi(self.w)
         self.w.show()
 

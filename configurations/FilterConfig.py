@@ -12,7 +12,7 @@ from PySide2.QtCore import (QCoreApplication, QMetaObject, QRect)
 from PySide2.QtGui import (QFont)
 from PySide2.QtWidgets import *
 
-class Ui_MainWindow(object):
+class FilterConfigurationWindow(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
     MainWindow = QMainWindow()
-    ui = Ui_MainWindow()
+    ui = FilterConfigurationWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

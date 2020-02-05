@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
-class Window(QWidget):
+class VectorDBConfigurationNon_LeadWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 950, 450)
@@ -141,5 +141,5 @@ class Window(QWidget):
 
 if __name__ == '__main__':
     App = QApplication(sys.argv)
-    window = Window()
+    window = VectorDBConfigurationNon_LeadWindow()
     sys.exit(App.exec())

@@ -42,9 +42,6 @@ class PMR(QTabWidget):
 
 
 
-
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = PMR()
