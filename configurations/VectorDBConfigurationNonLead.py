@@ -7,7 +7,7 @@ from PyQt5.QtCore import *
 class VectorDBConfigurationNonLeadWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setGeometry(50, 50, 950, 450)
+        self.setGeometry(0, 0, 950, 450)
         self.setWindowTitle("Vector Database Configuration")
         self.UI()
 
@@ -124,11 +124,11 @@ class VectorDBConfigurationNonLeadWindow(QWidget):
 
 
         buttonPush = QPushButton(self)
-        buttonPush.setGeometry(350,400,70,30)
+        buttonPush.setGeometry(350,65,70,30)
         buttonPush.setText('Pull')
 
         buttonPull = QPushButton(self)
-        buttonPull.setGeometry(820, 400, 70, 30)
+        buttonPull.setGeometry(820, 65, 70, 30)
         buttonPull.setText('Push')
 
         vbox.addWidget(table)
@@ -141,5 +141,5 @@ class VectorDBConfigurationNonLeadWindow(QWidget):
 
 if __name__ == '__main__':
     App = QApplication(sys.argv)
-    window = VectorDBConfigurationNon_LeadWindow()
+    window = VectorDBConfigurationNonLeadWindow()
     sys.exit(App.exec())
