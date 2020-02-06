@@ -43,8 +43,8 @@ class VectorDBConfigurationLeadWindow(QWidget):
 
 
         header = approvalTable.horizontalHeader()
-        header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
 
         for i in range(approvalTable.rowCount()):
             approvalTable.setVerticalHeaderItem(i,QTableWidgetItem(''))
