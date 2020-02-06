@@ -83,12 +83,12 @@ class DirectoryConfigurationWindow(QWidget):
 
 
 # if __name__ == "__main__":
-    # import sys
-    # app = QtWidgets.QApplication(sys.argv)
-    # MainWindow = QtWidgets.QMainWindow()
-    # ui = DirectoryConfigurationWindow()
-    #
-    #
-    # #ui.setupUi(MainWindow)
-    # MainWindow.show()
-    # sys.exit(app.exec_())
+#     import sys
+#     app = QtWidgets.QApplication(sys.argv)
+#     MainWindow = QtWidgets.QMainWindow()
+#     ui = DirectoryConfigurationWindow()
+#
+#
+#     ui.setupUi(MainWindow)
+#     MainWindow.show()
+#     sys.exit(app.exec_())

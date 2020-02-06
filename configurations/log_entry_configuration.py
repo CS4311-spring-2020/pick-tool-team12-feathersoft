@@ -14,7 +14,6 @@ class LogEntryConfigurationWindow(QWidget):
         super().__init__()
         self.setGeometry(50, 50, 1000, 800)
         self.setWindowTitle("Log Entry Configuration")
-        self.setMaximumSize(1000,800)
         self.UI()
 
     def UI(self):
@@ -92,27 +91,27 @@ class LogEntryConfigurationWindow(QWidget):
             items = [int(item.text()) for item in self.table.selectedItems()]
         else:
             items = [item.text() for item in self.table.selectedItems()]
-        valid_col = col < 2
+        valid_col = col <= 2
         if valid_col:
             self.num_clicks[col] += 1
             if self.num_clicks[col] % 2 != 0:
                 self.table.horizontalHeaderItem(col).setIcon(QIcon('up_arrow.png'))
                 items.sort(reverse=False)
-                for row in range(self.table.rowCount()):
-                    item = QTableWidgetItem()
-                    item.setData(Qt.DisplayRole,items[row])
-                    self.table.setItem(row,col,item)
-
-
+                if col < 2:
+                    for row in range(self.table.rowCount()):
+                        item = QTableWidgetItem()
+                        item.setData(Qt.DisplayRole,items[row])
+                        self.table.setItem(row,col,item)
 
             else:
                 if valid_col:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('down_arrow.png'))
                     items.sort(reverse=True)
-                    for row in range(self.table.rowCount()):
-                        item = QTableWidgetItem()
-                        item.setData(Qt.DisplayRole, items[row])
-                        self.table.setItem(row, col, item)
+                    if col < 2:
+                        for row in range(self.table.rowCount()):
+                            item = QTableWidgetItem()
+                            item.setData(Qt.DisplayRole, items[row])
+                            self.table.setItem(row, col, item)
 
         else:
             pass

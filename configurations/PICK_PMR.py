@@ -29,6 +29,7 @@ class PMR(QTabWidget):
         self.tabs = QTabWidget()
 
 
+
         self.tabs.addTab(TeamConfigurationWindow(), "Team Configuration")
         self.tabs.addTab(EventConfigurationWindow(), "Event Configuration")
         self.tabs.addTab(DirectoryConfigurationWindow(), "Directory Configuration")

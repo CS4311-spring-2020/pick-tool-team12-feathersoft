@@ -60,6 +60,7 @@ class EventConfigurationWindow(QtWidgets.QWidget):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.show()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -92,11 +93,11 @@ class EventConfigurationWindow(QtWidgets.QWidget):
         self.pushButton.setText(_translate("MainWindow", "Save event"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = EventConfigurationWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     # import sys
+#     # app = QtWidgets.QApplication(sys.argv)
+#     # MainWindow = QtWidgets.QMainWindow()
+#     # ui = EventConfigurationWindow()
+#     # ui.setupUi(MainWindow)
+#     # MainWindow.show()
+#     # sys.exit(app.exec_())
