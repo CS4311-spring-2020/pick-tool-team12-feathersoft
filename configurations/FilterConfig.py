@@ -1,122 +1,135 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'FilterConfigjYfehu.ui'
+## Form generated from reading UI file 'FilterConfiggqdfbA.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import (QCoreApplication, QMetaObject, QRect)
-from PySide2.QtGui import (QFont)
+from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
+                            QRect, QSize, QUrl, Qt)
+from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QFont,
+                           QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
+                           QRadialGradient)
 from PySide2.QtWidgets import *
 
+
 class FilterConfigurationWindow(object):
-    def setupUi(self, MainWindow):
-        if MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(800, 600)
-        self.centralwidget = QWidget(MainWindow)
-        self.centralwidget.setObjectName(u"centralwidget")
-        self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(30, 20, 171, 31))
+    def setupUi(self, Form):
+        if Form.objectName():
+            Form.setObjectName(u"Form")
+        Form.resize(468, 459)
+        self.gridLayout = QGridLayout(Form)
+        self.gridLayout.setObjectName(u"gridLayout")
+
+        self.startTimestampEdit = QDateTimeEdit(Form)
+        self.startTimestampEdit.setObjectName(u"startTimestampEdit")
+        self.gridLayout.addWidget(self.startTimestampEdit, 10, 1, 1, 1)
+
+        self.blueButton2 = QRadioButton(Form)
+        self.blueButton2.setObjectName(u"blueButton2")
+        self.blueButton2.setAutoExclusive(False)
+        self.gridLayout.addWidget(self.blueButton2, 7, 1, 1, 1)
+
+        self.redButton1 = QRadioButton(Form)
+        self.redButton1.setObjectName(u"redButton1")
+        self.redButton1.setAutoExclusive(False)
+        self.gridLayout.addWidget(self.redButton1, 3, 1, 1, 1)
+
+        self.startTimestampLabel = QLabel(Form)
+        self.startTimestampLabel.setObjectName(u"startTimestampLabel")
         font = QFont()
-        font.setPointSize(17)
-        font.setBold(True)
-        font.setWeight(75);
-        self.label.setFont(font)
+        font.setPointSize(16)
+        self.startTimestampLabel.setFont(font)
+        self.gridLayout.addWidget(self.startTimestampLabel, 10, 0, 1, 1)
 
+        self.blueButton1 = QRadioButton(Form)
+        self.blueButton1.setObjectName(u"blueButton1")
+        self.blueButton1.setAutoExclusive(False)
+        self.gridLayout.addWidget(self.blueButton1, 4, 1, 1, 1)
 
-        self.plainTextEdit = QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit.setObjectName(u"plainTextEdit")
-        self.plainTextEdit.setGeometry(QRect(230, 20, 241, 21))
-        self.label_2 = QLabel(self.centralwidget)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(30, 60, 58, 16))
-        self.label_3 = QLabel(self.centralwidget)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(30, 90, 71, 16))
-        self.label_4 = QLabel(self.centralwidget)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(30, 120, 111, 16))
-        self.label_5 = QLabel(self.centralwidget)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setGeometry(QRect(30, 150, 111, 16))
-        self.dateTimeEdit = QDateTimeEdit(self.centralwidget)
-        self.dateTimeEdit.setObjectName(u"dateTimeEdit")
-        self.dateTimeEdit.setGeometry(QRect(140, 120, 194, 22))
-        self.dateTimeEdit_2 = QDateTimeEdit(self.centralwidget)
-        self.dateTimeEdit_2.setObjectName(u"dateTimeEdit_2")
-        self.dateTimeEdit_2.setGeometry(QRect(140, 150, 194, 22))
+        self.endTimestampLabel = QLabel(Form)
+        self.endTimestampLabel.setObjectName(u"endTimestampLabel")
+        self.endTimestampLabel.setFont(font)
+        self.gridLayout.addWidget(self.endTimestampLabel, 12, 0, 1, 1)
 
-        self.radioButton = QRadioButton(self.centralwidget)
-        self.radioButton.setObjectName(u"radioButton")
-        self.radioButton.setGeometry(QRect(110, 90, 100, 20))
-        self.radioButton.setAutoExclusive(False)
+        self.applyButton = QPushButton(Form)
+        self.applyButton.setObjectName(u"applyButton")
+        self.gridLayout.addWidget(self.applyButton, 13, 0, 1, 1)
 
-        self.radioButton_2 = QRadioButton(self.centralwidget)
-        self.radioButton_2.setObjectName(u"radioButton_2")
-        self.radioButton_2.setGeometry(QRect(220, 90, 100, 20))
-        self.radioButton_2.setAutoExclusive(False)
+        self.lineEdit = QLineEdit(Form)
+        self.lineEdit.setObjectName(u"lineEdit")
+        self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
 
-        self.radioButton_3 = QRadioButton(self.centralwidget)
-        self.radioButton_3.setObjectName(u"radioButton_3")
-        self.radioButton_3.setGeometry(QRect(340, 90, 100, 20))
-        self.radioButton_3.setAutoExclusive(False)
+        self.filterConfigurationLabel = QLabel(Form)
+        self.filterConfigurationLabel.setObjectName(u"filterConfigurationLabel")
+        font1 = QFont()
+        font1.setPointSize(17)
+        font1.setBold(True)
+        font1.setWeight(75);
+        self.filterConfigurationLabel.setFont(font1)
+        self.gridLayout.addWidget(self.filterConfigurationLabel, 0, 0, 1, 1)
 
-        self.radioButton_4 = QRadioButton(self.centralwidget)
-        self.radioButton_4.setObjectName(u"radioButton_4")
-        self.radioButton_4.setGeometry(QRect(220, 60, 100, 20))
-        self.radioButton_4.setAutoExclusive(False)
+        self.whiteButton2 = QRadioButton(Form)
+        self.whiteButton2.setObjectName(u"whiteButton2")
+        self.whiteButton2.setAutoExclusive(False)
+        self.gridLayout.addWidget(self.whiteButton2, 8, 1, 1, 1)
 
-        self.radioButton_5 = QRadioButton(self.centralwidget)
-        self.radioButton_5.setObjectName(u"radioButton_5")
-        self.radioButton_5.setGeometry(QRect(110, 60, 100, 20))
-        self.radioButton_5.setAutoExclusive(False)
+        self.redButton2 = QRadioButton(Form)
+        self.redButton2.setObjectName(u"redButton2")
+        self.redButton2.setAutoExclusive(False)
+        self.gridLayout.addWidget(self.redButton2, 6, 1, 1, 1)
 
-        self.radioButton_6 = QRadioButton(self.centralwidget)
-        self.radioButton_6.setObjectName(u"radioButton_6")
-        self.radioButton_6.setGeometry(QRect(340, 60, 100, 20))
-        self.radioButton_6.setAutoExclusive(False)
+        self.whiteButton1 = QRadioButton(Form)
+        self.whiteButton1.setObjectName(u"whiteButton1")
+        self.whiteButton1.setAutoExclusive(False)
+        self.gridLayout.addWidget(self.whiteButton1, 5, 1, 1, 1)
 
+        self.endTimestampEdit = QDateTimeEdit(Form)
+        self.endTimestampEdit.setObjectName(u"endTimestampEdit")
+        self.gridLayout.addWidget(self.endTimestampEdit, 12, 1, 1, 1)
 
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(30, 200, 112, 32))
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QStatusBar(MainWindow)
-        self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        self.eventTypeLabel = QLabel(Form)
+        self.eventTypeLabel.setObjectName(u"eventTypeLabel")
+        self.eventTypeLabel.setFont(font)
+        self.gridLayout.addWidget(self.eventTypeLabel, 6, 0, 1, 1)
 
-        self.retranslateUi(MainWindow)
+        self.creatorLabel = QLabel(Form)
+        self.creatorLabel.setObjectName(u"creatorLabel")
+        self.creatorLabel.setFont(font)
+        self.gridLayout.addWidget(self.creatorLabel, 3, 0, 1, 1)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(Form)
+
+        QMetaObject.connectSlotsByName(Form)
+
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Filter Configuration", None))
-        self.plainTextEdit.setPlainText("")
-        self.plainTextEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Keyword Search", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Creator:", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Event Type: ", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Start Timestamp:", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"End Timestamp:", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Red", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Blue", None))
-        self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"White", None))
-        self.radioButton_4.setText(QCoreApplication.translate("MainWindow", u"Blue", None))
-        self.radioButton_5.setText(QCoreApplication.translate("MainWindow", u"Red", None))
-        self.radioButton_6.setText(QCoreApplication.translate("MainWindow", u"White", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Apply Filter", None))
+    def retranslateUi(self, Form):
+        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+        self.blueButton2.setText(QCoreApplication.translate("Form", u"Blue", None))
+        self.redButton1.setText(QCoreApplication.translate("Form", u"Red", None))
+        self.startTimestampLabel.setText(QCoreApplication.translate("Form", u"Start Timestamp:", None))
+        self.blueButton1.setText(QCoreApplication.translate("Form", u"Blue", None))
+        self.endTimestampLabel.setText(QCoreApplication.translate("Form", u"End Timestamp:", None))
+        self.applyButton.setText(QCoreApplication.translate("Form", u"Apply Filter", None))
+        self.lineEdit.setPlaceholderText(QCoreApplication.translate("Form", u"Keyword Search", None))
+        self.filterConfigurationLabel.setText(QCoreApplication.translate("Form", u"Filter Configuration", None))
+        self.whiteButton2.setText(QCoreApplication.translate("Form", u"White", None))
+        self.redButton2.setText(QCoreApplication.translate("Form", u"Red", None))
+        self.whiteButton1.setText(QCoreApplication.translate("Form", u"White", None))
+        self.eventTypeLabel.setText(QCoreApplication.translate("Form", u"Event Type: ", None))
+        self.creatorLabel.setText(QCoreApplication.translate("Form", u"Creator:", None))
     # retranslateUi
+
 
 if __name__ == '__main__':
     import sys
+
     app = QApplication(sys.argv)
-    MainWindow = QMainWindow()
+    MainWindow = QWidget()
     ui = FilterConfigurationWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
