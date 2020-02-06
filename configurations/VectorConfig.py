@@ -8,18 +8,19 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PyQt5.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
+from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
     QRect, QSize, QUrl, Qt)
-from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QFont,
+from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QFont,
     QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
     QRadialGradient)
-from PyQt5.QtWidgets import *
+from PySide2.QtWidgets import *
 
 class VectorConfigurationWindow(object):
     def setupUi(self, Form):
         if Form.objectName():
             Form.setObjectName(u"Form")
         Form.resize(482, 432)
+        print(type(Form))
         self.gridLayout = QGridLayout(Form)
         self.gridLayout.setObjectName(u"gridLayout")
         self.vectorConfigLabel = QLabel(Form)
@@ -86,7 +87,6 @@ class VectorConfigurationWindow(object):
         self.tableWidget.verticalHeader().setStretchLastSection(False)
 
         self.gridLayout.addWidget(self.tableWidget, 1, 0, 6, 4)
-
         self.deleteButton = QPushButton(Form)
         self.deleteButton.setObjectName(u"deleteButton")
 
@@ -122,6 +122,10 @@ class VectorConfigurationWindow(object):
         ___qtablewidgetitem5 = self.tableWidget.verticalHeaderItem(2)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"Vector 3", None));
 
+        self.header = self.tableWidget.horizontalHeader()
+        self.header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        self.header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
         __sortingEnabled = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
         ___qtablewidgetitem6 = self.tableWidget.item(0, 0)
@@ -149,6 +153,8 @@ if __name__ == '__main__':
     MainWindow = QWidget()
     ui = VectorConfigurationWindow()
     ui.setupUi(MainWindow)
+
     MainWindow.show()
     sys.exit(app.exec_())
+
 

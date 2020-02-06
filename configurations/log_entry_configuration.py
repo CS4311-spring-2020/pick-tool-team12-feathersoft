@@ -20,11 +20,11 @@ class LogEntryConfigurationWindow(QWidget):
         # Creating the label for the window
         self.label = QLabel('Log Entry Configuration', self)
         # Setting the window's font
-        self.label.setFont(QFont('MS Shell Dlg 2', 20))
+        self.label.setFont(QFont('MS Shell Dlg 2', 12))
         self.label.move(50,50)
 
         # Creating the layout that the window will be stored
-        self.vbox = QVBoxLayout()
+        self.grid = QGridLayout()
         # Creating the table
         self.table = QTableWidget(self)
         # Setting the amount of columns our table will have
@@ -42,6 +42,19 @@ class LogEntryConfigurationWindow(QWidget):
         self.header = self.table.horizontalHeader()
         self.header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
         self.header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.table.sizePolicy().hasHeightForWidth())
+        self.table.setSizePolicy(sizePolicy)
+        self.table.setAlternatingRowColors(True)
+        self.table.horizontalHeader().setVisible(True)
+        self.table.horizontalHeader().setCascadingSectionResizes(False)
+        self.table.horizontalHeader().setProperty("showSortIndicator", False)
+        self.table.horizontalHeader().setStretchLastSection(True)
+        self.table.verticalHeader().setProperty("showSortIndicator", False)
+        self.table.verticalHeader().setStretchLastSection(True)
 
         # Hiding the row labels in the table
         self.table.verticalHeader().setVisible(False)
@@ -75,10 +88,11 @@ class LogEntryConfigurationWindow(QWidget):
         self.num_clicks = [1,1,1]
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
         self.table.setGeometry(50,100,900, 650)
-        self.vbox.addWidget(self.table)
+        self.grid.addWidget(self.label)
+        self.grid.addWidget(self.table)
 
 
-        #self.setLayout(vbox)
+        self.setLayout(self.grid)
         self.show()
         #App = QApplication(sys.argv)
         #sys.exit(App.exec())

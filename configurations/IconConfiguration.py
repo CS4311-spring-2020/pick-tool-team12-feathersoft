@@ -30,7 +30,7 @@ class IconConfigurationWindow(QWidget):
         iconTitle.setFont(QFont('MS Shell Dlg 2', 12))
         iconTitle.move(50,70)
 
-        vbox = QVBoxLayout()
+        vbox = QGridLayout()
         iconTable = QTableWidget(self)
         iconTable.setColumnCount(4)
         iconTable.setRowCount(5)
@@ -109,12 +109,14 @@ class IconConfigurationWindow(QWidget):
         buttonDelete.setGeometry(500, 400, 70, 30)
         buttonDelete.setText('Delete Icon')
 
+        vbox.addWidget(mainMenu)
+        vbox.addWidget(iconTitle)
         vbox.addWidget(iconTable)
         vbox.addWidget(buttonAdd)
         vbox.addWidget(buttonEdit)
         vbox.addWidget(buttonDelete)
 
-
+        self.setLayout(vbox)
         self.show()
 
 

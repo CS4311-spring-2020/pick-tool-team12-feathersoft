@@ -55,7 +55,6 @@ class TeamConfigurationWindow(QWidget):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.show()
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -72,10 +71,11 @@ class TeamConfigurationWindow(QWidget):
         self.label_5.setText(_translate("MainWindow", "Lead\'s IP address"))
 
 
-# if __name__ == "__main__":
-#     import sys
-#     app = QApplication(sys.argv)
-#     MainWindow = QMainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QApplication(sys.argv)
+    MainWindow = QMainWindow()
+    ui = TeamConfigurationWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

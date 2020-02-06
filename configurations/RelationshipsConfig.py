@@ -18,6 +18,8 @@ class relationships_configWindow(object):
         font.setPointSize(17)
         item_0.setFont(2, font)
         item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
+
+
         self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
         self.checkBox.setGeometry(QtCore.QRect(60, 100, 20, 20))
         self.checkBox.setText("")

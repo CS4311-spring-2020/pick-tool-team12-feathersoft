@@ -114,6 +114,8 @@ class LogFileConfigWindow(QWidget):
         self.label_3.setText(QCoreApplication.translate("Form", u"Log File 1.txt", None))
         self.pushButton.setText(QCoreApplication.translate("Form", u"Validate", None))
         self.pushButton_2.setText(QCoreApplication.translate("Form", u"Cancel", None))
+
+
     # retranslateUi
 
 
@@ -121,7 +123,7 @@ class Ui_MainWindow(object):
     def setupUi(self, Form):
         if Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(700, 350)
+        Form.resize(700,350)
         Form.setMinimumSize(QSize(700, 350))
         self.gridLayout = QGridLayout(Form)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -252,6 +254,13 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem4.setText(QCoreApplication.translate("Form", u"Ingestion Status", None));
         ___qtablewidgetitem5 = self.tableWidget.horizontalHeaderItem(5)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("Form", u"View Enforcement Action Report", None));
+        self.header = self.tableWidget.horizontalHeader()
+        self.header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        self.header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        self.header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        self.header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        self.header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
+        self.header.setSectionResizeMode(5, QHeaderView.ResizeToContents)
 
         __sortingEnabled = self.tableWidget.isSortingEnabled()
         self.tableWidget.setSortingEnabled(False)
