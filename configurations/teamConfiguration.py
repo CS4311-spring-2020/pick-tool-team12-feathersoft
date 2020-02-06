@@ -55,9 +55,9 @@ class TeamConfigurationWindow(QWidget):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        self.show()
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        self.showFullScreen()
 
 
     def retranslateUi(self, MainWindow):

@@ -66,9 +66,7 @@ class DirectoryConfigurationWindow(QWidget):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.show()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -83,12 +81,12 @@ class DirectoryConfigurationWindow(QWidget):
 
 
 # if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = DirectoryConfigurationWindow()
-#
-#
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec_())
+    # import sys
+    # app = QtWidgets.QApplication(sys.argv)
+    # MainWindow = QtWidgets.QMainWindow()
+    # ui = DirectoryConfigurationWindow()
+    #
+    #
+    # #ui.setupUi(MainWindow)
+    # MainWindow.show()
+    # sys.exit(app.exec_())
