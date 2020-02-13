@@ -43,8 +43,8 @@ class VectorDBConfigurationLeadWindow(QWidget):
 
 
         header = approvalTable.horizontalHeader()
-        header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
 
         for i in range(approvalTable.rowCount()):
             approvalTable.setVerticalHeaderItem(i,QTableWidgetItem(''))
@@ -110,13 +110,13 @@ class VectorDBConfigurationLeadWindow(QWidget):
         approvalTable.setGeometry(50,100,700, 400)
 
         buttonCommit = QPushButton(self)
-        buttonCommit.setGeometry(670,500,70,30)
+        buttonCommit.setGeometry(670,60,70,30)
         buttonCommit.setText('Commit')
 
         vbox.addWidget(approvalTable)
         vbox.addWidget(buttonCommit)
 
-        #self.show()
+        self.show()
 
 
 # if __name__ == '__main__':
