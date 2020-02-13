@@ -93,9 +93,4 @@ class FilterConfiguratation(QWidget):
         self.creatorLabel.setObjectName(u"creatorLabel")
         self.creatorLabel.setFont(font)
         self.gridLayout.addWidget(self.creatorLabel, 3, 0, 1, 1)
-        self.show()
-
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = FilterConfiguratation()
-    sys.exit(App.exec())
+        #self.show()

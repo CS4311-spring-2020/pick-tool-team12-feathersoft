@@ -93,7 +93,7 @@ class LogEntryConfigurationWindow(QWidget):
 
 
         self.setLayout(self.grid)
-        self.show()
+        #self.show()
         #App = QApplication(sys.argv)
         #sys.exit(App.exec())
 

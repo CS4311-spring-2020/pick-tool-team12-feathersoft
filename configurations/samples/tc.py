@@ -46,9 +46,5 @@ class TeamConfiguratation(QWidget):
         self.label_5.setGeometry(QRect(10, 240, 101, 16))
         self.label_5.setObjectName("label_5")
 
-        self.show()
+        #self.show()
 
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = TeamConfiguratation()
-    sys.exit(App.exec())

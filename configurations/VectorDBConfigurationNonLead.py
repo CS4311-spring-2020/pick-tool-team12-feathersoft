@@ -136,10 +136,10 @@ class VectorDBConfigurationNonLeadWindow(QWidget):
         vbox.addWidget(buttonPush)
         vbox.addWidget(buttonPull)
 
-        self.show()
+        #self.show()
 
 
 if __name__ == '__main__':
     App = QApplication(sys.argv)
-    window = VectorDBConfigurationNon_LeadWindow()
+    window = VectorDBConfigurationNonLeadWindow()
     sys.exit(App.exec())

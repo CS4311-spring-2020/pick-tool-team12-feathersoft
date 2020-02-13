@@ -56,7 +56,7 @@ class EventConfiguratation(QWidget):
         self.save_event_button.setGeometry(QRect(150, 500, 241, 61))
 
         self.save_event_button.clicked.connect(self.disable)
-        self.show()
+        #self.show()
 
 
     def disable(self):
@@ -64,10 +64,6 @@ class EventConfiguratation(QWidget):
 
 
 
-        self.show()
+        #self.show()
 
 
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = EventConfiguratation()
-    sys.exit(App.exec())

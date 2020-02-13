@@ -35,9 +35,6 @@ class RelationshipConfiguration(QWidget):
         self.checkBox_2.setGeometry(QRect(60, 120, 20, 20))
         self.checkBox_2.setText("")
         self.checkBox_2.setObjectName("checkBox_2")
-        self.show()
+        #self.show()
 
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = RelationshipConfiguration()
-    sys.exit(App.exec())
+

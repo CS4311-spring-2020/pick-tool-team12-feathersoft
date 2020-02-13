@@ -60,7 +60,7 @@ class DirectoryConfiguration(QWidget):
         self.save_event_button = QPushButton(self)
         self.save_event_button.setText('Save Data Ingestion')
         self.save_event_button.setGeometry(QRect(150, 480, 451, 41))
-        self.show()
+        #self.show()
         #self.open_file()
 
 
@@ -85,10 +85,6 @@ class EnforcementAction(QWidget):
         # Setting the window's font
         self.label.setFont(QFont('MS Shell Dlg 2', 12))
         self.label.move(280, 40)
-        self.show()
+        #self.show()
         # self.setLayout(vbox)
 
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = DirectoryConfiguration()
-    sys.exit(App.exec())

@@ -117,7 +117,7 @@ class IconConfigurationWindow(QWidget):
         vbox.addWidget(buttonDelete)
 
         self.setLayout(vbox)
-        self.show()
+        #self.show()
 
 
 if __name__ == '__main__':

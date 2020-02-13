@@ -116,7 +116,7 @@ class VectorDBConfigurationLeadWindow(QWidget):
         vbox.addWidget(approvalTable)
         vbox.addWidget(buttonCommit)
 
-        self.show()
+        #self.show()
 
 
 # if __name__ == '__main__':

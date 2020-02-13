@@ -80,10 +80,7 @@ class GraphFormatConfiguration(QWidget):
         #self.statusbar = QStatusBar(self)
         #self.statusbar.setObjectName("statusbar")
         #self.setStatusBar(self.statusbar)
-        self.show()
+        #self.show()
 
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = GraphFormatConfiguration()
-    sys.exit(App.exec())
+
 

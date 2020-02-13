@@ -52,7 +52,7 @@ class GraphConfigurationWindow(QWidget):
         iconTitle.setFont(QFont('MS Shell Dlg 2', 12))
         iconTitle.move(20,30)
 
-        self.show()
+        #self.show()
 
 
 if __name__ == '__main__':

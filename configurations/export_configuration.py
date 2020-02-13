@@ -22,7 +22,7 @@ class ExportConfigurationWindow(QWidget):
         combobox.addItems(['', '.CSV', '.DOCX', '.TXT'])
         btn = QPushButton('Export',self)
         btn.move(480,330)
-        self.show()
+        #self.show()
 
 
 if __name__ == '__main__':

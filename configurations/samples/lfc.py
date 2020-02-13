@@ -132,7 +132,7 @@ class LogFileConfiguration(QWidget):
             button.clicked.connect(self.display)
             self.tableWidget.setCellWidget(i,5,button)
 
-        self.show()
+        #self.show()
 
     def display(self):
         self.w = EnforcementActionReport()
@@ -209,7 +209,3 @@ class EnforcementActionReport(QWidget):
 
 
 
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = LogFileConfiguration()
-    sys.exit(App.exec())

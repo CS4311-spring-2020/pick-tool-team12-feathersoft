@@ -7,7 +7,7 @@ class ChangeConfigurationWindow(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.setGeometry(650, 300, 600, 400)
+        self.setGeometry(0, 0, 600, 400)
         self.setWindowTitle('Change Configuration')
         self.setMaximumSize(600, 400)
         self.ui()
@@ -22,7 +22,7 @@ class ChangeConfigurationWindow(QWidget):
         undo_btn.move(50, 330)
         commit_btn = QPushButton('COMMIT', self)
         commit_btn.move(450,330)
-        self.show()
+        #self.show()
 
 
 

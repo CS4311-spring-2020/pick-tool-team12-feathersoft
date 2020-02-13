@@ -86,9 +86,6 @@ class VectorConfiguration(QWidget):
         self.verticalScrollBar.setObjectName(u"verticalScrollBar")
         self.verticalScrollBar.setOrientation(Qt.Vertical)
         self.gridLayout.addWidget(self.verticalScrollBar,1,4,6,1)
-        self.show()
+        #self.show()
 
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = VectorConfiguration()
-    sys.exit(App.exec())
+

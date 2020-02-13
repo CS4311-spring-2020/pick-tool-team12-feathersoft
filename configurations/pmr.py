@@ -1,8 +1,5 @@
 import sys
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtGui import QStandardItem
-from PyQt5.QtCore import *
 from configurations.log_entry_configuration import LogEntryConfigurationWindow
 from configurations.change_configuration import ChangeConfigurationWindow
 from configurations.samples.cgf import GraphFormatConfiguration
@@ -19,17 +16,18 @@ from configurations.VectorDBConfigurationLead import VectorDBConfigurationLeadWi
 from configurations.VectorDBConfigurationNonLead import VectorDBConfigurationNonLeadWindow
 from configurations.IconConfiguration import IconConfigurationWindow
 from configurations.GraphConfiguration import GraphConfigurationWindow
-class PMR(QWidget):
 
+
+class PMR(QWidget):
     def __init__(self):
         super(PMR, self).__init__()
         self.configurations = QListWidget()
         self.configurations.setFixedWidth(300)
         self.configurations.setFixedHeight(800)
-        self.configurations.move(300,1200)
-        self.configurations.insertItem(0,'Team Configuration')
-        self.configurations.insertItem(1,'Event Configuration')
-        self.configurations.insertItem(2,'Directory Configuration')
+        self.configurations.move(300, 1200)
+        self.configurations.insertItem(0, 'Team Configuration')
+        self.configurations.insertItem(1, 'Event Configuration')
+        self.configurations.insertItem(2, 'Directory Configuration')
         self.configurations.insertItem(3, 'Vector Configuration')
         self.configurations.insertItem(4, 'Log File Configuration')
         self.configurations.insertItem(5, 'Filter Configuration')
@@ -97,12 +95,13 @@ class PMR(QWidget):
         HBox.addWidget(self.stack)
 
         self.setLayout(HBox)
-        self.setGeometry(300,50,1400,1200)
+        self.setGeometry(300, 50, 1300, 1000)
         self.setWindowTitle('PMR')
         self.show()
 
     def teamEventUI(self):
         h = QHBoxLayout(self)
+        tc = TeamConfiguratation()
         h.addWidget(TeamConfiguratation())
         self.teamStack.setLayout(h)
 
@@ -148,6 +147,7 @@ class PMR(QWidget):
 
     def vectorDBEventUI(self):
         h = QVBoxLayout(self)
+        vdbl = VectorDBConfigurationNonLeadWindow()
         h.addWidget(VectorDBConfigurationLeadWindow())
         h.addWidget(VectorDBConfigurationNonLeadWindow())
         self.vectorDBStack.setLayout(h)
@@ -177,10 +177,8 @@ class PMR(QWidget):
         h.addWidget(RelationshipConfiguration())
         self.relationshipStack.setLayout(h)
 
-
     def display(self,i):
         self.stack.setCurrentIndex(i)
-
 
 
 def main():

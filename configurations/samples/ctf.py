@@ -40,9 +40,5 @@ class TabFormatConfiguration(QWidget):
         self.treeWidget.setHorizontalScrollBar(QScrollBar())
         self.statusbar = QStatusBar(self)
         self.statusbar.setObjectName("statusbar")
-        self.show()
+        #self.show()
 
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = TabFormatConfiguration()
-    sys.exit(App.exec())
