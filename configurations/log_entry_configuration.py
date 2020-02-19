@@ -31,7 +31,9 @@ class LogEntryConfigurationWindow(QWidget):
         # Setting the amount of columns our table will have
         self.table.setColumnCount(5)
         # Setting the amount of row our table will have
-        self.table.setRowCount(20)
+        # Reading the dummy log
+        log = [line.split(' ') for line in open('dummy_log.txt').readlines()]
+        self.table.setRowCount(len(log))
         # Setting the headers for each column
         self.table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('up_arrow.png'), "List Number"))
         self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('up_arrow.png'), "Log Entry Timestamp"))
@@ -60,10 +62,7 @@ class LogEntryConfigurationWindow(QWidget):
 
         # Hiding the row labels in the table
         self.table.verticalHeader().setVisible(False)
-
-        # Reading the dummy log
-        log = [line.split(' ') for line in open('dummy_log.txt').readlines()]
-
+        dummy = ['SQL Injection', 'Blue Team', 'Red Team', 'NULL']
         for i in range(len(log)):
 
             # To store non string values in our table cells, we need to create widgets
@@ -80,10 +79,14 @@ class LogEntryConfigurationWindow(QWidget):
             combobox.addItems(['','1','2','3'])
             tableitem = QTableWidget()
             tableitem.setRowCount(4)
+            tableitem.setColumnCount(1)
+            tableitem.horizontalHeader().setVisible(False)
             tableitem.setVerticalHeaderItem(0,QTableWidgetItem('Content'))
             tableitem.setVerticalHeaderItem(1, QTableWidgetItem('Host'))
             tableitem.setVerticalHeaderItem(2, QTableWidgetItem('Source'))
             tableitem.setVerticalHeaderItem(3, QTableWidgetItem('Source Type'))
+            for j in range(len(dummy)):
+                tableitem.setItem(j,0,QTableWidgetItem(dummy[j]))
             self.table.setCellWidget(i,2,tableitem)
             self.table.setCellWidget(i,3,combobox)
             self.table.setItem(i,4,checkbox)
