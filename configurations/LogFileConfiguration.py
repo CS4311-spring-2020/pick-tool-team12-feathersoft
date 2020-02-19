@@ -29,82 +29,49 @@ class LogFileConfiguration(QWidget):
         self.tableWidget = QTableWidget(self)
         if (self.tableWidget.columnCount() < 6):
             self.tableWidget.setColumnCount(6)
-        __qtablewidgetitem = QTableWidgetItem('File Name')
-        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem('Source')
-        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem('Cleansing Status')
-        self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem('Validation Status')
-        self.tableWidget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem('Ingestion Status')
-        self.tableWidget.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem('View Enforcement Action Report')
-        self.tableWidget.setHorizontalHeaderItem(5, __qtablewidgetitem5)
-        if (self.tableWidget.rowCount() < 5):
-            self.tableWidget.setRowCount(5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(0, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(1, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(2, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(3, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.tableWidget.setVerticalHeaderItem(4, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.tableWidget.setItem(0, 0, __qtablewidgetitem11)
-        __qtablewidgetitem12 = QTableWidgetItem()
-        self.tableWidget.setItem(0, 1, __qtablewidgetitem12)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.tableWidget.setItem(0, 2, __qtablewidgetitem13)
-        __qtablewidgetitem14 = QTableWidgetItem()
-        self.tableWidget.setItem(0, 3, __qtablewidgetitem14)
-        __qtablewidgetitem15 = QTableWidgetItem()
-        self.tableWidget.setItem(0, 4, __qtablewidgetitem15)
-        __qtablewidgetitem16 = QTableWidgetItem()
-        self.tableWidget.setItem(0, 5, __qtablewidgetitem16)
-        __qtablewidgetitem17 = QTableWidgetItem()
-        self.tableWidget.setItem(1, 0, __qtablewidgetitem17)
-        __qtablewidgetitem18 = QTableWidgetItem()
-        self.tableWidget.setItem(1, 1, __qtablewidgetitem18)
-        __qtablewidgetitem19 = QTableWidgetItem()
-        self.tableWidget.setItem(1, 2, __qtablewidgetitem19)
-        __qtablewidgetitem20 = QTableWidgetItem()
-        self.tableWidget.setItem(1, 3, __qtablewidgetitem20)
-        __qtablewidgetitem21 = QTableWidgetItem()
-        self.tableWidget.setItem(1, 4, __qtablewidgetitem21)
-        __qtablewidgetitem22 = QTableWidgetItem()
-        self.tableWidget.setItem(2, 0, __qtablewidgetitem22)
-        __qtablewidgetitem23 = QTableWidgetItem()
-        self.tableWidget.setItem(2, 1, __qtablewidgetitem23)
-        __qtablewidgetitem24 = QTableWidgetItem()
-        self.tableWidget.setItem(2, 2, __qtablewidgetitem24)
-        __qtablewidgetitem25 = QTableWidgetItem()
-        self.tableWidget.setItem(2, 3, __qtablewidgetitem25)
-        __qtablewidgetitem26 = QTableWidgetItem()
-        self.tableWidget.setItem(2, 4, __qtablewidgetitem26)
-        __qtablewidgetitem27 = QTableWidgetItem()
-        self.tableWidget.setItem(3, 0, __qtablewidgetitem27)
-        __qtablewidgetitem28 = QTableWidgetItem()
-        self.tableWidget.setItem(3, 1, __qtablewidgetitem28)
-        __qtablewidgetitem29 = QTableWidgetItem()
-        self.tableWidget.setItem(3, 2, __qtablewidgetitem29)
-        __qtablewidgetitem30 = QTableWidgetItem()
-        self.tableWidget.setItem(3, 3, __qtablewidgetitem30)
-        __qtablewidgetitem31 = QTableWidgetItem()
-        self.tableWidget.setItem(3, 4, __qtablewidgetitem31)
-        __qtablewidgetitem32 = QTableWidgetItem()
-        self.tableWidget.setItem(4, 0, __qtablewidgetitem32)
-        __qtablewidgetitem33 = QTableWidgetItem()
-        self.tableWidget.setItem(4, 1, __qtablewidgetitem33)
-        __qtablewidgetitem34 = QTableWidgetItem()
-        self.tableWidget.setItem(4, 2, __qtablewidgetitem34)
-        __qtablewidgetitem35 = QTableWidgetItem()
-        self.tableWidget.setItem(4, 3, __qtablewidgetitem35)
-        __qtablewidgetitem36 = QTableWidgetItem()
-        self.tableWidget.setItem(4, 4, __qtablewidgetitem36)
+
+        #Setting Headers for Log File Table
+        fileNameHeader = QTableWidgetItem('File Name')
+        self.tableWidget.setHorizontalHeaderItem(0, fileNameHeader)
+        sourceHeader = QTableWidgetItem('Source')
+        self.tableWidget.setHorizontalHeaderItem(1, sourceHeader)
+        cleansingHeader = QTableWidgetItem('Cleansing Status')
+        self.tableWidget.setHorizontalHeaderItem(2, cleansingHeader)
+        validationHeader = QTableWidgetItem('Validation Status')
+        self.tableWidget.setHorizontalHeaderItem(3, validationHeader)
+        ingestionHeader = QTableWidgetItem('Ingestion Status')
+        self.tableWidget.setHorizontalHeaderItem(4, ingestionHeader)
+        actionReportHeader = QTableWidgetItem('View Enforcement Action Report')
+        self.tableWidget.setHorizontalHeaderItem(5, actionReportHeader)
+
+        #Populating Values in Table from dummy file
+        THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+        dummy_file = os.path.join(THIS_FOLDER, 'dummyFileConfig.txt')
+
+        dummyFileConfig = [line.split(',') for line in open(dummy_file,'r').readlines()]
+        self.tableWidget.setRowCount(len(dummyFileConfig))
+
+        i = 0
+        emptyHeader = QTableWidgetItem()
+        for line in dummyFileConfig:
+                logName,source,cleansedStatus,validatedStatus,ingestedStatus = line[0],line[1],line[2],line[3],line[4]
+                self.tableWidget.setVerticalHeaderItem(i,emptyHeader)
+                logNameItem = QTableWidgetItem(logName)
+                sourceItem = QTableWidgetItem(source)
+                cleansedItem = QTableWidgetItem(cleansedStatus)
+                validatedItem = QTableWidgetItem(validatedStatus)
+                ingestedItem = QTableWidgetItem(ingestedStatus)
+                self.tableWidget.setItem(i,0,logNameItem)
+                self.tableWidget.setItem(i, 1, sourceItem)
+                self.tableWidget.setItem(i,2,cleansedItem)
+                self.tableWidget.setItem(i, 3, validatedItem)
+                self.tableWidget.setItem(i, 4, ingestedItem)
+
+                i= i+1
+
+
+
+
         self.tableWidget.setObjectName(u"tableWidget")
         self.tableWidget.setMinimumSize(QSize(680, 55))
         self.tableWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
@@ -127,6 +94,7 @@ class LogFileConfiguration(QWidget):
         self.tableWidget.verticalHeader().setProperty("showSortIndicator", True)
         self.tableWidget.verticalHeader().setStretchLastSection(False)
         self.gridLayout.addWidget(self.tableWidget, 1, 0, 1, 1)
+
         for i in range(self.tableWidget.rowCount()):
             button = QPushButton('View', self)
             button.clicked.connect(self.display)
@@ -143,7 +111,7 @@ class EnforcementActionReport(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 482, 432)
-        self.setWindowTitle("Enforcement Action")
+        self.setWindowTitle("Enforcement Action Report")
         self.UI()
 
     def UI(self):
@@ -157,55 +125,59 @@ class EnforcementActionReport(QWidget):
 
         self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
 
-        self.tableWidget_2 = QTableWidget(self)
-        if (self.tableWidget_2.columnCount() < 2):
-            self.tableWidget_2.setColumnCount(2)
-        __qtablewidgetitem = QTableWidgetItem('Line Number')
-        self.tableWidget_2.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem('Error Message')
-        self.tableWidget_2.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        if (self.tableWidget_2.rowCount() < 3):
-            self.tableWidget_2.setRowCount(3)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.tableWidget_2.setVerticalHeaderItem(0, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.tableWidget_2.setVerticalHeaderItem(1, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.tableWidget_2.setVerticalHeaderItem(2, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.tableWidget_2.setItem(0, 0, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.tableWidget_2.setItem(0, 1, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.tableWidget_2.setItem(1, 0, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.tableWidget_2.setItem(1, 1, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.tableWidget_2.setItem(2, 0, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.tableWidget_2.setItem(2, 1, __qtablewidgetitem10)
-        self.tableWidget_2.setObjectName(u"tableWidget_2")
-        self.tableWidget_2.setSortingEnabled(True)
-        self.tableWidget_2.horizontalHeader().setProperty("showSortIndicator", True)
-        self.tableWidget_2.horizontalHeader().setStretchLastSection(True)
 
-        self.gridLayout.addWidget(self.tableWidget_2, 1, 0, 1, 4)
+        #Creating table for enforcement action report window
+        self.reportTable = QTableWidget(self)
+        if (self.reportTable.columnCount() < 2):
+            self.reportTable.setColumnCount(2)
 
-        self.label_3 = QLabel(self)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setFont(font)
+        #Creating headers for columns in table
+        lineNumHeader = QTableWidgetItem('Line Number')
+        self.reportTable.setHorizontalHeaderItem(0, lineNumHeader)
+        errorMsgHeader = QTableWidgetItem('Error Message')
+        self.reportTable.setHorizontalHeaderItem(1, errorMsgHeader)
 
-        self.gridLayout.addWidget(self.label_3, 0, 1, 1, 1)
 
-        self.pushButton = QPushButton('Validate',self)
-        self.pushButton.setObjectName(u"pushButton")
+        THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+        dummy_file = os.path.join(THIS_FOLDER, 'dummyEnforcementReport.txt')
 
-        self.gridLayout.addWidget(self.pushButton, 2, 0, 1, 2)
+        dummyEnforcementReport = [line.split(':') for line in open(dummy_file,'r').readlines()]
+        self.reportTable.setRowCount(len(dummyEnforcementReport))
 
-        self.pushButton_2 = QPushButton('Cancel',self)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        i = 0
+        emptyHeader = QTableWidgetItem()
+        for line in dummyEnforcementReport:
+                lineNum,errorMessage = line[0],line[1]
+                self.reportTable.setVerticalHeaderItem(i,emptyHeader)
+                lineNumItem = QTableWidgetItem(lineNum)
+                errorMessageItem = QTableWidgetItem(errorMessage)
+                self.reportTable.setItem(i,0,lineNumItem)
+                self.reportTable.setItem(i,1,errorMessageItem)
+                i= i+1
 
-        self.gridLayout.addWidget(self.pushButton_2, 2, 2, 1, 2)
+        self.reportTable.setObjectName(u"reportTable")
+        self.reportTable.setSortingEnabled(True)
+        self.reportTable.horizontalHeader().setProperty("showSortIndicator", True)
+        self.reportTable.horizontalHeader().setStretchLastSection(True)
+
+        self.gridLayout.addWidget(self.reportTable, 1, 0, 1, 4)
+
+        self.enforcementLabel = QLabel('Enforcement Action Report',self)
+        self.enforcementLabel.setObjectName(u"enforcementLabel")
+        self.enforcementLabel.setFont(font)
+        self.gridLayout.addWidget(self.enforcementLabel, 0, 1, 1, 1)
+
+        self.ingestButton = QPushButton('Ingest Despite Errors',self)
+        self.ingestButton.setObjectName(u"ingestButton")
+        self.gridLayout.addWidget(self.ingestButton, 2, 0, 1, 2)
+
+        self.revalidateButton = QPushButton('Revalidate Files',self)
+        self.revalidateButton.setObjectName(u"revalidateButton")
+        self.gridLayout.addWidget(self.revalidateButton, 2, 2, 1, 2)
+
+        self.cancelButton = QPushButton('Cancel',self)
+        self.cancelButton.setObjectName(u"cancelButton")
+        self.gridLayout.addWidget(self.cancelButton, 2, 4, 1, 2)
 
 
 
