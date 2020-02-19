@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import datetime
-from configurations.FilterConfiguration import FilterConfiguratation
+from configurations.filter_configuration import FilterConfiguratation
 
 
 """This class will be used to build the UI Window for the Log Entry Configuration"""
