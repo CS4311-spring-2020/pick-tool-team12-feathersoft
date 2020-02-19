@@ -66,6 +66,16 @@ class VectorConfiguration(QWidget):
         __qtablewidgetitem11 = QTableWidgetItem('SQL Injection')
         self.tableWidget.setItem(2, 1, __qtablewidgetitem11)
         self.tableWidget.setObjectName(u"tableWidget")
+
+        for i in range(self.tableWidget.rowCount()):
+            checkbox = QCheckBox()
+            checkbox.setChecked(False)
+            self.tableWidget.setCellWidget(i,2,checkbox)
+
+        #Set fixed widths for the columns to keep Description large and readable
+        self.tableWidget.setColumnWidth(1, 650)
+        self.tableWidget.setColumnWidth(2, 50)
+
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -75,11 +85,14 @@ class VectorConfiguration(QWidget):
         self.tableWidget.horizontalHeader().setVisible(True)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setProperty("showSortIndicator", True)
-        self.tableWidget.horizontalHeader().setStretchLastSection(True)
+
         self.tableWidget.verticalHeader().setProperty("showSortIndicator", True)
         self.tableWidget.verticalHeader().setStretchLastSection(False)
 
+
         self.gridLayout.addWidget(self.tableWidget,1,0,6,4)
+
+
         self.deleteButton = QPushButton('Delete Vector',self)
         self.gridLayout.addWidget(self.deleteButton,7,2,1,2)
         self.verticalScrollBar = QScrollBar(self)
