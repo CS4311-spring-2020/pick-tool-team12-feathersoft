@@ -2,8 +2,6 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-
-
 class IconConfigurationWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -33,7 +31,7 @@ class IconConfigurationWindow(QWidget):
         vbox = QGridLayout()
         iconTable = QTableWidget(self)
         iconTable.setColumnCount(4)
-        iconTable.setRowCount(5)
+        iconTable.setRowCount(10)
 
         iconTable.setHorizontalHeaderItem(0, QTableWidgetItem(""))
         iconTable.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('up-down-arrow.png'), "Icon Name"))
@@ -44,54 +42,29 @@ class IconConfigurationWindow(QWidget):
         header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(3,QHeaderView.ResizeToContents)
 
+
+
+
         for i in range(iconTable.rowCount()):
-            iconTable.setVerticalHeaderItem(i,QTableWidgetItem(''))
-        log = [line.split(' ') for line in open('example.txt').readlines()]
-        for i in range(len(log)):
-            iconTable.setItem(i,0,QTableWidgetItem(str(i + 1)))
-            iconTable.setItem(i,1,QTableWidgetItem(str(log[i][0])))
 
             checkbox = QTableWidgetItem()
             checkbox.setCheckState(Qt.Unchecked)
 
-            iconName = QTableWidget()
-            iconName.setRowCount(4)
-            iconName.setVerticalHeaderItem(0, QTableWidgetItem('Cloud'))
-            iconName.setVerticalHeaderItem(1, QTableWidgetItem('Red Team'))
-            iconName.setVerticalHeaderItem(2, QTableWidgetItem('Blue Team'))
-            iconName.setVerticalHeaderItem(3, QTableWidgetItem('Analyst'))
+            analystImage = QTableWidgetItem()
+            analystImage.setIcon(QIcon('analyst.png'))
 
-            iconSource = QTableWidget()
-            iconSource.setRowCount(4)
-            iconSource.setVerticalHeaderItem(0, QTableWidgetItem('example/icon/lib/cloud.png'))
-            iconSource.setVerticalHeaderItem(1, QTableWidgetItem('example/icon/lib/redTeam.png'))
-            iconSource.setVerticalHeaderItem(2, QTableWidgetItem('example/icon/lib/blueTeam.png'))
-            iconSource.setVerticalHeaderItem(3, QTableWidgetItem('example/icon/lib/analyst.png'))
 
-            iconTable.setCellWidget(i, 2, iconSource)
-            iconTable.setCellWidget(i, 1, iconName)
+            iconName = QTableWidgetItem()
+            iconName.setData(Qt.DisplayRole, 'Cloud')
+
+            iconSource = QTableWidgetItem()
+            iconSource.setData(Qt.DisplayRole, 'example/icon/lib/cloud.png')
+
+            iconTable.setItem(i, 1, iconName)
+            iconTable.setItem(i, 2, iconSource)
             iconTable.setItem(i,0,checkbox)
 
-        upDownImage = QTableWidgetItem()
-        upDownImage.setIcon(QIcon('cloud.png'))
-
-        redTeamImage = QTableWidgetItem()
-        redTeamImage.setIcon(QIcon('redTeam.png'))
-
-        blueTeamImage = QTableWidgetItem()
-        blueTeamImage.setIcon(QIcon('blueTeam.png'))
-
-        analystImage = QTableWidgetItem()
-        analystImage.setIcon(QIcon('analyst.png'))
-
-
-
-
-
-        iconTable.setItem(0, 3, upDownImage)
-        iconTable.setItem(1, 3, redTeamImage)
-        iconTable.setItem(2, 3, blueTeamImage)
-        iconTable.setItem(3, 3, analystImage)
+            iconTable.setItem(i, 3, analystImage)
 
 
         iconTable.setGeometry(50, 100, 400, 300)

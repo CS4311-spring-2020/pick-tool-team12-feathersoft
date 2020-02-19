@@ -380,6 +380,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.LogFileConfig" />
+      <item itemvalue="Python.PICK_PMR" />
+      <item itemvalue="Python.directoryConfiguration" />
+      <item itemvalue="Python.teamConfiguration" />
+      <item itemvalue="Python.pmr" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.pmr" />
