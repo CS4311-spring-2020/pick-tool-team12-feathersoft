@@ -7,18 +7,18 @@ from PyQt5.QtCore import *
 class VectorDBConfigurationLeadWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setGeometry(50, 50, 850, 600)
+        self.setGeometry(50, 50, 900, 700)
         self.setWindowTitle("Vector Database Configuration Lead")
         self.UI()
 
     def UI(self):
-        mainMenu = QMenuBar(self)
-        mainMenu.addMenu('File')
-        mainMenu.addMenu('Edit')
-        mainMenu.addMenu('View')
-        mainMenu.addMenu('Search')
-        mainMenu.addMenu('Tools')
-        mainMenu.addMenu('Help')
+        # self.mainMenu = QMenuBar(self)
+        # self.mainMenu.addMenu('File')
+        # self.mainMenu.addMenu('Edit')
+        # self.mainMenu.addMenu('View')
+        # self.mainMenu.addMenu('Search')
+        # self.mainMenu.addMenu('Tools')
+        # self.mainMenu.addMenu('Help')
 
         textLead = QLabel('Approval Sync:', self)
         textLead.setFont(QFont('MS Shell Dlg 2', 14))
@@ -32,6 +32,7 @@ class VectorDBConfigurationLeadWindow(QWidget):
         approvalTable = QTableWidget(self)
         approvalTable.setColumnCount(8)
         approvalTable.setRowCount(15)
+        approvalTable.verticalHeader().setVisible(False)
         approvalTable.setHorizontalHeaderItem(7, QTableWidgetItem(""))
         approvalTable.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('up-down-arrow.png'), "Source IP"))
         approvalTable.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('up-down-arrow.png'), "Request Timestamp"))
@@ -43,8 +44,8 @@ class VectorDBConfigurationLeadWindow(QWidget):
 
 
         header = approvalTable.horizontalHeader()
-        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
+        for i in range(approvalTable.columnCount()):
+            header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
         for i in range(approvalTable.rowCount()):
             approvalTable.setVerticalHeaderItem(i,QTableWidgetItem(''))
@@ -115,6 +116,7 @@ class VectorDBConfigurationLeadWindow(QWidget):
 
         vbox.addWidget(approvalTable)
         vbox.addWidget(buttonCommit)
+        self.setLayout(vbox)
 
         #self.show()
 

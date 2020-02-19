@@ -147,9 +147,10 @@ class PMR(QWidget):
 
     def vectorDBEventUI(self):
         h = QVBoxLayout(self)
-        vdbl = VectorDBConfigurationNonLeadWindow()
-        h.addWidget(VectorDBConfigurationLeadWindow())
-        h.addWidget(VectorDBConfigurationNonLeadWindow())
+        self.tabs = QTabWidget()
+        self.tabs.addTab(VectorDBConfigurationLeadWindow(),'Vector DB Lead')
+        self.tabs.addTab(VectorDBConfigurationNonLeadWindow(), 'Vector DB Non-Lead')
+        h.addWidget(self.tabs)
         self.vectorDBStack.setLayout(h)
 
     def iconEventUI(self):

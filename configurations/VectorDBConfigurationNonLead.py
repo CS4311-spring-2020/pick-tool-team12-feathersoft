@@ -7,7 +7,7 @@ from PyQt5.QtCore import *
 class VectorDBConfigurationNonLeadWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setGeometry(0, 0, 950, 450)
+        self.setGeometry(0, 0, 800, 600)
         self.setWindowTitle("Vector Database Configuration")
         self.UI()
 
