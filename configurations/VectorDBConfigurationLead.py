@@ -117,10 +117,10 @@ class VectorDBConfigurationLeadWindow(QWidget):
         vbox.addWidget(textLead)
         vbox.addWidget(approvalTable)
         vbox.addWidget(buttonCommit)
-        ccw = ChangeConfigurationWindow()
-        vbox.addWidget(ccw)
-        ccw.show()
+        self.ccw = ChangeConfigurationWindow()
+        vbox.addWidget(self.ccw)
         self.setLayout(vbox)
+
 
         #self.show()
 
