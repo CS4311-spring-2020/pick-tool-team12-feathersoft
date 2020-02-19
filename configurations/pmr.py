@@ -1,17 +1,14 @@
 import sys
 from PyQt5.QtWidgets import *
 from configurations.log_entry_configuration import LogEntryConfigurationWindow
-from configurations.change_configuration import ChangeConfigurationWindow
-from configurations.samples.cgf import GraphFormatConfiguration
-from configurations.samples.ctf import TabFormatConfiguration
-from configurations.samples.dc import DirectoryConfiguration
-from configurations.samples.ec import EventConfiguratation
-from configurations.samples.fc import FilterConfiguratation
-from configurations.samples.lfc import LogFileConfiguration
-from configurations.samples.rc import RelationshipConfiguration
-from configurations.samples.tc import TeamConfiguratation
-from configurations.samples.vc import VectorConfiguration
-from configurations.export_configuration import ExportConfigurationWindow
+from configurations.GraphFormatConfiguration import GraphFormatConfiguration
+from configurations.TabFormatConfiguration import TabFormatConfiguration
+from configurations.DirectoryConfiguration import DirectoryConfiguration
+from configurations.EventConfiguration import EventConfiguratation
+from configurations.LogFileConfiguration import LogFileConfiguration
+from configurations.RelationshipConfiguration import RelationshipConfiguration
+from configurations.TeamConfiguration import TeamConfiguratation
+from configurations.VectorConfiguration import VectorConfiguration
 from configurations.VectorDBConfigurationLead import VectorDBConfigurationLeadWindow
 from configurations.VectorDBConfigurationNonLead import VectorDBConfigurationNonLeadWindow
 from configurations.IconConfiguration import IconConfigurationWindow
@@ -30,30 +27,23 @@ class PMR(QWidget):
         self.configurations.insertItem(2, 'Directory Configuration')
         self.configurations.insertItem(3, 'Vector Configuration')
         self.configurations.insertItem(4, 'Log File Configuration')
-        self.configurations.insertItem(5, 'Filter Configuration')
-        self.configurations.insertItem(6, 'Log Entry Configuration')
-        self.configurations.insertItem(7, 'Export Configuration')
-        self.configurations.insertItem(8, 'Change Configuration')
-        self.configurations.insertItem(9, 'Vector DB Configuration')
-        self.configurations.insertItem(10, 'Icon Configuration')
-        self.configurations.insertItem(12, 'Graph Builder Configuration')
-        self.configurations.insertItem(13, 'Nodes Configuration in Tabular Format')
-        self.configurations.insertItem(14, 'Nodes Configuration in Graphical Format')
-        self.configurations.insertItem(15, 'Relationship Configuration')
+        self.configurations.insertItem(5, 'Log Entry Configuration')
+        self.configurations.insertItem(6, 'Vector DB Configuration')
+        self.configurations.insertItem(7, 'Icon Configuration')
+        self.configurations.insertItem(8, 'Graph Builder Configuration')
+        self.configurations.insertItem(9, 'Nodes Configuration')
+        self.configurations.insertItem(10, 'Relationship Configuration')
+
         self.teamStack = QWidget()
         self.eventStack = QWidget()
         self.directoryStack = QWidget()
         self.vectorStack = QWidget()
         self.logFileStack = QWidget()
-        self.filterStack = QWidget()
         self.logEntryStack = QWidget()
-        self.exportStack = QWidget()
-        self.changeStack = QWidget()
         self.vectorDBStack = QWidget()
         self.iconStack = QWidget()
         self.graphBuilderStack = QWidget()
-        self.nodeTabStack = QWidget()
-        self.nodeGraphStack = QWidget()
+        self.nodesStack = QWidget()
         self.relationshipStack = QWidget()
 
         self.configurations.currentRowChanged.connect(self.display)
@@ -62,15 +52,11 @@ class PMR(QWidget):
         self.directoryEventUI()
         self.vectorEventUI()
         self.logFileEventUI()
-        self.filterEventUI()
         self.logEntryEventUI()
-        self.exportEventUI()
-        self.changeEventUI()
         self.vectorDBEventUI()
         self.iconEventUI()
         self.graphBuilderEventUI()
-        self.nodesGraphEventUI()
-        self.nodesTabEventUI()
+        self.nodesEventUI()
         self.relationshipsEventUI()
 
         self.stack = QStackedWidget(self)
@@ -79,15 +65,11 @@ class PMR(QWidget):
         self.stack.addWidget(self.directoryStack)
         self.stack.addWidget(self.vectorStack)
         self.stack.addWidget(self.logFileStack)
-        self.stack.addWidget(self.filterStack)
         self.stack.addWidget(self.logEntryStack)
-        self.stack.addWidget(self.exportStack)
-        self.stack.addWidget(self.changeStack)
         self.stack.addWidget(self.vectorDBStack)
         self.stack.addWidget(self.iconStack)
         self.stack.addWidget(self.graphBuilderStack)
-        self.stack.addWidget(self.nodeTabStack)
-        self.stack.addWidget(self.nodeGraphStack)
+        self.stack.addWidget(self.nodesStack)
         self.stack.addWidget(self.relationshipStack)
 
         HBox = QHBoxLayout(self)
@@ -125,25 +107,10 @@ class PMR(QWidget):
         h.addWidget(LogFileConfiguration())
         self.logFileStack.setLayout(h)
 
-    def filterEventUI(self):
-        h = QHBoxLayout(self)
-        h.addWidget(FilterConfiguratation())
-        self.filterStack.setLayout(h)
-
     def logEntryEventUI(self):
         h = QHBoxLayout(self)
         h.addWidget(LogEntryConfigurationWindow())
         self.logEntryStack.setLayout(h)
-
-    def exportEventUI(self):
-        h = QHBoxLayout(self)
-        h.addWidget(ExportConfigurationWindow())
-        self.exportStack.setLayout(h)
-
-    def changeEventUI(self):
-        h = QHBoxLayout(self)
-        h.addWidget(ChangeConfigurationWindow())
-        self.changeStack.setLayout(h)
 
     def vectorDBEventUI(self):
         h = QVBoxLayout(self)
@@ -163,15 +130,14 @@ class PMR(QWidget):
         h.addWidget(GraphConfigurationWindow())
         self.graphBuilderStack.setLayout(h)
 
-    def nodesGraphEventUI(self):
+    def nodesEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(GraphFormatConfiguration())
-        self.nodeGraphStack.setLayout(h)
+        self.tabs = QTabWidget()
+        self.tabs.addTab(TabFormatConfiguration(),'Tab Format Configuration')
+        self.tabs.addTab(GraphFormatConfiguration(), 'Graph Format Configuration')
+        h.addWidget(self.tabs)
+        self.nodesStack.setLayout(h)
 
-    def nodesTabEventUI(self):
-        h = QHBoxLayout(self)
-        h.addWidget(TabFormatConfiguration())
-        self.nodeTabStack.setLayout(h)
 
     def relationshipsEventUI(self):
         h = QHBoxLayout(self)

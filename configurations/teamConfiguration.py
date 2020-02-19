@@ -1,107 +1,50 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'teamConfiguration.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
-from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtGui import QStandardItem
+from PyQt5.QtCore import *
+import datetime
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(501, 493)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        self.formLayout = QtWidgets.QFormLayout(self.centralwidget)
-        self.formLayout.setObjectName("formLayout")
-        self.titleLabel = QtWidgets.QLabel(self.centralwidget)
-        font = QtGui.QFont()
-        font.setPointSize(17)
-        self.titleLabel.setFont(font)
-        self.titleLabel.setObjectName("titleLabel")
-        self.formLayout.setWidget(0, QtWidgets.QFormLayout.SpanningRole, self.titleLabel)
-        self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setTitle("")
-        self.groupBox_2.setObjectName("groupBox_2")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox_2)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.lead_ip_address_label = QtWidgets.QLabel(self.groupBox_2)
-        self.lead_ip_address_label.setObjectName("lead_ip_address_label")
-        self.gridLayout_3.addWidget(self.lead_ip_address_label, 0, 0, 1, 1)
-        self.IP_label = QtWidgets.QLineEdit(self.groupBox_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.IP_label.sizePolicy().hasHeightForWidth())
-        self.IP_label.setSizePolicy(sizePolicy)
-        self.IP_label.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.IP_label.setAutoFillBackground(False)
-        self.IP_label.setCursorMoveStyle(QtCore.Qt.LogicalMoveStyle)
-        self.IP_label.setClearButtonEnabled(False)
-        self.IP_label.setObjectName("IP_label")
-        self.gridLayout_3.addWidget(self.IP_label, 1, 0, 1, 1)
-        self.formLayout.setWidget(1, QtWidgets.QFormLayout.SpanningRole, self.groupBox_2)
-        self.lead_and_lead_name_box = QtWidgets.QGroupBox(self.centralwidget)
-        self.lead_and_lead_name_box.setTitle("")
-        self.lead_and_lead_name_box.setObjectName("lead_and_lead_name_box")
-        self.gridLayout_2 = QtWidgets.QGridLayout(self.lead_and_lead_name_box)
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.checkBox = QtWidgets.QCheckBox(self.lead_and_lead_name_box)
-        self.checkBox.setObjectName("checkBox")
-        self.gridLayout_2.addWidget(self.checkBox, 0, 0, 1, 1)
-        self.lineEdit_2 = QtWidgets.QLineEdit(self.lead_and_lead_name_box)
-        self.lineEdit_2.setObjectName("lineEdit_2")
-        self.gridLayout_2.addWidget(self.lineEdit_2, 1, 0, 1, 1)
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.SpanningRole, self.lead_and_lead_name_box)
-        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+class TeamConfiguratation(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setGeometry(50, 50, 560, 664)
+        self.setWindowTitle("Team Configuration")
+        self.UI()
+
+    def UI(self):
+        self.label = QLabel('Team Configuration', self)
+        self.label.move(100, 10)
+        font = QFont()
+        font.setPointSize(26)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.checkBox = QCheckBox('Lead',self)
+        self.checkBox.setGeometry(QRect(10, 280, 381, 41))
+
+        self.label_2 = QLabel('Lead IP Address',self)
+
+        self.label_2.setGeometry(QRect(6, 120, 101, 41))
+
+        self.label_3 = QLabel('connections to',self)
+        self.label_3.setGeometry(QRect(10, 220, 101, 21))
+        self.label_3.setObjectName("label_3")
+        self.pushButton = QPushButton('Connect',self)
+        self.pushButton.setGeometry(QRect(130, 350, 261, 81))
+        self.pushButton.setObjectName("pushButton")
+        self.textEdit = QTextEdit(self)
+        self.textEdit.setGeometry(QRect(130, 120, 261, 51))
+        self.textEdit.setObjectName("textEdit")
+        self.textEdit_2 = QTextEdit(self)
+        self.textEdit_2.setGeometry(QRect(130, 200, 261, 51))
+        self.textEdit_2.setObjectName("textEdit_2")
+        self.label_4 = QLabel('no. established',self)
+        self.label_4.setGeometry(QRect(10, 200, 101, 31))
         self.label_4.setObjectName("label_4")
-        self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.label_4)
-        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5 = QLabel('lead ip',self)
+        self.label_5.setGeometry(QRect(10, 240, 101, 16))
         self.label_5.setObjectName("label_5")
-        self.formLayout.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.label_5)
-        self.button_frame = QtWidgets.QFrame(self.centralwidget)
-        self.button_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.button_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.button_frame.setObjectName("button_frame")
-        self.gridLayout = QtWidgets.QGridLayout(self.button_frame)
-        self.gridLayout.setObjectName("gridLayout")
-        self.connect_button = QtWidgets.QPushButton(self.button_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.connect_button.sizePolicy().hasHeightForWidth())
-        self.connect_button.setSizePolicy(sizePolicy)
-        self.connect_button.setObjectName("connect_button")
-        self.gridLayout.addWidget(self.connect_button, 1, 0, 1, 1)
-        self.formLayout.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.button_frame)
-        self.filler_label_1 = QtWidgets.QLabel(self.centralwidget)
-        self.filler_label_1.setText("")
-        self.filler_label_1.setObjectName("filler_label_1")
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.filler_label_1)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 501, 22))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        #self.show()
 
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.titleLabel.setText(_translate("MainWindow", "Team Configuration"))
-        self.lead_ip_address_label.setText(_translate("MainWindow", "Lead IP address:"))
-        self.IP_label.setText(_translate("MainWindow", "IP"))
-        self.checkBox.setText(_translate("MainWindow", "Lead"))
-        self.lineEdit_2.setText(_translate("MainWindow", "Lead Name"))
-        self.label_4.setText(_translate("MainWindow", "No. of established connections to the lead IP address:"))
-        self.label_5.setText(_translate("MainWindow", "0"))
-        self.connect_button.setText(_translate("MainWindow", "Connect"))
