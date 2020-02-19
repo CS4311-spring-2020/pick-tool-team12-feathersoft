@@ -37,6 +37,11 @@ class DirectoryConfiguration(QWidget):
         filebtn.clicked.connect(self.open_file)
 
         self.event_start_timestamp_label = QLabel('Red Team Folder', self)
+        filebtn_r = QPushButton(self)
+        filebtn_r.setFixedHeight(40)
+        filebtn_r.setIcon(QIcon('folder.png'))
+        filebtn_r.move(610, 260)
+        filebtn_r.clicked.connect(self.open_file)
         self.event_start_timestamp_label.setFont(QFont('MS Shell Dlg 2', 8))
         self.event_start_timestamp_label.move(20,270)
 
@@ -44,6 +49,12 @@ class DirectoryConfiguration(QWidget):
         self.textEdit_3.setGeometry(QRect(150, 260, 451, 41))
 
         self.event_start_timestamp_label = QLabel('Blue Team Folder', self)
+        filebtn_b = QPushButton(self)
+        filebtn_b.setFixedHeight(40)
+        filebtn_b.setIcon(QIcon('folder.png'))
+        filebtn_b.move(610, 340)
+        filebtn_b.clicked.connect(self.open_file)
+
         self.event_start_timestamp_label.setFont(QFont('MS Shell Dlg 2', 8))
         self.event_start_timestamp_label.move(20, 350)
 
@@ -54,6 +65,11 @@ class DirectoryConfiguration(QWidget):
         self.white_team_label.move(10,430)
         self.textEdit_5 = QTextEdit(self)
         self.textEdit_5.setGeometry(QRect(150, 420, 451, 41))
+        filebtn_b = QPushButton(self)
+        filebtn_b.setFixedHeight(40)
+        filebtn_b.setIcon(QIcon('folder.png'))
+        filebtn_b.move(610, 420)
+        filebtn_b.clicked.connect(self.open_file)
 
 
 
