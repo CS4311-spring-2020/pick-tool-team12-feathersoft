@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-
+from configurations.change_configuration import ChangeConfigurationWindow
 
 class VectorDBConfigurationLeadWindow(QWidget):
     def __init__(self):
@@ -113,9 +113,13 @@ class VectorDBConfigurationLeadWindow(QWidget):
         buttonCommit = QPushButton(self)
         buttonCommit.setGeometry(670,60,70,30)
         buttonCommit.setText('Commit')
-
+        ccw = ChangeConfigurationWindow()
+        vbox.addWidget(textLead)
         vbox.addWidget(approvalTable)
         vbox.addWidget(buttonCommit)
+        ccw = ChangeConfigurationWindow()
+        vbox.addWidget(ccw)
+        ccw.show()
         self.setLayout(vbox)
 
         #self.show()
