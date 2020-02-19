@@ -86,8 +86,8 @@ class VectorConfiguration(QWidget):
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setProperty("showSortIndicator", True)
 
-        self.tableWidget.verticalHeader().setProperty("showSortIndicator", True)
         self.tableWidget.verticalHeader().setStretchLastSection(False)
+        self.tableWidget.verticalHeader().setProperty("showSortIndicator", True)
 
 
         self.gridLayout.addWidget(self.tableWidget,1,0,6,4)
