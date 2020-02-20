@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import datetime
+from configurations.filter_configuration import FilterConfiguratation
 
 
 """This class will be used to build the UI Window for the Log Entry Configuration"""
@@ -24,7 +25,7 @@ class LogEntryConfigurationWindow(QWidget):
         self.label.move(50,50)
 
         # Creating the layout that the window will be stored
-        self.grid = QGridLayout()
+        self.vbox = QVBoxLayout()
         # Creating the table
         self.table = QTableWidget(self)
         # Setting the amount of columns our table will have
@@ -40,8 +41,9 @@ class LogEntryConfigurationWindow(QWidget):
 
         # Resizing the column headers to resize dynamically to the size of their contents
         self.header = self.table.horizontalHeader()
-        self.header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
-        self.header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        for i in range(self.table.columnCount()):
+            self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
+
 
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -61,6 +63,7 @@ class LogEntryConfigurationWindow(QWidget):
 
         # Reading the dummy log
         log = [line.split(' ') for line in open('dummy_log.txt').readlines()]
+
         for i in range(len(log)):
 
             # To store non string values in our table cells, we need to create widgets
@@ -88,14 +91,23 @@ class LogEntryConfigurationWindow(QWidget):
         self.num_clicks = [1,1,1]
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
         self.table.setGeometry(50,100,900, 650)
-        self.grid.addWidget(self.label)
-        self.grid.addWidget(self.table)
+        self.menuBar = QMenuBar()
+        self.menuBar.setMaximumWidth(120)
+        self.filter_options = self.menuBar.addMenu('Filter Options')
+        self.filter_options.addAction('Filter')
+        self.filter_options.triggered[QAction].connect(self.filter_action)
+        self.vbox.addWidget(self.label)
+        self.vbox.addWidget(self.menuBar)
+        self.vbox.addWidget(self.table)
 
-
-        self.setLayout(self.grid)
+        self.setLayout(self.vbox)
         #self.show()
         #App = QApplication(sys.argv)
         #sys.exit(App.exec())
+
+    def filter_action(self):
+        self.filter = FilterConfiguratation()
+        self.filter.show()
 
     def header_clicked(self):
         col = self.table.currentColumn()
@@ -133,4 +145,5 @@ class LogEntryConfigurationWindow(QWidget):
 if __name__ == '__main__':
      App = QApplication(sys.argv)
      window = LogEntryConfigurationWindow()
+     window.show()
      sys.exit(App.exec())
