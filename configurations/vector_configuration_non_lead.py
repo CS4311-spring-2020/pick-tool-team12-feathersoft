@@ -62,14 +62,6 @@ class VectorDBConfigurationNonLeadWindow(QWidget):
         header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
 
         for i in range(table.rowCount()):
-            table.setVerticalHeaderItem(i,QTableWidgetItem(''))
-            table2.setVerticalHeaderItem(i,QTableWidgetItem(''))
-        log = [line.split(' ') for line in open('example.txt').readlines()]
-        for i in range(len(log)):
-            table.setItem(i,0,QTableWidgetItem(str(i + 1)))
-            table.setItem(i,1,QTableWidgetItem(str(log[i][0])))
-            table2.setItem(i, 0, QTableWidgetItem(str(i + 1)))
-            table2.setItem(i, 1, QTableWidgetItem(str(log[i][0])))
 
             checkbox_Push = QTableWidgetItem()
             checkbox_Push.setCheckState(Qt.Unchecked)
@@ -83,12 +75,9 @@ class VectorDBConfigurationNonLeadWindow(QWidget):
             tableitem_Push.setVerticalHeaderItem(2, QTableWidgetItem('Vector 3'))
             tableitem_Push.setVerticalHeaderItem(3, QTableWidgetItem('Vector 4'))
 
-            tableitem_2_Push = QTableWidget()
-            tableitem_2_Push.setRowCount(4)
-            tableitem_2_Push.setVerticalHeaderItem(0, QTableWidgetItem('This is the example of text'))
-            tableitem_2_Push.setVerticalHeaderItem(1, QTableWidgetItem('This text can be changed as presented'))
-            tableitem_2_Push.setVerticalHeaderItem(2, QTableWidgetItem('There are several descriptions of Vectors'))
-            tableitem_2_Push.setVerticalHeaderItem(3, QTableWidgetItem('Last description'))
+            tableitem_2_Push = QTableWidgetItem()
+            tableitem_2_Push.setData(Qt.DisplayRole, 'This is the example of text')
+
 
             checkbox = QTableWidgetItem()
             checkbox.setCheckState(Qt.Unchecked)
@@ -102,20 +91,17 @@ class VectorDBConfigurationNonLeadWindow(QWidget):
             tableitem.setVerticalHeaderItem(2, QTableWidgetItem('Vector 3'))
             tableitem.setVerticalHeaderItem(3, QTableWidgetItem('Vector 4'))
 
-            tableitem_2 = QTableWidget()
-            tableitem_2.setRowCount(4)
-            tableitem_2.setVerticalHeaderItem(0, QTableWidgetItem('This is the example of text'))
-            tableitem_2.setVerticalHeaderItem(1, QTableWidgetItem('This text can be changed as presented'))
-            tableitem_2.setVerticalHeaderItem(2, QTableWidgetItem('There are several descriptions of Vectors'))
-            tableitem_2.setVerticalHeaderItem(3, QTableWidgetItem('Last description'))
+            tableitem_2 = QTableWidgetItem()
+            tableitem_2.setData(Qt.DisplayRole, 'This is the example of text')
+
 
             table.setCellWidget(i,0,tableitem)
-            table.setCellWidget(i, 1, tableitem_2)
+            table.setItem(i, 1, tableitem_2)
             table.setCellWidget(i,3,combobox)
             table.setItem(i,2,checkbox)
 
             table2.setCellWidget(i, 0, tableitem_Push)
-            table2.setCellWidget(i, 1, tableitem_2_Push)
+            table2.setItem(i, 1, tableitem_2_Push)
             table2.setCellWidget(i, 3, combobox_Push)
             table2.setItem(i, 2, checkbox_Push)
 
@@ -130,6 +116,11 @@ class VectorDBConfigurationNonLeadWindow(QWidget):
         buttonPull = QPushButton(self)
         buttonPull.setGeometry(820, 65, 70, 30)
         buttonPull.setText('Push')
+
+        buttonPull = QPushButton(self)
+        buttonPull.setGeometry(820, 30, 70, 30)
+        buttonPull.setText('Commit')
+
 
         vbox.addWidget(table)
         vbox.addWidget(table2)

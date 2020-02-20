@@ -1,141 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/configurations/team_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pick-tool-team12-feathersoft.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pick-tool-team12-feathersoft.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/DirectoryConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/directory_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/EventConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/event_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/FilterConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/filter_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/GraphConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/graph_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/GraphFormatConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/graph_format_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/IconConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icon_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/LogFileConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_file_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/RelationshipConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/relationship_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/TabFormatConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/tab_format_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/VectorConfiguration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/VectorDBConfigurationLead.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_db_configuration_lead.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/VectorDBConfigurationNonLead.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_configuration_non_lead.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/log_entry_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_entry_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/pmr.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/pmr.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/teamConfiguration.py" beforeDir="false" />
-    </list>
+    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/icon_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="92" column="9" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/vector_db_configuration_lead.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="125" column="9" selection-start-line="125" selection-start-column="9" selection-end-line="125" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/configurations/pmr.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-799">
-              <caret line="10" column="67" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/relationship_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-356">
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/tab_format_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-424">
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/team_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-152">
-              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/vector_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1223">
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/vector_configuration_non_lead.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/dummy_log.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -145,93 +16,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="$PROJECT_DIR$/related_real_world_objects/enforcement_action_report.py" />
-        <option value="$PROJECT_DIR$/related_real_world_objects/vector.py" />
-        <option value="$PROJECT_DIR$/related_real_world_objects/significant_log_entry.py" />
-        <option value="$PROJECT_DIR$/related_real_world_objects/log_file.py" />
-        <option value="$PROJECT_DIR$/related_real_world_objects/node.py" />
-        <option value="$PROJECT_DIR$/related_real_world_objects/node_visibility.py" />
-        <option value="$PROJECT_DIR$/related_real_world_objects/icon.py" />
-        <option value="$PROJECT_DIR$/related_real_world_objects/relationship.py" />
-        <option value="$PROJECT_DIR$/related_real_world_objects/graph.py" />
-        <option value="$PROJECT_DIR$/related_real_world_objects/event_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/__init.py__.py" />
-        <option value="$PROJECT_DIR$/configurations/__init__.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/__init__.py" />
-        <option value="$PROJECT_DIR$/configurations/FilterConfig.py" />
-        <option value="$PROJECT_DIR$/configurations/log_file_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/dummy_log.txt" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/graph.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/enforcement_action_report.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/icon.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/log_file.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/node.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/relationship.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/significant_log_entry.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/vector.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/node_visibility.py" />
-        <option value="$PROJECT_DIR$/configurations/related_real_world_objects/event_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/VectorDBConfigurationNon-Lead.py" />
-        <option value="$PROJECT_DIR$/configurations/LogFileConfig.py" />
-        <option value="$PROJECT_DIR$/configurations/eventConfiguration.py" />
-        <option value="$PROJECT_DIR$/configurations/PICK_PMR.py" />
-        <option value="$PROJECT_DIR$/configurations/teamConfiguration.py" />
-        <option value="$PROJECT_DIR$/configurations/directoryConfiguration.py" />
-        <option value="$PROJECT_DIR$/configurations/VectorConfig.py" />
-        <option value="$PROJECT_DIR$/configurations/RelationshipsConfig.py" />
-        <option value="$PROJECT_DIR$/configurations/samples/cgf.py" />
-        <option value="$PROJECT_DIR$/configurations/samples/ctf.py" />
-        <option value="$PROJECT_DIR$/configurations/samples/fc.py" />
-        <option value="$PROJECT_DIR$/configurations/samples/lfc.py" />
-        <option value="$PROJECT_DIR$/configurations/samples/rc.py" />
-        <option value="$PROJECT_DIR$/configurations/samples/tc.py" />
-        <option value="$PROJECT_DIR$/configurations/samples/vc.py" />
-        <option value="$PROJECT_DIR$/configurations/samples/ec.py" />
-        <option value="$PROJECT_DIR$/configurations/IconConfiguration.py" />
-        <option value="$PROJECT_DIR$/configurations/GraphConfiguration.py" />
-        <option value="$PROJECT_DIR$/configurations/export_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/log_entry_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/change_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/pmr.py" />
-        <option value="$PROJECT_DIR$/configurations/VectorDBConfigurationNonLead.py" />
-        <option value="$PROJECT_DIR$/configurations/samples/dc.py" />
-        <option value="$PROJECT_DIR$/configurations/VectorDBConfigurationLead.py" />
+        <option value="Sergio Nogami" />
       </list>
     </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="width" value="980" />
-    <option name="height" value="1040" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
-              <item name="configurations" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -239,12 +29,14 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Sergio-pc\PycharmProjects\pick-tool-team12-feathersoft\configurations" />
+      <recent name="C:\Users\Sergio-pc\PycharmProjects\pick-tool-team12-feathersoft\configurations\samples" />
       <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations" />
       <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\icons" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -260,7 +52,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.pmr">
-    <configuration name="LogFileConfig" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="GraphConfiguration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pick-tool-team12-feathersoft" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -272,7 +64,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/LogFileConfig.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/GraphConfiguration.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -281,7 +73,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="PICK_PMR" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="IconConfiguration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pick-tool-team12-feathersoft" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -293,7 +85,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/PICK_PMR.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/IconConfiguration.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -302,7 +94,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="directoryConfiguration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="VectorDBConfigurationLead" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pick-tool-team12-feathersoft" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -314,7 +106,28 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/directoryConfiguration.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/VectorDBConfigurationLead.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="log_entry_configuration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pick-tool-team12-feathersoft" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/configurations" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/log_entry_configuration.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -344,41 +157,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="teamConfiguration" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="pick-tool-team12-feathersoft" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/configurations" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/teamConfiguration.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.LogFileConfig" />
-      <item itemvalue="Python.PICK_PMR" />
-      <item itemvalue="Python.directoryConfiguration" />
-      <item itemvalue="Python.teamConfiguration" />
       <item itemvalue="Python.pmr" />
+      <item itemvalue="Python.log_entry_configuration" />
+      <item itemvalue="Python.GraphConfiguration" />
+      <item itemvalue="Python.IconConfiguration" />
+      <item itemvalue="Python.VectorDBConfigurationLead" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.pmr" />
-        <item itemvalue="Python.PICK_PMR" />
-        <item itemvalue="Python.teamConfiguration" />
-        <item itemvalue="Python.directoryConfiguration" />
-        <item itemvalue="Python.LogFileConfig" />
+        <item itemvalue="Python.VectorDBConfigurationLead" />
+        <item itemvalue="Python.IconConfiguration" />
+        <item itemvalue="Python.GraphConfiguration" />
+        <item itemvalue="Python.log_entry_configuration" />
       </list>
     </recent_temporary>
   </component>
@@ -554,7 +346,35 @@
       <option name="project" value="LOCAL" />
       <updated>1582078737327</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Changed scroll sections into editable strings">
+      <created>1582080976915</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1582080976915</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Changed scroll sections into editable strings">
+      <created>1582081126436</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1582081126436</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Changed scroll sections into editable strings. Added commit buttons and image preview.">
+      <created>1582168599521</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1582168599521</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Changed scroll sections into editable strings. Added commit buttons and image preview.">
+      <created>1582177324748</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1582177324748</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TodoView">
@@ -566,47 +386,18 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11756935" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3281471" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.497358" visible="true" weight="0.32956153" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39886847" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32952926" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3281471" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4993395" weight="0.32390383" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50264204" side_tool="true" weight="0.32956153" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32904148" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.11756935" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32904148" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.497358" visible="true" weight="0.32956153" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39886847" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32952926" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3281471" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4993395" weight="0.32390383" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50264204" side_tool="true" weight="0.32956153" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32904148" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updated the export configuration file" />
@@ -617,7 +408,9 @@
     <MESSAGE value="Added some documentation to the related real world objects files." />
     <MESSAGE value="Added some resources for the team" />
     <MESSAGE value="wired all windows together in pmr.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="wired all windows together in pmr.py" />
+    <MESSAGE value="Changed scroll sections into editable strings" />
+    <MESSAGE value="Changed scroll sections into editable strings. Added commit buttons and image preview." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed scroll sections into editable strings. Added commit buttons and image preview." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -629,225 +422,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/rwo/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/config_tab_format.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/config_graph_format.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/enforcement_action_report.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/log_file.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/event_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/vector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/significant_log_entry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/relationship.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/node_visibility.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/dropdown.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/dummy_log.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/up_arrow.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/redTeam.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/graph.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/icon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/rwo/node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/relationships_config.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="734">
-          <caret line="48" column="8" selection-start-line="48" selection-start-column="8" selection-end-line="50" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/samples/white/wlog.txt" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/red/rlog.txt" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/blue/blog.txt" />
-    <entry file="file://$PROJECT_DIR$/configurations/directory_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding>
-            <element signature="e#212#254#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/FilterConfig.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/ConfigGraphFormat.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/ConfigTabFormat.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/team_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/RelationshipsConfig.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/LogFileConfig.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/VectorConfig.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/PICK_PMR.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/vector_configuration_non_lead.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/folder.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/samples/cgf.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/ctf.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/dc.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/ec.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/fc.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/lfc.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/rc.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/tc.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/samples/vc.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/change_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/export_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/graph_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/icon_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="92" column="9" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/vector_db_configuration_lead.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="125" column="9" selection-start-line="125" selection-start-column="9" selection-end-line="125" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/pmr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-799">
-          <caret line="10" column="67" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
