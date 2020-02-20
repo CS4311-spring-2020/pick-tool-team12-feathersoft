@@ -98,7 +98,6 @@ class VectorDBConfigurationLeadWindow(QWidget):
         buttonCommit = QPushButton(self)
         buttonCommit.setGeometry(870,60,70,30)
         buttonCommit.setText('Commit')
-        ccw = ChangeConfigurationWindow()
         vbox.addWidget(textLead)
         vbox.addWidget(approvalTable)
         vbox.addWidget(buttonCommit)
