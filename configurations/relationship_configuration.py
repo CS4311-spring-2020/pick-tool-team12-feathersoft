@@ -20,21 +20,31 @@ class RelationshipConfiguration(QWidget):
         self.treeWidget = QTreeWidget(self)
         self.treeWidget.setGeometry(QRect(30, 80, 601, 311))
         self.treeWidget.setObjectName("treeWidget")
-        self.header_labels = ['','Relationship ID', 'Parent', 'Child', 'Label']
+        self.header_labels = ['Display','Relationship ID', 'Parent', 'Child', 'Label']
         self.treeWidget.setHeaderLabels(self.header_labels)
-        item_0 = QTreeWidgetItem(self.treeWidget)
-        font = QFont()
-        font.setPointSize(17)
-        item_0.setFont(2, font)
-        item_0 = QTreeWidgetItem(self.treeWidget)
-        self.checkBox = QCheckBox(self)
-        self.checkBox.setGeometry(QRect(60, 100, 20, 20))
-        self.checkBox.setText("")
-        self.checkBox.setObjectName("checkBox")
-        self.checkBox_2 = QCheckBox(self)
-        self.checkBox_2.setGeometry(QRect(60, 120, 20, 20))
-        self.checkBox_2.setText("")
-        self.checkBox_2.setObjectName("checkBox_2")
+
+        # hardcoded
+        dummy1 = ["", "1", "node1", "node3", "attack1"];
+        dummy2 = ["", "2", "node2", "node4", "attack2"];
+        for row in range(2):
+            rowItem = QTreeWidgetItem(self.treeWidget)
+
+            for column in range(len(self.header_labels)):
+                if column == 0:
+                    cb = QCheckBox()
+                    self.treeWidget.setItemWidget(rowItem, 0, cb)
+                else:
+                    if row == 0:
+                        rowItem.setText(column, dummy1[column])
+                    else:
+                        rowItem.setText(column, dummy2[column])
+
+        for i in range(len(self.header_labels)):
+            self.treeWidget.resizeColumnToContents(i)
+        self.treeWidget.setAlternatingRowColors(True)
+        self.label = QLabel('Relationship Configuration', self)
+        self.label.setGeometry(QRect(20, 30, 231, 16))
+        self.label.setObjectName("label")
         #self.show()
 
 
