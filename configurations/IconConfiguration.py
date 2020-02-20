@@ -5,16 +5,15 @@ from PyQt5.QtCore import *
 class IconConfigurationWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setGeometry(50, 50, 850, 600)
+        self.setGeometry(50, 50, 850, 800)
         self.setWindowTitle("Icon Configuration")
         self.UI()
 
     def UI(self):
 
         mainImage = QLabel(self)
-        mainImage.setPixmap(QPixmap('blueTeam.png'))
-        mainImage.setGeometry(470,70,350,350)
-
+        mainImage.setPixmap(QPixmap('analyst_small.png'))
+        mainImage.setGeometry(520,70,350,350)
 
         mainMenu = QMenuBar(self)
         mainMenu.addMenu('File')
@@ -39,11 +38,11 @@ class IconConfigurationWindow(QWidget):
         iconTable.setHorizontalHeaderItem(3,QTableWidgetItem( " Image Preview"))
 
         header = iconTable.horizontalHeader()
+
+        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
+        header.setSectionResizeMode(1,QHeaderView.ResizeToContents)
         header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
         header.setSectionResizeMode(3,QHeaderView.ResizeToContents)
-
-
-
 
         for i in range(iconTable.rowCount()):
 
@@ -79,17 +78,17 @@ class IconConfigurationWindow(QWidget):
 
         buttonDelete = QPushButton(self)
         buttonDelete.setGeometry(500, 400, 70, 30)
-        buttonDelete.setGeometry(500, 400, 70, 30)
         buttonDelete.setText('Delete Icon')
 
         vbox.addWidget(mainMenu)
         vbox.addWidget(iconTitle)
         vbox.addWidget(iconTable)
+        vbox.addWidget(mainImage)
         vbox.addWidget(buttonAdd)
         vbox.addWidget(buttonEdit)
         vbox.addWidget(buttonDelete)
 
-        self.setLayout(vbox)
+        #self.setLayout(vbox)
         #self.show()
 
 
