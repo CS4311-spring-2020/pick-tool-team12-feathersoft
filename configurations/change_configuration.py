@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-class ChangeConfigurationWindow(QWidget):
+class ChangeConfiguration(QWidget):
 
     def __init__(self):
         super().__init__()

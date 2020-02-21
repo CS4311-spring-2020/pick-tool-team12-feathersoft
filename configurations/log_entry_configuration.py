@@ -4,17 +4,19 @@ from PyQt5.QtGui import *
 from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import datetime
-from configurations.filter_configuration import FilterConfiguratation
+from configurations.filter_configuration import FilterConfiguration
 
 
 """This class will be used to build the UI Window for the Log Entry Configuration"""
 
 
-class LogEntryConfigurationWindow(QWidget):
+class LogEntryConfiguration(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 1000, 800)
         self.setWindowTitle("Log Entry Configuration")
+        self.filter = FilterConfiguration()
+        self.logs = [line.split(' ') for line in open('dummy_log.txt').readlines()]
         self.UI()
 
     def UI(self):
@@ -31,9 +33,9 @@ class LogEntryConfigurationWindow(QWidget):
         # Setting the amount of columns our table will have
         self.table.setColumnCount(5)
         # Setting the amount of row our table will have
-        # Reading the dummy log
-        log = [line.split(' ') for line in open('dummy_log.txt').readlines()]
-        self.table.setRowCount(len(log))
+        # Reading the dummy self.logs
+
+        self.table.setRowCount(len(self.logs))
         # Setting the headers for each column
         self.table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('up_arrow.png'), "List Number"))
         self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('up_arrow.png'), "Log Entry Timestamp"))
@@ -63,8 +65,7 @@ class LogEntryConfigurationWindow(QWidget):
         # Hiding the row labels in the table
         self.table.verticalHeader().setVisible(False)
         dummy = ['SQL Injection', 'Blue Team', 'Red Team', 'NULL']
-        for i in range(len(log)):
-
+        for i in range(len(self.logs)):
             # To store non string values in our table cells, we need to create widgets
             # that have a display role formatted for non string values.
             list_value = QTableWidgetItem()
@@ -109,8 +110,13 @@ class LogEntryConfigurationWindow(QWidget):
         #sys.exit(App.exec())
 
     def filter_action(self):
-        self.filter = FilterConfiguratation()
         self.filter.show()
+        self.filter.closeEvent = self.apply_filter
+
+    def apply_filter(self, event):
+        criteria = self.filter.filter_criteria
+        filtered_logs = []
+
 
     def header_clicked(self):
         col = self.table.currentColumn()
@@ -145,8 +151,9 @@ class LogEntryConfigurationWindow(QWidget):
         else:
             pass
 
+
 if __name__ == '__main__':
      App = QApplication(sys.argv)
-     window = LogEntryConfigurationWindow()
+     window = LogEntryConfiguration()
      window.show()
      sys.exit(App.exec())

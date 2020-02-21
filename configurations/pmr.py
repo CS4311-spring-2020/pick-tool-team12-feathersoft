@@ -1,23 +1,46 @@
 import sys
 from PyQt5.QtWidgets import *
-from configurations.log_entry_configuration import LogEntryConfigurationWindow
-from configurations.graph_format_configuration import GraphFormatConfiguration
-from configurations.tab_format_configuration import TabFormatConfiguration
+from configurations.log_entry_configuration import LogEntryConfiguration
 from configurations.directory_configuration import DirectoryConfiguration
 from configurations.event_configuration import EventConfiguratation
 from configurations.log_file_configuration import LogFileConfiguration
 from configurations.relationship_configuration import RelationshipConfiguration
 from configurations.team_configuration import TeamConfiguratation
 from configurations.vector_configuration import VectorConfiguration
-from configurations.vector_db_configuration_lead import VectorDBConfigurationLeadWindow
-from configurations.vector_configuration_non_lead import VectorDBConfigurationNonLeadWindow
-from configurations.icon_configuration import IconConfigurationWindow
-from configurations.graph_configuration import GraphConfigurationWindow
+from configurations.vector_db_configuration_lead import VectorDBConfigurationLead
+from configurations.vector_configuration_non_lead import VectorDBConfigurationNonLead
+from configurations.icon_configuration import IconConfiguration
+from configurations.graph_configuration import GraphConfiguration
+from configurations.filter_configuration import FilterConfiguration
+from configurations.export_configuration import ExportConfiguration
+from configurations.change_configuration import ChangeConfiguration
+from configurations.graph_format_configuration import GraphFormatConfiguration
+from configurations.tab_format_configuration import TabFormatConfiguration
 
 
 class PMR(QWidget):
     def __init__(self):
         super(PMR, self).__init__()
+
+        # Creating references to each window being used in the system.
+        self.team_configuration = TeamConfiguratation()
+        self.event_configuration = EventConfiguratation()
+        self.directory_configuration = DirectoryConfiguration()
+        self.vector_configuration = VectorConfiguration()
+        self.log_file_configuration = LogFileConfiguration()
+        self.log_entry_configuration = LogEntryConfiguration()
+        self.export_configuration = ExportConfiguration()
+        self.change_configuration = ChangeConfiguration()
+        self.vector_db_configuration_lead = VectorDBConfigurationLead()
+        self.vector_db_configuration_non_lead = VectorDBConfigurationNonLead()
+        self.icon_configuration = IconConfiguration()
+        self.graph_builder_configuration = GraphConfiguration()
+        self.graph_format_configuration = GraphFormatConfiguration()
+        self.tab_format_configuration = TabFormatConfiguration()
+
+
+
+
         self.configurations = QListWidget()
         self.configurations.setFixedWidth(300)
         self.configurations.setFixedHeight(800)
@@ -109,25 +132,25 @@ class PMR(QWidget):
 
     def logEntryEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(LogEntryConfigurationWindow())
+        h.addWidget(LogEntryConfiguration())
         self.logEntryStack.setLayout(h)
 
     def vectorDBEventUI(self):
         h = QVBoxLayout(self)
         self.tabs = QTabWidget()
-        self.tabs.addTab(VectorDBConfigurationLeadWindow(),'Vector DB Lead')
-        self.tabs.addTab(VectorDBConfigurationNonLeadWindow(), 'Vector DB Non-Lead')
+        self.tabs.addTab(VectorDBConfigurationLead(),'Vector DB Lead')
+        self.tabs.addTab(VectorDBConfigurationNonLead(), 'Vector DB Non-Lead')
         h.addWidget(self.tabs)
         self.vectorDBStack.setLayout(h)
 
     def iconEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(IconConfigurationWindow())
+        h.addWidget(IconConfiguration())
         self.iconStack.setLayout(h)
 
     def graphBuilderEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(GraphConfigurationWindow())
+        h.addWidget(GraphConfiguration())
         self.graphBuilderStack.setLayout(h)
 
     def nodesEventUI(self):

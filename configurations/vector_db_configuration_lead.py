@@ -2,9 +2,9 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from configurations.change_configuration import ChangeConfigurationWindow
+from configurations.change_configuration import ChangeConfiguration
 
-class VectorDBConfigurationLeadWindow(QWidget):
+class VectorDBConfigurationLead(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 900, 700)
@@ -44,9 +44,9 @@ class VectorDBConfigurationLeadWindow(QWidget):
 
 
         header = approvalTable.horizontalHeader()
-        header.setSectionResizeMode(0, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(3, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(4, QHeaderView.ResizeToContents)
+
+        for i in range(approvalTable.columnCount()):
+            header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
         for i in range(approvalTable.rowCount()):
 
@@ -111,5 +111,5 @@ class VectorDBConfigurationLeadWindow(QWidget):
 
 # if __name__ == '__main__':
 #     App = QApplication(sys.argv)
-#     window = VectorDBConfigurationLeadWindow()
+#     window = VectorDBConfigurationLead()
 #     sys.exit(App.exec())

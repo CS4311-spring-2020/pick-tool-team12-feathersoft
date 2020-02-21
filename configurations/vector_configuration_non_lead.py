@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
-class VectorDBConfigurationNonLeadWindow(QWidget):
+class VectorDBConfigurationNonLead(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(0, 0, 800, 600)
@@ -53,9 +53,9 @@ class VectorDBConfigurationNonLeadWindow(QWidget):
         table2.setHorizontalHeaderItem(2, QTableWidgetItem(""))
         table2.setHorizontalHeaderItem(3, QTableWidgetItem("Graph"))
 
-        header = table.horizontalHeader()
-        header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        self.header = table.horizontalHeader()
+        for i in range(table.columnCount()):
+            self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
         header = table2.horizontalHeader()
         header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
@@ -132,5 +132,5 @@ class VectorDBConfigurationNonLeadWindow(QWidget):
 
 if __name__ == '__main__':
     App = QApplication(sys.argv)
-    window = VectorDBConfigurationNonLeadWindow()
+    window = VectorDBConfigurationNonLead()
     sys.exit(App.exec())

@@ -85,6 +85,9 @@ class VectorConfiguration(QWidget):
         self.tableWidget.horizontalHeader().setVisible(True)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setProperty("showSortIndicator", True)
+        self.header = self.tableWidget.horizontalHeader()
+        for i in range(self.tableWidget.columnCount()):
+            self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
         self.tableWidget.verticalHeader().setStretchLastSection(False)
         self.tableWidget.verticalHeader().setProperty("showSortIndicator", True)
@@ -99,6 +102,7 @@ class VectorConfiguration(QWidget):
         self.verticalScrollBar.setObjectName(u"verticalScrollBar")
         self.verticalScrollBar.setOrientation(Qt.Vertical)
         self.gridLayout.addWidget(self.verticalScrollBar,1,4,6,1)
+        self.setLayout(self.gridLayout)
         #self.show()
 
 

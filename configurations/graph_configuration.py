@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
-class GraphConfigurationWindow(QWidget):
+class GraphConfiguration(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 850, 600)
@@ -57,5 +57,5 @@ class GraphConfigurationWindow(QWidget):
 
 if __name__ == '__main__':
     App = QApplication(sys.argv)
-    window = GraphConfigurationWindow()
+    window = GraphConfiguration()
     sys.exit(App.exec())
