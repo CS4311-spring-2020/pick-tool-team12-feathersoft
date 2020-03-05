@@ -2,13 +2,14 @@ import splunklib.client as client
 import splunklib.results as results
 import os
 from configurations.rwo.significant_log_entry import SignificantLogEntry
+import datetime
 
 class splunk_integrator:
     def __init__(self):
         self.HOST = "127.0.0.1"
         self.PORT = 8089
         self.INDEX = "main"
-        self.USERNAME = "Feathersoft"
+        self.USERNAME = "asosa19"
         self.PASSWORD = "stevenroach"
         self.entries = list()
 
@@ -34,7 +35,7 @@ class splunk_integrator:
         # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
         # Query criteria
-        query = "search * | head 10"
+        query = "search * | head 100"
 
         # Create search job
         job = jobs.create(query, **blocking_search)
@@ -48,8 +49,11 @@ class splunk_integrator:
         return self.entries
 
     def display_entries(self):
+        testlog = open('testlog.txt','w')
         for entry in self.entries:
+            testlog.write(str(entry._log_entry_number) + " " + str(datetime.datetime.utcfromtimestamp(int(entry._log_entry_timestamp)))+ " " + str(entry._log_entry_content) + " " + str(entry._host) + " " + str(entry._source) + " " + str(entry._source_type) + '\n')
             entry.display()
+
 
 
 if __name__ == '__main__':
