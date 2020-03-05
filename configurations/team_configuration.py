@@ -18,10 +18,8 @@ class TeamConfiguratation(QWidget):
 
     def UI(self):
         self.label = QLabel('Team Configuration', self)
-        self.label.move(100, 10)
-        font = QFont()
-        font.setPointSize(26)
-        self.label.setFont(font)
+        self.label.move(160, 70)
+        self.label.setFont(QFont('MS Shell Dlg 2', 12))
         self.label.setObjectName("label")
         self.checkBox = QCheckBox('Lead',self)
         self.checkBox.setGeometry(QRect(10, 280, 381, 41))

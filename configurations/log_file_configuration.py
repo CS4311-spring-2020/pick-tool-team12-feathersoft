@@ -18,11 +18,7 @@ class LogFileConfiguration(QWidget):
         self.gridLayout.setObjectName(u"gridLayout")
         self.label = QLabel('Log File Configuration', self)
         self.label.setObjectName(u"label")
-        font = QFont()
-        font.setPointSize(17)
-        font.setBold(True)
-        font.setWeight(75)
-        self.label.setFont(font)
+        self.label.setFont(QFont('MS Shell Dlg 2', 12))
 
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
 
