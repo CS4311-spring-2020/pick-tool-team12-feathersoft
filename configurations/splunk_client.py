@@ -10,7 +10,7 @@ class splunk_integrator:
         self.HOST = "127.0.0.1"
         self.PORT = 8089
         self.INDEX = "main"
-        self.USERNAME = "Feathersoft"
+        self.USERNAME = "asosa19"
         self.PASSWORD = "stevenroach"
         self.entries = list()
 

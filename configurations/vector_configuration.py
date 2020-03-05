@@ -69,7 +69,7 @@ class VectorConfiguration(QWidget):
             self.tableWidget.setCellWidget(i,2,checkbox)
 
         #Set fixed widths for the columns to keep Description large and readable
-        self.tableWidget.setColumnWidth(1, 650)
+        self.tableWidget.setColumnWidth(1, 675)
         self.tableWidget.setColumnWidth(2, 50)
 
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
@@ -82,8 +82,9 @@ class VectorConfiguration(QWidget):
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setProperty("showSortIndicator", True)
         self.header = self.tableWidget.horizontalHeader()
-        for i in range(self.tableWidget.columnCount()):
-            self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
+
+        #for i in range(self.tableWidget.columnCount()):
+        #    self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
         self.tableWidget.verticalHeader().setStretchLastSection(False)
         self.tableWidget.verticalHeader().setProperty("showSortIndicator", True)

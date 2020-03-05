@@ -37,7 +37,7 @@ class TeamConfiguratation(QWidget):
         self.textEdit = QTextEdit(self)
         self.textEdit.setGeometry(QRect(130, 120, 261, 51))
         self.textEdit.setObjectName("textEdit")
-        self.textEdit_2 = QTextEdit(self)
+        self.textEdit_2 = QLabel('15',self)
         self.textEdit_2.setGeometry(QRect(130, 200, 261, 51))
         self.textEdit_2.setObjectName("textEdit_2")
         self.label_4 = QLabel('no. established',self)
