@@ -1,9 +1,10 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5.QtGui import QStandardItem
-from PyQt5.QtCore import *
-import datetime
+
+""" The filter configuration widget is used to collect filter criteria
+    from an analyst to apply to a table.
+"""
 
 
 class FilterConfiguration(QWidget):
@@ -19,6 +20,7 @@ class FilterConfiguration(QWidget):
         self.filter_criteria['Timestamp'] = [0,0]
         self.ui()
 
+    # The ui method is used to generate the window
     def ui(self):
         # Creating layout to store widgets
         self.gridLayout = QGridLayout(self)
@@ -54,13 +56,14 @@ class FilterConfiguration(QWidget):
         self.creator_button_group.addButton(self.creator_white_button)
         self.creator_button_group.setExclusive(False)
 
-
         self.creator_button_group.buttonClicked.connect(self.creator_button_group_clicked)
 
         self.start_timestamp_label = QLabel('Start Timestamp:', self)
         self.start_timestamp_label.setObjectName(u"startTimestampLabel")
+
         font = QFont()
         font.setPointSize(16)
+
         self.start_timestamp_label.setFont(font)
         self.gridLayout.addWidget(self.start_timestamp_label, 10, 0, 1, 1)
 
@@ -146,7 +149,6 @@ class FilterConfiguration(QWidget):
             # If button is selected we want to add it's label to the criteria (e.g. Red, White, Blue)
             if btn.isChecked():
                 self.filter_criteria['Event Type'].add(btn.text())
-
             # If user deselects a button we want to remove it from the filter list.
             elif not btn.isChecked() and btn.text() in self.filter_criteria['Event Type']:
                 self.filter_criteria['Event Type'].remove(btn.text())
@@ -156,11 +158,12 @@ class FilterConfiguration(QWidget):
     # #Handling apply button event
     def apply_button_clicked(self):
         # Finally add the timestamps to the filter criteria and exit
-        self.filter_criteria['Timestamp'][0] = self.start_timestamp_edit.dateTime().currentDateTime().toString()
-        self.filter_criteria['Timestamp'][1] = self.end_timestamp_edit.dateTime().currentDateTime().toString()
+        self.filter_criteria['Timestamp'][0] = self.start_timestamp_edit.dateTime().toUTC().toString()
+        self.filter_criteria['Timestamp'][1] = self.end_timestamp_edit.dateTime().toUTC().toString()
         # Parse any keywords entered into the search criteria
         self.filter_criteria['Keyword'] = [self.lineEdit.text().split()]
         print(self.filter_criteria)
+        print(sorted(self.filter_criteria['Timestamp']))
         self.close()
 
 

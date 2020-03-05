@@ -3,7 +3,8 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
-import datetime
+import os
+import time
 from configurations.filter_configuration import FilterConfiguration
 
 
@@ -27,7 +28,8 @@ class LogEntryConfiguration(QWidget):
         self.label.move(50,50)
 
         # Creating the layout that the window will be stored
-        self.vbox = QVBoxLayout()
+        self.grid = QGridLayout()
+        self.setLayout(self.grid)
         # Creating the table
         self.table = QTableWidget(self)
         # Setting the amount of columns our table will have
@@ -47,7 +49,6 @@ class LogEntryConfiguration(QWidget):
         self.header = self.table.horizontalHeader()
         for i in range(self.table.columnCount()):
             self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
-
 
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -71,7 +72,7 @@ class LogEntryConfiguration(QWidget):
             list_value = QTableWidgetItem()
             list_value.setData(Qt.DisplayRole, i)
             time_stamp = QTableWidgetItem()
-            time_stamp.setData(Qt.DisplayRole,str(datetime.datetime.utcnow()))
+            time_stamp.setData(Qt.DisplayRole,str(time.ctime(os.path.getctime('dummy_log.txt'))))
             self.table.setItem(i,0,list_value)
             self.table.setItem(i,1,time_stamp)
             checkbox = QTableWidgetItem()
@@ -95,16 +96,17 @@ class LogEntryConfiguration(QWidget):
         self.num_clicks = [1,1,1]
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
         self.table.setGeometry(50,100,900, 650)
-        self.menuBar = QMenuBar()
-        self.menuBar.setMaximumWidth(120)
-        self.filter_options = self.menuBar.addMenu('Filter Options')
-        self.filter_options.addAction('Filter')
+        menuBar = QMenuBar(self)
+        self.filter_options = menuBar.addMenu('Filter Options')
+        self.fa = QAction('Filter')
+        self.fa.setShortcut('Ctrl+F')
+        self.filter_options.addAction(self.fa)
         self.filter_options.triggered[QAction].connect(self.filter_action)
-        self.vbox.addWidget(self.label)
-        self.vbox.addWidget(self.menuBar)
-        self.vbox.addWidget(self.table)
+        self.grid.addWidget(menuBar)
+        self.grid.addWidget(self.label)
+        self.grid.addWidget(self.table)
 
-        self.setLayout(self.vbox)
+
         #self.show()
         #App = QApplication(sys.argv)
         #sys.exit(App.exec())
@@ -120,7 +122,6 @@ class LogEntryConfiguration(QWidget):
 
     def header_clicked(self):
         col = self.table.currentColumn()
-
         # items = [self.table.itemAt(i, col).text() for i in range(self.table.rowCount())]
         if col == 0:
             items = [int(item.text()) for item in self.table.selectedItems()]

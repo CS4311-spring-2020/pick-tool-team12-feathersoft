@@ -1,6 +1,7 @@
 import splunklib.client as client
 import splunklib.results as results
 import os
+from configurations.rwo.significant_log_entry import SignificantLogEntry
 
 class splunk_integrator:
     def __init__(self):
@@ -9,6 +10,7 @@ class splunk_integrator:
         self.INDEX = "main"
         self.USERNAME = "Feathersoft"
         self.PASSWORD = "stevenroach"
+        self.entries = list()
 
         # Create a Service instance and log in
 
@@ -18,31 +20,44 @@ class splunk_integrator:
             username=self.USERNAME,
             password=self.PASSWORD)
 
+
+    # Takes a file as input and uploads to splunk
     def upload_file(self,path):
         index = self.service.indexes[self.INDEX]
         index.upload(path)
 
 
+
     def download_log_files(self):
+        # Retrieve search jobs
         jobs = self.service.jobs
-        entries = list()
+        # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
+        # Query criteria
         query = "search * | head 10"
 
+        # Create search job
         job = jobs.create(query, **blocking_search)
+        # Parse results
         job_results = results.ResultsReader(job.results())
-
+        i = 0
         for result in job_results:
             if True:
-                print(result)
-                entries.append(result)
-        return entries
+                self.entries.append(SignificantLogEntry(i,result['_indextime'],result['index'],result['host'],result['source'],result['sourcetype']))
+            i += 1
+        return self.entries
+
+    def display_entries(self):
+        for entry in self.entries:
+            entry.display()
 
 
 if __name__ == '__main__':
     client = splunk_integrator()
-    client.upload_file('C:/Users/jayjj/Documents/Spring 2020/Software 2/pick-tool-team12-feathersoft/configurations/root/white/wlog.txt')
+    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
+    dummy_file = os.path.join(THIS_FOLDER,'dummy_log.txt')
     client.download_log_files()
+    client.display_entries()
 
 
 

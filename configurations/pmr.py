@@ -16,7 +16,9 @@ from configurations.export_configuration import ExportConfiguration
 from configurations.change_configuration import ChangeConfiguration
 from configurations.graph_format_configuration import GraphFormatConfiguration
 from configurations.tab_format_configuration import TabFormatConfiguration
-
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 
 class PMR(QWidget):
     def __init__(self):
@@ -37,6 +39,7 @@ class PMR(QWidget):
         self.graph_builder_configuration = GraphConfiguration()
         self.graph_format_configuration = GraphFormatConfiguration()
         self.tab_format_configuration = TabFormatConfiguration()
+        self.relationship_configuration = RelationshipConfiguration()
 
 
 
@@ -106,65 +109,78 @@ class PMR(QWidget):
 
     def teamEventUI(self):
         h = QHBoxLayout(self)
-        tc = TeamConfiguratation()
-        h.addWidget(TeamConfiguratation())
+        self.team_configuration.pushButton.clicked.connect(self.team_button_clicked)
+        h.addWidget(self.team_configuration,stretch=0)
         self.teamStack.setLayout(h)
 
     def eventEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(EventConfiguratation())
+        h.addWidget(self.event_configuration)
         self.eventStack.setLayout(h)
 
     def directoryEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(DirectoryConfiguration())
+        h.addWidget(self.directory_configuration)
         self.directoryStack.setLayout(h)
 
     def vectorEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(VectorConfiguration())
+        h.addWidget(self.vector_configuration)
         self.vectorStack.setLayout(h)
 
     def logFileEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(LogFileConfiguration())
+        h.addWidget(self.log_file_configuration)
         self.logFileStack.setLayout(h)
 
     def logEntryEventUI(self):
-        h = QHBoxLayout(self)
-        h.addWidget(LogEntryConfiguration())
+        h = QVBoxLayout(self)
+        h.addWidget(self.log_entry_configuration,stretch=0)
+
         self.logEntryStack.setLayout(h)
 
     def vectorDBEventUI(self):
-        h = QVBoxLayout(self)
-        self.tabs = QTabWidget()
-        self.tabs.addTab(VectorDBConfigurationLead(),'Vector DB Lead')
-        self.tabs.addTab(VectorDBConfigurationNonLead(), 'Vector DB Non-Lead')
-        h.addWidget(self.tabs)
-        self.vectorDBStack.setLayout(h)
+         lead_layout = QHBoxLayout()
+        # lead_layout.addWidget(self.vector_db_configuration_lead)
+        # non_lead_layout = QHBoxLayout()
+        # non_lead_layout.addWidget(self.vector_db_configuration_non_lead)
+        # if self.team_configuration.checkBox.isChecked():
+        #     print('is checked')
+        #     self.vectorDBStack.setLayout(lead_layout)
+        # else:
+        #     self.vectorDBStack.setLayout(non_lead_layout)
 
     def iconEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(IconConfiguration())
+        h.addWidget(self.icon_configuration)
         self.iconStack.setLayout(h)
 
     def graphBuilderEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(GraphConfiguration())
+        h.addWidget(self.graph_builder_configuration)
         self.graphBuilderStack.setLayout(h)
 
     def nodesEventUI(self):
         h = QHBoxLayout(self)
         self.tabs = QTabWidget()
-        self.tabs.addTab(TabFormatConfiguration(),'Tab Format Configuration')
-        self.tabs.addTab(GraphFormatConfiguration(), 'Graph Format Configuration')
+        self.tabs.addTab(self.tab_format_configuration,'Tab Format Configuration')
+        self.tabs.addTab(self.graph_format_configuration, 'Graph Format Configuration')
         h.addWidget(self.tabs)
         self.nodesStack.setLayout(h)
 
+    def team_button_clicked(self):
+        layout = QHBoxLayout()
+        if self.team_configuration.checkBox.isChecked():
+            self.vectorDBStack.destroy()
+            layout.addWidget(self.vector_db_configuration_lead)
+
+        else:
+            layout.addWidget(self.vector_db_configuration_non_lead)
+        self.vectorDBStack.setLayout(layout)
 
     def relationshipsEventUI(self):
         h = QHBoxLayout(self)
-        h.addWidget(RelationshipConfiguration())
+        h.addWidget(self.relationship_configuration)
         self.relationshipStack.setLayout(h)
 
     def display(self,i):

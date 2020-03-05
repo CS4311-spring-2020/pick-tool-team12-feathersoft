@@ -18,3 +18,11 @@ class SignificantLogEntry:
         self._host = host
         self._source = source
         self._source_type = source_type
+
+    def display(self):
+        print(f"Log Entry Number: {self._log_entry_number}")
+        print(f"Log Entry Timestamp: {self._log_entry_timestamp}")
+        print(f"Log Entry Content:{self._log_entry_content}")
+        print(f"Host: {self._host}")
+        print(f"Source: {self._source}")
+        print(f"Source Type{self._source_type}")
