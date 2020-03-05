@@ -18,11 +18,7 @@ class VectorConfiguration(QWidget):
         self.gridLayout.setObjectName(u"gridLayout")
         self.vectorConfigLabel = QLabel('Vector Configuration',self)
         self.vectorConfigLabel.setObjectName(u"vectorConfigLabel")
-        font = QFont()
-        font.setPointSize(21)
-        font.setBold(True)
-        font.setWeight(75)
-        self.vectorConfigLabel.setFont(font)
+        self.vectorConfigLabel.setFont(QFont('MS Shell Dlg 2', 12))
 
         self.gridLayout.addWidget(self.vectorConfigLabel,0,0,1,2)
 
