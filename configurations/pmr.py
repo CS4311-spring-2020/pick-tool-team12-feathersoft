@@ -141,15 +141,10 @@ class PMR(QWidget):
         self.logEntryStack.setLayout(h)
 
     def vectorDBEventUI(self):
-         lead_layout = QHBoxLayout()
-        # lead_layout.addWidget(self.vector_db_configuration_lead)
-        # non_lead_layout = QHBoxLayout()
-        # non_lead_layout.addWidget(self.vector_db_configuration_non_lead)
-        # if self.team_configuration.checkBox.isChecked():
-        #     print('is checked')
-        #     self.vectorDBStack.setLayout(lead_layout)
-        # else:
-        #     self.vectorDBStack.setLayout(non_lead_layout)
+        h = QHBoxLayout(self)
+        h.addWidget(self.vector_db_configuration_lead)
+        h.addWidget(self.vector_db_configuration_non_lead)
+        self.vectorDBStack.setLayout(h)
 
     def iconEventUI(self):
         h = QHBoxLayout(self)
@@ -170,14 +165,8 @@ class PMR(QWidget):
         self.nodesStack.setLayout(h)
 
     def team_button_clicked(self):
-        layout = QHBoxLayout()
-        if self.team_configuration.checkBox.isChecked():
-            self.vectorDBStack.destroy()
-            layout.addWidget(self.vector_db_configuration_lead)
+        pass
 
-        else:
-            layout.addWidget(self.vector_db_configuration_non_lead)
-        self.vectorDBStack.setLayout(layout)
 
     def relationshipsEventUI(self):
         h = QHBoxLayout(self)

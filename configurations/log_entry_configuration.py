@@ -17,7 +17,7 @@ class LogEntryConfiguration(QWidget):
         self.setGeometry(50, 50, 1000, 800)
         self.setWindowTitle("Log Entry Configuration")
         self.filter = FilterConfiguration()
-        self.logs = [line.split(' ') for line in open('dummy_log.txt').readlines()]
+        self.logs = [line.split(' ') for line in open('testlog.txt').readlines()]
         self.UI()
 
     def UI(self):
@@ -70,9 +70,9 @@ class LogEntryConfiguration(QWidget):
             # To store non string values in our table cells, we need to create widgets
             # that have a display role formatted for non string values.
             list_value = QTableWidgetItem()
-            list_value.setData(Qt.DisplayRole, i)
+            list_value.setData(Qt.DisplayRole, self.logs[i][0])
             time_stamp = QTableWidgetItem()
-            time_stamp.setData(Qt.DisplayRole,str(time.ctime(os.path.getctime('dummy_log.txt'))))
+            time_stamp.setData(Qt.DisplayRole,self.logs[i][1])
             self.table.setItem(i,0,list_value)
             self.table.setItem(i,1,time_stamp)
             checkbox = QTableWidgetItem()
@@ -87,8 +87,10 @@ class LogEntryConfiguration(QWidget):
             tableitem.setVerticalHeaderItem(1, QTableWidgetItem('Host'))
             tableitem.setVerticalHeaderItem(2, QTableWidgetItem('Source'))
             tableitem.setVerticalHeaderItem(3, QTableWidgetItem('Source Type'))
-            for j in range(len(dummy)):
-                tableitem.setItem(j,0,QTableWidgetItem(dummy[j]))
+            tableitem.setItem(0,0,QTableWidgetItem(self.logs[i][2]))
+            tableitem.setItem(1, 0, QTableWidgetItem(self.logs[i][3]))
+            tableitem.setItem(2, 0, QTableWidgetItem(self.logs[i][4]))
+            tableitem.setItem(3, 0, QTableWidgetItem(self.logs[i][5]))
             self.table.setCellWidget(i,2,tableitem)
             self.table.setCellWidget(i,3,combobox)
             self.table.setItem(i,4,checkbox)
