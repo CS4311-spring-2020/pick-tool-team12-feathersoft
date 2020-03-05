@@ -98,6 +98,23 @@ class VectorConfiguration(QWidget):
 
         self.deleteButton = QPushButton('Delete Vector',self)
         self.gridLayout.addWidget(self.deleteButton,7,2,1,2)
+
+        self.selectAllButton = QPushButton('Select All', self)
+        self.gridLayout.addWidget(self.selectAllButton, 0, 3, 1, 1)
+        self.selectAllButton.clicked.connect(self.selectAll)
+
+        # self.show()
+    def selectAll(self):
+        for i in range(self.tableWidget.rowCount()):
+            checkbox = QCheckBox()
+            checkbox.setChecked(True)
+            self.tableWidget.setCellWidget(i,2,checkbox)
+
+
+    def display(self):
+        self.w = EnforcementActionReport()
+        self.w.show()
+
         self.verticalScrollBar = QScrollBar(self)
         self.verticalScrollBar.setObjectName(u"verticalScrollBar")
         self.verticalScrollBar.setOrientation(Qt.Vertical)
