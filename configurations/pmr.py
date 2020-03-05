@@ -56,10 +56,11 @@ class PMR(QWidget):
         self.configurations.insertItem(4, 'Log File Configuration')
         self.configurations.insertItem(5, 'Log Entry Configuration')
         self.configurations.insertItem(6, 'Vector DB Configuration')
-        self.configurations.insertItem(7, 'Icon Configuration')
-        self.configurations.insertItem(8, 'Graph Builder Configuration')
-        self.configurations.insertItem(9, 'Nodes Configuration')
-        self.configurations.insertItem(10, 'Relationship Configuration')
+        self.configurations.insertItem(7, 'Vector DB Non Lead')
+        self.configurations.insertItem(8, 'Icon Configuration')
+        self.configurations.insertItem(9, 'Graph Builder Configuration')
+        self.configurations.insertItem(10, 'Nodes Configuration')
+        self.configurations.insertItem(11, 'Relationship Configuration')
 
         self.teamStack = QWidget()
         self.eventStack = QWidget()
@@ -68,6 +69,7 @@ class PMR(QWidget):
         self.logFileStack = QWidget()
         self.logEntryStack = QWidget()
         self.vectorDBStack = QWidget()
+        self.vectorDBStackNonLead = QWidget()
         self.iconStack = QWidget()
         self.graphBuilderStack = QWidget()
         self.nodesStack = QWidget()
@@ -81,6 +83,7 @@ class PMR(QWidget):
         self.logFileEventUI()
         self.logEntryEventUI()
         self.vectorDBEventUI()
+        self.vectorDBEventNonLeadUI()
         self.iconEventUI()
         self.graphBuilderEventUI()
         self.nodesEventUI()
@@ -94,6 +97,7 @@ class PMR(QWidget):
         self.stack.addWidget(self.logFileStack)
         self.stack.addWidget(self.logEntryStack)
         self.stack.addWidget(self.vectorDBStack)
+        self.stack.addWidget(self.vectorDBStackNonLead)
         self.stack.addWidget(self.iconStack)
         self.stack.addWidget(self.graphBuilderStack)
         self.stack.addWidget(self.nodesStack)
@@ -141,15 +145,14 @@ class PMR(QWidget):
         self.logEntryStack.setLayout(h)
 
     def vectorDBEventUI(self):
-         lead_layout = QHBoxLayout()
-        # lead_layout.addWidget(self.vector_db_configuration_lead)
-        # non_lead_layout = QHBoxLayout()
-        # non_lead_layout.addWidget(self.vector_db_configuration_non_lead)
-        # if self.team_configuration.checkBox.isChecked():
-        #     print('is checked')
-        #     self.vectorDBStack.setLayout(lead_layout)
-        # else:
-        #     self.vectorDBStack.setLayout(non_lead_layout)
+        h = QHBoxLayout(self)
+        h.addWidget(self.vector_db_configuration_lead)
+        self.vectorDBStack.setLayout(h)
+
+    def vectorDBEventNonLeadUI(self):
+        h = QHBoxLayout(self)
+        h.addWidget(self.vector_db_configuration_non_lead)
+        self.vectorDBStackNonLead.setLayout(h)
 
     def iconEventUI(self):
         h = QHBoxLayout(self)
@@ -170,14 +173,8 @@ class PMR(QWidget):
         self.nodesStack.setLayout(h)
 
     def team_button_clicked(self):
-        layout = QHBoxLayout()
-        if self.team_configuration.checkBox.isChecked():
-            self.vectorDBStack.destroy()
-            layout.addWidget(self.vector_db_configuration_lead)
+        pass
 
-        else:
-            layout.addWidget(self.vector_db_configuration_non_lead)
-        self.vectorDBStack.setLayout(layout)
 
     def relationshipsEventUI(self):
         h = QHBoxLayout(self)
