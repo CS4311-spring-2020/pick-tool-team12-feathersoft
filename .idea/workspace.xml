@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="Intergrated splunk with adrian and cris">
+    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/splunk_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/splunk_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/vector_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/vector_db_configuration_lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_db_configuration_lead.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -377,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583379173399</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Updated buttons changed font">
+      <created>1583448832945</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1583448832945</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -400,24 +406,33 @@
     <MESSAGE value="wired all windows together in pmr.py" />
     <MESSAGE value="worked on filter configuration and changed all class names to fit the same naming convention." />
     <MESSAGE value="Intergrated splunk with adrian and cris" />
-    <option name="LAST_COMMIT_MESSAGE" value="Intergrated splunk with adrian and cris" />
+    <MESSAGE value="Updated buttons changed font" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated buttons changed font" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="616" height="83" key="GridCell.Tab.0.bottom" timestamp="1583448783104">
+    <state x="257" y="23" key="CommitChangelistDialog2" timestamp="1583448832627">
+      <screen x="0" y="23" width="1280" height="734" />
+    </state>
+    <state x="257" y="23" key="CommitChangelistDialog2/0.23.1280.734@0.23.1280.734" timestamp="1583448832627" />
+    <state width="616" height="83" key="GridCell.Tab.0.bottom" timestamp="1583449072265">
       <screen x="0" y="23" width="1280" height="733" />
     </state>
-    <state width="616" height="83" key="GridCell.Tab.0.bottom/0.23.1280.733@0.23.1280.733" timestamp="1583448783104" />
-    <state width="616" height="83" key="GridCell.Tab.0.center" timestamp="1583448783102">
+    <state width="616" height="83" key="GridCell.Tab.0.bottom/0.23.1280.733@0.23.1280.733" timestamp="1583449072265" />
+    <state width="616" height="83" key="GridCell.Tab.0.center" timestamp="1583449072264">
       <screen x="0" y="23" width="1280" height="733" />
     </state>
-    <state width="616" height="83" key="GridCell.Tab.0.center/0.23.1280.733@0.23.1280.733" timestamp="1583448783102" />
-    <state width="616" height="83" key="GridCell.Tab.0.left" timestamp="1583448783102">
+    <state width="616" height="83" key="GridCell.Tab.0.center/0.23.1280.733@0.23.1280.733" timestamp="1583449072264" />
+    <state width="616" height="83" key="GridCell.Tab.0.left" timestamp="1583449072263">
       <screen x="0" y="23" width="1280" height="733" />
     </state>
-    <state width="616" height="83" key="GridCell.Tab.0.left/0.23.1280.733@0.23.1280.733" timestamp="1583448783102" />
-    <state width="616" height="83" key="GridCell.Tab.0.right" timestamp="1583448783103">
+    <state width="616" height="83" key="GridCell.Tab.0.left/0.23.1280.733@0.23.1280.733" timestamp="1583449072263" />
+    <state width="616" height="83" key="GridCell.Tab.0.right" timestamp="1583449072264">
       <screen x="0" y="23" width="1280" height="733" />
     </state>
-    <state width="616" height="83" key="GridCell.Tab.0.right/0.23.1280.733@0.23.1280.733" timestamp="1583448783103" />
+    <state width="616" height="83" key="GridCell.Tab.0.right/0.23.1280.733@0.23.1280.733" timestamp="1583449072264" />
+    <state x="233" y="148" key="Vcs.Push.Dialog.v2" timestamp="1583448850615">
+      <screen x="0" y="23" width="1280" height="734" />
+    </state>
+    <state x="233" y="148" key="Vcs.Push.Dialog.v2/0.23.1280.734@0.23.1280.734" timestamp="1583448850615" />
   </component>
 </project>

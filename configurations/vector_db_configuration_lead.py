@@ -67,7 +67,7 @@ class VectorDBConfigurationLead(QWidget):
             tableitemVector.setVerticalHeaderItem(3, QTableWidgetItem('Vector 4'))
 
             tableitem_IP = QTableWidgetItem()
-            tableitem_IP.setData(Qt.DisplayRole, '80808451515')
+            tableitem_IP.setData(Qt.DisplayRole, '127.0.0.1')
 
             tableitemTimestamp = QTableWidget()
             tableitemTimestamp.setRowCount(4)
