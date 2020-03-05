@@ -16,6 +16,7 @@ from configurations.export_configuration import ExportConfiguration
 from configurations.change_configuration import ChangeConfiguration
 from configurations.graph_format_configuration import GraphFormatConfiguration
 from configurations.tab_format_configuration import TabFormatConfiguration
+from configurations.splunk_client import splunk_integrator
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
