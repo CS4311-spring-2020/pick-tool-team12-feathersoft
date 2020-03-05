@@ -43,6 +43,7 @@ class RelationshipConfiguration(QWidget):
             self.treeWidget.resizeColumnToContents(i)
         self.treeWidget.setAlternatingRowColors(True)
         self.label = QLabel('Relationship Configuration', self)
+        self.label.setFont(QFont('MS Shell Dlg 2', 12))
         self.label.setGeometry(QRect(20, 30, 231, 16))
         self.label.setObjectName("label")
         #self.show()

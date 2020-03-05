@@ -1,9 +1,11 @@
+
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import datetime
+from configurations.splunk_client import splunk_integrator
 
 
 class TeamConfiguratation(QWidget):
@@ -11,14 +13,13 @@ class TeamConfiguratation(QWidget):
         super().__init__()
         self.setGeometry(50, 50, 560, 664)
         self.setWindowTitle("Team Configuration")
+        self.splunk_integrator = splunk_integrator()
         self.UI()
 
     def UI(self):
         self.label = QLabel('Team Configuration', self)
-        self.label.move(100, 10)
-        font = QFont()
-        font.setPointSize(26)
-        self.label.setFont(font)
+        self.label.move(160, 70)
+        self.label.setFont(QFont('MS Shell Dlg 2', 12))
         self.label.setObjectName("label")
         self.checkBox = QCheckBox('Lead',self)
         self.checkBox.setGeometry(QRect(10, 280, 381, 41))
@@ -46,5 +47,8 @@ class TeamConfiguratation(QWidget):
         self.label_5.setGeometry(QRect(10, 240, 101, 16))
         self.label_5.setObjectName("label_5")
 
-        #self.show()
+
+    def connect_to_splunk(self):
+        self.splunk_integrator()
+
 

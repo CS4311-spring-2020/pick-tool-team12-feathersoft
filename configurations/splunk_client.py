@@ -4,6 +4,7 @@ import os
 from configurations.rwo.significant_log_entry import SignificantLogEntry
 import datetime
 
+
 class splunk_integrator:
     def __init__(self):
         self.HOST = "127.0.0.1"

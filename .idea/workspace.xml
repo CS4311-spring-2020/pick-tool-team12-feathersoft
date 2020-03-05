@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pick-tool-team12-feathersoft.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pick-tool-team12-feathersoft.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/root/red/rlog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/root/red/rlog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/splunk_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/splunk_client.py" afterDir="false" />
-    </list>
+    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +49,19 @@
       <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\icons" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.splunk_client">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.pmr">
     <configuration name="graph_configuration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pick-tool-team12-feathersoft" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -105,9 +111,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/configurations" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/pmr.py" />
@@ -170,13 +176,23 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.splunk_client" />
         <item itemvalue="Python.pmr" />
+        <item itemvalue="Python.splunk_client" />
         <item itemvalue="Python.test_graph" />
         <item itemvalue="Python.node_widget" />
         <item itemvalue="Python.graph_configuration" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -364,7 +380,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583376026942</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Standard Title Font">
+      <created>1583445839885</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1583445839885</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView">
@@ -386,7 +409,8 @@
     <MESSAGE value="Added some resources for the team" />
     <MESSAGE value="wired all windows together in pmr.py" />
     <MESSAGE value="worked on filter configuration and changed all class names to fit the same naming convention." />
-    <option name="LAST_COMMIT_MESSAGE" value="worked on filter configuration and changed all class names to fit the same naming convention." />
+    <MESSAGE value="Standard Title Font" />
+    <option name="LAST_COMMIT_MESSAGE" value="Standard Title Font" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1239" height="83" key="GridCell.Tab.0.bottom" timestamp="1583442088966">
