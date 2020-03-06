@@ -33,17 +33,21 @@ class LogEntryConfiguration(QWidget):
         # Creating the table
         self.table = QTableWidget(self)
         # Setting the amount of columns our table will have
-        self.table.setColumnCount(5)
+        self.table.setColumnCount(8)
         # Setting the amount of row our table will have
         # Reading the dummy self.logs
 
         self.table.setRowCount(len(self.logs))
         # Setting the headers for each column
-        self.table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('up_arrow.png'), "List Number"))
-        self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('up_arrow.png'), "Log Entry Timestamp"))
-        self.table.setHorizontalHeaderItem(2,QTableWidgetItem(QIcon('up_arrow.png'), "Log Entry Event"))
-        self.table.setHorizontalHeaderItem(3,QTableWidgetItem("Vector"))
-        self.table.setHorizontalHeaderItem(4,QTableWidgetItem(""))
+        self.table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "List Number"))
+        self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Log Entry Timestamp"))
+        self.table.setHorizontalHeaderItem(2,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Log Entry Content"))
+        self.table.setHorizontalHeaderItem(3,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Host"))
+        self.table.setHorizontalHeaderItem(4,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Source"))
+        self.table.setHorizontalHeaderItem(5,QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Source type'))
+        self.table.setHorizontalHeaderItem(6,QTableWidgetItem('Vector'))
+        self.table.setHorizontalHeaderItem(7,QTableWidgetItem(QIcon('icon/unchecked.png'), "Select"))
+
 
         # Resizing the column headers to resize dynamically to the size of their contents
         self.header = self.table.horizontalHeader()
@@ -79,23 +83,15 @@ class LogEntryConfiguration(QWidget):
             checkbox.setCheckState(Qt.Unchecked)
             combobox = QComboBox()
             combobox.addItems(['','1','2','3'])
-            tableitem = QTableWidget()
-            tableitem.setRowCount(4)
-            tableitem.setColumnCount(1)
-            tableitem.horizontalHeader().setVisible(False)
-            tableitem.setVerticalHeaderItem(0,QTableWidgetItem('Content'))
-            tableitem.setVerticalHeaderItem(1, QTableWidgetItem('Host'))
-            tableitem.setVerticalHeaderItem(2, QTableWidgetItem('Source'))
-            tableitem.setVerticalHeaderItem(3, QTableWidgetItem('Source Type'))
-            tableitem.setItem(0,0,QTableWidgetItem(self.logs[i][2]))
-            tableitem.setItem(1, 0, QTableWidgetItem(self.logs[i][3]))
-            tableitem.setItem(2, 0, QTableWidgetItem(self.logs[i][4]))
-            tableitem.setItem(3, 0, QTableWidgetItem(self.logs[i][5]))
-            self.table.setCellWidget(i,2,tableitem)
-            self.table.setCellWidget(i,3,combobox)
-            self.table.setItem(i,4,checkbox)
 
-        self.num_clicks = [1,1,1]
+            self.table.setItem(i,2,QTableWidgetItem(self.logs[i][2]))
+            self.table.setItem(i,3, QTableWidgetItem(self.logs[i][3]))
+            self.table.setItem(i,4, QTableWidgetItem(self.logs[i][4]))
+            self.table.setItem(i,5, QTableWidgetItem(self.logs[i][5]))
+            self.table.setCellWidget(i,6,combobox)
+            self.table.setItem(i,7,checkbox)
+
+        self.num_clicks = [1,1,1,1,1,1,1,1]
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
         self.table.setGeometry(50,100,900, 650)
         menuBar = QMenuBar(self)
@@ -109,10 +105,6 @@ class LogEntryConfiguration(QWidget):
         self.grid.addWidget(self.table)
 
 
-        #self.show()
-        #App = QApplication(sys.argv)
-        #sys.exit(App.exec())
-
     def filter_action(self):
         self.filter.show()
         self.filter.closeEvent = self.apply_filter
@@ -123,37 +115,44 @@ class LogEntryConfiguration(QWidget):
 
 
     def header_clicked(self):
+
         col = self.table.currentColumn()
+        # self.num_clicks[col] += 1
+        # if self.num_clicks[col] % 2 != 0:
+        #     self.table.sortByColumn(col,Qt.AscendingOrder)
+        # else:
+        #     self.table.sortByColumn(col,Qt.DescendingOrder)
         # items = [self.table.itemAt(i, col).text() for i in range(self.table.rowCount())]
         if col == 0:
             items = [int(item.text()) for item in self.table.selectedItems()]
+        elif col == 7:
+            self.num_clicks[col] += 1
+            if self.num_clicks[col] % 2 == 0:
+                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/intermediate.png'))
+                for row in range(self.table.rowCount()):
+                    self.table.item(row,7).setCheckState(True)
+
+            else:
+                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/unchecked.png'))
+                for row in range(self.table.rowCount()):
+                    self.table.item(row,7).setCheckState(False)
         else:
             items = [item.text() for item in self.table.selectedItems()]
-        valid_col = col <= 2
+        valid_col = col < 6
         if valid_col:
             self.num_clicks[col] += 1
             if self.num_clicks[col] % 2 != 0:
-                self.table.horizontalHeaderItem(col).setIcon(QIcon('up_arrow.png'))
+                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/up_arrow.png'))
                 items.sort(reverse=False)
-                if col < 2:
-                    for row in range(self.table.rowCount()):
-                        item = QTableWidgetItem()
-                        item.setData(Qt.DisplayRole,items[row])
-                        self.table.setItem(row,col,item)
 
             else:
-                if valid_col:
-                    self.table.horizontalHeaderItem(col).setIcon(QIcon('down_arrow.png'))
-                    items.sort(reverse=True)
-                    if col < 2:
-                        for row in range(self.table.rowCount()):
-                            item = QTableWidgetItem()
-                            item.setData(Qt.DisplayRole, items[row])
-                            self.table.setItem(row, col, item)
+                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/down_arrow.png'))
+                items.sort(reverse=True)
 
-        else:
-            pass
-
+            for row in range(self.table.rowCount()):
+                item = QTableWidgetItem()
+                item.setData(Qt.DisplayRole, items[row])
+                self.table.setItem(row, col, item)
 
 if __name__ == '__main__':
      App = QApplication(sys.argv)
