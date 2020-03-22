@@ -11,7 +11,8 @@ from configurations.filter_configuration import FilterConfiguration
 """This class will be used to build the UI Window for the Log Entry Configuration"""
 
 
-class LogEntryConfiguration(QWidget):
+class LogEntryConfiguration(QMainWindow):
+
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 1000, 800)
@@ -29,14 +30,15 @@ class LogEntryConfiguration(QWidget):
 
         # Creating the layout that the window will be stored
         self.grid = QGridLayout()
-        self.setLayout(self.grid)
+        #self.setLayout(self.grid)
         # Creating the table
         self.table = QTableWidget(self)
+        #self.setCentralWidget(self.table)
         # Setting the amount of columns our table will have
         self.table.setColumnCount(8)
         # Setting the amount of row our table will have
         # Reading the dummy self.logs
-
+        #self.setCentralWidget(self.table)
         self.table.setRowCount(len(self.logs))
         # Setting the headers for each column
         self.table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "List Number"))
@@ -47,6 +49,7 @@ class LogEntryConfiguration(QWidget):
         self.table.setHorizontalHeaderItem(5,QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Source type'))
         self.table.setHorizontalHeaderItem(6,QTableWidgetItem('Vector'))
         self.table.setHorizontalHeaderItem(7,QTableWidgetItem(QIcon('icon/unchecked.png'), "Select"))
+
 
 
         # Resizing the column headers to resize dynamically to the size of their contents
@@ -94,16 +97,14 @@ class LogEntryConfiguration(QWidget):
         self.num_clicks = [1,1,1,1,1,1,1,1]
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
         self.table.setGeometry(50,100,900, 650)
-        menuBar = QMenuBar(self)
+        menuBar = self.menuBar()
         self.filter_options = menuBar.addMenu('Filter Options')
         self.fa = QAction('Filter')
         self.fa.setShortcut('Ctrl+F')
         self.filter_options.addAction(self.fa)
         self.filter_options.triggered[QAction].connect(self.filter_action)
-        self.grid.addWidget(menuBar)
         self.grid.addWidget(self.label)
         self.grid.addWidget(self.table)
-
 
     def filter_action(self):
         self.filter.show()
@@ -113,29 +114,21 @@ class LogEntryConfiguration(QWidget):
         criteria = self.filter.filter_criteria
         filtered_logs = []
 
-
     def header_clicked(self):
-
         col = self.table.currentColumn()
-        # self.num_clicks[col] += 1
-        # if self.num_clicks[col] % 2 != 0:
-        #     self.table.sortByColumn(col,Qt.AscendingOrder)
-        # else:
-        #     self.table.sortByColumn(col,Qt.DescendingOrder)
-        # items = [self.table.itemAt(i, col).text() for i in range(self.table.rowCount())]
         if col == 0:
             items = [int(item.text()) for item in self.table.selectedItems()]
         elif col == 7:
             self.num_clicks[col] += 1
             if self.num_clicks[col] % 2 == 0:
-                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/intermediate.png'))
+                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/checked.png'))
                 for row in range(self.table.rowCount()):
-                    self.table.item(row,7).setCheckState(True)
+                    self.table.item(row,7).setCheckState(Qt.Checked)
 
             else:
                 self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/unchecked.png'))
                 for row in range(self.table.rowCount()):
-                    self.table.item(row,7).setCheckState(False)
+                    self.table.item(row,7).setCheckState(Qt.Unchecked)
         else:
             items = [item.text() for item in self.table.selectedItems()]
         valid_col = col < 6
