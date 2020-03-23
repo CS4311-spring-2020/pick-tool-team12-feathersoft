@@ -15,34 +15,36 @@ class DirectoryConfiguration(QWidget):
     def UI(self):
         # Creating the label for the window
 
-
+        self.label = QLabel('Directory Configuration')
+        self.label.setFont(QFont('MS Shell Dlg 2', 12))
         main_layout = QFormLayout()
-        main_layout.addWidget(QLabel('Directory Configuration'))
+
+        main_layout.addRow(QLabel('Directory Configuration', alignment=Qt.AlignLeft, font=QFont('MS Shell Dlg 2', 12)))
         root_directory_layout = QWidget()
         root_directory_layout.setLayout(QHBoxLayout())
         root_directory_edit = QLineEdit()
-        filebtn = QPushButton(self, clicked=self.open_file)
+        filebtn = QPushButton(self, clicked=self.open_file,icon=QIcon('folder.png'))
         root_directory_layout.layout().addWidget(root_directory_edit)
         root_directory_layout.layout().addWidget(filebtn)
 
         red_directory_layout = QWidget()
         red_directory_layout.setLayout(QHBoxLayout())
         red_directory_edit = QLineEdit()
-        filebtn2 = QPushButton(self, clicked=self.open_file)
+        filebtn2 = QPushButton(self, clicked=self.open_file,icon=QIcon('folder.png'))
         red_directory_layout.layout().addWidget(red_directory_edit)
         red_directory_layout.layout().addWidget(filebtn2)
 
         blue_directory_layout = QWidget()
         blue_directory_layout.setLayout(QHBoxLayout())
         blue_directory_edit = QLineEdit()
-        filebtn3 = QPushButton(self, clicked=self.open_file)
+        filebtn3 = QPushButton(self, clicked=self.open_file,icon=QIcon('folder.png'))
         blue_directory_layout.layout().addWidget(blue_directory_edit)
         blue_directory_layout.layout().addWidget(filebtn3)
 
         white_directory_layout = QWidget()
         white_directory_layout.setLayout(QHBoxLayout())
         white_directory_edit = QLineEdit()
-        filebtn4 = QPushButton(self, clicked=self.open_file)
+        filebtn4 = QPushButton(self, clicked=self.open_file,icon=QIcon('folder.png'))
         white_directory_layout.layout().addWidget(white_directory_edit)
         white_directory_layout.layout().addWidget(filebtn4)
 
@@ -50,6 +52,8 @@ class DirectoryConfiguration(QWidget):
         main_layout.addRow('Red Team Folder',red_directory_layout)
         main_layout.addRow('Blue Team Folder',blue_directory_layout)
         main_layout.addRow('White Team Folder',white_directory_layout)
+
+        main_layout.setSpacing(30)
 
         self.setLayout(main_layout)
 

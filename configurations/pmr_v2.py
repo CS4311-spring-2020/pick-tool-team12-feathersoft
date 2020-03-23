@@ -46,7 +46,8 @@ class PMR(QMainWindow):
 
         self.layout = QFormLayout()
 
-        self.setGeometry(50, 50, 1000, 800)
+        self.setGeometry(50, 50, 1000, 600)
+
         # MenuBar
 
         menubar = self.menuBar()
