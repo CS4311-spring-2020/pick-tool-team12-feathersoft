@@ -27,6 +27,7 @@ class PMR(QMainWindow):
         """ Main Window Constructor """
         super().__init__()
 
+        self.setWindowTitle('Prevent Mitigate Recover')
         self.team_configuration = TeamConfiguratation()
         self.event_configuration = EventConfiguratation()
         self.directory_configuration = DirectoryConfiguration()
