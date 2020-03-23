@@ -82,9 +82,10 @@ class VectorConfiguration(QWidget):
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setProperty("showSortIndicator", True)
         self.header = self.tableWidget.horizontalHeader()
+        self.header.setStretchLastSection(True)
 
-        #for i in range(self.tableWidget.columnCount()):
-        #    self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
+        for i in range(self.tableWidget.columnCount()):
+           self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
         self.tableWidget.verticalHeader().setStretchLastSection(False)
         self.tableWidget.verticalHeader().setProperty("showSortIndicator", True)

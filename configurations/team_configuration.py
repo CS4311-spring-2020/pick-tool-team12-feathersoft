@@ -13,7 +13,7 @@ class TeamConfiguratation(QWidget):
         super().__init__()
         self.setGeometry(50, 50, 560, 664)
         self.setWindowTitle("Team Configuration")
-        self.splunk_integrator = splunk_integrator()
+        self.splunk_integrator = splunk_integrator('localhost',8089,'main','Feathersoft','stevenroach')
         self.UI()
 
     def UI(self):
@@ -52,3 +52,8 @@ class TeamConfiguratation(QWidget):
         self.splunk_integrator()
 
 
+if __name__ == '__main__':
+     App = QApplication(sys.argv)
+     window = TeamConfiguratation()
+     window.show()
+     sys.exit(App.exec())

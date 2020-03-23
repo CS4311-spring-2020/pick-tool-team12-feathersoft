@@ -12,15 +12,15 @@ class VectorDBConfigurationNonLead(QWidget):
         self.UI()
 
     def UI(self):
-        mainMenu = QMenuBar(self)
-        mainMenu.addMenu('File')
-        mainMenu.addMenu('Edit')
-        mainMenu.addMenu('View')
-        mainMenu.addMenu('Search')
-        mainMenu.addMenu('Tools')
-        mainMenu.addMenu('Help')
+        # mainMenu = QMenuBar(self)
+        # mainMenu.addMenu('File')
+        # mainMenu.addMenu('Edit')
+        # mainMenu.addMenu('View')
+        # mainMenu.addMenu('Search')
+        # mainMenu.addMenu('Tools')
+        # mainMenu.addMenu('Help')
 
-        textLead = QLabel('Connection status to lead:', self)
+        textLead = QLabel('Connection status to lead:')
         textLead.setFont(QFont('MS Shell Dlg 2', 14))
         textLead.move(30,30)
 
@@ -28,15 +28,16 @@ class VectorDBConfigurationNonLead(QWidget):
         pullText.setFont(QFont('MS Shell Dlg 2', 12))
         pullText.move(30,70)
 
-        pullText = QLabel('Pushed Vector DB Table', self)
-        pullText.setFont(QFont('MS Shell Dlg 2', 12))
-        pullText.move(500, 70)
+        pushText = QLabel('Pushed Vector DB Table', self)
+        pushText.setFont(QFont('MS Shell Dlg 2', 12))
+        pushText.move(500, 70)
 
-        textStatus = QLabel('Connected', self)
+        textStatus = QLabel('Connected')
         textStatus.setFont(QFont('MS Shell Dlg 2', 14))
         textStatus.move(300, 30)
 
-        vbox = QVBoxLayout()
+        layout = QVBoxLayout()
+        
         table = QTableWidget(self)
         table.setColumnCount(4)
         table.setRowCount(15)
@@ -54,12 +55,15 @@ class VectorDBConfigurationNonLead(QWidget):
         table2.setHorizontalHeaderItem(3, QTableWidgetItem("Graph"))
 
         self.header = table.horizontalHeader()
+        self.header.setStretchLastSection(True)
         for i in range(table.columnCount()):
             self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
-        header = table2.horizontalHeader()
-        header.setSectionResizeMode(1, QHeaderView.ResizeToContents)
-        header.setSectionResizeMode(2, QHeaderView.ResizeToContents)
+        self.header2 = table2.horizontalHeader()
+        self.header2.setStretchLastSection(True)
+
+        self.header2.setSectionResizeMode(1, QHeaderView.ResizeToContents)
+        self.header2.setSectionResizeMode(2, QHeaderView.ResizeToContents)
 
         for i in range(table.rowCount()):
 
@@ -68,12 +72,8 @@ class VectorDBConfigurationNonLead(QWidget):
             combobox_Push = QComboBox()
             combobox_Push.addItems(['','1','2','3'])
 
-            tableitem_Push = QTableWidget()
-            tableitem_Push.setRowCount(4)
-            tableitem_Push.setVerticalHeaderItem(0,QTableWidgetItem('Vector 1'))
-            tableitem_Push.setVerticalHeaderItem(1, QTableWidgetItem('Vector 2'))
-            tableitem_Push.setVerticalHeaderItem(2, QTableWidgetItem('Vector 3'))
-            tableitem_Push.setVerticalHeaderItem(3, QTableWidgetItem('Vector 4'))
+            tableitem_Push = QComboBox()
+            tableitem_Push.addItems(['', '1', '2', '3'])
 
             tableitem_2_Push = QTableWidgetItem()
             tableitem_2_Push.setData(Qt.DisplayRole, 'This is the example of text')
@@ -84,12 +84,8 @@ class VectorDBConfigurationNonLead(QWidget):
             combobox = QComboBox()
             combobox.addItems(['', '1', '2', '3'])
 
-            tableitem = QTableWidget()
-            tableitem.setRowCount(4)
-            tableitem.setVerticalHeaderItem(0, QTableWidgetItem('Vector 1'))
-            tableitem.setVerticalHeaderItem(1, QTableWidgetItem('Vector 2'))
-            tableitem.setVerticalHeaderItem(2, QTableWidgetItem('Vector 3'))
-            tableitem.setVerticalHeaderItem(3, QTableWidgetItem('Vector 4'))
+            tableitem = QComboBox()
+            tableitem.addItems(['', '1', '2', '3'])
 
             tableitem_2 = QTableWidgetItem()
             tableitem_2.setData(Qt.DisplayRole, 'This is the example of text')
@@ -105,27 +101,49 @@ class VectorDBConfigurationNonLead(QWidget):
             table2.setCellWidget(i, 3, combobox_Push)
             table2.setItem(i, 2, checkbox_Push)
 
-        table.setGeometry(500,100,400, 300)
-        table2.setGeometry(30,100,400, 300)
+        # table.setGeometry(500,100,400, 300)
+        # table2.setGeometry(30,100,400, 300)
 
 
         buttonPush = QPushButton(self)
         buttonPush.setGeometry(350,65,70,30)
-        buttonPush.setText('Pull')
+        buttonPush.setText('Push')
 
         buttonPull = QPushButton(self)
         buttonPull.setGeometry(820, 65, 70, 30)
-        buttonPull.setText('Push')
+        buttonPull.setText('Pull')
 
-        buttonPull = QPushButton(self)
-        buttonPull.setGeometry(820, 30, 70, 30)
-        buttonPull.setText('Commit')
+        buttonCommit = QPushButton(self)
+        buttonCommit.setGeometry(820, 30, 70, 30)
+        buttonCommit.setText('Commit')
+
+        table1Layout = QVBoxLayout()
+        table2Layout = QVBoxLayout()
+        table1Layout.addWidget(textLead)
+        table1Layout.addWidget(pushText)
+        table1Layout.addWidget(table)
+        button_widget1 = QWidget()
+        button_widget1.setLayout(QHBoxLayout())
+        button_widget1.layout().addWidget(buttonPush)
+        space = QLabel('')
+
+        table1Layout.addWidget(button_widget1)
 
 
-        vbox.addWidget(table)
-        vbox.addWidget(table2)
-        vbox.addWidget(buttonPush)
-        vbox.addWidget(buttonPull)
+        table2Layout.addWidget(pullText)
+        table2Layout.addWidget(table2)
+
+        button_widget2 = QWidget()
+        button_widget2.setLayout(QHBoxLayout())
+        button_widget2.layout().addWidget(buttonPull)
+        button_widget2.layout().addWidget(buttonCommit)
+        table2Layout.addWidget(button_widget2)
+
+
+        layout.addLayout(table1Layout)
+        layout.addLayout(table2Layout)
+        layout.setSpacing(10)
+        self.setLayout(layout)
 
         #self.show()
 

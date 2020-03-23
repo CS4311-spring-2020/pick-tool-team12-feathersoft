@@ -14,49 +14,62 @@ class EventConfiguratation(QWidget):
         self.UI()
 
     def UI(self):
-        # Creating the label for the window
-        self.label = QLabel('Event Configuration', self)
-        # Setting the window's font
+        # # Creating the label for the window
+        self.label = QLabel('Event Configuration')
         self.label.setFont(QFont('MS Shell Dlg 2', 12))
-        self.label.move(175, 75)
-        # self.setLayout(vbox)
+        # # Setting the window's font
 
-        self.event_name_label = QLabel('Event Name', self)
-        # Setting the window's font
-        self.event_name_label.setFont(QFont('MS Shell Dlg 2', 8))
-        self.event_name_label.move(30, 140)
+        self.layout = QVBoxLayout()
+        self.event_layout = QWidget()
+        self.event_layout.setLayout(QFormLayout())
+        self.team_layout = QWidget()
+        self.team_layout.setLayout(QFormLayout())
+        self.event_layout.layout().addWidget(self.label)
+        self.name = QLineEdit()
+        self.description = QLineEdit()
+        self.start_date = QCalendarWidget()
+        self.start_date.setMaximumHeight(200)
+        self.end_date = QCalendarWidget()
+        self.event_layout.layout().addRow('Event Name', self.name)
+        self.event_layout.layout().addRow('Event Description', self.description)
+        self.event_layout.layout().addRow('Event Start Date', self.start_date)
+        self.event_layout.layout().addRow('', QDateTimeEdit())
+        self.event_layout.layout().addRow('Event End Date', self.end_date)
+        self.event_layout.layout().addRow('', QDateTimeEdit())
 
-        self.textEdit = QTextEdit(self)
-        self.textEdit.setGeometry(QRect(150, 130, 241, 51))
 
-        self.event_description_label = QLabel('Event Description', self)
-        self.event_description_label.setFont(QFont('MS Shell Dlg 2', 8))
-        self.event_description_label.move(20, 230)
-
-
-        self.textEdit_2 = QTextEdit(self)
-        self.textEdit_2.setGeometry(QRect(150, 220, 241, 51))
-
-        self.event_start_timestamp_label = QLabel('Event Start Timestamp', self)
-        self.event_start_timestamp_label.setFont(QFont('MS Shell Dlg 2', 8))
-        self.event_start_timestamp_label.move(8, 320)
-
-        self.textEdit_3 = QTextEdit(self)
-        self.textEdit_3.setGeometry(QRect(150, 310, 241, 51))
-
-        self.event_start_timestamp_label = QLabel('Event End Timestamp', self)
-        self.event_start_timestamp_label.setFont(QFont('MS Shell Dlg 2', 8))
-        self.event_start_timestamp_label.move(8, 410)
-
-        self.textEdit_4 = QTextEdit(self)
-        self.textEdit_4.setGeometry(QRect(150, 400, 241, 51))
-
-        self.save_event_button = QPushButton(self)
-        self.save_event_button.setText('Save Event')
-        self.save_event_button.setGeometry(QRect(150, 500, 241, 61))
-
+        self.save_event_button = QPushButton('Save Button', self)
         self.save_event_button.clicked.connect(self.disable)
-        #self.show()
+        self.event_layout.layout().addRow('', self.save_event_button)
+
+        self.team_label = QLabel("Team Configuration")
+        self.team_label.setFont(QFont('MS Shell Dlg 2', 12))
+        self.team_layout.layout().addWidget(self.team_label)
+
+        self.lead_ip_address = QLineEdit()
+        self.team_layout.layout().addRow('Lead IP Address', self.lead_ip_address)
+        self.established_connections = QLabel('')
+        self.team_layout.layout().addRow('Established Connections', self.established_connections)
+        self.lead_checkbox = QCheckBox()
+        self.team_layout.layout().addRow('Lead', self.lead_checkbox)
+        self.connect_button = QPushButton('Connect')
+        self.team_layout.layout().addRow('',self.connect_button)
+
+
+        self.layout.addWidget(self.event_layout)
+        self.layout.addWidget(self.team_layout)
+
+        self.setLayout(self.layout)
+
+
+
+
+
+
+
+    def mousePressEvent(self, QMouseEvent):
+        if QMouseEvent.button() == Qt.LeftButton:
+            print(QMouseEvent.x(), QMouseEvent.y())
 
 
     def disable(self):

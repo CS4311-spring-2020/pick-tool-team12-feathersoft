@@ -11,11 +11,11 @@ from configurations.filter_configuration import FilterConfiguration
 """This class will be used to build the UI Window for the Log Entry Configuration"""
 
 
-class LogEntryConfiguration(QMainWindow):
+class LogEntryConfiguration(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.setGeometry(50, 50, 1000, 800)
+        self.setGeometry(200, 400, 800, 620)
         self.setWindowTitle("Log Entry Configuration")
         self.filter = FilterConfiguration()
         self.logs = [line.split(' ') for line in open('testlog.txt').readlines()]
@@ -26,20 +26,24 @@ class LogEntryConfiguration(QMainWindow):
         self.label = QLabel('Log Entry Configuration', self)
         # Setting the window's font
         self.label.setFont(QFont('MS Shell Dlg 2', 12))
-        self.label.move(50,50)
+        self.label.move(50, 50)
+
+
+
+
 
         # Creating the layout that the window will be stored
-        self.grid = QGridLayout()
+        self.layout = QFormLayout()
         #self.setLayout(self.grid)
         # Creating the table
-        self.table = QTableWidget(self)
+        self.table = QTableWidget(len(self.logs), 8, self)
         #self.setCentralWidget(self.table)
         # Setting the amount of columns our table will have
-        self.table.setColumnCount(8)
+
         # Setting the amount of row our table will have
         # Reading the dummy self.logs
         #self.setCentralWidget(self.table)
-        self.table.setRowCount(len(self.logs))
+
         # Setting the headers for each column
         self.table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "List Number"))
         self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Log Entry Timestamp"))
@@ -51,24 +55,15 @@ class LogEntryConfiguration(QMainWindow):
         self.table.setHorizontalHeaderItem(7,QTableWidgetItem(QIcon('icon/unchecked.png'), "Select"))
 
 
-
-        # Resizing the column headers to resize dynamically to the size of their contents
         self.header = self.table.horizontalHeader()
+
         for i in range(self.table.columnCount()):
             self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.table.sizePolicy().hasHeightForWidth())
-        self.table.setSizePolicy(sizePolicy)
-        self.table.setAlternatingRowColors(True)
-        self.table.horizontalHeader().setVisible(True)
-        self.table.horizontalHeader().setCascadingSectionResizes(False)
         self.table.horizontalHeader().setProperty("showSortIndicator", False)
-        self.table.horizontalHeader().setStretchLastSection(True)
         self.table.verticalHeader().setProperty("showSortIndicator", False)
-        self.table.verticalHeader().setStretchLastSection(True)
+        self.header.setStretchLastSection(True)
+
 
         # Hiding the row labels in the table
         self.table.verticalHeader().setVisible(False)
@@ -96,15 +91,17 @@ class LogEntryConfiguration(QMainWindow):
 
         self.num_clicks = [1,1,1,1,1,1,1,1]
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
-        self.table.setGeometry(50,100,900, 650)
-        menuBar = self.menuBar()
+        menuBar = QMenuBar()
         self.filter_options = menuBar.addMenu('Filter Options')
         self.fa = QAction('Filter')
         self.fa.setShortcut('Ctrl+F')
         self.filter_options.addAction(self.fa)
         self.filter_options.triggered[QAction].connect(self.filter_action)
-        self.grid.addWidget(self.label)
-        self.grid.addWidget(self.table)
+        self.layout.addRow(self.label)
+        self.layout.addRow(self.table)
+
+        self.setLayout(self.layout)
+
 
     def filter_action(self):
         self.filter.show()
@@ -146,6 +143,7 @@ class LogEntryConfiguration(QMainWindow):
                 item = QTableWidgetItem()
                 item.setData(Qt.DisplayRole, items[row])
                 self.table.setItem(row, col, item)
+
 
 if __name__ == '__main__':
      App = QApplication(sys.argv)

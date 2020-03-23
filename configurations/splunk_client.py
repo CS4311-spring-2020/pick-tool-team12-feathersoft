@@ -5,30 +5,49 @@ from configurations.rwo.significant_log_entry import SignificantLogEntry
 import datetime
 
 
-class splunk_integrator:
-    def __init__(self):
-        self.HOST = "127.0.0.1"
-        self.PORT = 8089
-        self.INDEX = "main"
-        self.USERNAME = "Feathersoft"
-        self.PASSWORD = "stevenroach"
+class splunk_integrator():
+
+    def __init__(self,host,port,index,username,password):
+        self._host = host
+        self._port = port
+        self._index = index
+        self._username = username
+        self._password = password
         self.entries = list()
 
         # Create a Service instance and log in
 
         self.service = client.connect(
-            host=self.HOST,
-            port=self.PORT,
-            username=self.USERNAME,
-            password=self.PASSWORD)
+            host=self._host,
+            port=self._port,
+            username=self._username,
+            password=self._password)
 
 
     # Takes a file as input and uploads to splunk
-    def upload_file(self,path):
-        index = self.service.indexes[self.INDEX]
-        index.upload(path)
 
+    def create_index(self,index_name):
+        self.service.indexes.create(index_name)
 
+    def set_index(self,index_name):
+        self._index = index_name
+
+    def upload_file(self,path,index):
+        index = self.service.indexes[index]
+        try:
+            index.upload(os.path.abspath(path))
+        except Exception as e:
+            print(str(e))
+
+    def view_indexes(self):
+        for index in self.service.indexes:
+            print(index.name)
+
+    def get_index(self,index):
+        return self.service.indexes.get(index)
+
+    def get_content(self,index):
+        print(self.get_index(index))
 
     def download_log_files(self):
         # Retrieve search jobs
@@ -36,7 +55,7 @@ class splunk_integrator:
         # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
         # Query criteria
-        query = "search * | head 100"
+        query = "search * source= sample.log"
 
         # Create search job
         job = jobs.create(query, **blocking_search)
@@ -52,15 +71,19 @@ class splunk_integrator:
     def display_entries(self):
         testlog = open('testlog.txt','w')
         for entry in self.entries:
-            testlog.write(str(entry._log_entry_number) + " " + str(datetime.datetime.utcfromtimestamp(int(entry._log_entry_timestamp)))+ " " + str(entry._log_entry_content) + " " + str(entry._host) + " " + str(entry._source) + " " + str(entry._source_type) + '\n')
+            testlog.write(str(entry._log_entry_number) + " " + str(datetime.datetime.fromtimestamp(int(entry._log_entry_timestamp)))+ " " + str(entry._log_entry_content) + " " + str(entry._host) + " " + str(entry._source) + " " + str(entry._source_type) + '\n')
             entry.display()
 
 
 
 if __name__ == '__main__':
-    client = splunk_integrator()
+    client = splunk_integrator('127.0.0.1',8089,'feathersoft','Feathersoft','stevenroach')
     THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-    dummy_file = os.path.join(THIS_FOLDER,'dummy_log.txt')
+    dummy_file = os.path.join(THIS_FOLDER,'android.log')
+    client.view_indexes()
+    client.set_index('pick')
+    #client.upload_file('android.log','pick')
+    client.get_content('pick')
     client.download_log_files()
     client.display_entries()
 
