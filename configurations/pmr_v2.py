@@ -29,7 +29,7 @@ class PMR(QMainWindow):
 
         self.setWindowTitle('Prevent Mitigate Recover')
         self.team_configuration = TeamConfiguratation()
-        self.event_configuration = EventConfiguratation()
+        self.event_configuration = EventConfiguratation('127.0.0.1')
         self.directory_configuration = DirectoryConfiguration()
         self.vector_configuration = VectorConfiguration()
         self.log_file_configuration = LogFileConfiguration()

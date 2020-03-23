@@ -8,10 +8,11 @@ import re
 
 
 class EventConfiguratation(QWidget):
-    def __init__(self):
+    def __init__(self, lead_ip):
         super().__init__()
         self.setGeometry(50, 50, 474, 664)
         self.setWindowTitle("Event Configuration")
+        self.lead_ip = lead_ip
         self.UI()
 
     def UI(self):
@@ -25,7 +26,8 @@ class EventConfiguratation(QWidget):
         self.event_layout.setLayout(QFormLayout())
         self.team_layout = QWidget()
         self.team_layout.setLayout(QFormLayout())
-        self.event_layout.layout().addRow(QLabel('Event Configuration', alignment=Qt.AlignLeft, font=QFont('MS Shell Dlg 2', 12)))
+        self.event_layout.layout().addRow(QLabel('Event Configuration', alignment=Qt.AlignLeft,
+                                                 font=QFont('MS Shell Dlg 2', 12)))
         self.name = QLineEdit()
         self.description = QLineEdit()
         self.start_date = QDateTimeEdit()
@@ -45,10 +47,11 @@ class EventConfiguratation(QWidget):
 
         self.team_label = QLabel("Team Configuration")
         self.team_label.setFont(QFont('MS Shell Dlg 2', 12))
-        self.team_layout.layout().addRow(QLabel('Team Configuration', alignment=Qt.AlignLeft, font=QFont('MS Shell Dlg 2', 12)))
+        self.team_layout.layout().addRow(QLabel('Team Configuration', alignment=Qt.AlignLeft,
+                                                font=QFont('MS Shell Dlg 2', 12)))
 
-        self.lead_ip_address = QLineEdit()
-        self.team_layout.layout().addRow('Lead IP Address', self.lead_ip_address)
+        self.lead_ip_address_line_edit = QLineEdit()
+        self.team_layout.layout().addRow('Lead IP Address', self.lead_ip_address_line_edit)
         self.established_connections = QLabel('')
         self.team_layout.layout().addRow('Established Connections', self.established_connections)
         self.lead_checkbox = QCheckBox()
@@ -59,22 +62,10 @@ class EventConfiguratation(QWidget):
         self.event_layout.layout().setSpacing(30)
         self.team_layout.layout().setSpacing(30)
 
-
         self.layout.addWidget(self.event_layout)
         self.layout.addWidget(self.team_layout)
         self.layout.setSpacing(10)
         self.setLayout(self.layout)
-
-
-
-
-
-
-
-    def mousePressEvent(self, QMouseEvent):
-        if QMouseEvent.button() == Qt.LeftButton:
-            print(QMouseEvent.x(), QMouseEvent.y())
-
 
     def configure_event(self):
         valid_name = self.name.text() != ''
@@ -98,7 +89,6 @@ class EventConfiguratation(QWidget):
             elif buttonReply == QMessageBox.No:
                 QMessageBox.information(self, 'No','Please be sure the information entered is correct')
 
-
         else:
             if not valid_name:
                 QMessageBox.critical(self, 'Name Validation Error', 'Empty Event Name\n'
@@ -108,22 +98,23 @@ class EventConfiguratation(QWidget):
                                      + 'Please enter a non-empty event description')
             if not valid_time_stamp_range:
                 QMessageBox.critical(self, 'Timestamp Validation Error', 'Invalid Timestamp Range\n'
-                                     + 'start date and time must be less than end date and time')
+                                     + 'Timestamps must be entered in one of the following formats\n' +
+                                     '1 - Start date and start time must be less than end date and end time\n' +
+                                     '2 - Start date is equal to end date but start time is less than end time')
 
     def validate_credentials(self):
         result = None
         try:
-            result = [0<=int(x)<256 for x in re.split('\.',re.match(r'^\d+\.\d+\.\d+\.\d+$',self.lead_ip_address.text()).group(0))].count(True)==4
+            result = [0 <= int(x) < 256 for x in re.split('\.', re.match(r'^\d+\.\d+\.\d+\.\d+$', self.lead_ip_address_line_edit.text()).group(0))].count(True) == 4
         except AttributeError:
             result = False
 
         lead = '127.0.0.1'
-        non_lead_analyst = (self.lead_checkbox.isChecked() and self.lead_ip_address.text() != lead) \
-                           or (not self.lead_checkbox.isChecked() and self.lead_ip_address.text() == lead)
-        empty_ip = self.lead_ip_address.text() == ''
+        non_lead_analyst = (self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() != lead) \
+                           or (not self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() == lead)
+        empty_ip = self.lead_ip_address_line_edit.text() == ''
 
-
-        if non_lead_analyst :
+        if non_lead_analyst:
             QMessageBox.critical(self, 'Connection Error',
                                  'Non-Lead attempting to connect as lead\n'
                                  + 'Check lead box if lead IP entered\n'
@@ -132,22 +123,18 @@ class EventConfiguratation(QWidget):
         elif empty_ip:
             QMessageBox.critical(self, 'Connection Error',
                                  'IP Address field left empty\n'
-                                 + 'enter a value')
+                                 + 'Enter a value from 0.0.0.0 to 255.255.255.255')
 
         elif not result or result is None:
             QMessageBox.critical(self, 'Connection Error',
                                  'IP Address Invalid\n'
                                  + 'Enter a value from 0.0.0.0 to 255.255.255.255')
 
-
         else:
             QMessageBox.information(self,'Connection Successful',
-                                    f'Connection to server from IP {self.lead_ip_address.text()} established !')
+                                    f'Connection to server from IP {self.lead_ip_address_line_edit.text()} established !')
 
 
 
-
-
-        #self.show()
 
 
