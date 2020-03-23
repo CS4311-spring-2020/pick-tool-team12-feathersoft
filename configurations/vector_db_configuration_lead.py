@@ -44,6 +44,9 @@ class VectorDBConfigurationLead(QWidget):
 
 
         header = approvalTable.horizontalHeader()
+        header.setStretchLastSection(True)
+        approvalTable.verticalHeader().setStretchLastSection(True)
+
 
         for i in range(approvalTable.columnCount()):
             header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
@@ -103,7 +106,7 @@ class VectorDBConfigurationLead(QWidget):
         vbox.addWidget(buttonCommit)
 
 
-        #self.setLayout(vbox)
+        self.setLayout(vbox)
 
 
         #self.show()

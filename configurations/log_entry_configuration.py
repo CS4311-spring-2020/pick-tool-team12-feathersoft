@@ -72,7 +72,7 @@ class LogEntryConfiguration(QWidget):
             # To store non string values in our table cells, we need to create widgets
             # that have a display role formatted for non string values.
             list_value = QTableWidgetItem()
-            list_value.setData(Qt.DisplayRole, self.logs[i][0])
+            list_value.setData(Qt.DisplayRole, int(self.logs[i][0]))
             time_stamp = QTableWidgetItem()
             time_stamp.setData(Qt.DisplayRole,self.logs[i][1])
             self.table.setItem(i,0,list_value)
@@ -82,10 +82,10 @@ class LogEntryConfiguration(QWidget):
             combobox = QComboBox()
             combobox.addItems(['','1','2','3'])
 
-            self.table.setItem(i,2,QTableWidgetItem(self.logs[i][2]))
-            self.table.setItem(i,3, QTableWidgetItem(self.logs[i][3]))
-            self.table.setItem(i,4, QTableWidgetItem(self.logs[i][4]))
-            self.table.setItem(i,5, QTableWidgetItem(self.logs[i][5]))
+            self.table.setItem(i,2,QTableWidgetItem(self.logs[i][2],Qt.DisplayRole))
+            self.table.setItem(i,3, QTableWidgetItem(self.logs[i][3],Qt.DisplayRole))
+            self.table.setItem(i,4, QTableWidgetItem(self.logs[i][4],Qt.DisplayRole))
+            self.table.setItem(i,5, QTableWidgetItem(self.logs[i][5],Qt.DisplayRole))
             self.table.setCellWidget(i,6,combobox)
             self.table.setItem(i,7,checkbox)
 
@@ -133,16 +133,18 @@ class LogEntryConfiguration(QWidget):
             self.num_clicks[col] += 1
             if self.num_clicks[col] % 2 != 0:
                 self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/up_arrow.png'))
-                items.sort(reverse=False)
+                #items.sort(reverse=False)
+                self.table.sortByColumn(col,Qt.AscendingOrder)
 
             else:
                 self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/down_arrow.png'))
-                items.sort(reverse=True)
+                self.table.sortByColumn(col, Qt.DescendingOrder)
+                #items.sort(reverse=True)
 
-            for row in range(self.table.rowCount()):
-                item = QTableWidgetItem()
-                item.setData(Qt.DisplayRole, items[row])
-                self.table.setItem(row, col, item)
+            # for row in range(self.table.rowCount()):
+            #     item = QTableWidgetItem()
+            #     item.setData(Qt.DisplayRole, items[row])
+            #     self.table.setItem(row, col, item)
 
 
 if __name__ == '__main__':

@@ -98,7 +98,7 @@ class EventConfiguratation(QWidget):
                                      + 'Please enter a non-empty event description')
             if not valid_time_stamp_range:
                 QMessageBox.critical(self, 'Timestamp Validation Error', 'Invalid Timestamp Range\n'
-                                     + 'Timestamps must be entered in one of the following formats\n' +
+                                     + 'Timestamps must meet either of the following criteria\n' +
                                      '1 - Start date and start time must be less than end date and end time\n' +
                                      '2 - Start date is equal to end date but start time is less than end time')
 
