@@ -65,7 +65,7 @@ class PMR(QMainWindow):
         configurations_toolbar.addAction('Vector DB Configuration', self.vector_db_configuration_clicked)
 
         self.addToolBar(Qt.LeftToolBarArea, configurations_toolbar)
-
+        self.setCentralWidget(self.event_configuration)
         self.show()
 
     def event_configuration_clicked(self):

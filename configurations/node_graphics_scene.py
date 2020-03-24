@@ -5,8 +5,10 @@ import math
 
 
 class QDMGraphicsScene(QGraphicsScene):
-    def __init__(self, parent=None):
+    def __init__(self, scene, parent=None):
         super().__init__(parent)
+
+        self.scene = scene
 
         # settings
         self._color_background = QColor("#393939")
@@ -23,6 +25,10 @@ class QDMGraphicsScene(QGraphicsScene):
         self._scene_width, self._scene_height = 64000, 64000
         self.setSceneRect(-self._scene_width//2, -self._scene_height//2, self._scene_width, self._scene_height)
         self.setBackgroundBrush(self._color_background)
+
+
+    def setGrScene(self, width, height):
+        self.setSceneRect(-width // 2 , - height // 2, width, height)
 
     def drawBackground(self, painter, rect):
         super().drawBackground(painter, rect)
