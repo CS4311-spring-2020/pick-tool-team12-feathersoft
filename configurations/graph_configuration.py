@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
+from node_graphics_scene import QDMGraphicsScene
 
 
 class GraphConfiguration(QMainWindow):
@@ -32,6 +33,7 @@ class NodeEditorWindow(QWidget):
 
         self.initUI()
 
+
     def initUI(self):
         self.setGeometry(200,200,800,600)
 
@@ -39,7 +41,7 @@ class NodeEditorWindow(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.layout)
         # Create graphics scene
-        self.grScene = QGraphicsScene()
+        self.grScene = QDMGraphicsScene()
 
         # Create graphics view
         self.view = QGraphicsView(self)
@@ -48,7 +50,24 @@ class NodeEditorWindow(QWidget):
 
         self.layout.addWidget(self.view)
 
-        self.show()
+        self.setWindowTitle('Graph View')
+
+        self.addDebugContent()
+
+
+    def addDebugContent(self):
+        greenBrush = QBrush(Qt.green)
+        outlinePen = QPen(Qt.black)
+        outlinePen.setWidth(2)
+
+        rect = self.grScene.addRect(-100, -100, 80, 100, outlinePen, greenBrush)
+        circ = self.grScene.addEllipse(-100, -200, 80,100, outlinePen,greenBrush)
+        rect.setFlag(QGraphicsItem.ItemIsMovable)
+        circ.setFlag(QGraphicsItem.ItemIsMovable)
+
+
+
+
 
 
 

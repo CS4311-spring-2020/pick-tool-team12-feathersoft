@@ -110,8 +110,10 @@ class EventConfiguratation(QWidget):
             result = False
 
         lead = '127.0.0.1'
-        non_lead_analyst = (self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() != lead) \
-                           or (not self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() == lead)
+        non_lead_analyst = (self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() != self.lead_ip) \
+                           or (not self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() == self.lead_ip)\
+                           or(self.lead_ip_address_line_edit.text() != self.lead_ip and not self.lead_checkbox.isChecked())
+
         empty_ip = self.lead_ip_address_line_edit.text() == ''
 
         if non_lead_analyst:
