@@ -112,33 +112,34 @@ class LogEntryConfiguration(QWidget):
         filtered_logs = []
 
     def header_clicked(self):
-        col = self.table.currentColumn()
-        if col == 0:
-            items = [int(item.text()) for item in self.table.selectedItems()]
-        elif col == 7:
-            self.num_clicks[col] += 1
-            if self.num_clicks[col] % 2 == 0:
-                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/checked.png'))
-                for row in range(self.table.rowCount()):
-                    self.table.item(row,7).setCheckState(Qt.Checked)
+        if not self.table.rowCount() == 0:
+            col = self.table.currentColumn()
+            if col == 0:
+                items = [int(item.text()) for item in self.table.selectedItems()]
+            elif col == 7:
+                self.num_clicks[col] += 1
+                if self.num_clicks[col] % 2 == 0:
+                    self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/checked.png'))
+                    for row in range(self.table.rowCount()):
+                        self.table.item(row,7).setCheckState(Qt.Checked)
 
+                else:
+                    self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/unchecked.png'))
+                    for row in range(self.table.rowCount()):
+                        self.table.item(row,7).setCheckState(Qt.Unchecked)
             else:
-                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/unchecked.png'))
-                for row in range(self.table.rowCount()):
-                    self.table.item(row,7).setCheckState(Qt.Unchecked)
-        else:
-            items = [item.text() for item in self.table.selectedItems()]
-        valid_col = col < 6
-        if valid_col:
-            self.num_clicks[col] += 1
-            if self.num_clicks[col] % 2 != 0:
-                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/up_arrow.png'))
-                #items.sort(reverse=False)
-                self.table.sortByColumn(col,Qt.AscendingOrder)
+                items = [item.text() for item in self.table.selectedItems()]
+            valid_col = col < 6
+            if valid_col:
+                self.num_clicks[col] += 1
+                if self.num_clicks[col] % 2 != 0:
+                    self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/up_arrow.png'))
+                    #items.sort(reverse=False)
+                    self.table.sortByColumn(col,Qt.AscendingOrder)
 
-            else:
-                self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/down_arrow.png'))
-                self.table.sortByColumn(col, Qt.DescendingOrder)
+                else:
+                    self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/down_arrow.png'))
+                    self.table.sortByColumn(col, Qt.DescendingOrder)
                 #items.sort(reverse=True)
 
             # for row in range(self.table.rowCount()):

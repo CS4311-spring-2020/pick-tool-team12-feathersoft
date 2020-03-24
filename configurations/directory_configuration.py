@@ -75,17 +75,18 @@ class DirectoryConfiguration(QWidget):
             self.white_directory_edit.setText(file)
 
     def validate_root_structure(self):
-        if len(os.listdir(self.root_directory_edit.text())) != 3:
-            QMessageBox.critical(self,"Root Directory Structure Error",
-                                 "Root Directory does not provide all required folders")
+        if self.root_directory_edit.text() != '':
+            if len(os.listdir(self.root_directory_edit.text())) != 3:
+                QMessageBox.critical(self,"Root Directory Structure Error",
+                                     "Root Directory does not provide all required folders")
 
-        else:
-            buttonReply = QMessageBox.question(self, 'PyQt5 message',
-                                               "Begin Ingestion?",
-                                               QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
-                                               QMessageBox.Cancel)
-            if buttonReply == QMessageBox.Yes:
-                self.begin_ingestion()
+            else:
+                buttonReply = QMessageBox.question(self, 'PyQt5 message',
+                                                   "Begin Ingestion?",
+                                                   QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
+                                                   QMessageBox.Cancel)
+                if buttonReply == QMessageBox.Yes:
+                    self.begin_ingestion()
 
     def begin_ingestion(self):
         pass
