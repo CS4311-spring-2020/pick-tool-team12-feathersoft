@@ -23,7 +23,7 @@ class DirectoryConfiguration(QWidget):
         root_directory_layout = QWidget()
         root_directory_layout.setLayout(QHBoxLayout())
         self.root_directory_edit = QLineEdit()
-        self.filebtn = QPushButton(self, clicked=self.open_file,icon=QIcon('folder.png'))
+        self.filebtn = QPushButton(self, clicked=self.open_file,icon=QIcon('icons/folder.png'))
         root_directory_layout.layout().addWidget(self.root_directory_edit)
         root_directory_layout.layout().addWidget(self.filebtn)
 
@@ -31,7 +31,7 @@ class DirectoryConfiguration(QWidget):
         red_directory_layout = QWidget()
         red_directory_layout.setLayout(QHBoxLayout())
         self.red_directory_edit = QLineEdit()
-        self.filebtn2 = QPushButton(self, clicked=self.open_file,icon=QIcon('folder.png'))
+        self.filebtn2 = QPushButton(self, clicked=self.open_file,icon=QIcon('icons/folder.png'))
         red_directory_layout.layout().addWidget(self.red_directory_edit)
         red_directory_layout.layout().addWidget(self.filebtn2)
 
@@ -39,14 +39,14 @@ class DirectoryConfiguration(QWidget):
         blue_directory_layout = QWidget()
         blue_directory_layout.setLayout(QHBoxLayout())
         self.blue_directory_edit = QLineEdit()
-        self.filebtn3 = QPushButton(self, clicked=self.open_file,icon=QIcon('folder.png'))
+        self.filebtn3 = QPushButton(self, clicked=self.open_file,icon=QIcon('icons/folder.png'))
         blue_directory_layout.layout().addWidget(self.blue_directory_edit)
         blue_directory_layout.layout().addWidget(self.filebtn3)
 
         white_directory_layout = QWidget()
         white_directory_layout.setLayout(QHBoxLayout())
         self.white_directory_edit = QLineEdit()
-        self.filebtn4 = QPushButton(self, clicked=self.open_file,icon=QIcon('folder.png'))
+        self.filebtn4 = QPushButton(self, clicked=self.open_file,icon=QIcon('icons/folder.png'))
         white_directory_layout.layout().addWidget(self.white_directory_edit)
         white_directory_layout.layout().addWidget(self.filebtn4)
 

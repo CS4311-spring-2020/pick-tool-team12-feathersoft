@@ -74,13 +74,7 @@ class GraphFormatConfiguration(QWidget):
         self.groupBox.raise_()
         self.label.raise_()
         self.groupBox_2.raise_()
-        #self.menubar = QMenuBar(self)
-        #self.menubar.setGeometry(QRect(0, 0, 919, 22))
-        #self.menubar.setObjectName("menubar")
-        #self.statusbar = QStatusBar(self)
-        #self.statusbar.setObjectName("statusbar")
-        #self.setStatusBar(self.statusbar)
-        #self.show()
+
 
 
 

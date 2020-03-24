@@ -46,7 +46,7 @@ class NodeEditorWindow(QWidget):
         # Create graphics scene
         self.scene = Scene()
 
-        node = Node(self.scene, "Red")
+
 
         # Create graphics view
         self.view = QDMGraphicsView(self.scene.grScene,self)
@@ -59,9 +59,22 @@ class NodeEditorWindow(QWidget):
 
         #self.addDebugContent()
 
+    def contextMenuEvent(self, event):
+        contextMenu = QMenu(self)
+        newAct = contextMenu.addAction("Add Node", self.addNode)
+        openAct = contextMenu.addAction("Open")
+        quitAct = contextMenu.addAction("Quit")
+        action = contextMenu.exec_(self.mapToGlobal(event.pos()))
+        if action == quitAct:
+            self.close()
+
+    def addNode(self):
+        node = Node(self.scene, 'Node')
 
     def mousePressEvent(self, QMouseEvent):
-        pass
+        if QMouseEvent.button == Qt.RightButton:
+            self.contextMenuEvent(QMouseEvent)
+
 
     def addDebugContent(self):
         greenBrush = QBrush(Qt.green)
