@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 
+
 class GraphConfiguration(QMainWindow):
     def __init__(self):
         super().__init__()

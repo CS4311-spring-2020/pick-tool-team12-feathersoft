@@ -8,7 +8,6 @@ from configurations.directory_configuration import DirectoryConfiguration
 from configurations.event_configuration import EventConfiguratation
 from configurations.log_file_configuration import LogFileConfiguration
 from configurations.relationship_configuration import RelationshipConfiguration
-from configurations.team_configuration import TeamConfiguratation
 from configurations.vector_configuration import VectorConfiguration
 from configurations.vector_db_configuration_lead import VectorDBConfigurationLead
 from configurations.vector_configuration_non_lead import VectorDBConfigurationNonLead
@@ -28,7 +27,6 @@ class PMR(QMainWindow):
         super().__init__()
 
         self.setWindowTitle('Prevent Mitigate Recover')
-        self.team_configuration = TeamConfiguratation()
         self.event_configuration = EventConfiguratation('127.0.0.1')
         self.directory_configuration = DirectoryConfiguration()
         self.vector_configuration = VectorConfiguration()
