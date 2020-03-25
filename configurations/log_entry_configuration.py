@@ -89,7 +89,7 @@ class LogEntryConfiguration(QWidget):
             self.table.setCellWidget(i,6,combobox)
             self.table.setItem(i,7,checkbox)
 
-        self.num_clicks = [1,1,1,1,1,1,1,1]
+        self.slot_clicks = [1] * self.table.columnCount()
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
         menuBar = QMenuBar()
         self.filter_options = menuBar.addMenu('Filter Options')
@@ -117,8 +117,8 @@ class LogEntryConfiguration(QWidget):
             if col == 0:
                 items = [int(item.text()) for item in self.table.selectedItems()]
             elif col == 7:
-                self.num_clicks[col] += 1
-                if self.num_clicks[col] % 2 == 0:
+                self.slot_clicks[col] += 1
+                if self.slot_clicks[col] % 2 == 0:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/checked.png'))
                     for row in range(self.table.rowCount()):
                         self.table.item(row,7).setCheckState(Qt.Checked)
@@ -131,8 +131,8 @@ class LogEntryConfiguration(QWidget):
                 items = [item.text() for item in self.table.selectedItems()]
             valid_col = col < 6
             if valid_col:
-                self.num_clicks[col] += 1
-                if self.num_clicks[col] % 2 != 0:
+                self.slot_clicks[col] += 1
+                if self.slot_clicks[col] % 2 != 0:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/up_arrow.png'))
                     #items.sort(reverse=False)
                     self.table.sortByColumn(col,Qt.AscendingOrder)

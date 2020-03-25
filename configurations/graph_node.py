@@ -36,6 +36,7 @@ class QDMGraphicsNode(QGraphicsItem):
         self.initUI()
 
     def boundingRect(self):
+
       return QRectF(
           0,
           0,
@@ -70,7 +71,6 @@ class QDMGraphicsNode(QGraphicsItem):
     def title(self, value):
         self._title = value
         self.title_item.setPlainText(self.title)
-
 
     def paint(self, QPainter, QStyleOptionGraphicsItem, widget=None):
 

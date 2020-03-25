@@ -3,25 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/analyst.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/analyst.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/analyst_small.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/analyst_small.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/android.log" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/root/android.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/attackGraph.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/attackGraph.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/blueTeam.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/blueTeam.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/blue_circle.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/blue_circle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cloud.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/cloud.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/directory_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/directory_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/dropdown.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/dropdown.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/dummy_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/dummy_log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/example.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/root/example.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/folder.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/folder.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/graph_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/graph_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/graph_format_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/graph_format_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/redTeam.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/redTeam.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/red_circle.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/red_circle.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/red_circle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/relationship.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/relationship.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/white_circle.png" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/icons/white_circle.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/graph_node.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/graph_node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/log_entry_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_entry_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/vector_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_configuration.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,8 +18,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1343">
-              <caret line="124" column="10" selection-start-line="124" selection-start-column="10" selection-end-line="124" selection-end-column="10" />
+            <state relative-caret-position="212">
+              <caret line="50" column="81" selection-start-line="49" selection-start-column="41" selection-end-line="50" selection-end-column="81" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1685">
+              <caret line="123" column="24" lean-forward="true" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="72" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -44,10 +40,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/configurations/vector_configuration.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="137" column="51" selection-start-line="137" selection-start-column="51" selection-end-line="137" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/graph_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="102">
+              <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="75" selection-end-column="46" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -58,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/node_graphics_view.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="442">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -68,21 +76,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/directory_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="25" column="81" selection-start-line="25" selection-start-column="81" selection-end-line="25" selection-end-column="81" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/graph_format_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1292">
+            <state relative-caret-position="376">
               <caret line="76" selection-start-line="76" selection-end-line="76" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -103,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/graph_node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="762">
-              <caret line="64" column="45" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
+            <state relative-caret-position="-442">
+              <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -113,14 +109,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/desktop.ini">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/log_file_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="-238">
               <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -132,7 +123,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/node_graphics_scene.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-445">
+            <state relative-caret-position="306">
               <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
@@ -205,29 +196,28 @@
         <option value="$PROJECT_DIR$/configurations/splunk_client.py" />
         <option value="$USER_HOME$/PycharmProjects/GUITuts/my_app.py" />
         <option value="$PROJECT_DIR$/configurations/team_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/vector_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/vector_configuration_non_lead.py" />
         <option value="$PROJECT_DIR$/configurations/pmr.py" />
         <option value="$PROJECT_DIR$/configurations/vector_db_configuration_lead.py" />
-        <option value="$PROJECT_DIR$/configurations/log_entry_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/node_graphics_scence.py" />
         <option value="$PROJECT_DIR$/configurations/node_graphics_view.py" />
         <option value="$PROJECT_DIR$/configurations/node_graphics_scene.py" />
         <option value="$PROJECT_DIR$/configurations/node_scene.py" />
         <option value="$PROJECT_DIR$/configurations/pmr_v2.py" />
         <option value="$PROJECT_DIR$/configurations/event_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/graph_node.py" />
         <option value="$PROJECT_DIR$/configurations/directory_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/graph_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/graph_format_configuration.py" />
+        <option value="$PROJECT_DIR$/configurations/graph_node.py" />
+        <option value="$PROJECT_DIR$/configurations/log_entry_configuration.py" />
+        <option value="$PROJECT_DIR$/configurations/vector_configuration.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="433" />
-    <option name="y" value="62" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="952" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -246,6 +236,12 @@
               <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
               <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
               <item name="configurations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
+              <item name="configurations" type="462c0819:PsiDirectoryNode" />
+              <item name="icons" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
@@ -694,7 +690,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585080904766</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Added movable widgets to the graph view">
+      <created>1585082517495</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1585082517495</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TodoView">
@@ -707,15 +710,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="347" y="50" width="782" height="831" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.386059" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19022457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32748538" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.497358" visible="true" weight="0.3308715" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.497358" visible="true" weight="0.33040935" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39734122" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -905,9 +908,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/pmr.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/red_circle.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/red_circle.jpg" />
     <entry file="file://$USER_HOME$/PycharmProjects/GUITuts/my_app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -919,26 +920,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/team_configuration.py" />
-    <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="146" column="58" selection-start-line="146" selection-start-column="58" selection-end-line="146" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/vector_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="77" column="79" selection-start-line="77" selection-start-column="79" selection-end-line="77" selection-end-column="79" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/vector_db_configuration_lead.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
@@ -986,9 +967,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/directory_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="81" selection-start-line="25" selection-start-column="81" selection-end-line="25" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/desktop.ini">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/node_graphics_scene.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-445">
+        <state relative-caret-position="306">
           <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -998,51 +992,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/node_graphics_view.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/desktop.ini">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/log_file_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="124" column="10" selection-start-line="124" selection-start-column="10" selection-end-line="124" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/directory_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="25" column="81" selection-start-line="25" selection-start-column="81" selection-end-line="25" selection-end-column="81" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/graph_node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="762">
-          <caret line="64" column="45" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
+        <state relative-caret-position="442">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
@@ -1051,7 +1002,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/graph_format_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
+        <state relative-caret-position="376">
           <caret line="76" selection-start-line="76" selection-end-line="76" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -1066,10 +1017,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/graph_node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-442">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/log_file_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/graph_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="102">
+          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="75" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1685">
+          <caret line="123" column="24" lean-forward="true" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="50" column="81" selection-start-line="49" selection-start-column="41" selection-end-line="50" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/vector_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="137" column="51" selection-start-line="137" selection-start-column="51" selection-end-line="137" selection-end-column="51" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

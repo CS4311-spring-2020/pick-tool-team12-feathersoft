@@ -14,110 +14,136 @@ class VectorConfiguration(QWidget):
         self.UI()
 
     def UI(self):
-        self.gridLayout = QGridLayout(self)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.vectorConfigLabel = QLabel('Vector Configuration',self)
-        self.vectorConfigLabel.setObjectName(u"vectorConfigLabel")
-        self.vectorConfigLabel.setFont(QFont('MS Shell Dlg 2', 12))
+        self.main_layout = QFormLayout(self)
+        self.button_layout = QWidget()
+        self.button_layout.setLayout(QHBoxLayout())
 
-        self.gridLayout.addWidget(self.vectorConfigLabel,0,0,1,2)
+        self.main_layout.addRow('',QLabel('Vector Configuration', alignment=Qt.AlignLeft,
+                                                font=QFont('MS Shell Dlg 2', 12)))
 
-        self.editButton = QPushButton('Edit Vector', self)
-        self.editButton.setObjectName(u"editButton")
 
-        self.gridLayout.addWidget(self.editButton,7,0,1,1)
 
-        self.addVectorButton = QPushButton('Add Vector',self)
-        self.addVectorButton.setObjectName(u"addVectorButton")
+        self.editButton = QPushButton('Edit Vector', clicked=self.edit_vector)
+        self.addVectorButton = QPushButton('Add Vector',clicked=self.add_vector)
+        self.deleteButton = QPushButton('Delete Vector',clicked=self.delete_vector)
 
-        self.gridLayout.addWidget(self.addVectorButton,7,1,1,1)
+        self.button_layout.layout().addWidget(self.editButton)
+        self.button_layout.layout().addWidget(self.addVectorButton)
+        self.button_layout.layout().addWidget(self.deleteButton)
 
-        self.tableWidget = QTableWidget(self)
-        if (self.tableWidget.columnCount() < 3):
-            self.tableWidget.setColumnCount(3)
-        __qtablewidgetitem = QTableWidgetItem(QIcon('down_arrow.png'),'Vector Name')
-        self.tableWidget.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem(QIcon('down_arrow.png'),'Description')
-        self.tableWidget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem('Select')
-        self.tableWidget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        if (self.tableWidget.rowCount() < 3):
-            self.tableWidget.setRowCount(3)
-        __qtablewidgetitem3 = QTableWidgetItem('Vector 1')
-        self.tableWidget.setVerticalHeaderItem(0, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem('Vector 2')
-        self.tableWidget.setVerticalHeaderItem(1, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem('Vector 3')
-        self.tableWidget.setVerticalHeaderItem(2, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem('DOS Attack')
-        self.tableWidget.setItem(0, 0, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem('Denial of Service')
-        self.tableWidget.setItem(0, 1, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem('MITM')
-        self.tableWidget.setItem(1, 0, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem('Man In The Middle')
-        self.tableWidget.setItem(1, 1, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem('SQL INJECTION')
-        self.tableWidget.setItem(2, 0, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem('SQL Injection')
-        self.tableWidget.setItem(2, 1, __qtablewidgetitem11)
-        self.tableWidget.setObjectName(u"tableWidget")
 
-        for i in range(self.tableWidget.rowCount()):
-            checkbox = QCheckBox()
-            checkbox.setChecked(False)
-            self.tableWidget.setCellWidget(i,2,checkbox)
+        self.table = QTableWidget(10, 3, self)
+        self.main_layout.addWidget(self.table)
+        self.main_layout.addWidget(self.button_layout)
+        # self.table.verticalHeader().setVisible(False)
+        self.table.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector Name"))
+        self.table.setHorizontalHeaderItem(1, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector Description"))
+        self.table.setHorizontalHeaderItem(2, QTableWidgetItem(QIcon('icons/unchecked'), "Select"))
 
-        #Set fixed widths for the columns to keep Description large and readable
-        self.tableWidget.setColumnWidth(1, 675)
-        self.tableWidget.setColumnWidth(2, 50)
+        self.slot_clicks = [1] * self.table.columnCount()
 
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.tableWidget.sizePolicy().hasHeightForWidth())
-        self.tableWidget.setSizePolicy(sizePolicy)
-        self.tableWidget.setAlternatingRowColors(True)
-        self.tableWidget.horizontalHeader().setVisible(True)
-        self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
-        self.tableWidget.horizontalHeader().setProperty("showSortIndicator", True)
-        self.header = self.tableWidget.horizontalHeader()
+
+
+        for i in range(self.table.rowCount()):
+            checkbox = QTableWidgetItem()
+            checkbox.setCheckState(Qt.Unchecked)
+            self.table.setItem(i, 2, checkbox)
+
+
+        self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
+        self.table.horizontalHeader().setProperty("showSortIndicator", False)
+        self.header = self.table.horizontalHeader()
         self.header.setStretchLastSection(True)
 
-        for i in range(self.tableWidget.columnCount()):
+        for i in range(self.table.columnCount()):
            self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
-        self.tableWidget.verticalHeader().setStretchLastSection(False)
-        self.tableWidget.verticalHeader().setProperty("showSortIndicator", True)
+
+        self.setLayout(self.main_layout)
 
 
-        self.gridLayout.addWidget(self.tableWidget,1,0,6,4)
+    def header_clicked(self):
+        if not self.table.rowCount() == 0:
+            col = self.table.currentColumn()
+            self.slot_clicks[col] += 1
+            if col == 2:
+                if self.slot_clicks[col] % 2 == 0:
+                    self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/checked.png'))
+                    for row in range(self.table.rowCount()):
+                        self.table.item(row, col).setCheckState(Qt.Checked)
+                else:
+                    self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/unchecked.png'))
+                    for row in range(self.table.rowCount()):
+                        self.table.item(row, col).setCheckState(Qt.Unchecked)
+
+            else:
+                items = [item.text() for item in self.table.selectedItems()]
+            valid_col = col < 2
+            if valid_col:
+                if self.slot_clicks[col] % 2 != 0:
+                    self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/up_arrow.png'))
+                    self.table.sortByColumn(col,Qt.AscendingOrder)
+
+                else:
+                    self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/down_arrow.png'))
+                    self.table.sortByColumn(col, Qt.DescendingOrder)
+
+    def delete_vector(self):
+        selected = self.table.selectedItems()
+        for select in selected:
+            row = self.table.indexFromItem(select).row()
+            self.table.takeItem(row,2)
+            self.table.removeRow(row)
+
+    def add_vector(self):
+        row_index = self.table.rowCount() + 1
+        self.table.setRowCount(row_index)
+
+        for i in range(row_index):
+            checkbox = QTableWidgetItem()
+            checkbox.setCheckState(Qt.Unchecked)
+            self.table.setItem(self.table.rowCount()-1, 2, checkbox)
+
+    def edit_vector(self):
+            self.editor = VectorEdit(self.table.currentRow(),self.table)
+            self.editor.show()
 
 
-        self.deleteButton = QPushButton('Delete Vector',self)
-        self.gridLayout.addWidget(self.deleteButton,7,2,1,2)
+class VectorEdit(QWidget):
+    def __init__(self,row,table):
+        super().__init__()
+        self.row = row
+        self.vc_table = table
+        #self.selected = selected
+        self.setGeometry(100,100,400,100)
+        self.setFixedWidth(400)
+        self.setFixedHeight(100)
+        self.initUI()
 
-        self.selectAllButton = QPushButton('Select All', self)
-        self.gridLayout.addWidget(self.selectAllButton, 0, 3, 1, 1)
-        self.selectAllButton.clicked.connect(self.selectAll)
+    def initUI(self):
 
-        # self.show()
-    def selectAll(self):
-        for i in range(self.tableWidget.rowCount()):
-            checkbox = QCheckBox()
-            checkbox.setChecked(True)
-            self.tableWidget.setCellWidget(i,2,checkbox)
+        self.layout = QFormLayout()
+        self.name = QLineEdit()
+        self.desc = QLineEdit()
+        self.layout.addRow('Vector Name', self.name)
+        self.layout.addRow('Vector Description', self.desc)
+        self.layout.addRow('', QPushButton('Submit', clicked=self.submitted))
+        self.setLayout(self.layout)
 
 
-    def display(self):
-        self.w = EnforcementActionReport()
-        self.w.show()
+    def submitted(self):
+        if self.vc_table.selectedItems():
+            for item in self.vc_table.selectedItems():
+                self.vc_table.takeItem(item.row(),0)
+                self.vc_table.takeItem(item.row(),1)
+                self.vc_table.setItem(item.row(),0,QTableWidgetItem(self.name.text() if self.name.text() !='' else " "))
+                self.vc_table.setItem(item.row(),1,QTableWidgetItem(self.desc.text() if self.name.text() !='' else " "))
+        self.close()
 
-        self.verticalScrollBar = QScrollBar(self)
-        self.verticalScrollBar.setObjectName(u"verticalScrollBar")
-        self.verticalScrollBar.setOrientation(Qt.Vertical)
-        self.gridLayout.addWidget(self.verticalScrollBar,1,4,6,1)
-        self.setLayout(self.gridLayout)
-        #self.show()
+
+
+
+
+
 
 
