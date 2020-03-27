@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/graph_node.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/graph_node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/directory_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/directory_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/event_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/event_configuration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/log_entry_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_entry_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/pmr_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/pmr_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/splunk_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/splunk_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/testlog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/testlog.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/vector_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_configuration.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="50" column="81" selection-start-line="49" selection-start-column="41" selection-end-line="50" selection-end-column="81" />
+            <state relative-caret-position="187">
+              <caret line="220" column="20" lean-forward="true" selection-start-line="220" selection-start-column="22" selection-end-line="222" selection-end-column="84" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -30,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1685">
-              <caret line="123" column="24" lean-forward="true" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="72" />
+            <state relative-caret-position="1071">
+              <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -39,11 +43,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/vector_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="137" column="51" selection-start-line="137" selection-start-column="51" selection-end-line="137" selection-end-column="51" />
+            <state relative-caret-position="1768">
+              <caret line="109" column="38" selection-start-line="109" selection-start-column="38" selection-end-line="109" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configurations/directory_configuration.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1445">
+              <caret line="90" column="12" selection-start-line="60" selection-start-column="4" selection-end-line="90" selection-end-column="12" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -54,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/graph_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="75" selection-end-column="46" />
+            <state relative-caret-position="1377">
+              <caret line="89" column="52" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="52" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -64,12 +80,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/node_graphics_view.py">
+        <entry file="file://$PROJECT_DIR$/configurations/splunk_client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="1343">
+              <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#0#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,7 +94,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/graph_format_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
+            <state relative-caret-position="1207">
               <caret line="76" selection-start-line="76" selection-end-line="76" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -88,18 +104,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/node_scene.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/graph_node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-442">
+            <state relative-caret-position="85">
               <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
@@ -111,8 +118,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/log_file_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-238">
-              <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            <state relative-caret-position="187">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -121,10 +128,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/node_graphics_scene.py">
+        <entry file="file://$PROJECT_DIR$/configurations/pmr_v2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="867">
+              <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -193,7 +200,6 @@
         <option value="$PROJECT_DIR$/configurations/rwo/significant_log_entry.py" />
         <option value="$PROJECT_DIR$/configurations/testlog.txt" />
         <option value="$PROJECT_DIR$/configurations/android.log" />
-        <option value="$PROJECT_DIR$/configurations/splunk_client.py" />
         <option value="$USER_HOME$/PycharmProjects/GUITuts/my_app.py" />
         <option value="$PROJECT_DIR$/configurations/team_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/vector_configuration_non_lead.py" />
@@ -203,28 +209,29 @@
         <option value="$PROJECT_DIR$/configurations/node_graphics_view.py" />
         <option value="$PROJECT_DIR$/configurations/node_graphics_scene.py" />
         <option value="$PROJECT_DIR$/configurations/node_scene.py" />
-        <option value="$PROJECT_DIR$/configurations/pmr_v2.py" />
-        <option value="$PROJECT_DIR$/configurations/event_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/directory_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/graph_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/graph_format_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/graph_node.py" />
         <option value="$PROJECT_DIR$/configurations/log_entry_configuration.py" />
+        <option value="$PROJECT_DIR$/configurations/directory_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/vector_configuration.py" />
+        <option value="$PROJECT_DIR$/configurations/pmr_v2.py" />
+        <option value="$PROJECT_DIR$/configurations/splunk_client.py" />
+        <option value="$PROJECT_DIR$/configurations/event_configuration.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="952" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+    <option name="x" value="550" />
+    <option name="y" value="10" />
+    <option name="width" value="980" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -241,18 +248,13 @@
               <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
               <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
               <item name="configurations" type="462c0819:PsiDirectoryNode" />
-              <item name="icons" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
-              <item name="configurations" type="462c0819:PsiDirectoryNode" />
               <item name="root" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -284,6 +286,27 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.pmr_v2">
+    <configuration name="event_configuration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pick-tool-team12-feathersoft" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/configurations" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/event_configuration.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="graph_configuration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pick-tool-team12-feathersoft" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -368,41 +391,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="team_configuration" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="pick-tool-team12-feathersoft" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/configurations" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/team_configuration.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.pmr_v2" />
-      <item itemvalue="Python.team_configuration" />
       <item itemvalue="Python.graph_configuration" />
       <item itemvalue="Python.splunk_client" />
       <item itemvalue="Python.node_graphic_scene" />
+      <item itemvalue="Python.event_configuration" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.pmr_v2" />
-        <item itemvalue="Python.node_graphic_scene" />
+        <item itemvalue="Python.event_configuration" />
         <item itemvalue="Python.splunk_client" />
+        <item itemvalue="Python.node_graphic_scene" />
         <item itemvalue="Python.graph_configuration" />
-        <item itemvalue="Python.team_configuration" />
       </list>
     </recent_temporary>
   </component>
@@ -697,7 +699,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585082517495</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Added edit,add,and delete vector fucntionality to the vector configuration class.">
+      <created>1585130968912</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1585130968912</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TodoView">
@@ -713,7 +722,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19022457" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.19022457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -732,13 +741,13 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.386059" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19022457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32748538" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.497358" visible="true" weight="0.15952733" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39766082" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.497358" visible="true" weight="0.33040935" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39734122" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32952926" />
@@ -767,7 +776,8 @@
     <MESSAGE value="Re-Designed UI Windows based on client feedback. Still have some bugs to fix." />
     <MESSAGE value="Working on the graph view" />
     <MESSAGE value="Added movable widgets to the graph view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added movable widgets to the graph view" />
+    <MESSAGE value="Added edit,add,and delete vector fucntionality to the vector configuration class." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added edit,add,and delete vector fucntionality to the vector configuration class." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/configurations/PICK_PMR.py" />
@@ -947,36 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/splunk_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/pmr_v2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="67" column="54" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/directory_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="81" selection-start-line="25" selection-start-column="81" selection-end-line="25" selection-end-column="81" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/desktop.ini">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1000,16 +980,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/graph_format_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/node_scene.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1017,9 +987,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/vector_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1768">
+          <caret line="109" column="38" selection-start-line="109" selection-start-column="38" selection-end-line="109" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/directory_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="90" column="12" selection-start-line="60" selection-start-column="4" selection-end-line="90" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/graph_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1377">
+          <caret line="89" column="52" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/graph_format_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/graph_node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-442">
+        <state relative-caret-position="85">
           <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -1029,48 +1049,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/log_file_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="187">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/graph_configuration.py">
+    <entry file="file://$PROJECT_DIR$/configurations/pmr_v2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="75" selection-end-column="46" />
+        <state relative-caret-position="867">
+          <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
+    <entry file="file://$PROJECT_DIR$/configurations/splunk_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1685">
-          <caret line="123" column="24" lean-forward="true" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="72" />
+        <state relative-caret-position="1343">
+          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="50" column="81" selection-start-line="49" selection-start-column="41" selection-end-line="50" selection-end-column="81" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/vector_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="137" column="51" selection-start-line="137" selection-start-column="51" selection-end-line="137" selection-end-column="51" />
+        <state relative-caret-position="187">
+          <caret line="220" column="20" lean-forward="true" selection-start-line="220" selection-start-column="22" selection-end-line="222" selection-end-column="84" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

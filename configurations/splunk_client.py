@@ -47,7 +47,10 @@ class splunk_integrator():
         return self.service.indexes.get(index)
 
     def get_content(self,index):
-        print(self.get_index(index))
+        self.set_index(index)
+        for job in self.service.jobs:
+            for event in job.events():
+                print(str(event))
 
     def download_log_files(self):
         # Retrieve search jobs
@@ -55,7 +58,7 @@ class splunk_integrator():
         # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
         # Query criteria
-        query = "search * source= sample.log"
+        query = "search *"
 
         # Create search job
         job = jobs.create(query, **blocking_search)
@@ -75,15 +78,14 @@ class splunk_integrator():
             entry.display()
 
 
-
 if __name__ == '__main__':
-    client = splunk_integrator('127.0.0.1',8089,'feathersoft','Feathersoft','stevenroach')
+    client = splunk_integrator('localhost',8089,'feathersoft','Feathersoft','stevenroach')
     THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
     dummy_file = os.path.join(THIS_FOLDER,'android.log')
     client.view_indexes()
     client.set_index('pick')
-    #client.upload_file('android.log','pick')
-    client.get_content('pick')
+    client.upload_file('root/android.log','main')
+    client.get_content('main')
     client.download_log_files()
     client.display_entries()
 

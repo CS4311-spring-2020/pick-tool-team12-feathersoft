@@ -5,6 +5,7 @@ from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import os
 
+
 class DirectoryConfiguration(QWidget):
     def __init__(self):
         super().__init__()
@@ -14,12 +15,9 @@ class DirectoryConfiguration(QWidget):
 
     def UI(self):
         # Creating the label for the window
-
-        self.label = QLabel('Directory Configuration')
-        self.label.setFont(QFont('MS Shell Dlg 2', 12))
-        main_layout = QFormLayout()
-
-        main_layout.addRow(QLabel('Directory Configuration', alignment=Qt.AlignLeft, font=QFont('MS Shell Dlg 2', 12)))
+        self.directory_configuration_layout = QFormLayout()
+        self.directory_configuration_layout.addRow(QLabel('Directory Configuration', alignment=Qt.AlignLeft,
+                                                          font=QFont('MS Shell Dlg 2', 12)))
         root_directory_layout = QWidget()
         root_directory_layout.setLayout(QHBoxLayout())
         self.root_directory_edit = QLineEdit()
@@ -50,18 +48,19 @@ class DirectoryConfiguration(QWidget):
         white_directory_layout.layout().addWidget(self.white_directory_edit)
         white_directory_layout.layout().addWidget(self.filebtn4)
 
-        main_layout.addRow('Root Directory',root_directory_layout)
-        main_layout.addRow('Red Team Folder',red_directory_layout)
-        main_layout.addRow('Blue Team Folder',blue_directory_layout)
-        main_layout.addRow('White Team Folder',white_directory_layout)
-        main_layout.addRow('',QPushButton('Ingest',clicked=self.validate_root_structure))
+        self.directory_configuration_layout.addRow('Root Directory', root_directory_layout)
+        self.directory_configuration_layout.addRow('Red Team Folder', red_directory_layout)
+        self.directory_configuration_layout.addRow('Blue Team Folder', blue_directory_layout)
+        self.directory_configuration_layout.addRow('White Team Folder', white_directory_layout)
+        self.directory_configuration_layout.addRow('', QPushButton('Ingest', clicked=self.validate_root_structure))
 
-        main_layout.setSpacing(30)
+        self.directory_configuration_layout.setSpacing(30)
 
-        self.setLayout(main_layout)
+        self.setLayout(self.directory_configuration_layout)
 
     def open_file(self):
-        file = str(QFileDialog.getExistingDirectory(self, "Select Directory",directory=os.path.realpath(os.getcwd())))
+        file = str(QFileDialog.getExistingDirectory(QFileDialog(), "Select Directory",
+                                                    directory=os.path.realpath(os.getcwd())))
         if self.sender() == self.filebtn:
             self.root_directory_edit.setText(file)
 
@@ -76,10 +75,10 @@ class DirectoryConfiguration(QWidget):
 
     def validate_root_structure(self):
         if self.root_directory_edit.text() != '':
-            if len(os.listdir(self.root_directory_edit.text())) != 3:
+            num_folders = len(os.listdir(self.root_directory_edit.text()))
+            if num_folders < 3:
                 QMessageBox.critical(self,"Root Directory Structure Error",
-                                     "Root Directory does not provide all required folders")
-
+                                     f"Root Directory currently has {num_folders} folders")
             else:
                 buttonReply = QMessageBox.question(self, 'PyQt5 message',
                                                    "Begin Ingestion?",

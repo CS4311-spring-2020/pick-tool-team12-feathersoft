@@ -82,6 +82,7 @@ class LogEntryConfiguration(QWidget):
             combobox = QComboBox()
             combobox.addItems(['','1','2','3'])
 
+
             self.table.setItem(i,2,QTableWidgetItem(self.logs[i][2],Qt.DisplayRole))
             self.table.setItem(i,3, QTableWidgetItem(self.logs[i][3],Qt.DisplayRole))
             self.table.setItem(i,4, QTableWidgetItem(self.logs[i][4],Qt.DisplayRole))

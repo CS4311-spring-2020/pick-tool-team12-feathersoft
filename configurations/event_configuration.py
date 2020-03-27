@@ -5,14 +5,22 @@ from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import datetime
 import re
+import os
+import socket
 
 
 class EventConfiguratation(QWidget):
-    def __init__(self, lead_ip):
+
+    configured = pyqtSignal(bool)
+
+    def __init__(self, lead_ip,parent=QMainWindow):
         super().__init__()
         self.setGeometry(50, 50, 474, 664)
         self.setWindowTitle("Event Configuration")
         self.lead_ip = lead_ip
+        self.time_stamp_validated = False
+        self.ip_validated = False
+        self.root_structure_validated = False
         self.UI()
 
     def UI(self):
@@ -28,6 +36,9 @@ class EventConfiguratation(QWidget):
         self.team_layout.setLayout(QFormLayout())
         self.event_layout.layout().addRow(QLabel('Event Configuration', alignment=Qt.AlignLeft,
                                                  font=QFont('MS Shell Dlg 2', 12)))
+        self.directory_configuration_layout = QWidget()
+        self.directory_configuration_layout.setLayout(QFormLayout())
+
         self.name = QLineEdit()
         self.description = QLineEdit()
         self.start_date = QDateTimeEdit()
@@ -45,8 +56,6 @@ class EventConfiguratation(QWidget):
         self.save_event_button.clicked.connect(self.configure_event)
 
 
-        self.team_label = QLabel("Team Configuration")
-        self.team_label.setFont(QFont('MS Shell Dlg 2', 12))
         self.team_layout.layout().addRow(QLabel('Team Configuration', alignment=Qt.AlignLeft,
                                                 font=QFont('MS Shell Dlg 2', 12)))
 
@@ -59,12 +68,54 @@ class EventConfiguratation(QWidget):
         self.connect_button = QPushButton('Connect',clicked=self.validate_credentials)
         self.team_layout.layout().addRow('',self.connect_button)
 
-        self.event_layout.layout().setSpacing(30)
-        self.team_layout.layout().setSpacing(30)
+
+        # dc layout
+
+        self.directory_configuration_layout.layout().addRow(QLabel('Directory Configuration', alignment=Qt.AlignLeft,
+                                                         font=QFont('MS Shell Dlg 2', 12)))
+        self.root_directory_layout = QWidget()
+        self.root_directory_layout.setLayout(QHBoxLayout())
+        self.root_directory_edit = QLineEdit()
+        self.root_directory_button = QPushButton(self, clicked=self.open_file, icon=QIcon('icons/folder.png'))
+        self.root_directory_layout.layout().addWidget(self.root_directory_edit)
+        self.root_directory_layout.layout().addWidget(self.root_directory_button)
+
+
+        self.red_directory_layout = QWidget()
+        self.red_directory_layout.setLayout(QHBoxLayout())
+        self.red_directory_edit = QLineEdit()
+        self.red_directory_button = QPushButton(self, clicked=self.open_file, icon=QIcon('icons/folder.png'))
+        self.red_directory_layout.layout().addWidget(self.red_directory_edit)
+        self.red_directory_layout.layout().addWidget(self.red_directory_button)
+
+        self.blue_directory_layout = QWidget()
+        self.blue_directory_layout.setLayout(QHBoxLayout())
+        self.blue_directory_edit = QLineEdit()
+        self.blue_directory_button = QPushButton(self, clicked=self.open_file, icon=QIcon('icons/folder.png'))
+        self.blue_directory_layout.layout().addWidget(self.blue_directory_edit)
+        self.blue_directory_layout.layout().addWidget(self.blue_directory_button)
+
+        self.white_directory_layout = QWidget()
+        self.white_directory_layout.setLayout(QHBoxLayout())
+        self.white_directory_edit = QLineEdit()
+        self.white_directory_button = QPushButton(self, clicked=self.open_file, icon=QIcon('icons/folder.png'))
+        self.white_directory_layout.layout().addWidget(self.white_directory_edit)
+        self.white_directory_layout.layout().addWidget(self.white_directory_button)
+
+        self.directory_configuration_layout.layout().addRow('Root Directory', self.root_directory_layout)
+        self.directory_configuration_layout.layout().addRow('Red Team Folder', self.red_directory_layout)
+        self.directory_configuration_layout.layout().addRow('Blue Team Folder', self.blue_directory_layout)
+        self.directory_configuration_layout.layout().addRow('White Team Folder', self.white_directory_layout)
+        self.directory_configuration_layout.layout().addRow('', QPushButton('Ingest', clicked=self.validate_root_structure))
+        self.directory_configuration_layout.layout().setSpacing(0)
+
+        # self.event_layout.layout().setSpacing(10)
+        # self.team_layout.layout().setSpacing(10)
+        # self.directory_configuration_layout.layout().setSpacing(1)
 
         self.layout.addWidget(self.event_layout)
         self.layout.addWidget(self.team_layout)
-        self.layout.setSpacing(10)
+        self.layout.addWidget(self.directory_configuration_layout)
         self.setLayout(self.layout)
 
     def configure_event(self):
@@ -77,14 +128,10 @@ class EventConfiguratation(QWidget):
                                                QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
                                                QMessageBox.Cancel)
             if buttonReply == QMessageBox.Yes:
-                self.name.setDisabled(True)
-                self.description.setDisabled(True)
-                self.start_date.setDisabled(True)
-                self.end_date.setDisabled(True)
-                self.save_event_button.setDisabled(True)
-                label = QLabel('Event Configured. You may no longer edit.')
-                label.setStyleSheet("QLabel { color: red}")
-                self.event_layout.layout().addRow('',label)
+                # label = QLabel('Event Timestamp Validated ✔.')
+                # label.setStyleSheet("QLabel { color: green}")
+                # self.event_layout.layout().addRow('',label)
+                self.time_stamp_validated = True
 
             elif buttonReply == QMessageBox.No:
                 QMessageBox.information(self, 'No','Please be sure the information entered is correct')
@@ -103,38 +150,84 @@ class EventConfiguratation(QWidget):
                                      '2 - Start date is equal to end date but start time is less than end time')
 
     def validate_credentials(self):
-        result = None
-        try:
-            result = [0 <= int(x) < 256 for x in re.split('\.', re.match(r'^\d+\.\d+\.\d+\.\d+$', self.lead_ip_address_line_edit.text()).group(0))].count(True) == 4
-        except AttributeError:
-            result = False
+        if self.lead_ip_address_line_edit.isEnabled():
+            result = None
+            try:
+                result = [0 <= int(x) < 256 for x in re.split('\.', re.match(r'^\d+\.\d+\.\d+\.\d+$', self.lead_ip_address_line_edit.text()).group(0))].count(True) == 4
+            except AttributeError:
+                result = False
 
-        lead = '127.0.0.1'
-        non_lead_analyst = (self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() != self.lead_ip) \
-                           or (not self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() == self.lead_ip)\
-                           or(self.lead_ip_address_line_edit.text() != self.lead_ip and not self.lead_checkbox.isChecked())
+            non_lead_analyst = (self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() != self.lead_ip
+                                or self.lead_checkbox.isChecked() and socket.gethostbyname(socket.gethostname()) != self.lead_ip) \
+                        or(self.lead_ip_address_line_edit.text() != self.lead_ip and not self.lead_checkbox.isChecked())
 
-        empty_ip = self.lead_ip_address_line_edit.text() == ''
+            empty_ip = self.lead_ip_address_line_edit.text() == ''
 
-        if non_lead_analyst:
-            QMessageBox.critical(self, 'Connection Error',
-                                 'Non-Lead attempting to connect as lead\n'
-                                 + 'Check lead box if lead IP entered\n'
-                                 + 'Uncheck lead box if non-lead IP entered')
+            if non_lead_analyst:
+                QMessageBox.critical(self, 'Connection Error',
+                                     f'Non-Lead {socket.gethostbyname(socket.gethostname())} attempting to connect as lead\n'
+                                     + 'Check lead box if lead IP entered\n'
+                                     + 'Uncheck lead box if non-lead IP entered')
 
-        elif empty_ip:
-            QMessageBox.critical(self, 'Connection Error',
-                                 'IP Address field left empty\n'
-                                 + 'Enter a value from 0.0.0.0 to 255.255.255.255')
+            elif empty_ip:
+                QMessageBox.critical(self, 'Connection Error',
+                                     'IP Address field left empty\n'
+                                     + 'Enter a value from 0.0.0.0 to 255.255.255.255')
 
-        elif not result or result is None:
-            QMessageBox.critical(self, 'Connection Error',
-                                 'IP Address Invalid\n'
-                                 + 'Enter a value from 0.0.0.0 to 255.255.255.255')
+            elif not result or result is None:
+                QMessageBox.critical(self, 'Connection Error',
+                                     'IP Address Invalid\n'
+                                     + 'Enter a value from 0.0.0.0 to 255.255.255.255')
+
+            else:
+                QMessageBox.information(self,'Connection Successful',
+                                        f'Connection to server from IP {self.lead_ip_address_line_edit.text()} established !')
+                # label = QLabel('Lead IP Validated ✔.')
+                # label.setStyleSheet("QLabel { color: green}")
+                # self.team_layout.layout().addRow('', label)
+                self.lead_ip_address_line_edit.setEnabled(False)
+
+                self.ip_validated = True
+
+    def open_file(self):
+        file = str(QFileDialog.getExistingDirectory(QFileDialog(), "Select Directory",
+                                                    directory=os.path.realpath(os.getcwd())))
+        if self.sender() == self.root_directory_button:
+            self.root_directory_edit.setText(file)
+
+        elif self.sender() == self.red_directory_button:
+            self.red_directory_edit.setText(file)
+
+        elif self.sender() == self.blue_directory_button:
+            self.blue_directory_edit.setText(file)
 
         else:
-            QMessageBox.information(self,'Connection Successful',
-                                    f'Connection to server from IP {self.lead_ip_address_line_edit.text()} established !')
+            self.white_directory_edit.setText(file)
+
+    def validate_root_structure(self):
+        if self.root_directory_edit.text() != '':
+            num_folders = len(os.listdir(self.root_directory_edit.text()))
+            if num_folders < 3:
+                QMessageBox.critical(self,"Root Directory Structure Error",
+                                     f"Root Directory currently has {num_folders} folders")
+            else:
+                buttonReply = QMessageBox.question(self, 'PyQt5 message',
+                                                   "Begin Ingestion?",
+                                                   QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
+                                                   QMessageBox.Cancel)
+                if buttonReply == QMessageBox.Yes:
+                    self.root_structure_validated = True
+                    toolbar_unlocked = self.time_stamp_validated and self.ip_validated and self.root_structure_validated
+                    # label = QLabel('Root Structure Validated ✔.')
+                    # label.setStyleSheet("QLabel { color: green}")
+                    # self.directory_configuration_layout.layout().addRow('', label)
+                    self.configured.emit(toolbar_unlocked)
+                    self.begin_ingestion()
+
+    def begin_ingestion(self):
+        pass
+
+
 
 
 

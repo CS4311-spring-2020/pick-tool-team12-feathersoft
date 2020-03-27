@@ -28,7 +28,7 @@ class PMR(QMainWindow):
 
         self.setWindowTitle('Prevent Mitigate Recover')
         self.event_configuration = EventConfiguratation('127.0.0.1')
-        self.directory_configuration = DirectoryConfiguration()
+        #self.directory_configuration = DirectoryConfiguration()
         self.vector_configuration = VectorConfiguration()
         self.log_file_configuration = LogFileConfiguration()
         self.log_entry_configuration = LogEntryConfiguration()
@@ -42,30 +42,33 @@ class PMR(QMainWindow):
         self.tab_format_configuration = TabFormatConfiguration()
         self.relationship_configuration = RelationshipConfiguration()
 
-        self.layout = QFormLayout()
-
-        self.setGeometry(50, 50, 1000, 600)
+        self.configurations_toolbar = QToolBar('PMR')
+        self.configurations_toolbar.addAction('Event Configuration', self.event_configuration_clicked)
+        #self.configurations_toolbar.addAction('Directory Configuration', self.directory_configuration_clicked)
+        self.configurations_toolbar.addAction('Log File Configuration', self.log_file_configuration_clicked)
+        self.configurations_toolbar.addAction('Log Entry Configuration', self.log_entry_configuration_clicked)
+        self.configurations_toolbar.addAction('Graph Configuration', self.graph_configuration_clicked)
+        self.configurations_toolbar.addAction('Vector Configuration', self.vector_configuration_clicked)
+        self.configurations_toolbar.addAction('Vector DB Configuration', self.vector_db_configuration_clicked)
+        self.setGeometry(50, 50, 1100, 700)
 
         # MenuBar
+        self.menubar = self.menuBar()
+        self.file_menu = self.menubar.addMenu('File')
+        self.export_menu = self.menubar.addMenu('Export')
+        self.file_menu.addAction('Quit')
 
-        menubar = self.menuBar()
-        file_menu = menubar.addMenu('File')
-        export_menu = menubar.addMenu('Export')
-        file_menu.addAction('Quit')
+        # Disable access to the rest of the screens until an event has been configured.
+        # This is because it would not make sense to continue until an event is valid.
 
+        self.disable_toolbar()
 
+        # Enable the rest of the toolbar after event has been configured
+        self.event_configuration.configured.connect(self.enable_toolbar)
 
-        configurations_toolbar = QToolBar('PMR')
-        configurations_toolbar.addAction('Event Configuration',self.event_configuration_clicked)
-        configurations_toolbar.addAction('Directory Configuration',self.directory_configuration_clicked)
-        configurations_toolbar.addAction('Graph Configuration', self.graph_configuration_clicked)
-        configurations_toolbar.addAction('Log File Configuration', self.log_file_configuration_clicked)
-        configurations_toolbar.addAction('Log Entry Configuration',self.log_entry_configuration_clicked)
-        configurations_toolbar.addAction('Vector Configuration',self.vector_configuration_clicked)
-        configurations_toolbar.addAction('Vector DB Configuration', self.vector_db_configuration_clicked)
-
-        self.addToolBar(Qt.LeftToolBarArea, configurations_toolbar)
+        self.addToolBar(Qt.LeftToolBarArea, self.configurations_toolbar)
         self.setCentralWidget(self.event_configuration)
+        self.statusBar().showMessage('Event Configuration')
         self.show()
 
     def event_configuration_clicked(self):
@@ -108,8 +111,13 @@ class PMR(QMainWindow):
             self.setCentralWidget(self.vector_db_configuration_non_lead)
             self.statusBar().showMessage('Vector DB Non Lead')
 
+    def disable_toolbar(self):
+        for action in self.configurations_toolbar.actions():
+            action.setEnabled(False if action.text() !='Event Configuration' else True)
 
-
+    def enable_toolbar(self):
+        for action in self.configurations_toolbar.actions():
+            action.setEnabled(True)
 
 
 if __name__ == "__main__":

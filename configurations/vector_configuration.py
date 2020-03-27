@@ -32,7 +32,7 @@ class VectorConfiguration(QWidget):
         self.button_layout.layout().addWidget(self.deleteButton)
 
 
-        self.table = QTableWidget(10, 3, self)
+        self.table = QTableWidget(5, 3, self)
         self.main_layout.addWidget(self.table)
         self.main_layout.addWidget(self.button_layout)
         # self.table.verticalHeader().setVisible(False)
@@ -54,9 +54,10 @@ class VectorConfiguration(QWidget):
         self.table.horizontalHeader().setProperty("showSortIndicator", False)
         self.header = self.table.horizontalHeader()
         self.header.setStretchLastSection(True)
+        self.table.setColumnWidth(1,300)
 
         for i in range(self.table.columnCount()):
-           self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
+           self.header.setSectionResizeMode(i, QHeaderView.Stretch)
 
 
         self.setLayout(self.main_layout)
@@ -92,7 +93,8 @@ class VectorConfiguration(QWidget):
         selected = self.table.selectedItems()
         for select in selected:
             row = self.table.indexFromItem(select).row()
-            self.table.takeItem(row,2)
+            for j in range(self.table.columnCount()):
+                self.table.takeItem(row,j)
             self.table.removeRow(row)
 
     def add_vector(self):
@@ -105,6 +107,7 @@ class VectorConfiguration(QWidget):
             self.table.setItem(self.table.rowCount()-1, 2, checkbox)
 
     def edit_vector(self):
+        if self.table.selectedItems():
             self.editor = VectorEdit(self.table.currentRow(),self.table)
             self.editor.show()
 
