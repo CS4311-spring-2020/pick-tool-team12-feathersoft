@@ -61,10 +61,15 @@ class PMR(QMainWindow):
         # Disable access to the rest of the screens until an event has been configured.
         # This is because it would not make sense to continue until an event is valid.
 
-        self.disable_toolbar()
+        #self.disable_toolbar()
 
         # Enable the rest of the toolbar after event has been configured
         self.event_configuration.configured.connect(self.enable_toolbar)
+
+        # Populate the log file table after logs a have been ingested
+
+        # Populate the log entries table after ingestion
+        self.event_configuration.ingestion_complete.connect(self.populate_table)
 
         self.addToolBar(Qt.LeftToolBarArea, self.configurations_toolbar)
         self.setCentralWidget(self.event_configuration)
@@ -76,10 +81,10 @@ class PMR(QMainWindow):
         self.setCentralWidget(self.event_configuration)
         self.statusBar().showMessage('Event Configuration')
 
-    def directory_configuration_clicked(self):
-        self.takeCentralWidget()
-        self.setCentralWidget(self.directory_configuration)
-        self.statusBar().showMessage('Directory Configuration')
+    # def directory_configuration_clicked(self):
+    #     self.takeCentralWidget()
+    #     self.setCentralWidget(self.directory_configuration)
+    #     self.statusBar().showMessage('Directory Configuration')
 
     def graph_configuration_clicked(self):
         self.takeCentralWidget()
@@ -118,6 +123,9 @@ class PMR(QMainWindow):
     def enable_toolbar(self):
         for action in self.configurations_toolbar.actions():
             action.setEnabled(True)
+
+    def populate_table(self):
+        self.log_entry_configuration.populate_table(self.event_configuration.splunk_client.entries)
 
 
 if __name__ == "__main__":

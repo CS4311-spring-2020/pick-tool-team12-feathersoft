@@ -1,13 +1,13 @@
 
 class LogFile:
 
-    def __int__(self, cleansing_status, validation_status, ingestion_status,
+    def __int__(self,name, cleansing_status, validation_status, ingestion_status,
                 acknowledgement_status):
         """
-
-        :param cleansing_status:
-        :param validation_status:
-        :param ingestion_status:
+        :param name: The name of a log file.
+        :param cleansing_status: The cleansing status of a log file
+        :param validation_status: The validation status of a log file
+        :param ingestion_status: The ingestion status of a log
         :param acknowledgement_status:
         :return:
         """

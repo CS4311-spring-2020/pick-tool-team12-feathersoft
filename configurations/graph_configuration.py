@@ -40,22 +40,39 @@ class NodeEditorWindow(QWidget):
     def initUI(self):
         self.setGeometry(200,200,800,600)
 
-        self.layout = QVBoxLayout()
+        self.layout = QHBoxLayout()
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.layout)
         # Create graphics scene
         self.scene = Scene()
 
+        # Creating the tablular view
+        self.table = QTableWidget(0,10,self)
+        #self.table.setFixedWidth(850)
+        self.table.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Node ID"))
+        self.table.setHorizontalHeaderItem(1, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Node Name"))
+        self.table.setHorizontalHeaderItem(2, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Node Timestamp"))
+        self.table.setHorizontalHeaderItem(3, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Node Description"))
+        self.table.setHorizontalHeaderItem(4, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Log Entry Reference"))
+        self.table.setHorizontalHeaderItem(5, QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Log Creator'))
+        self.table.setHorizontalHeaderItem(6, QTableWidgetItem('Event Type'))
+        self.table.setHorizontalHeaderItem(7, QTableWidgetItem(QIcon('icon/unchecked.png'), "Icon Type"))
+        self.table.setHorizontalHeaderItem(8, QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Source'))
+        self.table.setHorizontalHeaderItem(9, QTableWidgetItem('Node Visibility'))
+        self.header = self.table.horizontalHeader()
+        for i in range(self.table.columnCount()):
+            self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
-
-        # Create graphics view
+        # Creating the Graphical View
+        self.layout.addWidget(self.table,1)
         self.view = QDMGraphicsView(self.scene.grScene,self)
         # self.view.setScene(self.scene)
         self.setWindowTitle('Node Editor')
 
-        self.layout.addWidget(self.view)
+        self.layout.addWidget(self.view,1)
 
         self.setWindowTitle('Graph View')
+        self.setLayout(self.layout)
 
         #self.addDebugContent()
 
@@ -74,44 +91,6 @@ class NodeEditorWindow(QWidget):
     def mousePressEvent(self, QMouseEvent):
         if QMouseEvent.button == Qt.RightButton:
             self.contextMenuEvent(QMouseEvent)
-
-
-    def addDebugContent(self):
-        greenBrush = QBrush(Qt.green)
-        outlinePen = QPen(Qt.black)
-        outlinePen.setWidth(2)
-
-        rect = self.grScene.addRect(-100, -100, 80, 100, outlinePen, greenBrush)
-        circ = self.grScene.addEllipse(-100, -200, 80,100, outlinePen,greenBrush)
-        rect.setFlag(QGraphicsItem.ItemIsMovable)
-        circ.setFlag(QGraphicsItem.ItemIsMovable)
-
-        text = self.grScene.addText('This is my awesome text.', QFont('Ubuntu'))
-        text.setFlag(QGraphicsItem.ItemIsSelectable)
-        text.setFlag(QGraphicsItem.ItemIsMovable)
-        text.setDefaultTextColor(QColor.fromRgbF(1.0, 1.0, 1.0))
-
-
-        proxy1 = self.grScene.addWidget(QPushButton('Hello'))
-        proxy1.setFlag(QGraphicsItem.ItemIsMovable)
-        proxy1.setFlag(QGraphicsItem.ItemIsSelectable)
-        proxy1.setPos(0,30)
-
-        line = self.grScene.addLine(-200,-100,400,0, outlinePen)
-        line.setFlag(QGraphicsItem.ItemIsSelectable)
-        line.setFlag(QGraphicsItem.ItemIsMovable)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == '__main__':

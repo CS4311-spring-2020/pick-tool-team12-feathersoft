@@ -5,7 +5,7 @@ from configurations.rwo.significant_log_entry import SignificantLogEntry
 import datetime
 
 
-class splunk_integrator():
+class SplunkIntegrator():
 
     def __init__(self,host,port,index,username,password):
         self._host = host
@@ -49,8 +49,7 @@ class splunk_integrator():
     def get_content(self,index):
         self.set_index(index)
         for job in self.service.jobs:
-            for event in job.events():
-                print(str(event))
+            print(job)
 
     def download_log_files(self):
         # Retrieve search jobs
@@ -58,7 +57,7 @@ class splunk_integrator():
         # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
         # Query criteria
-        query = "search *"
+        query = "search * | head 150"
 
         # Create search job
         job = jobs.create(query, **blocking_search)
@@ -69,6 +68,7 @@ class splunk_integrator():
             if True:
                 self.entries.append(SignificantLogEntry(i,result['_indextime'],result['index'],result['host'],result['source'],result['sourcetype']))
             i += 1
+
         return self.entries
 
     def display_entries(self):
@@ -79,7 +79,7 @@ class splunk_integrator():
 
 
 if __name__ == '__main__':
-    client = splunk_integrator('localhost',8089,'feathersoft','Feathersoft','stevenroach')
+    client = SplunkIntegrator('localhost', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
     THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
     dummy_file = os.path.join(THIS_FOLDER,'android.log')
     client.view_indexes()

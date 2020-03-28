@@ -18,7 +18,6 @@ class LogEntryConfiguration(QWidget):
         self.setGeometry(200, 400, 800, 620)
         self.setWindowTitle("Log Entry Configuration")
         self.filter = FilterConfiguration()
-        self.logs = [line.split(' ') for line in open('testlog.txt').readlines()]
         self.UI()
 
     def UI(self):
@@ -28,33 +27,23 @@ class LogEntryConfiguration(QWidget):
         self.label.setFont(QFont('MS Shell Dlg 2', 12))
         self.label.move(50, 50)
 
-
-
-
-
         # Creating the layout that the window will be stored
         self.layout = QFormLayout()
-        #self.setLayout(self.grid)
+
         # Creating the table
-        self.table = QTableWidget(len(self.logs), 8, self)
-        #self.setCentralWidget(self.table)
+        self.table = QTableWidget(self)
+
         # Setting the amount of columns our table will have
-
-        # Setting the amount of row our table will have
-        # Reading the dummy self.logs
-        #self.setCentralWidget(self.table)
-
-        # Setting the headers for each column
-        self.table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "List Number"))
-        self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Log Entry Timestamp"))
-        self.table.setHorizontalHeaderItem(2,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Log Entry Content"))
-        self.table.setHorizontalHeaderItem(3,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Host"))
-        self.table.setHorizontalHeaderItem(4,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Source"))
-        self.table.setHorizontalHeaderItem(5,QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Source type'))
-        self.table.setHorizontalHeaderItem(6,QTableWidgetItem('Vector'))
-        self.table.setHorizontalHeaderItem(7,QTableWidgetItem(QIcon('icon/unchecked.png'), "Select"))
-
-
+        self.table.setColumnCount(8)
+        self.slot_clicks = [1] * self.table.columnCount()
+        self.table.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'), "List Number"))
+        self.table.setHorizontalHeaderItem(1, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Log Entry Timestamp"))
+        self.table.setHorizontalHeaderItem(2, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Log Entry Content"))
+        self.table.setHorizontalHeaderItem(3, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Host"))
+        self.table.setHorizontalHeaderItem(4, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Source"))
+        self.table.setHorizontalHeaderItem(5, QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Source type'))
+        self.table.setHorizontalHeaderItem(6, QTableWidgetItem('Vector'))
+        self.table.setHorizontalHeaderItem(7, QTableWidgetItem(QIcon('icon/unchecked.png'), "Select"))
         self.header = self.table.horizontalHeader()
 
         for i in range(self.table.columnCount()):
@@ -64,33 +53,8 @@ class LogEntryConfiguration(QWidget):
         self.table.verticalHeader().setProperty("showSortIndicator", False)
         self.header.setStretchLastSection(True)
 
-
         # Hiding the row labels in the table
         self.table.verticalHeader().setVisible(False)
-        dummy = ['SQL Injection', 'Blue Team', 'Red Team', 'NULL']
-        for i in range(len(self.logs)):
-            # To store non string values in our table cells, we need to create widgets
-            # that have a display role formatted for non string values.
-            list_value = QTableWidgetItem()
-            list_value.setData(Qt.DisplayRole, int(self.logs[i][0]))
-            time_stamp = QTableWidgetItem()
-            time_stamp.setData(Qt.DisplayRole,self.logs[i][1])
-            self.table.setItem(i,0,list_value)
-            self.table.setItem(i,1,time_stamp)
-            checkbox = QTableWidgetItem()
-            checkbox.setCheckState(Qt.Unchecked)
-            combobox = QComboBox()
-            combobox.addItems(['','1','2','3'])
-
-
-            self.table.setItem(i,2,QTableWidgetItem(self.logs[i][2],Qt.DisplayRole))
-            self.table.setItem(i,3, QTableWidgetItem(self.logs[i][3],Qt.DisplayRole))
-            self.table.setItem(i,4, QTableWidgetItem(self.logs[i][4],Qt.DisplayRole))
-            self.table.setItem(i,5, QTableWidgetItem(self.logs[i][5],Qt.DisplayRole))
-            self.table.setCellWidget(i,6,combobox)
-            self.table.setItem(i,7,checkbox)
-
-        self.slot_clicks = [1] * self.table.columnCount()
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
         menuBar = QMenuBar()
         self.filter_options = menuBar.addMenu('Filter Options')
@@ -103,6 +67,29 @@ class LogEntryConfiguration(QWidget):
 
         self.setLayout(self.layout)
 
+    def populate_table(self, entries):
+        self.entries = entries
+        self.table.setRowCount(len(entries))
+        for i in range(len(entries)):
+            # To store non string values in our table cells, we need to create widgets
+            # that have a display role formatted for non string values.
+            list_value = QTableWidgetItem()
+            list_value.setData(Qt.DisplayRole, int(entries[i].get_log_entry_number()))
+            time_stamp = QTableWidgetItem()
+            time_stamp.setData(Qt.DisplayRole, entries[i].get_log_entry_timestamp())
+            self.table.setItem(i,0,list_value)
+            self.table.setItem(i,1,time_stamp)
+            checkbox = QTableWidgetItem()
+            checkbox.setCheckState(Qt.Unchecked)
+            combobox = QComboBox()
+            combobox.addItems(['','1','2','3'])
+
+            self.table.setItem(i, 2, QTableWidgetItem(entries[i].get_log_entry_content(), Qt.DisplayRole))
+            self.table.setItem(i, 3, QTableWidgetItem(entries[i].get_host(), Qt.DisplayRole))
+            self.table.setItem(i, 4, QTableWidgetItem(entries[i].get_source(), Qt.DisplayRole))
+            self.table.setItem(i, 5, QTableWidgetItem(entries[i].get_source_type(), Qt.DisplayRole))
+            self.table.setCellWidget(i,6,combobox)
+            self.table.setItem(i,7,checkbox)
 
     def filter_action(self):
         self.filter.show()
@@ -135,22 +122,9 @@ class LogEntryConfiguration(QWidget):
                 self.slot_clicks[col] += 1
                 if self.slot_clicks[col] % 2 != 0:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/up_arrow.png'))
-                    #items.sort(reverse=False)
                     self.table.sortByColumn(col,Qt.AscendingOrder)
-
                 else:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/down_arrow.png'))
                     self.table.sortByColumn(col, Qt.DescendingOrder)
-                #items.sort(reverse=True)
-
-            # for row in range(self.table.rowCount()):
-            #     item = QTableWidgetItem()
-            #     item.setData(Qt.DisplayRole, items[row])
-            #     self.table.setItem(row, col, item)
 
 
-if __name__ == '__main__':
-     App = QApplication(sys.argv)
-     window = LogEntryConfiguration()
-     window.show()
-     sys.exit(App.exec())

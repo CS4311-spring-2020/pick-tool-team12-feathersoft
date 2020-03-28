@@ -55,3 +55,9 @@ class TabFormatConfiguration(QWidget):
         self.statusbar.setObjectName("statusbar")
         #self.show()
 
+if __name__ == '__main__':
+    App = QApplication(sys.argv)
+    window = TabFormatConfiguration()
+    window.show()
+    sys.exit(App.exec())
+
