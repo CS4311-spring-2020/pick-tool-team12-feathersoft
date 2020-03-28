@@ -238,9 +238,9 @@ class EventConfiguratation(QWidget):
 
                     toolbar_unlocked = self.time_stamp_validated and self.ip_validated and self.root_structure_validated
                     self.configured.emit(toolbar_unlocked)
-        self.begin_ingestion()
+                    self.begin_ingestion(count=1000)
 
-    def begin_ingestion(self):
+    def begin_ingestion(self,count):
         for filepath, folder, dir in os.walk(self.root_directory_edit.text()):
             for file in dir:
 
@@ -248,7 +248,7 @@ class EventConfiguratation(QWidget):
                 self.logs.append(path)
                 self.splunk_client.upload_file(path=path, index='main')
 
-        self.splunk_client.download_log_files()
+        self.splunk_client.download_log_files(count=count)
         self.splunk_client.display_entries()
         self.ingestion_complete.emit(self.splunk_client.entries)
         self.logs_ingested.emit(self.logs)

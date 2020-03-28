@@ -51,18 +51,19 @@ class SplunkIntegrator():
         for job in self.service.jobs:
             print(job)
 
-    def download_log_files(self):
+    def download_log_files(self,count):
         # Retrieve search jobs
         jobs = self.service.jobs
         # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
         # Query criteria
-        query = "search * | head 150"
+        query = "search *"
 
         # Create search job
         job = jobs.create(query, **blocking_search)
+
         # Parse results
-        job_results = results.ResultsReader(job.results())
+        job_results = results.ResultsReader(job.results(count=count))
         i = 0
         for result in job_results:
             if True:
@@ -72,11 +73,7 @@ class SplunkIntegrator():
         return self.entries
 
     def display_entries(self):
-        testlog = open('testlog.txt','w')
-        for entry in self.entries:
-            testlog.write(str(entry._log_entry_number) + " " + str(datetime.datetime.fromtimestamp(int(entry._log_entry_timestamp)))+ " " + str(entry._log_entry_content) + " " + str(entry._host) + " " + str(entry._source) + " " + str(entry._source_type) + '\n')
-            entry.display()
-
+        pass
 
 if __name__ == '__main__':
     client = SplunkIntegrator('localhost', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')

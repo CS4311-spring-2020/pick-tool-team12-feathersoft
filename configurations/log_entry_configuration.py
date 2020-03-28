@@ -5,6 +5,7 @@ from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import os
 import time
+import datetime
 from configurations.filter_configuration import FilterConfiguration
 
 
@@ -76,7 +77,7 @@ class LogEntryConfiguration(QWidget):
             list_value = QTableWidgetItem()
             list_value.setData(Qt.DisplayRole, int(entries[i].get_log_entry_number()))
             time_stamp = QTableWidgetItem()
-            time_stamp.setData(Qt.DisplayRole, entries[i].get_log_entry_timestamp())
+            time_stamp.setData(Qt.DisplayRole, str(datetime.datetime.fromtimestamp(int(entries[i].get_log_entry_timestamp()))))
             self.table.setItem(i,0,list_value)
             self.table.setItem(i,1,time_stamp)
             checkbox = QTableWidgetItem()
