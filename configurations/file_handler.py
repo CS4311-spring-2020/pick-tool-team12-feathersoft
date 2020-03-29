@@ -52,15 +52,13 @@ class FileHandler():
     def default(self, file):
         return file
 
-    def run(self, cpp_file, file ,output):
-        #os.system('make')
-       if subprocess.run(f'{cpp_file} {file} {output}') == 0:
-           print('success')
+    def run(self, cpp_file, file,output):
+        os.chdir('cleansing_script')
+        os.system(f'{cpp_file} <{file}> {output}')
+
 
 if __name__ == '__main__':
     h = FileHandler(None)
-    h.run('cleansing_script/typescript2txt.exe','01_input.txt', '01_input.txt_clean')
-
-
+    h.run('typescript2txt.exe','android2.log', 'output')
 
 
