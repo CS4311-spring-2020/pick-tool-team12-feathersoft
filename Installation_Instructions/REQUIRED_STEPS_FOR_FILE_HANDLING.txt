@@ -1,0 +1,46 @@
+Installing ffmpeg on Linux (Used for pydub and speech recognition)
+
+$ sudo add-apt-repository ppa:mc3man/trusty-media
+$ sudo apt-get update
+$ sudo apt-get install ffmpeg
+$ ffmpeg -version
+
+
+Installing swig on Linux (need this for pydub)
+
+Install g++ if you do not install it already.
+sudo apt-get install g++
+Run g++ -version to verify it.
+Install pcre.
+sudo apt-get install libpcre3 libpcre3-dev
+Go to swig download page to download linux version swig installation package.
+Unzip the swig zip source code to a local directory.
+// Change zip file permission.
+chmod 777 swig-3.0.12.tar.gz
+
+// Unzip the tar file.
+tar -xzvf swig-3.0.12.tar.gz
+Specify swig install directory.
+./configure --prefix=/home/Jerry/library/swigtool
+Compile and install.
+sudo make
+sudo make install
+Add SWIG_PATH environment variable, also add it in PATH environment variable.
+sudo vim /etc/profile
+export SWIG_PATH=/home/Jerry/library/swigtool/bin
+export PATH=$SWIG_PATH:$PATH
+Make SWIG_PATH, PATH environment variable settings take effect.
+source /etc/profile
+Verify swig installation.
+$ swig -version
+SWIG Version 3.0.12
+
+Installing Tesseract on Linux
+
+sudo apt-get update
+sudo apt-get install tesseract-ocr
+sudo apt-get install libtesseract-dev
+
+Then install tesseract python libraries
+pip install tesseract
+pip install tesseract-ocr

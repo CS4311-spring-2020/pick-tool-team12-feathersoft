@@ -115,11 +115,7 @@ class EventConfiguratation(QWidget):
         self.directory_configuration_layout.layout().addRow('Blue Team Folder', self.blue_directory_layout)
         self.directory_configuration_layout.layout().addRow('White Team Folder', self.white_directory_layout)
         self.directory_configuration_layout.layout().addRow('', QPushButton('Ingest', clicked=self.validate_root_structure))
-        self.directory_configuration_layout.layout().setSpacing(0)
 
-        # self.event_layout.layout().setSpacing(10)
-        # self.team_layout.layout().setSpacing(10)
-        # self.directory_configuration_layout.layout().setSpacing(1)
 
         self.layout.addWidget(self.event_layout)
         self.layout.addWidget(self.team_layout)
@@ -249,7 +245,6 @@ class EventConfiguratation(QWidget):
                 self.splunk_client.upload_file(path=path, index='main')
 
         self.splunk_client.download_log_files(count=count)
-        self.splunk_client.display_entries()
         self.ingestion_complete.emit(self.splunk_client.entries)
         self.logs_ingested.emit(self.logs)
 
