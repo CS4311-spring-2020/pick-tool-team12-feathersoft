@@ -1,0 +1,4 @@
+ pprotein:~/PkFindData$                                                        E
+rror:_Unexpected_token,_0,34,35,_in_arg_8^Ci
+protein:~/PkFindData$ waffles_learn splittest -reps 10 -stddev -trainratio .7 fo
+ o33.arff -ignore 0,34,35 -labels 36 neuralnet

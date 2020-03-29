@@ -7,7 +7,7 @@ import datetime
 import re
 import os
 import socket
-from configurations.splunk_client import SplunkIntegrator
+#from configurations.splunk_client import SplunkIntegrator
 from configurations.rwo.significant_log_entry import SignificantLogEntry
 
 
@@ -25,7 +25,7 @@ class EventConfiguratation(QWidget):
         self.time_stamp_validated = False
         self.ip_validated = False
         self.root_structure_validated = False
-        self.splunk_client = SplunkIntegrator('127.0.0.1',8089,'feathersoft','Feathersoft','stevenroach')
+        #self.splunk_client = SplunkIntegrator('127.0.0.1',8089,'feathersoft','Feathersoft','stevenroach')
         self.logs = []
 
 

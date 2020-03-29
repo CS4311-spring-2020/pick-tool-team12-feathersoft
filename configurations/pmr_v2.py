@@ -130,6 +130,7 @@ class PMR(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setStyle('Ubuntu')
     window = PMR()
     sys.exit(app.exec())
 
