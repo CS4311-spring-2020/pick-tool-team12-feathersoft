@@ -5,8 +5,8 @@ import ffmpeg
 import os
 import pocketsphinx
 from PIL import Image
-
 from pydub import AudioSegment
+import subprocess
 
 
 class FileHandler():
@@ -14,18 +14,6 @@ class FileHandler():
     def __init__(self, files):
         self.speech_recognizer = sr.Recognizer()
         self._files = files
-
-    def handle_file(self,file):
-        switcher = {
-            '.wav' or '.mp3' in file: self.handle_audio(file),
-            '.mp4' in file: self.handle_image(file),
-            '.jpeg' or '.png' or '.pdf' in file: self.handle_image(file)
-        }
-
-        return switcher.get(file, 'Invalid file extension')
-
-    def handle_files(self, files):
-        return self._files.append(self.handle_file(file) for file in files)
 
     def handle_audio(self, audio_file):
         if '.mp3' in audio_file:
@@ -61,12 +49,18 @@ class FileHandler():
     def handle_csv(self, csv_file):
         pass
 
+    def default(self, file):
+        return file
+
+    def run(self, cpp_file, file ,output):
+        #os.system('make')
+       if subprocess.run(f'{cpp_file} {file} {output}') == 0:
+           print('success')
 
 if __name__ == '__main__':
-    handler = FileHandler(None)
-    handler.handle_audio('root/red/audio-sample-1.mp3')
-    #handler.handle_video('audio-sample-1.mp3')
-    handler.handle_image('root/blue/Barcode/barcode1.jpg')
+    h = FileHandler(None)
+    h.run('cleansing_script/typescript2txt.exe','01_input.txt', '01_input.txt_clean')
+
 
 
 
