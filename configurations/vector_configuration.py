@@ -14,11 +14,11 @@ class VectorConfiguration(QWidget):
         self.UI()
 
     def UI(self):
-        self.main_layout = QFormLayout(self)
+        self.main_layout = QGridLayout(self)
         self.button_layout = QWidget()
         self.button_layout.setLayout(QHBoxLayout())
 
-        self.main_layout.addRow('',QLabel('Vector Configuration', alignment=Qt.AlignLeft,
+        self.main_layout.addWidget(QLabel('Vector Configuration', alignment=Qt.AlignLeft,
                                                 font=QFont('MS Shell Dlg 2', 12)))
 
 

@@ -29,7 +29,7 @@ class LogEntryConfiguration(QWidget):
         self.label.move(50, 50)
 
         # Creating the layout that the window will be stored
-        self.layout = QFormLayout()
+        self.layout = QGridLayout()
 
         # Creating the table
         self.table = QTableWidget(self)
@@ -63,8 +63,8 @@ class LogEntryConfiguration(QWidget):
         self.fa.setShortcut('Ctrl+F')
         self.filter_options.addAction(self.fa)
         self.filter_options.triggered[QAction].connect(self.filter_action)
-        self.layout.addRow(self.label)
-        self.layout.addRow(self.table)
+        self.layout.addWidget(self.label)
+        self.layout.addWidget(self.table)
 
         self.setLayout(self.layout)
 
