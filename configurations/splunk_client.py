@@ -90,10 +90,10 @@ class SplunkIntegrator():
 if __name__ == '__main__':
     client = SplunkIntegrator('localhost', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
     THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-    dummy_file = os.path.join(THIS_FOLDER,'android.log')
+    dummy_file = os.path.join(THIS_FOLDER,'android.txt')
     client.view_indexes()
     client.set_index('pick')
-    client.upload_file('root/android.log','main')
+    client.upload_file('root/android.txt','main')
     client.get_content('main')
     client.download_log_files()
     client.display_entries()

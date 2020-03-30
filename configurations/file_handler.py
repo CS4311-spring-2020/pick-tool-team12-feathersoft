@@ -10,8 +10,7 @@ import subprocess
 import re
 from datetime import datetime, timedelta
 
-import datefinder as ds
-import dateparser as dp
+
 
 
 class FileConverter():
@@ -77,16 +76,9 @@ class FileConverter():
 class FileCleanser():
 
     def cleanse_file(self, file):
-
-        content = open(file,'r').readlines()
-        for line in content:
-            for char in line:
-                if not char.isalpha() or char.isdigit() or char in ['*','.',':']:
-                    char.replace(char, "")
-
-        with open(file,'w') as output:
-            output.writelines(content)
-
+        string = open(file).read()
+        new_str = re.sub('[^\sA-Za-z0-9_.:\-\n]+', '', string)
+        open(file, 'w').write(new_str)
         return True
 
 
@@ -132,6 +124,7 @@ class FileValidator():
                  <= lower_bound]
 
         test_passed = all(value == [] for value in enforcement_action_report.values())
+        print(enforcement_action_report)
         if test_passed:
             return True
         else:
@@ -139,7 +132,10 @@ class FileValidator():
 
 
 if __name__ == '__main__':
+    fc = FileCleanser()
+    fc.cleanse_file('cleansing_script/tests/02_tabs_input.txt')
     fv = FileValidator('03-17 16:13:38.811','03-18 16:16:09.141')
+    fv.validate_file('cleansing_script/tests/11_insert_blank_input.txt')
 
 
 

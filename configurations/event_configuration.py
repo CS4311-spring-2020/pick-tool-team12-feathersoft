@@ -245,7 +245,7 @@ class EventConfiguratation(QWidget):
         #         path = os.path.join(filepath,file)
         #         self.files.append(path)
 
-        self.files.append(os.path.abspath('android.log'))
+        self.files.append(os.path.abspath('android.txt'))
         for file in self.files:
             log_file = LogFile()
             log_file.cleansing_status = self.splunk_client.cleanse_file(file)
