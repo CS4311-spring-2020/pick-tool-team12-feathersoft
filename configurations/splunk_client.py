@@ -2,6 +2,7 @@ import splunklib.client as client
 import splunklib.results as results
 import os
 from configurations.rwo.significant_log_entry import SignificantLogEntry
+from configurations.file_handler import *
 import datetime
 
 
@@ -72,8 +73,15 @@ class SplunkIntegrator():
 
         return self.entries
 
-    def display_entries(self):
-        pass
+    def cleanse_file(self,file):
+        file_cleanser = FileCleanser()
+
+    def convert_file(self,):
+        file_converter = FileConverter()
+
+    def validate_file(self,file,event_start, event_end):
+        file_validator = FileValidator()
+
 
 if __name__ == '__main__':
     client = SplunkIntegrator('localhost', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
