@@ -54,11 +54,11 @@ class FileHandler():
 
     def run(self, cpp_file, file,output):
         os.chdir('cleansing_script')
-        os.system(f'{cpp_file} <{file}> {output}')
+        os.system(f'{cpp_file} < {file} > {output}')
 
 
 if __name__ == '__main__':
     h = FileHandler(None)
-    h.run('typescript2txt.exe','android2.log', 'output')
+    h.run('typescript2txt.exe','android.log', 'android.txt')
 
 
