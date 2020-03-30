@@ -3,21 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/-o" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/cleansing_script/android2.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/01_input.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/01_input_c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/01_input_cleaned" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/01_input_cleaned.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/android.log" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/cleansing_script/android.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/android.log_clean" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/android.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/hello" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/cleansing_script/test_input.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_input_clean.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/cleansing_script/test_input_clean.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/event_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/event_configuration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/file_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/file_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/graph_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/graph_configuration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/sample_image.log" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/sample_image.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/splunk_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/splunk_client.py" afterDir="false" />
     </list>
@@ -533,7 +520,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585518354930</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Added conversion, cleansing, and validation to splunk_client.py.">
+      <created>1585533676190</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1585533676190</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TodoView">
@@ -567,42 +561,44 @@
     <MESSAGE value="Fixed bug to allow for ingestion of more than 100 entries." />
     <MESSAGE value="Added file handling features for pre-ingestion." />
     <MESSAGE value="Fixed table bugs for linux" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed table bugs for linux" />
+    <MESSAGE value="Added conversion, cleansing, and validation to splunk_client.py." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added conversion, cleansing, and validation to splunk_client.py." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="158" width="810" height="680" key="#Log_Highlighting_(ideolog)" timestamp="1585527085187">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state x="555" y="158" width="810" height="680" key="#Log_Highlighting_(ideolog)/0.31.1920.926@0.31.1920.926" timestamp="1585527085187" />
-    <state x="630" y="292" width="650" height="394" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585522447502">
-      <screen x="0" y="31" width="1902" height="908" />
+    <state x="636" y="297" width="650" height="394" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585533808150">
+      <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state x="630" y="292" width="650" height="394" key="#com.intellij.fileTypes.FileTypeChooser/0.31.1902.908@0.31.1902.908" timestamp="1585522447502" />
+    <state x="636" y="297" key="#com.intellij.fileTypes.FileTypeChooser/0.31.1920.926@0.31.1920.926" timestamp="1585533808150" />
     <state x="566" y="53" width="779" height="872" key="CommitChangelistDialog2" timestamp="1585533674716">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state x="561" y="53" width="779" height="872" key="CommitChangelistDialog2/0.31.1902.908@0.31.1902.908" timestamp="1585518354328" />
     <state x="566" y="53" key="CommitChangelistDialog2/0.31.1920.926@0.31.1920.926" timestamp="1585533674716" />
-    <state width="1897" height="119" key="GridCell.Tab.0.bottom" timestamp="1585527195261">
+    <state width="1897" height="119" key="GridCell.Tab.0.bottom" timestamp="1585550223168">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state width="1879" height="286" key="GridCell.Tab.0.bottom/0.31.1902.908@0.31.1902.908" timestamp="1585522306277" />
-    <state width="1897" height="119" key="GridCell.Tab.0.bottom/0.31.1920.926@0.31.1920.926" timestamp="1585527195261" />
-    <state width="1897" height="119" key="GridCell.Tab.0.center" timestamp="1585527195260">
+    <state width="1897" height="119" key="GridCell.Tab.0.bottom/0.31.1920.926@0.31.1920.926" timestamp="1585550223168" />
+    <state width="1897" height="119" key="GridCell.Tab.0.center" timestamp="1585550223168">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state width="1879" height="286" key="GridCell.Tab.0.center/0.31.1902.908@0.31.1902.908" timestamp="1585522306277" />
-    <state width="1897" height="119" key="GridCell.Tab.0.center/0.31.1920.926@0.31.1920.926" timestamp="1585527195260" />
-    <state width="1897" height="119" key="GridCell.Tab.0.left" timestamp="1585527195259">
+    <state width="1897" height="119" key="GridCell.Tab.0.center/0.31.1920.926@0.31.1920.926" timestamp="1585550223168" />
+    <state width="1897" height="119" key="GridCell.Tab.0.left" timestamp="1585550223168">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state width="1879" height="286" key="GridCell.Tab.0.left/0.31.1902.908@0.31.1902.908" timestamp="1585522306277" />
-    <state width="1897" height="119" key="GridCell.Tab.0.left/0.31.1920.926@0.31.1920.926" timestamp="1585527195259" />
-    <state width="1897" height="119" key="GridCell.Tab.0.right" timestamp="1585527195260">
+    <state width="1897" height="119" key="GridCell.Tab.0.left/0.31.1920.926@0.31.1920.926" timestamp="1585550223168" />
+    <state width="1897" height="119" key="GridCell.Tab.0.right" timestamp="1585550223168">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state width="1879" height="286" key="GridCell.Tab.0.right/0.31.1902.908@0.31.1902.908" timestamp="1585522306277" />
-    <state width="1897" height="119" key="GridCell.Tab.0.right/0.31.1920.926@0.31.1920.926" timestamp="1585527195260" />
+    <state width="1897" height="119" key="GridCell.Tab.0.right/0.31.1920.926@0.31.1920.926" timestamp="1585550223168" />
     <state x="445" y="129" width="1013" height="733" key="SettingsEditor" timestamp="1585518537907">
       <screen x="0" y="31" width="1902" height="908" />
     </state>

@@ -74,13 +74,17 @@ class SplunkIntegrator():
         return self.entries
 
     def cleanse_file(self,file):
+        cleanser_path = 'cleansing_script/typescript2txt'
         file_cleanser = FileCleanser()
+        file_cleanser.cleanse_file(cleanser_path,file,file)
 
     def convert_file(self,):
         file_converter = FileConverter()
 
+
     def validate_file(self,file,event_start, event_end):
-        file_validator = FileValidator()
+        file_validator = FileValidator(event_start, event_end)
+        file_validator.validate_file(file)
 
 
 if __name__ == '__main__':
