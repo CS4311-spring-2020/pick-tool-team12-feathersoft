@@ -16,6 +16,7 @@ class SplunkIntegrator():
         self._password = password
         self.entries = list()
 
+
         # Create a Service instance and log in
 
         self.service = client.connect(
@@ -74,9 +75,8 @@ class SplunkIntegrator():
         return self.entries
 
     def cleanse_file(self,file):
-        cleanser_path = 'cleansing_script/typescript2txt'
         file_cleanser = FileCleanser()
-        file_cleanser.cleanse_file(cleanser_path,file,file)
+        return file_cleanser.cleanse_file(file)
 
     def convert_file(self,):
         file_converter = FileConverter()

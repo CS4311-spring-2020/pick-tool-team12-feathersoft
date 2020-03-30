@@ -76,17 +76,19 @@ class FileConverter():
 
 class FileCleanser():
 
-    def cleanse_file(self, cpp_file, file,output):
-        os.chdir('cleansing_script/tests')
-        os.system(f'script  -a {file}')
-        if os.system(f'./{cpp_file}  <{file}>  {output}') == 0:
-            print('Successfully Cleansed')
-            return True
-        else:
-            os.remove(output)
-        os.chdir('..')
-        print(os.getcwd())
-        return False
+    def cleanse_file(self, file):
+
+        content = open(file,'r').readlines()
+        for line in content:
+            for char in line:
+                if not char.isalpha() or char.isdigit() or char in ['*','.',':']:
+                    char.replace(char, "")
+
+        with open(file,'w') as output:
+            output.writelines(content)
+
+        return True
+
 
 
 class FileValidator():
