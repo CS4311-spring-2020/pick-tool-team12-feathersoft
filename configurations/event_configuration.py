@@ -9,6 +9,7 @@ import os
 import socket
 from configurations.splunk_client import SplunkIntegrator
 from configurations.rwo.significant_log_entry import SignificantLogEntry
+from configurations.rwo.log_file import LogFile
 
 
 class EventConfiguratation(QWidget):
@@ -25,8 +26,9 @@ class EventConfiguratation(QWidget):
         self.time_stamp_validated = False
         self.ip_validated = False
         self.root_structure_validated = False
-        self.splunk_client = SplunkIntegrator('127.0.0.1',8089,'feathersoft','Feathersoft','stevenroach')
+        self.splunk_client = SplunkIntegrator('192.168.1.138',8089,'feathersoft','Feathersoft','stevenroach')
         self.logs = []
+        self.files = []
 
 
         self.UI()
@@ -237,12 +239,33 @@ class EventConfiguratation(QWidget):
                     self.begin_ingestion(count=1000)
 
     def begin_ingestion(self,count):
-        for filepath, folder, dir in os.walk(self.root_directory_edit.text()):
-            for file in dir:
+        # for filepath, folder, dir in os.walk(self.root_directory_edit.text()):
+        #     for file in dir:
+        #
+        #         path = os.path.join(filepath,file)
+        #         self.files.append(path)
 
-                path = os.path.join(filepath,file)
-                self.logs.append(path)
-                self.splunk_client.upload_file(path=path, index='main')
+        self.files.append(os.path.abspath('android.log'))
+        for file in self.files:
+            log_file = LogFile()
+            log_file.cleansing_status = self.splunk_client.cleanse_file(file)
+            validated = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
+            if validated is dict():log_file.validation_status = False
+            else:log_file.validation_status = validated
+
+            acknowledged = log_file.validation_status and log_file.cleansing_status
+            if acknowledged:
+                log_file.acknowledgement_status = True
+                if self.splunk_client.upload_file(file,'main'):
+                    log_file.ingestion_status = True
+                else:
+                    log_file.ingestion_status = False
+
+            self.logs.append(log_file)
+
+
+
+                #self.splunk_client.upload_file(path=path, index='main')
 
         self.splunk_client.download_log_files(count=count)
         self.ingestion_complete.emit(self.splunk_client.entries)

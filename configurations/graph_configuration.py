@@ -3,10 +3,10 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-from node_scene import *
-from node_graphics_scene import *
-from node_graphics_view import QDMGraphicsView
-from graph_node import *
+from configurations.node_scene import *
+from configurations.node_graphics_scene import *
+from configurations.node_graphics_view import QDMGraphicsView
+from configurations.graph_node import *
 
 
 class GraphConfiguration(QMainWindow):

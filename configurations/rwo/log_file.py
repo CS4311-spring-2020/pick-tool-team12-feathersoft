@@ -11,9 +11,10 @@ class LogFile:
         :param acknowledgement_status:
         :return:
         """
-        self._cleansing_status = cleansing_status
-        self._validation_status = validation_status
-        self._ingestion_status = ingestion_status
-        self._acknowledgement_status = acknowledgement_status
+        self.name = name
+        self.cleansing_status = cleansing_status
+        self.validation_status = validation_status
+        self.ingestion_status = ingestion_status
+        self.acknowledgement_status = acknowledgement_status
 
 

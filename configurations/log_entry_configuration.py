@@ -29,7 +29,7 @@ class LogEntryConfiguration(QWidget):
         self.label.move(50, 50)
 
         # Creating the layout that the window will be stored
-        self.layout = QGridLayout()
+        self.layout = QGridLayout(self)
 
         # Creating the table
         self.table = QTableWidget(self)
@@ -53,6 +53,8 @@ class LogEntryConfiguration(QWidget):
         self.table.horizontalHeader().setProperty("showSortIndicator", False)
         self.table.verticalHeader().setProperty("showSortIndicator", False)
         self.header.setStretchLastSection(True)
+        self.header.setCascadingSectionResizes(True)
+
 
         # Hiding the row labels in the table
         self.table.verticalHeader().setVisible(False)
@@ -65,6 +67,7 @@ class LogEntryConfiguration(QWidget):
         self.filter_options.triggered[QAction].connect(self.filter_action)
         self.layout.addWidget(self.label)
         self.layout.addWidget(self.table)
+
 
         self.setLayout(self.layout)
 
