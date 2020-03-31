@@ -239,29 +239,30 @@ class EventConfiguratation(QWidget):
                     self.begin_ingestion(count=1000)
 
     def begin_ingestion(self,count):
-        # for filepath, folder, dir in os.walk(self.root_directory_edit.text()):
-        #     for file in dir:
-        #
-        #         path = os.path.join(filepath,file)
-        #         self.files.append(path)
+        for filepath, folder, dir in os.walk('root'):
+            for file in dir:
 
-        self.files.append(os.path.abspath('android.txt'))
+                path = os.path.join(filepath,file)
+                self.files.append(path)
+
+
         for file in self.files:
-            log_file = LogFile()
-            log_file.cleansing_status = self.splunk_client.cleanse_file(file)
-            validated = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
-            if validated is dict():log_file.validation_status = False
-            else:log_file.validation_status = validated
+                print(file)
+                log_file = LogFile()
+                log_file.cleansing_status = self.splunk_client.cleanse_file(file)
+                validated = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
+                if validated is dict():log_file.validation_status = False
+                else:log_file.validation_status = validated
 
-            acknowledged = log_file.validation_status and log_file.cleansing_status
-            if acknowledged:
-                log_file.acknowledgement_status = True
-                if self.splunk_client.upload_file(file,'main'):
-                    log_file.ingestion_status = True
-                else:
-                    log_file.ingestion_status = False
+                acknowledged = log_file.validation_status and log_file.cleansing_status
+                if acknowledged:
+                    log_file.acknowledgement_status = True
+                    if self.splunk_client.upload_file(file,'main'):
+                        log_file.ingestion_status = True
+                    else:
+                        log_file.ingestion_status = False
 
-            self.logs.append(log_file)
+                self.logs.append(log_file)
 
 
 

@@ -78,7 +78,7 @@ class FileCleanser():
 
     def cleanse_file(self, file):
         string = open(file).read()
-        new_str = re.sub('[^\sA-Za-z0-9_.:\-\n]+', '', string)
+        new_str = re.sub('[^\sA-Za-z0-9_.: /=\]\[\-\n]+', '', string)
         new_str.strip()
         open(file, 'w').write(new_str)
         return True
@@ -96,11 +96,10 @@ class FileValidator():
         formatting = '%m/%d/%Y %H:%M %p'
         enforcement_action_report = dict()
         enforcement_action_report['empty_lines'] = [i for i in range(len(lines)) if len(lines[i].strip()) == 0]
-        enforcement_action_report['missing_time_stamp'] = [i for i in range(len(lines))
-                                                           if not (list(datefinder.find_dates(lines[i]))[0])]
+        enforcement_action_report['missing_time_stamp'] = [i for i in range(len(lines)) if len(lines[i].strip()) != 0 and not list(datefinder.find_dates(lines[i]))]
 
         enforcement_action_report['invalid_time_stamp'] = \
-            [i for i in range(len(lines)) if (list(datefinder.find_dates(lines[i]))[0])
+            [i for i in range(len(lines)) if i not in enforcement_action_report['empty_lines'] and list(datefinder.find_dates(lines[i]))
                 and not datetime.strptime(self.start_timestamp.strip(), formatting)
                 <= list(datefinder.find_dates(lines[i]))[0]
                 < datetime.strptime(self.end_timestamp.strip(), formatting)]
@@ -134,8 +133,8 @@ class FileValidator():
 if __name__ == '__main__':
     fc = FileCleanser()
     fc.cleanse_file('cleansing_script/tests/02_tabs_input.txt')
-    fv = FileValidator('2/22/2020 00:00 AM','2/29/2020 11:59 PM')
-    fv.validate_file('root/white/tutorialdata/mailsv/secure.log')
+    fv = FileValidator('2/1/2020 00:00 AM','2/29/2020 11:59 PM')
+    fv.validate_file('root/www1/access.log')
 
 
 
