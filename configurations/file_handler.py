@@ -9,6 +9,7 @@ from pydub import AudioSegment
 import subprocess
 import re
 from datetime import datetime, timedelta
+import datefinder
 
 
 
@@ -78,9 +79,9 @@ class FileCleanser():
     def cleanse_file(self, file):
         string = open(file).read()
         new_str = re.sub('[^\sA-Za-z0-9_.:\-\n]+', '', string)
+        new_str.strip()
         open(file, 'w').write(new_str)
         return True
-
 
 
 class FileValidator():
@@ -92,19 +93,18 @@ class FileValidator():
 
     def validate_file(self,file):
         lines = [line for line in open(file, 'r').readlines()]
-        timestamp_pattern = '\\d{4}[-]?\\d{1,2}[-]?\\d{1,2} \\d{1,2}:\\d{1,2}:\\d{1,2}'
-        timestamp_pattern = '\\d{2}[-]?\\d{1,2} \\d{1,2}:\\d{1,2}:\\d{1,2}.\\d{1,3}'
-        formatting = '%m-%d %H:%M:%S.%f'
+        formatting = '%m/%d/%Y %H:%M %p'
         enforcement_action_report = dict()
         enforcement_action_report['empty_lines'] = [i for i in range(len(lines)) if len(lines[i].strip()) == 0]
         enforcement_action_report['missing_time_stamp'] = [i for i in range(len(lines))
-                                                           if not re.findall(timestamp_pattern, lines[i])]
-        enforcement_action_report['invalid_time_stamp'] = \
-            [i for i in range(len(lines)) if re.findall(timestamp_pattern, lines[i])
-                and not datetime.strptime(self.start_timestamp.strip(), formatting)
-                <= datetime.strptime(re.findall(timestamp_pattern.strip(), lines[i])[0], formatting)
-                <= datetime.strptime(self.end_timestamp.strip(), formatting)]
+                                                           if not (list(datefinder.find_dates(lines[i]))[0])]
 
+        enforcement_action_report['invalid_time_stamp'] = \
+            [i for i in range(len(lines)) if (list(datefinder.find_dates(lines[i]))[0])
+                and not datetime.strptime(self.start_timestamp.strip(), formatting)
+                <= list(datefinder.find_dates(lines[i]))[0]
+                < datetime.strptime(self.end_timestamp.strip(), formatting)]
+        # #
         if '.cvs' in file and 'white' in file:
             year = (int(datetime.strptime(self.start_timestamp.strip(), formatting).year) + \
                        int(datetime.strptime(self.start_timestamp.strip(), formatting).year)) // 2
@@ -119,8 +119,8 @@ class FileValidator():
             lower_bound = datetime(year, month,date) + timedelta(0,23,59)
 
             enforcement_action_report['invalid_time_stamp_cvs'] = \
-                [i for i in range(len(lines)) if re.findall(timestamp_pattern, lines[i])
-                 and not upper_bound <= datetime.strptime(re.findall(timestamp_pattern.strip(), lines[i])[0], formatting)
+                [i for i in range(len(lines)) if list(datefinder.find_dates(lines[i]))[0]
+                 and not upper_bound <= datetime.strptime(list(datefinder.find_dates(lines[i]))[0])
                  <= lower_bound]
 
         test_passed = all(value == [] for value in enforcement_action_report.values())
@@ -134,8 +134,8 @@ class FileValidator():
 if __name__ == '__main__':
     fc = FileCleanser()
     fc.cleanse_file('cleansing_script/tests/02_tabs_input.txt')
-    fv = FileValidator('03-17 16:13:38.811','03-18 16:16:09.141')
-    fv.validate_file('cleansing_script/tests/11_insert_blank_input.txt')
+    fv = FileValidator('2/22/2020 00:00 AM','2/29/2020 11:59 PM')
+    fv.validate_file('root/white/tutorialdata/mailsv/secure.log')
 
 
 
