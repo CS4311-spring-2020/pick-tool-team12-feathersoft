@@ -3,19 +3,19 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 
-from configurations.log_entry_configuration import LogEntryConfiguration
-from configurations.directory_configuration import DirectoryConfiguration
-from configurations.event_configuration import EventConfiguratation
-from configurations.log_file_configuration import LogFileConfiguration
-from configurations.relationship_configuration import RelationshipConfiguration
+from configurations.log_entry_configuration import LogEntryConfigurationWindow
+from configurations.directory_configuration import DirectoryConfigurationWindow
+from configurations.event_configuration import EventConfigurationWindow
+from configurations.log_file_configuration import LogFileConfigurationWindow
+from configurations.relationship_configuration import RelationshipConfigurationWindow
 from configurations.vector_configuration import VectorConfiguration
 from configurations.vector_db_configuration_lead import VectorDBConfigurationLead
 from configurations.vector_configuration_non_lead import VectorDBConfigurationNonLead
 from configurations.icon_configuration import IconConfiguration
-from configurations.graph_configuration import GraphConfiguration
-from configurations.filter_configuration import FilterConfiguration
-from configurations.export_configuration import ExportConfiguration
-from configurations.change_configuration import ChangeConfiguration
+from configurations.graph_configuration import GraphConfigurationWindow
+from configurations.filter_configuration import FilterConfigurationWindow
+from configurations.export_configuration import ExportConfigurationWindow
+from configurations.change_configuration import ChangeConfigurationWindow
 from configurations.graph_format_configuration import GraphFormatConfiguration
 from configurations.tab_format_configuration import TabFormatConfiguration
 
@@ -27,20 +27,20 @@ class PMR(QMainWindow):
         super().__init__()
 
         self.setWindowTitle('Prevent Mitigate Recover')
-        self.event_configuration = EventConfiguratation('127.0.0.1')
+        self.event_configuration = EventConfigurationWindow('127.0.0.1')
         #self.directory_configuration = DirectoryConfiguration()
         self.vector_configuration = VectorConfiguration()
-        self.log_file_configuration = LogFileConfiguration()
-        self.log_entry_configuration = LogEntryConfiguration()
-        self.export_configuration = ExportConfiguration()
-        self.change_configuration = ChangeConfiguration()
+        self.log_file_configuration = LogFileConfigurationWindow()
+        self.log_entry_configuration = LogEntryConfigurationWindow()
+        self.export_configuration = ExportConfigurationWindow()
+        self.change_configuration = ChangeConfigurationWindow()
         self.vector_db_configuration_lead = VectorDBConfigurationLead()
         self.vector_db_configuration_non_lead = VectorDBConfigurationNonLead()
         self.icon_configuration = IconConfiguration()
-        self.graph_builder_configuration = GraphConfiguration()
+        self.graph_builder_configuration = GraphConfigurationWindow()
         self.graph_format_configuration = GraphFormatConfiguration()
         self.tab_format_configuration = TabFormatConfiguration()
-        self.relationship_configuration = RelationshipConfiguration()
+        self.relationship_configuration = RelationshipConfigurationWindow()
 
         self.configurations_toolbar = QToolBar('PMR')
         self.configurations_toolbar.addAction('Event Configuration', self.event_configuration_clicked)
@@ -67,9 +67,13 @@ class PMR(QMainWindow):
         self.event_configuration.configured.connect(self.enable_toolbar)
 
         # Populate the log file table after logs a have been ingested
+        self.event_configuration.logs_ingested.connect(self.populate_log_files)
+
+        # Popluate enforcement action reports
+        self.event_configuration.reports_generated.connect(self.populate_er)
 
         # Populate the log entries table after ingestion
-        self.event_configuration.ingestion_complete.connect(self.populate_table)
+        self.event_configuration.ingestion_complete.connect(self.populate_log_entries)
 
         self.addToolBar(Qt.LeftToolBarArea, self.configurations_toolbar)
         self.setCentralWidget(self.event_configuration)
@@ -124,8 +128,14 @@ class PMR(QMainWindow):
         for action in self.configurations_toolbar.actions():
             action.setEnabled(True)
 
-    def populate_table(self):
+    def populate_log_entries(self):
         self.log_entry_configuration.populate_table(self.event_configuration.splunk_client.entries)
+
+    def populate_log_files(self):
+        self.log_file_configuration.populate_table(self.event_configuration.logs)
+
+    def populate_er(self):
+        self.log_file_configuration.er_reports = self.event_configuration.splunk_client.file_validator.reports
 
 
 if __name__ == "__main__":

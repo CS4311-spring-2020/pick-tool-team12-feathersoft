@@ -6,19 +6,19 @@ from PyQt5.QtCore import *
 import os
 import time
 import datetime
-from configurations.filter_configuration import FilterConfiguration
+from configurations.filter_configuration import FilterConfigurationWindow
 
 
 """This class will be used to build the UI Window for the Log Entry Configuration"""
 
 
-class LogEntryConfiguration(QWidget):
+class LogEntryConfigurationWindow(QWidget):
 
     def __init__(self):
         super().__init__()
         self.setGeometry(200, 400, 800, 620)
         self.setWindowTitle("Log Entry Configuration")
-        self.filter = FilterConfiguration()
+        self.filter = FilterConfigurationWindow()
         self.UI()
 
     def UI(self):

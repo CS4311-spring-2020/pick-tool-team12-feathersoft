@@ -5,7 +5,8 @@ from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import datetime
 
-class RelationshipConfiguration(QWidget):
+
+class RelationshipConfigurationWindow(QWidget):
 
     def __init__(self):
         super().__init__()

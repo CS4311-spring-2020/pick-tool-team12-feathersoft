@@ -15,6 +15,11 @@ class SplunkIntegrator():
         self._username = username
         self._password = password
         self.entries = list()
+        self.file_cleanser = FileCleanser()
+        self.file_converter = FileConverter()
+        self.file_validator = FileValidator(datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+                                            datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
+
 
 
         # Create a Service instance and log in
@@ -59,7 +64,7 @@ class SplunkIntegrator():
         # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
         # Query criteria
-        query = "search *"
+        query = "search * root"
 
         # Create search job
         job = jobs.create(query, **blocking_search)
@@ -75,28 +80,17 @@ class SplunkIntegrator():
         return self.entries
 
     def cleanse_file(self,file):
-        file_cleanser = FileCleanser()
-        return file_cleanser.cleanse_file(file)
-
-    def convert_file(self,):
-        file_converter = FileConverter()
-
+        return self.file_cleanser.cleanse_file(file)
 
     def validate_file(self,file,event_start, event_end):
-        file_validator = FileValidator(event_start, event_end)
-        file_validator.validate_file(file)
+        self.file_validator.start_timestamp = event_start
+        self.file_validator.end_timestamp = event_end
+        return self.file_validator.validate_file(file)
 
 
 if __name__ == '__main__':
     client = SplunkIntegrator('localhost', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
-    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-    dummy_file = os.path.join(THIS_FOLDER,'android.log')
-    client.view_indexes()
-    client.set_index('pick')
-    client.upload_file('root/android.log','main')
-    client.get_content('main')
-    client.download_log_files()
-    client.display_entries()
+
 
 
 

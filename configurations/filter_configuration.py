@@ -7,7 +7,7 @@ from PyQt5.QtGui import *
 """
 
 
-class FilterConfiguration(QWidget):
+class FilterConfigurationWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 474, 664)

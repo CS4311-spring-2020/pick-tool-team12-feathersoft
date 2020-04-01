@@ -9,7 +9,7 @@ from configurations.node_graphics_view import QDMGraphicsView
 from configurations.graph_node import *
 
 
-class GraphConfiguration(QMainWindow):
+class GraphConfigurationWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 850, 600)
@@ -95,5 +95,5 @@ class NodeEditorWindow(QWidget):
 
 if __name__ == '__main__':
     App = QApplication(sys.argv)
-    window = GraphConfiguration()
+    window = GraphConfigurationWindow()
     sys.exit(App.exec())
