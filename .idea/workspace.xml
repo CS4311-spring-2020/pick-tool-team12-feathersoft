@@ -1,91 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/README.markdown" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/android2.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/o.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/reference/console_codes.man.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/reference/ctlseqs.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_input.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_input_clean" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_input_clean.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/01_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/02_tabs_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/02_tabs_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/03_tabs_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/03_tabs_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/04_esc_D_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/04_esc_D_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/05_esc_E_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/05_esc_E_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/06_esc_M_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/06_esc_M_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/07_OSC_0_setwi_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/07_OSC_0_setwi_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/08_insert_blank_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/08_insert_blank_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/09_insert_blank_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/09_insert_blank_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/10_insert_blank_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/10_insert_blank_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/11_insert_blank_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/11_insert_blank_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/12_CSI_A_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/12_CSI_A_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/13_CSI_A_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/13_CSI_A_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/14_CSI_A_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/14_CSI_A_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/15_CSI_A_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/15_CSI_A_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/16_CSI_AB_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/16_CSI_AB_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/17_CSI_B_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/17_CSI_B_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/18_CSI_B_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/18_CSI_B_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/19_CSI_C_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/19_CSI_C_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/20_CSI_C_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/20_CSI_C_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/21_CSI_P_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/21_CSI_P_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/22_CSI_P_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/22_CSI_P_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/23_CSI_P_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/23_CSI_P_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/24_CSI_P_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/24_CSI_P_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/25_CSI_K_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/25_CSI_K_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/26_CSI_K_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/26_CSI_K_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/27_CSI_K_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/27_CSI_K_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/28_CSI_K_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/28_CSI_K_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/29_CSI_K_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/29_CSI_K_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/30_CSI_K_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/30_CSI_K_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/31_raw_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/31_raw_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/32_raw_expected_output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/32_raw_input.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/typescript2txt.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/typescript2txt.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/event_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/event_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/file_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/file_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/log_file_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_file_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/type.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/typescript2txt" beforeDir="false" />
-    </list>
+    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="Fixed yet another issue with validation." />
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/configurations/filter_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+            <state relative-caret-position="-1982">
+              <caret line="22" column="50" lean-forward="true" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -229,7 +145,6 @@
         <option value="$PROJECT_DIR$/configurations/change_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/directory_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/export_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/filter_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/graph_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/log_entry_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/relationship_configuration.py" />
@@ -243,6 +158,7 @@
         <option value="$PROJECT_DIR$/configurations/root/sample_image.log" />
         <option value="$PROJECT_DIR$/configurations/log_file_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/event_configuration.py" />
+        <option value="$PROJECT_DIR$/configurations/filter_configuration.py" />
       </list>
     </option>
   </component>
@@ -486,13 +402,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580431996380</updated>
-    </task>
-    <task id="LOCAL-00004" summary="updated the export configuration file">
-      <created>1580687467859</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1580687467859</updated>
     </task>
     <task id="LOCAL-00005" summary="updated the related real world objects files">
       <created>1580689993653</created>
@@ -830,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585715790498</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="testing">
+      <created>1585723095129</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1585723095129</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TodoView">
@@ -844,14 +760,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19022457" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19022457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4980185" weight="0.32748538" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49603698" visible="true" weight="0.21783626" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49603698" weight="0.21783626" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39619884" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -885,7 +800,6 @@
     </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated the export configuration file" />
     <MESSAGE value="updated the related real world objects files" />
     <MESSAGE value="''" />
     <MESSAGE value="Jesus gomez added the graph configuration, tabular configuration, and relationship configuration." />
@@ -910,7 +824,8 @@
     <MESSAGE value="Updated validation and conversion methods" />
     <MESSAGE value="Added use case scenario to Assingnments" />
     <MESSAGE value="testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing" />
+    <MESSAGE value="Fixed yet another issue with validation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed yet another issue with validation." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="158" width="810" height="680" key="#Log_Highlighting_(ideolog)" timestamp="1585554957909">
@@ -1265,8 +1180,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/filter_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        <state relative-caret-position="-1982">
+          <caret line="22" column="50" lean-forward="true" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
