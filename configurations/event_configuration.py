@@ -32,7 +32,7 @@ class EventConfigurationWindow(QWidget):
         self.time_stamp_validated = False
         self.ip_validated = False
         self.root_structure_validated = False
-        self.splunk_client = SplunkIntegrator('localhost',8089,'feathersoft','Feathersoft','stevenroach')
+        self.splunk_client = SplunkIntegrator('192.168.1.138',8089,'feathersoft','Feathersoft','stevenroach')
         self.logs = []
         self.files = set()
 

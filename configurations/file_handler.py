@@ -40,7 +40,7 @@ class FileConverter():
 
                 lines = open(audio_file.split('.')[0] + '.txt').readlines()
                 with open(audio_file.split('.')[0] + '.txt', 'w')as f:
-                    f.writelines(datetime.utcfromtimestamp(os.path.getmtime(audio_file)).strftime('%Y-%m-%d %H:%M:%S') + ' '
+                    f.writelines(datetime.utcfromtimestamp(os.path.getmtime(audio_file)).strftime('%m/%d/%y %H:%M %p') + ' '
                                  + line for line in lines if line.strip())
                     f.truncate()
             print(converted)
@@ -57,7 +57,7 @@ class FileConverter():
     def convert_image_to_text(self, image_file):
         if image_file:
             converted = image_file.split('.')[0] + '.txt'
-            pt.pytesseract.tesseract_cmd = "C:/Program Files/Tesseract-OCR/tesseract.exe"
+            pt.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
             image = Image.open(image_file)
             text = pt.image_to_string(image, lang='eng')
             file = image_file.split('.')[0] + '.txt'
@@ -68,7 +68,7 @@ class FileConverter():
             lines = open(converted).readlines()
             with open(image_file.split('.')[0] + '.txt', 'w')as f:
                 f.writelines(
-                    datetime.utcfromtimestamp(os.path.getmtime(image_file)).strftime('%Y-%m-%d %H:%M:%S') + ' ' + line for
+                    datetime.utcfromtimestamp(os.path.getmtime(image_file)).strftime('%m/%d/%y %H:%M %p') + ' ' + line for
                     line in lines if line.strip())
                 f.truncate()
 
@@ -107,7 +107,8 @@ class FileValidator():
     def validate_file(self,file):
         if file:
             lines = [line for line in open(file, 'r').readlines()]
-            formatting = '%m/%d/%Y %H:%M %p'
+            # For this formatting pattern y should be lowercase on linux and uppercase on windows.
+            formatting = '%m/%d/%y %H:%M %p'
             enforcement_action_report = dict()
             enforcement_action_report['empty_lines'] = [i for i in range(len(lines)) if len(lines[i].strip()) == 0]
             enforcement_action_report['missing_time_stamp'] = [i for i in range(len(lines)) if len(lines[i].strip()) == 0 or len(list(datefinder.find_dates(lines[i]))) == 0]
@@ -140,9 +141,8 @@ class FileValidator():
 
 
 if __name__ == '__main__':
-    fh = FileConverter()
-    fh.convert_audio_to_text('sample_audio.wav')
-    fh.convert_image_to_text('sample_image.jpg')
+    fv = FileValidator('1/1/00 12:00 AM','1/1/00 12:00 AM')
+    fv.validate_file('root/sample_audio.txt')
 
 
 
