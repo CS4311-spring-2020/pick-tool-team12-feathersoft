@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from configurations.change_configuration import ChangeConfiguration
+from configurations.change_configuration import ChangeConfigurationWindow
 
 class VectorDBConfigurationLead(QWidget):
     def __init__(self):
@@ -34,13 +34,13 @@ class VectorDBConfigurationLead(QWidget):
         approvalTable.setRowCount(20)
         approvalTable.verticalHeader().setVisible(False)
         approvalTable.setHorizontalHeaderItem(7, QTableWidgetItem(""))
-        approvalTable.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('up-down-arrow.png'), "Source IP"))
-        approvalTable.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('up-down-arrow.png'), "Request Timestamp"))
-        approvalTable.setHorizontalHeaderItem(2,QTableWidgetItem(QIcon('up-down-arrow.png'), "Vector"))
-        approvalTable.setHorizontalHeaderItem(3,QTableWidgetItem(QIcon('up-down-arrow.png'), "Description"))
+        approvalTable.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Source IP"))
+        approvalTable.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Request Timestamp"))
+        approvalTable.setHorizontalHeaderItem(2,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector"))
+        approvalTable.setHorizontalHeaderItem(3,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Description"))
         approvalTable.setHorizontalHeaderItem(5,QTableWidgetItem("Graph"))
-        approvalTable.setHorizontalHeaderItem(4,QTableWidgetItem(QIcon('up-down-arrow.png'), "Change Summary"))
-        approvalTable.setHorizontalHeaderItem(6,QTableWidgetItem(QIcon('up-down-arrow.png'), "Sync Status"))
+        approvalTable.setHorizontalHeaderItem(4,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Change Summary"))
+        approvalTable.setHorizontalHeaderItem(6,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Sync Status"))
 
 
         header = approvalTable.horizontalHeader()

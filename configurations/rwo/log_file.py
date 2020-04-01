@@ -1,7 +1,7 @@
 
 class LogFile:
 
-    def __int__(self,name, cleansing_status, validation_status, ingestion_status,
+    def __init__(self,name, cleansing_status, validation_status, ingestion_status,
                 acknowledgement_status):
         """
         :param name: The name of a log file.

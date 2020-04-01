@@ -6,7 +6,7 @@ from PyQt5.QtCore import *
 import os
 
 
-class DirectoryConfiguration(QWidget):
+class DirectoryConfigurationWindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 744, 600)

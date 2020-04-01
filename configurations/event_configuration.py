@@ -10,13 +10,19 @@ import socket
 from configurations.splunk_client import SplunkIntegrator
 from configurations.rwo.significant_log_entry import SignificantLogEntry
 from configurations.rwo.log_file import LogFile
+from configurations.rwo.event_configuration import EventConfiguration
 
 
-class EventConfiguratation(QWidget):
+class EventConfigurationWindow(QWidget):
+
+    """ The Event Configuration class is a UI Window that accepts all necessary input to
+        to create an event and ingest log files.
+    """
 
     configured = pyqtSignal(bool)
-    ingestion_complete = pyqtSignal(list)
-    logs_ingested = pyqtSignal(list)
+    ingestion_complete = pyqtSignal(bool)
+    logs_ingested = pyqtSignal(bool)
+    reports_generated = pyqtSignal(bool)
 
     def __init__(self, lead_ip,parent=QMainWindow):
         super().__init__()
@@ -26,9 +32,10 @@ class EventConfiguratation(QWidget):
         self.time_stamp_validated = False
         self.ip_validated = False
         self.root_structure_validated = False
-        self.splunk_client = SplunkIntegrator('192.168.1.138',8089,'feathersoft','Feathersoft','stevenroach')
+        self.splunk_client = SplunkIntegrator('localhost',8089,'feathersoft','Feathersoft','stevenroach')
         self.logs = []
-        self.files = []
+        self.files = set()
+
 
 
         self.UI()
@@ -231,46 +238,45 @@ class EventConfiguratation(QWidget):
                     self.directory_configuration_layout.layout().addRow('', label)
 
                 self.root_structure_validated = True
-
                 if buttonReply == QMessageBox.Yes:
 
                     toolbar_unlocked = self.time_stamp_validated and self.ip_validated and self.root_structure_validated
                     self.configured.emit(toolbar_unlocked)
-                    self.begin_ingestion(count=1000)
+                    self.begin_ingestion(count=500)
 
     def begin_ingestion(self,count):
+        audio = ['mp3', 'wav']
+        video = ['mp4']
+        image = ['jpg', 'pdf', 'pnthg']
+        cleansing_status, validation_status, ingestion_status, acknowledgement_status = False,False,False,False
         for filepath, folder, dir in os.walk('root'):
             for file in dir:
-
-                path = os.path.join(filepath,file)
-                self.files.append(path)
-
+                path = os.path.join(filepath ,file)
+                ext = path.split('.')[1]
+                if ext in audio:
+                    converted = self.splunk_client.file_converter.convert_audio_to_text(path)
+                elif ext in video:
+                    converted = self.splunk_client.file_converter.convert_video_to_audio(path)
+                elif ext in image:
+                    converted = self.splunk_client.file_converter.convert_image_to_text(path)
+                else:converted = path
+                print(converted)
+                if converted:self.files.add(converted)
 
         for file in self.files:
-                print(file)
-                log_file = LogFile()
-                log_file.cleansing_status = self.splunk_client.cleanse_file(file)
-                validated = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
-                if validated is dict():log_file.validation_status = False
-                else:log_file.validation_status = validated
-
-                acknowledged = log_file.validation_status and log_file.cleansing_status
-                if acknowledged:
-                    log_file.acknowledgement_status = True
-                    if self.splunk_client.upload_file(file,'main'):
-                        log_file.ingestion_status = True
-                    else:
-                        log_file.ingestion_status = False
-
-                self.logs.append(log_file)
-
-
-
-                #self.splunk_client.upload_file(path=path, index='main')
-
+            cleansing_status = self.splunk_client.cleanse_file(file)
+            validation_status = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
+            acknowledgement_status = cleansing_status and validation_status
+            if acknowledgement_status:
+                self.splunk_client.upload_file(file, 'demo')
+                ingestion_status = acknowledgement_status and cleansing_status and validation_status
+            else:
+                ingestion_status = False
+            self.logs.append(LogFile(file, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
         self.splunk_client.download_log_files(count=count)
-        self.ingestion_complete.emit(self.splunk_client.entries)
-        self.logs_ingested.emit(self.logs)
+        self.ingestion_complete.emit(True)
+        self.logs_ingested.emit(True)
+        self.reports_generated.emit(True)
 
 
 

@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
-class ExportConfiguration(QWidget):
+class ExportConfigurationWindow(QWidget):
 
 
     def __init__(self):
@@ -27,5 +27,5 @@ class ExportConfiguration(QWidget):
 
 if __name__ == '__main__':
     App = QApplication(sys.argv)
-    window = ExportConfiguration()
+    window = ExportConfigurationWindow()
     sys.exit(App.exec())
