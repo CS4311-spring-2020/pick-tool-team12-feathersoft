@@ -173,14 +173,14 @@ class EventConfigurationWindow(QWidget):
                     result = False
 
                 non_lead_analyst = (self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() != self.lead_ip
-                                    or self.lead_checkbox.isChecked() and socket.gethostbyname(socket.gethostname()) != self.lead_ip) \
-                                   or(self.lead_ip_address_line_edit.text() != self.lead_ip and not self.lead_checkbox.isChecked())
+                                    or self.lead_checkbox.isChecked() and socket.gethostbyname(socket.gethostname()) != self.lead_ip)
+
 
                 empty_ip = self.lead_ip_address_line_edit.text() == ''
 
                 if non_lead_analyst:
                     QMessageBox.critical(self, 'Connection Error',
-                                         f'Non-Lead {socket.gethostbyname(socket.gethostname())} attempting to connect as lead\n'
+                                         f'Non-Lead attempting to connect as lead\n'
                                          + 'Check lead box if lead IP entered\n'
                                          + 'Uncheck lead box if non-lead IP entered')
 
@@ -225,7 +225,8 @@ class EventConfigurationWindow(QWidget):
             num_folders = len(os.listdir(self.root_directory_edit.text()))
             if num_folders < 3:
                 QMessageBox.critical(self,"Root Directory Structure Error",
-                                     f"Root Directory currently has {num_folders} folders")
+                                     f"Root Directory currently has {num_folders} folders\n +"
+                                     f"Please choose a directory with at least 3 folders")
             else:
                 buttonReply = QMessageBox.question(self, 'PyQt5 message',
                                                    "Begin Ingestion?",
@@ -260,7 +261,6 @@ class EventConfigurationWindow(QWidget):
                 elif ext in image:
                     converted = self.splunk_client.file_converter.convert_image_to_text(path)
                 else:converted = path
-                print(converted)
                 if converted:self.files.add(converted)
 
         for file in self.files:

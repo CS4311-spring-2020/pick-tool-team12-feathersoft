@@ -3,27 +3,88 @@
   <component name="ChangeListManager">
     <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/change_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/change_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/directory_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/directory_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/README.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/android2.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/o.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/reference/console_codes.man.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/reference/ctlseqs.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_input.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_input_clean" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_input_clean.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/test_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/01_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/02_tabs_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/02_tabs_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/03_tabs_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/03_tabs_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/04_esc_D_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/04_esc_D_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/05_esc_E_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/05_esc_E_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/06_esc_M_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/06_esc_M_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/07_OSC_0_setwi_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/07_OSC_0_setwi_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/08_insert_blank_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/08_insert_blank_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/09_insert_blank_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/09_insert_blank_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/10_insert_blank_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/10_insert_blank_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/11_insert_blank_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/11_insert_blank_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/12_CSI_A_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/12_CSI_A_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/13_CSI_A_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/13_CSI_A_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/14_CSI_A_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/14_CSI_A_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/15_CSI_A_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/15_CSI_A_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/16_CSI_AB_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/16_CSI_AB_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/17_CSI_B_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/17_CSI_B_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/18_CSI_B_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/18_CSI_B_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/19_CSI_C_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/19_CSI_C_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/20_CSI_C_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/20_CSI_C_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/21_CSI_P_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/21_CSI_P_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/22_CSI_P_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/22_CSI_P_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/23_CSI_P_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/23_CSI_P_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/24_CSI_P_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/24_CSI_P_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/25_CSI_K_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/25_CSI_K_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/26_CSI_K_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/26_CSI_K_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/27_CSI_K_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/27_CSI_K_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/28_CSI_K_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/28_CSI_K_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/29_CSI_K_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/29_CSI_K_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/30_CSI_K_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/30_CSI_K_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/31_raw_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/31_raw_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/32_raw_expected_output.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/tests/32_raw_input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/typescript2txt.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/cleansing_script/typescript2txt.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/event_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/event_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/export_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/export_configuration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/file_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/file_handler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/filter_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/filter_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/graph_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/graph_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/log_entry_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_entry_configuration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/log_file_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_file_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/pmr_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/pmr_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/relationship_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/relationship_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/rwo/log_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/rwo/log_file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/sample_audio.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/sample_audio.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/sample_image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/sample_image.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/sample_video.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/sample_video.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/splunk_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/splunk_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/vector_configuration_non_lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_configuration_non_lead.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/vector_db_configuration_lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_db_configuration_lead.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/type.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/typescript2txt" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,13 +96,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/file_handler.py">
+        <entry file="file://$PROJECT_DIR$/configurations/root/sample_audio.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="657">
-              <caret line="135" column="36" selection-start-line="135" selection-start-column="36" selection-end-line="135" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="73" selection-start-column="73" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -49,44 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-329">
-              <caret line="239" column="52" selection-start-line="239" selection-start-column="52" selection-end-line="239" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/splunk_client.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="86" column="53" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/pmr_v2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-890">
-              <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/directory_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="3876">
+              <caret line="228" column="88" selection-start-line="228" selection-start-column="88" selection-end-line="228" selection-end-column="88" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -95,10 +117,36 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/configurations/filter_configuration.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.jpg">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.log">
+          <provider selected="true" editor-type-id="LogFileEditorProvider">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/log_file_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="173" column="84" selection-start-line="173" selection-start-column="84" selection-end-line="173" selection-end-column="84" />
+            <state relative-caret-position="147">
+              <caret line="102" selection-start-line="102" selection-end-line="102" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -107,45 +155,36 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/relationship_configuration.py">
+        <entry file="file://$PROJECT_DIR$/configurations/file_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-380">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="238">
+              <caret line="95" column="23" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/graph_configuration.py">
+        <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="17">
+              <caret line="1" column="58" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/graph_format_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/configurations/root/sample_video.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+            <state relative-caret-position="68">
+              <caret line="39" column="90" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="90" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -186,7 +225,6 @@
         <option value="$PROJECT_DIR$/configurations/rwo/log_file.py" />
         <option value="$PROJECT_DIR$/configurations/vector_configuration_non_lead.py" />
         <option value="$PROJECT_DIR$/configurations/vector_db_configuration_lead.py" />
-        <option value="$PROJECT_DIR$/configurations/root/mailsv/secure.log" />
         <option value="$PROJECT_DIR$/configurations/sample_audio.txt" />
         <option value="$PROJECT_DIR$/configurations/change_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/directory_configuration.py" />
@@ -195,11 +233,16 @@
         <option value="$PROJECT_DIR$/configurations/graph_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/log_entry_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/relationship_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/event_configuration.py" />
-        <option value="$PROJECT_DIR$/configurations/file_handler.py" />
         <option value="$PROJECT_DIR$/configurations/pmr_v2.py" />
         <option value="$PROJECT_DIR$/configurations/splunk_client.py" />
+        <option value="$PROJECT_DIR$/configurations/root/sample_audio.txt" />
+        <option value="$PROJECT_DIR$/configurations/root/mailsv/secure.log" />
+        <option value="$PROJECT_DIR$/configurations/root/sample_image.txt" />
+        <option value="$PROJECT_DIR$/configurations/root/www1/secure.log" />
+        <option value="$PROJECT_DIR$/configurations/file_handler.py" />
+        <option value="$PROJECT_DIR$/configurations/root/sample_image.log" />
         <option value="$PROJECT_DIR$/configurations/log_file_configuration.py" />
+        <option value="$PROJECT_DIR$/configurations/event_configuration.py" />
       </list>
     </option>
   </component>
@@ -285,17 +328,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/configurations" />
-      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations\cleansing_script" />
-      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations" />
-      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations\root\red" />
-      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations\root\blue" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft" />
       <recent name="$PROJECT_DIR$/configurations" />
       <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations" />
+      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\Installation_Instructions" />
+      <recent name="$PROJECT_DIR$/configurations" />
+      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations\cleansing_script" />
+      <recent name="C:\Users\jayjj\Documents\Spring 2020\Software 2\pick-tool-team12-feathersoft\configurations\root\red" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -443,13 +486,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580431996380</updated>
-    </task>
-    <task id="LOCAL-00003" summary="updated the export configuration file">
-      <created>1580515013509</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1580515013509</updated>
     </task>
     <task id="LOCAL-00004" summary="updated the export configuration file">
       <created>1580687467859</created>
@@ -787,7 +823,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585629336266</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="testing">
+      <created>1585715790497</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1585715790498</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TodoView">
@@ -822,12 +865,12 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19022457" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19022457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4980185" weight="0.32748538" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49603698" visible="true" weight="0.21783626" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49603698" visible="true" weight="0.21783626" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39619884" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -924,9 +967,6 @@
     <state x="723" y="407" width="455" height="163" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.31.1902.908@0.31.1902.908" timestamp="1585518043718" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/configurations/cleansing_script/tests/07_OSC_0_setwi_expected_output.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/cleansing_script/tests/07_OSC_0_setwi_input.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -993,14 +1033,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/www1/secure.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/root/vendor_sales/vendor_sales.log" />
     <entry file="file://$PROJECT_DIR$/configurations/root/www3/access.log" />
-    <entry file="file://$PROJECT_DIR$/configurations/root/www1/access.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/root/www2/secure.log">
       <provider selected="true" editor-type-id="LogFileEditorProvider">
         <state>
@@ -1044,18 +1078,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/www2/access.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="221">
-          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/mailsv/secure.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="-102" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/sample_image.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1068,15 +1090,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/rwo/event_configuration.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/sample_audio.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/change_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1092,16 +1105,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="25" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/filter_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -1127,26 +1130,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/relationship_configuration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-380">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/directory_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1157,22 +1140,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/file_handler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="135" column="36" selection-start-line="135" selection-start-column="36" selection-end-line="135" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/pmr_v2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-890">
+        <state relative-caret-position="-533">
           <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -1190,10 +1160,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
+    <entry file="file://$PROJECT_DIR$/configurations/relationship_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-329">
-          <caret line="239" column="52" selection-start-line="239" selection-start-column="52" selection-end-line="239" selection-end-column="52" />
+        <state relative-caret-position="-380">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/mailsv/secure.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="-102" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/www2/access.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="408">
+          <caret line="114" column="315" selection-start-line="114" selection-start-column="315" selection-end-line="114" selection-end-column="315" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/www1/access.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="1717">
+          <caret line="101" column="338" selection-start-line="101" selection-start-column="338" selection-end-line="101" selection-end-column="338" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/www1/secure.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="1768">
+          <caret line="104" selection-start-line="104" selection-end-line="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/sample_audio.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="73" selection-start-column="73" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/file_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="95" column="23" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="58" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/sample_video.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/log_entry_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="39" column="90" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="90" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -1202,8 +1245,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/configurations/log_file_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="173" column="84" selection-start-line="173" selection-start-column="84" selection-end-line="173" selection-end-column="84" />
+        <state relative-caret-position="147">
+          <caret line="102" selection-start-line="102" selection-end-line="102" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3876">
+          <caret line="228" column="88" selection-start-line="228" selection-start-column="88" selection-end-line="228" selection-end-column="88" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/filter_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

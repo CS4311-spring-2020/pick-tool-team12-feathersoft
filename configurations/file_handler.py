@@ -86,8 +86,10 @@ class FileCleanser():
 
     def cleanse_file(self, file):
         if file:
-            lines = open(file).readlines()
-            lines = [re.sub('[^\sA-Za-z0-9_.: /=\]\[\-\n]+', '', line) for line in lines]
+            lines = open(file, encoding='utf_8').readlines()
+            lines = [re.sub(r'[\x7f\x80]', '', line) for line in lines]
+            lines = [re.sub(r'[^\sA-Za-z0-9.: /=\]\[\-\n]+', '', line) for line in lines]
+            lines = [re.sub('(.)\1{4,}', r'\1', line) for line in lines]
             with open(file, 'w')as f:
                 f.writelines(line for line in lines if line.strip())
                 f.truncate()
@@ -107,12 +109,10 @@ class FileValidator():
             lines = [line for line in open(file, 'r').readlines()]
             formatting = '%m/%d/%Y %H:%M %p'
             enforcement_action_report = dict()
-            enforcement_action_report = dict()
             enforcement_action_report['empty_lines'] = [i for i in range(len(lines)) if len(lines[i].strip()) == 0]
-            enforcement_action_report['missing_time_stamp'] = [i for i in range(len(lines)) if len(lines[i].strip()) != 0 and not list(datefinder.find_dates(lines[i]))]
-
+            enforcement_action_report['missing_time_stamp'] = [i for i in range(len(lines)) if len(lines[i].strip()) == 0 or len(list(datefinder.find_dates(lines[i]))) == 0]
             enforcement_action_report['invalid_time_stamp'] = \
-                [i for i in range(len(lines)) if i not in enforcement_action_report['empty_lines'] and list(datefinder.find_dates(lines[i]))
+                [i for i in range(len(lines)) if len(list(datefinder.find_dates(lines[i]))) > 0
                     and not datetime.strptime(self.start_timestamp.strip(), formatting)
                     <= list(datefinder.find_dates(lines[i]))[0]
                     < datetime.strptime(self.end_timestamp.strip(), formatting)]

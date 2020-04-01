@@ -28,18 +28,12 @@ class LogFileConfigurationWindow(QWidget):
             self.table.setColumnCount(6)
 
         #Setting Headers for Log File Table
-        fileNameHeader = QTableWidgetItem('File Name')
-        self.table.setHorizontalHeaderItem(0, fileNameHeader)
-        sourceHeader = QTableWidgetItem('Source')
-        self.table.setHorizontalHeaderItem(1, sourceHeader)
-        cleansingHeader = QTableWidgetItem('Cleansing Status')
-        self.table.setHorizontalHeaderItem(2, cleansingHeader)
-        validationHeader = QTableWidgetItem('Validation Status')
-        self.table.setHorizontalHeaderItem(3, validationHeader)
-        ingestionHeader = QTableWidgetItem('Ingestion Status')
-        self.table.setHorizontalHeaderItem(4, ingestionHeader)
-        actionReportHeader = QTableWidgetItem('View Enforcement Action Report')
-        self.table.setHorizontalHeaderItem(5, actionReportHeader)
+        self.table.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'),'File Name'))
+        self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Source'))
+        self.table.setHorizontalHeaderItem(2,QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Cleansing Status'))
+        self.table.setHorizontalHeaderItem(3, QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Validation Status'))
+        self.table.setHorizontalHeaderItem(4, QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Ingestion Status'))
+        self.table.setHorizontalHeaderItem(5, QTableWidgetItem(QIcon(''), 'Enforcement Action Report'))
 
         #Populating Values in Table from dummy file
         THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
@@ -113,7 +107,7 @@ class LogFileConfigurationWindow(QWidget):
         if not self.table.rowCount() == 0:
             col = self.table.currentColumn()
             items = [item.text() for item in self.table.selectedItems()]
-            valid_col = col in [0,1]
+            valid_col = col < 5
             if valid_col:
                 self.slot_clicks[col] += 1
                 if self.slot_clicks[col] % 2 != 0:
@@ -191,6 +185,7 @@ class EnforcementActionReport(QWidget):
         self.cancelButton = QPushButton('Cancel',self)
         self.cancelButton.setObjectName(u"cancelButton")
         self.gridLayout.addWidget(self.cancelButton, 2, 4, 1, 2)
+        self.setLayout(self.gridLayout)
 
     def populate_table(self,er_report):
         self.reportTable.setRowCount(3)
