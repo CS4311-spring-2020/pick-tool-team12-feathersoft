@@ -16,15 +16,30 @@ from configurations.rwo.event_configuration import EventConfiguration
 class EventConfigurationWindow(QWidget):
 
     """ The Event Configuration class is a UI Window that accepts all necessary input to
-        to create an event and ingest log files.
+        to create an event and ingest and provide log files and entries to the rest of the configurations.
     """
 
+    """
+        Initially the UI is blocked until an event is successfully configured. Each of these signals will be emitted
+        to the Main UI.
+    """
+
+    # This signal tells the UI when to unlock the toolbar.
     configured = pyqtSignal(bool)
+    # This signal tells the UI to populate the log entries table after ingestion.
     ingestion_complete = pyqtSignal(bool)
+    # This signal tells the UI to populate the log file table after ingestion.
     logs_ingested = pyqtSignal(bool)
+    # This signal tells the UI to populate the enforcement action reports for the log file table after ingestion.
     reports_generated = pyqtSignal(bool)
 
     def __init__(self, lead_ip,parent=QMainWindow):
+
+        """
+
+        :param lead_ip: The IP Address of the Lead Analyst.
+        :param parent: The parent of this window.
+        """
         super().__init__()
         self.setGeometry(50, 50, 474, 664)
         self.setWindowTitle("Event Configuration")
@@ -32,12 +47,9 @@ class EventConfigurationWindow(QWidget):
         self.time_stamp_validated = False
         self.ip_validated = False
         self.root_structure_validated = False
-        self.splunk_client = SplunkIntegrator('localhost',8089,'feathersoft','Feathersoft','stevenroach')
+        self.splunk_client = SplunkIntegrator('192.168.1.138',8089,'feathersoft','Feathersoft','stevenroach')
         self.logs = []
         self.files = set()
-
-
-
         self.UI()
 
     def UI(self):
@@ -46,11 +58,14 @@ class EventConfigurationWindow(QWidget):
         self.label.setFont(QFont('MS Shell Dlg 2', 12))
         # # Setting the window's font
 
+        # Setting the layout for the window.
         self.layout = QVBoxLayout()
         self.event_layout = QWidget()
         self.event_layout.setLayout(QFormLayout())
         self.team_layout = QWidget()
         self.team_layout.setLayout(QFormLayout())
+
+        # Adding the main label
         self.event_layout.layout().addRow(QLabel('Event Configuration', alignment=Qt.AlignLeft,
                                                  font=QFont('MS Shell Dlg 2', 12)))
         self.directory_configuration_layout = QWidget()
