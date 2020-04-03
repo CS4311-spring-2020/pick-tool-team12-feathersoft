@@ -10,10 +10,13 @@ import subprocess
 import re
 from datetime import datetime, timedelta
 import datefinder
+import parsedatetime
+import dateparser
+from dateparser.search import search_dates
+from dateutil.parser import parse
 
 
 class FileConverter():
-
     """
         The FileConverter class provides all options needed to convert non-textual files in to text-based log files
         (i.e video to audio, audio to text, image to text .. etc).
@@ -127,10 +130,25 @@ class FileCleanser():
         if file:
             lines = open(file, encoding='utf_8').readlines()
 
+
+            apache = [re.findall(r'\[(\d{2})/([a-zA-Z]{3})/(\d{4}):(\d{2}):(\d{2}):(\d{2})]',line) for line in lines]
+            valid_times = []
+            if apache:
+                for apache_timestamp in apache:
+                    for day, month, year, hour, min, sec in apache_timestamp:
+                        valid_times.append(month + ' ' + day + ' ' + year + ' ' + hour + ':' + min + ':' + sec)
+
             # Replace all unwanted characters with empty strings using regular expressions to match unwanted patterns.
+
             lines = [re.sub(r'[\x7f\x80]', '', line) for line in lines]
-            lines = [re.sub(r'[^\sA-Za-z0-9.: /=\]\[\-\n]+', '', line) for line in lines]
-            lines = [re.sub('(.)\1{4,}', r'\1', line) for line in lines]
+            lines = [re.sub(r'[^\sA-Za-z0-9.: /=\-\n\[\]]+', '', line) for line in lines]
+
+            # Datefinder has trouble parsing apache logs so here's some regex to handle that.
+
+            if len(valid_times) > 0:
+                lines = [re.sub(r'(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})', ' ', line) for line in lines]
+                lines = [re.sub(r'\[(\d{2})/([a-zA-Z]{3})/(\d{4}):(\d{2}):(\d{2}):(\d{2})]', valid_times[i], lines[i]) for
+                         i in range(len(lines))]
             with open(file, 'w')as f:
                 f.writelines(line for line in lines if line.strip())
                 # Remove all empty lines.
@@ -172,10 +190,8 @@ class FileValidator():
             # For this formatting pattern y should be lowercase on linux and uppercase on windows.
             # Setting date time format for datetime parser
             formatting = '%m/%d/%y %H:%M %p'
-
             # An enforcement action report is a dict of values containing the lines that errors occur on in a log file
             enforcement_action_report = dict()
-
             # Getting all indexes that contain empty lines.
             enforcement_action_report['empty_lines'] = \
                 [i for i in range(len(lines)) if len(lines[i].strip()) == 0]
@@ -183,18 +199,18 @@ class FileValidator():
             # Getting all indexes that contain missing timestamps (i.e) empty line or missing timestamps
             enforcement_action_report['missing_time_stamp'] = \
                 [i for i in range(len(lines)) if len(lines[i].strip()) ==
-                    0 or len(list(datefinder.find_dates(lines[i]))) == 0]
+                    0 or not len(list(datefinder.find_dates(lines[i])))]
 
             # Getting all indexes that fall outside the timestamp range from the event configuration.
-            # (i.e all non start_time <= current_time < end_time)
+            # (i.e all non start_time <= current_time <==end_time)
             enforcement_action_report['invalid_time_stamp'] = \
                 [i for i in range(len(lines)) if len(list(datefinder.find_dates(lines[i]))) > 0
                     and not datetime.strptime(self.start_timestamp.strip(), formatting)
                     <= list(datefinder.find_dates(lines[i]))[0]
-                    < datetime.strptime(self.end_timestamp.strip(), formatting)]
+                    <= datetime.strptime(self.end_timestamp.strip(), formatting)]
 
             # If the file extension is CVS and  it came from the white directory..
-            if '.cvs' in file and 'white' in file:
+            if '.csv' in file and 'white' in file:
 
                 # Take the average of the year month and date values
                 year = (int(datetime.strptime(self.start_timestamp.strip(), formatting).year) + \
@@ -224,8 +240,11 @@ class FileValidator():
 
 
 if __name__ == '__main__':
-    fv = FileValidator('1/1/00 12:00 AM','1/1/00 12:00 AM')
-    fv.validate_file('root/sample_audio.txt')
+    fc = FileCleanser()
+    fc.cleanse_file('root/white/www1/apache.log')
+    fv = FileValidator('1/1/00 12:00 AM','4/1/20 12:00 AM')
+    fv.validate_file('root/white/www1/apache.log')
+    print((search_dates('17 May 2015:10:05:10')))
 
 
 

@@ -33,17 +33,14 @@ class EventConfigurationWindow(QWidget):
     # This signal tells the UI to populate the enforcement action reports for the log file table after ingestion.
     reports_generated = pyqtSignal(bool)
 
-    def __init__(self, lead_ip,parent=QMainWindow):
+    def __init__(self,parent=QMainWindow):
 
         """
-
-        :param lead_ip: The IP Address of the Lead Analyst.
         :param parent: The parent of this window.
         """
         super().__init__()
         self.setGeometry(50, 50, 474, 664)
         self.setWindowTitle("Event Configuration")
-        self.lead_ip = lead_ip
         self.time_stamp_validated = False
         self.ip_validated = False
         self.root_structure_validated = False
@@ -183,13 +180,14 @@ class EventConfigurationWindow(QWidget):
             if self.lead_ip_address_line_edit.isEnabled():
                 result = None
                 try:
-                    result = [0 <= int(x) < 256 for x in re.split('\.', re.match(r'^\d+\.\d+\.\d+\.\d+$', self.lead_ip_address_line_edit.text()).group(0))].count(True) == 4
+                    result = [0 <= int(x) < 256 for x in
+                              re.split('\.', re.match(r'^\d+\.\d+\.\d+\.\d+$',
+                                                      self.lead_ip_address_line_edit.text()).group(0))].count(True) == 4
                 except AttributeError:
                     result = False
 
-                non_lead_analyst = (self.lead_checkbox.isChecked() and self.lead_ip_address_line_edit.text() != self.lead_ip
-                                    or self.lead_checkbox.isChecked() and socket.gethostbyname(socket.gethostname()) != self.lead_ip)
-
+                non_lead_analyst = (self.lead_checkbox.isChecked() and socket.gethostbyname(socket.gethostname())
+                                    != self.lead_ip_address_line_edit.text())
 
                 empty_ip = self.lead_ip_address_line_edit.text() == ''
 
@@ -236,14 +234,34 @@ class EventConfigurationWindow(QWidget):
             self.white_directory_edit.setText(file)
 
     def validate_root_structure(self):
-        if self.root_directory_edit.text() != '':
-            num_folders = len(os.listdir(self.root_directory_edit.text()))
-            if num_folders < 3:
+        folder_structure = self.root_directory_edit.text()
+        if folder_structure != '':
+            folders = os.listdir(folder_structure)
+            valid_folder_count = len(folders) >= 3
+            has_red, has_blue, has_white = 'red' in folders, 'blue' in folders, 'white' in folders
+
+            if not valid_folder_count:
                 QMessageBox.critical(self,"Root Directory Structure Error",
-                                     f"Root Directory currently has {num_folders} folders\n +"
+                                     f"Root Directory currently has {len(folders)} folders\n"
                                      f"Please choose a directory with at least 3 folders")
+
+            if not has_red:
+                QMessageBox.critical(self, "Root Directory Structure Error",
+                                     f" A folder labeled red was not found in the root directory\n"
+                                     f"Please make sure your folders are properly labeled.")
+
+            if not has_blue:
+                QMessageBox.critical(self, "Root Directory Structure Error",
+                                     f" A folder labeled blue was not found in the root directory\n"
+                                     f"Please make sure your folders are properly labeled.")
+
+            if not has_white:
+                QMessageBox.critical(self, "Root Directory Structure Error",
+                                     f" A folder labeled white was not found in the root directory\n"
+                                     f"Please make sure your folders are properly labeled.")
+
             else:
-                buttonReply = QMessageBox.question(self, 'PyQt5 message',
+                buttonReply = QMessageBox.question(self,'PyQt5 message',
                                                    "Begin Ingestion?",
                                                    QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
                                                    QMessageBox.Cancel)
@@ -254,11 +272,13 @@ class EventConfigurationWindow(QWidget):
                     self.directory_configuration_layout.layout().addRow('', label)
 
                 self.root_structure_validated = True
-                if buttonReply == QMessageBox.Yes:
-
-                    toolbar_unlocked = self.time_stamp_validated and self.ip_validated and self.root_structure_validated
+                if buttonReply == QMessageBox.Yes and self.ip_validated and self.root_structure_validated:
+                    toolbar_unlocked = True
                     self.configured.emit(toolbar_unlocked)
                     self.begin_ingestion(count=500)
+                else:
+                    QMessageBox.critical(self,"Error","Please make sure event configuration and team configurations are "
+                                               "validated before ingestion")
 
     def begin_ingestion(self,count):
         audio = ['mp3', 'wav']

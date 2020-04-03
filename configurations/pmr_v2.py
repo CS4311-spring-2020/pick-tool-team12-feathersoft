@@ -27,8 +27,7 @@ class PMR(QMainWindow):
         super().__init__()
 
         self.setWindowTitle('Prevent Mitigate Recover')
-        self.event_configuration = EventConfigurationWindow('127.0.0.1')
-        #self.directory_configuration = DirectoryConfiguration()
+        self.event_configuration = EventConfigurationWindow()
         self.vector_configuration = VectorConfiguration()
         self.log_file_configuration = LogFileConfigurationWindow()
         self.log_entry_configuration = LogEntryConfigurationWindow()
