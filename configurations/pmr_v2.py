@@ -4,7 +4,6 @@ from PyQt5.QtCore import *
 import sys
 
 from configurations.log_entry_configuration import LogEntryConfigurationWindow
-from configurations.directory_configuration import DirectoryConfigurationWindow
 from configurations.event_configuration import EventConfigurationWindow
 from configurations.log_file_configuration import LogFileConfigurationWindow
 from configurations.relationship_configuration import RelationshipConfigurationWindow
@@ -13,7 +12,6 @@ from configurations.vector_db_configuration_lead import VectorDBConfigurationLea
 from configurations.vector_configuration_non_lead import VectorDBConfigurationNonLead
 from configurations.icon_configuration import IconConfiguration
 from configurations.graph_configuration import GraphConfigurationWindow
-from configurations.filter_configuration import FilterConfigurationWindow
 from configurations.export_configuration import ExportConfigurationWindow
 from configurations.change_configuration import ChangeConfigurationWindow
 from configurations.graph_format_configuration import GraphFormatConfiguration
@@ -43,7 +41,6 @@ class PMR(QMainWindow):
 
         self.configurations_toolbar = QToolBar('PMR')
         self.configurations_toolbar.addAction('Event Configuration', self.event_configuration_clicked)
-        #self.configurations_toolbar.addAction('Directory Configuration', self.directory_configuration_clicked)
         self.configurations_toolbar.addAction('Log File Configuration', self.log_file_configuration_clicked)
         self.configurations_toolbar.addAction('Log Entry Configuration', self.log_entry_configuration_clicked)
         self.configurations_toolbar.addAction('Graph Configuration', self.graph_configuration_clicked)
@@ -74,6 +71,8 @@ class PMR(QMainWindow):
         # Populate the log entries table after ingestion
         self.event_configuration.ingestion_complete.connect(self.populate_log_entries)
 
+        # Update the log entries table vector list each time
+
         self.addToolBar(Qt.LeftToolBarArea, self.configurations_toolbar)
         self.setCentralWidget(self.event_configuration)
         self.statusBar().showMessage('Event Configuration')
@@ -83,11 +82,6 @@ class PMR(QMainWindow):
         self.takeCentralWidget()
         self.setCentralWidget(self.event_configuration)
         self.statusBar().showMessage('Event Configuration')
-
-    # def directory_configuration_clicked(self):
-    #     self.takeCentralWidget()
-    #     self.setCentralWidget(self.directory_configuration)
-    #     self.statusBar().showMessage('Directory Configuration')
 
     def graph_configuration_clicked(self):
         self.takeCentralWidget()

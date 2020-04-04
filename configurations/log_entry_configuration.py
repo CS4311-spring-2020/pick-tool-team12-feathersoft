@@ -78,9 +78,10 @@ class LogEntryConfigurationWindow(QWidget):
             # To store non string values in our table cells, we need to create widgets
             # that have a display role formatted for non string values.
             list_value = QTableWidgetItem()
-            list_value.setData(Qt.DisplayRole, int(entries[i].get_log_entry_number()))
+            list_value.setData(Qt.DisplayRole, int(entries[i].get_log_entry_number))
             time_stamp = QTableWidgetItem()
-            time_stamp.setData(Qt.DisplayRole, str(datetime.datetime.fromtimestamp(int(entries[i].get_log_entry_timestamp()))))
+            time_stamp.setData(Qt.DisplayRole, str(datetime.datetime.fromtimestamp(int(entries[i]
+                                                                                       .get_log_entry_timestamp))))
             self.table.setItem(i,0,list_value)
             self.table.setItem(i,1,time_stamp)
             checkbox = QTableWidgetItem()
@@ -88,10 +89,10 @@ class LogEntryConfigurationWindow(QWidget):
             combobox = QComboBox()
             combobox.addItems(['','1','2','3'])
 
-            self.table.setItem(i, 2, QTableWidgetItem(entries[i].get_log_entry_content(), Qt.DisplayRole))
-            self.table.setItem(i, 3, QTableWidgetItem(entries[i].get_host(), Qt.DisplayRole))
-            self.table.setItem(i, 4, QTableWidgetItem(entries[i].get_source(), Qt.DisplayRole))
-            self.table.setItem(i, 5, QTableWidgetItem(entries[i].get_source_type(), Qt.DisplayRole))
+            self.table.setItem(i, 2, QTableWidgetItem(entries[i].get_log_entry_content, Qt.DisplayRole))
+            self.table.setItem(i, 3, QTableWidgetItem(entries[i].get_host, Qt.DisplayRole))
+            self.table.setItem(i, 4, QTableWidgetItem(entries[i].get_source, Qt.DisplayRole))
+            self.table.setItem(i, 5, QTableWidgetItem(entries[i].get_source_type, Qt.DisplayRole))
             self.table.setCellWidget(i,6,combobox)
             self.table.setItem(i,7,checkbox)
 

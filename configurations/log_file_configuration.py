@@ -87,11 +87,11 @@ class LogFileConfigurationWindow(QWidget):
     def populate_table(self,log_files):
         self.table.setRowCount(len(log_files))
         for i in range(len(log_files)):
-                logNameItem = QTableWidgetItem(log_files[i].name.split('/')[-1])
-                sourceItem = QTableWidgetItem(str(log_files[i].name))
-                cleansedItem = QTableWidgetItem(str(log_files[i].cleansing_status))
-                validatedItem = QTableWidgetItem(str(log_files[i].validation_status))
-                ingestedItem = QTableWidgetItem(str(log_files[i].ingestion_status))
+                logNameItem = QTableWidgetItem(log_files[i].get_name.split('/')[-1])
+                sourceItem = QTableWidgetItem(str(log_files[i].get_name))
+                cleansedItem = QTableWidgetItem(str(log_files[i].get_cleansing_status))
+                validatedItem = QTableWidgetItem(str(log_files[i].get_validation_status))
+                ingestedItem = QTableWidgetItem(str(log_files[i].get_ingestion_status))
                 self.table.setItem(i, 0, logNameItem)
                 self.table.setItem(i, 1, sourceItem)
                 self.table.setItem(i, 2, cleansedItem)

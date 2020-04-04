@@ -6,14 +6,10 @@ import os
 import pocketsphinx
 from PIL import Image
 from pydub import AudioSegment
-import subprocess
 import re
 from datetime import datetime, timedelta
 import datefinder
-import parsedatetime
-import dateparser
-from dateparser.search import search_dates
-from dateutil.parser import parse
+
 
 
 class FileConverter():
@@ -140,6 +136,7 @@ class FileCleanser():
 
             # Replace all unwanted characters with empty strings using regular expressions to match unwanted patterns.
 
+
             lines = [re.sub(r'[\x7f\x80]', '', line) for line in lines]
             lines = [re.sub(r'[^\sA-Za-z0-9.: /=\-\n\[\]]+', '', line) for line in lines]
 
@@ -239,12 +236,9 @@ class FileValidator():
             return all(value == [] for value in enforcement_action_report.values())
 
 
+
 if __name__ == '__main__':
     fc = FileCleanser()
-    fc.cleanse_file('root/white/www1/apache.log')
-    fv = FileValidator('1/1/00 12:00 AM','4/1/20 12:00 AM')
-    fv.validate_file('root/white/www1/apache.log')
-    print((search_dates('17 May 2015:10:05:10')))
-
+    fc.cleanse_file('root/white/www1/secure.log')
 
 

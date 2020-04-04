@@ -44,9 +44,12 @@ class EventConfigurationWindow(QWidget):
         self.time_stamp_validated = False
         self.ip_validated = False
         self.root_structure_validated = False
-        self.splunk_client = SplunkIntegrator('192.168.1.138',8089,'feathersoft','Feathersoft','stevenroach')
         self.logs = []
         self.files = set()
+        self.splunk_port = ''
+        self.splunk_index = ''
+        self.splunk_username = ''
+        self.splunk_password = ''
         self.UI()
 
     def UI(self):
@@ -89,10 +92,28 @@ class EventConfigurationWindow(QWidget):
                                                 font=QFont('MS Shell Dlg 2', 12)))
 
         self.lead_ip_address_line_edit = QLineEdit()
+        self.lead_ip_address_line_edit.setObjectName('Lead')
+        self.server_port_line_edit = QLineEdit()
+        #self.server_port_line_edit.setEnabled(False)
+        self.splunk_index_line_edit = QLineEdit()
+        #self.splunk_index_line_edit.setEnabled(False)
+        self.splunk_username_line_edit = QLineEdit()
+        #self.splunk_username_line_edit.setEnabled(False)
+        self.splunk_password_line_edit = QLineEdit()
+        self.splunk_password_line_edit.setEchoMode(QLineEdit.Password)
+        #self.splunk_password_line_edit.setEnabled(False)
+
         self.team_layout.layout().addRow('Lead IP Address', self.lead_ip_address_line_edit)
+        self.team_layout.layout().addRow('Server Port', self.server_port_line_edit)
+        self.team_layout.layout().addRow('Splunk Index', self.splunk_index_line_edit)
+        self.team_layout.layout().addRow('Splunk Username', self.splunk_username_line_edit)
+        self.team_layout.layout().addRow('Splunk Password', self.splunk_password_line_edit)
+
         self.established_connections = QLabel('')
         self.team_layout.layout().addRow('Established Connections', self.established_connections)
         self.lead_checkbox = QCheckBox()
+        #self.lead_checkbox.stateChanged.connect(self.configure_lead_fields)
+        self.lead_checkbox.setObjectName('Check')
         self.team_layout.layout().addRow('Lead', self.lead_checkbox)
         self.connect_button = QPushButton('Connect',clicked=self.validate_credentials)
         self.team_layout.layout().addRow('',self.connect_button)
@@ -142,6 +163,18 @@ class EventConfigurationWindow(QWidget):
         self.layout.addWidget(self.team_layout)
         self.layout.addWidget(self.directory_configuration_layout)
         self.setLayout(self.layout)
+
+
+    # def configure_lead_fields(self):
+    #     children = self.team_layout.children()
+    #     if self.lead_checkbox.isChecked():
+    #         for i in range(len(children)):
+    #             if not children[i].isEnabled():
+    #                 children[i].setEnabled(True)
+    #     else:
+    #         for i in range(4,12):
+    #             children[i].setEnabled(False)
+
 
     def validate_timestamp(self):
         valid_name = self.name.text() != ''
@@ -208,15 +241,36 @@ class EventConfigurationWindow(QWidget):
                                          + 'Enter a value from 0.0.0.0 to 255.255.255.255')
 
                 else:
-                    QMessageBox.information(self,'Connection Successful',
-                                            f'Connection to server from IP {self.lead_ip_address_line_edit.text()} established !')
-                    if not self.ip_validated:
-                        label = QLabel('Lead IP Validated ✔.')
-                        label.setStyleSheet("QLabel { color: green}")
-                        self.team_layout.layout().addRow('', label)
-                    self.lead_ip_address_line_edit.setEnabled(False)
 
-                    self.ip_validated = True
+                        try:
+                            lead = self.lead_ip_address_line_edit.text().strip()
+                            port = int(self.server_port_line_edit.text().strip())
+                            index = self.splunk_index_line_edit.text().strip()
+                            username = self.splunk_username_line_edit.text().strip()
+                            password = self.splunk_password_line_edit.text().strip()
+                            self.splunk_client = SplunkIntegrator(lead,port,index,username,password)
+
+                            QMessageBox.information(self,
+                                                    'Connection Successful',
+                                                    f'Connection to server from IP {self.lead_ip_address_line_edit.text()}'
+                                                    f' established !')
+
+                            if not self.ip_validated:
+                                label = QLabel('Lead IP Validated ✔.')
+                                label.setStyleSheet("QLabel { color: green}")
+                                self.team_layout.layout().addRow('', label)
+                            self.lead_ip_address_line_edit.setEnabled(False)
+                            self.ip_validated = True
+                            self.established_connections.setText(str(1))
+                        except ConnectionError:
+                            QMessageBox.critical(self, 'Connection Error',
+                                                 'A connection could not be established at this time.\n'
+                                                 + 'Please confirm that the server is active and running\n'+
+                                                 'and that login info is correct.')
+                        except ValueError:
+                            QMessageBox.critical(self, 'Port Number Error',
+                                                 'Port Number must be numerical')
+
 
     def open_file(self):
         file = str(QFileDialog.getExistingDirectory(QFileDialog(), "Select Directory",
@@ -277,8 +331,9 @@ class EventConfigurationWindow(QWidget):
                     self.configured.emit(toolbar_unlocked)
                     self.begin_ingestion(count=500)
                 else:
-                    QMessageBox.critical(self,"Error","Please make sure event configuration and team configurations are "
-                                               "validated before ingestion")
+                    QMessageBox.critical(self,"Event and Team not Validated",
+                                         "Please make sure event configuration and team configurations are "
+                                         "validated before ingestion")
 
     def begin_ingestion(self,count):
         audio = ['mp3', 'wav']
@@ -295,8 +350,10 @@ class EventConfigurationWindow(QWidget):
                     converted = self.splunk_client.file_converter.convert_video_to_audio(path)
                 elif ext in image:
                     converted = self.splunk_client.file_converter.convert_image_to_text(path)
-                else:converted = path
-                if converted:self.files.add(converted)
+                else:
+                    converted = path
+                if converted:
+                    self.files.add(converted)
 
         for file in self.files:
             cleansing_status = self.splunk_client.cleanse_file(file)
@@ -312,11 +369,5 @@ class EventConfigurationWindow(QWidget):
         self.ingestion_complete.emit(True)
         self.logs_ingested.emit(True)
         self.reports_generated.emit(True)
-
-
-
-
-
-
 
 

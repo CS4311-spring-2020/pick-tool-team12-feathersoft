@@ -2,7 +2,15 @@
 class Graph:
 
     """
-        Class used to represent a graph object for the PICK PMR too
+        Class used to represent a graph object for the PICK PMR tool.
+        Attributes:
+        _export_format:
+        _orientation:
+        _interval_units:
+        _interval:
+        _position_of_nodes:
+        _position_of_relationships:
+
     """
 
     def __init__(self, export_format, orientation, interval_units, interval, position_of_nodes,
