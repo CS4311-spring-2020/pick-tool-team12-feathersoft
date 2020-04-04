@@ -38,34 +38,34 @@ class VectorDBConfigurationNonLead(QWidget):
 
         layout = QVBoxLayout()
         
-        table = QTableWidget(self)
-        table.setColumnCount(4)
-        table.setRowCount(15)
-        table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector"))
-        table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Description"))
-        table.setHorizontalHeaderItem(2,QTableWidgetItem(""))
-        table.setHorizontalHeaderItem(3,QTableWidgetItem("Graph"))
+        self.table = QTableWidget(self)
+        self.table.setColumnCount(4)
+        self.table.setRowCount(15)
+        self.table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector"))
+        self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Description"))
+        self.table.setHorizontalHeaderItem(2,QTableWidgetItem(""))
+        self.table.setHorizontalHeaderItem(3,QTableWidgetItem("Graph"))
 
-        table2 = QTableWidget(self)
-        table2.setColumnCount(4)
-        table2.setRowCount(15)
-        table2.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector"))
-        table2.setHorizontalHeaderItem(1, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Description"))
-        table2.setHorizontalHeaderItem(2, QTableWidgetItem(""))
-        table2.setHorizontalHeaderItem(3, QTableWidgetItem("Graph"))
+        self.table2 = QTableWidget(self)
+        self.table2.setColumnCount(4)
+        self.table2.setRowCount(15)
+        self.table2.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector"))
+        self.table2.setHorizontalHeaderItem(1, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Description"))
+        self.table2.setHorizontalHeaderItem(2, QTableWidgetItem(""))
+        self.table2.setHorizontalHeaderItem(3, QTableWidgetItem("Graph"))
 
-        self.header = table.horizontalHeader()
+        self.header = self.table.horizontalHeader()
         self.header.setStretchLastSection(True)
-        for i in range(table.columnCount()):
+        for i in range(self.table.columnCount()):
             self.header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
-        self.header2 = table2.horizontalHeader()
+        self.header2 = self.table2.horizontalHeader()
         self.header2.setStretchLastSection(True)
 
         self.header2.setSectionResizeMode(1, QHeaderView.ResizeToContents)
         self.header2.setSectionResizeMode(2, QHeaderView.ResizeToContents)
 
-        for i in range(table.rowCount()):
+        for i in range(self.table.rowCount()):
 
             checkbox_Push = QTableWidgetItem()
             checkbox_Push.setCheckState(Qt.Unchecked)
@@ -91,18 +91,18 @@ class VectorDBConfigurationNonLead(QWidget):
             tableitem_2.setData(Qt.DisplayRole, 'This is the example of text')
 
 
-            table.setCellWidget(i,0,tableitem)
-            table.setItem(i, 1, tableitem_2)
-            table.setCellWidget(i,3,combobox)
-            table.setItem(i,2,checkbox)
+            self.table.setCellWidget(i,0,tableitem)
+            self.table.setItem(i, 1, tableitem_2)
+            self.table.setCellWidget(i,3,combobox)
+            self.table.setItem(i,2,checkbox)
 
-            table2.setCellWidget(i, 0, tableitem_Push)
-            table2.setItem(i, 1, tableitem_2_Push)
-            table2.setCellWidget(i, 3, combobox_Push)
-            table2.setItem(i, 2, checkbox_Push)
+            self.table2.setCellWidget(i, 0, tableitem_Push)
+            self.table2.setItem(i, 1, tableitem_2_Push)
+            self.table2.setCellWidget(i, 3, combobox_Push)
+            self.table2.setItem(i, 2, checkbox_Push)
 
-        # table.setGeometry(500,100,400, 300)
-        # table2.setGeometry(30,100,400, 300)
+        # self.table.setGeometry(500,100,400, 300)
+        # self.table2.setGeometry(30,100,400, 300)
 
 
         buttonPush = QPushButton(self)
@@ -121,7 +121,7 @@ class VectorDBConfigurationNonLead(QWidget):
         table2Layout = QVBoxLayout()
         table1Layout.addWidget(textLead)
         table1Layout.addWidget(pushText)
-        table1Layout.addWidget(table)
+        table1Layout.addWidget(self.table)
         button_widget1 = QWidget()
         button_widget1.setLayout(QHBoxLayout())
         button_widget1.layout().addWidget(buttonPush)
@@ -131,7 +131,7 @@ class VectorDBConfigurationNonLead(QWidget):
 
 
         table2Layout.addWidget(pullText)
-        table2Layout.addWidget(table2)
+        table2Layout.addWidget(self.table2)
 
         button_widget2 = QWidget()
         button_widget2.setLayout(QHBoxLayout())

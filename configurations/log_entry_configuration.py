@@ -87,7 +87,6 @@ class LogEntryConfigurationWindow(QWidget):
             checkbox = QTableWidgetItem()
             checkbox.setCheckState(Qt.Unchecked)
             combobox = QComboBox()
-            combobox.addItems(['','1','2','3'])
 
             self.table.setItem(i, 2, QTableWidgetItem(entries[i].get_log_entry_content, Qt.DisplayRole))
             self.table.setItem(i, 3, QTableWidgetItem(entries[i].get_host, Qt.DisplayRole))

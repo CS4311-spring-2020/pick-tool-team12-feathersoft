@@ -50,7 +50,7 @@ class FileConverter():
                     f.writelines(datetime.utcfromtimestamp(os.path.getmtime(audio_file)).strftime('%m/%d/%y %H:%M %p') + ' '
                                  + line for line in lines if line.strip())
                     f.truncate()
-            print(converted)
+
             return converted
 
     def convert_video_to_audio(self, video_file):

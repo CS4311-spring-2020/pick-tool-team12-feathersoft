@@ -16,9 +16,14 @@ from configurations.export_configuration import ExportConfigurationWindow
 from configurations.change_configuration import ChangeConfigurationWindow
 from configurations.graph_format_configuration import GraphFormatConfiguration
 from configurations.tab_format_configuration import TabFormatConfiguration
+from configurations.custom_widgets import CheckableComboBox
 
 
 class PMR(QMainWindow):
+
+    """
+        The PMR class is the main window or controller between the configuration windows
+    """
 
     def __init__(self):
         """ Main Window Constructor """
@@ -71,7 +76,11 @@ class PMR(QMainWindow):
         # Populate the log entries table after ingestion
         self.event_configuration.ingestion_complete.connect(self.populate_log_entries)
 
-        # Update the log entries table vector list each time
+        # Update the log entries table vector list each time a vector is added
+        self.vector_configuration.vector_added.connect(self.update_log_entry_vectors)
+
+        # Update the log entries table vector list each time a vector deleted.
+        self.vector_configuration.vector_deleted.connect(self.update_log_entry_vectors)
 
         self.addToolBar(Qt.LeftToolBarArea, self.configurations_toolbar)
         self.setCentralWidget(self.event_configuration)
@@ -129,6 +138,26 @@ class PMR(QMainWindow):
 
     def populate_er(self):
         self.log_file_configuration.er_reports = self.event_configuration.splunk_client.file_validator.reports
+
+    def update_log_entry_vectors(self):
+        size = [str(i) for i in range(int(self.vector_configuration.table.rowCount()))]
+        for i in range(self.log_entry_configuration.table.rowCount()):
+            combobox = CheckableComboBox()
+            combobox.addItems(size)
+            self.log_entry_configuration.table.setCellWidget(i,6,combobox)
+
+        # for i in range(self.vector_db_configuration_non_lead.table.rowCount()):
+        #     combobox = CheckableComboBox()
+        #     combobox.addItems(size)
+        #     self.vector_db_configuration_non_lead.table.setCellWidget(i,1,combobox)
+        #
+        # for i in range(self.vector_db_configuration_non_lead.table.rowCount()):
+        #     combobox = CheckableComboBox()
+        #     combobox.addItems(size)
+        #     self.vector_db_configuration_lead.table.setCellWidget(i,1,combobox)
+
+
+
 
 
 if __name__ == "__main__":

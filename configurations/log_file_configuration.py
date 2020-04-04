@@ -24,9 +24,8 @@ class LogFileConfigurationWindow(QWidget):
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
 
         self.table = QTableWidget(self)
-        if (self.table.columnCount() < 6):
-            self.table.setColumnCount(6)
 
+        self.table.setColumnCount(6)
         #Setting Headers for Log File Table
         self.table.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'),'File Name'))
         self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Source'))
@@ -35,23 +34,12 @@ class LogFileConfigurationWindow(QWidget):
         self.table.setHorizontalHeaderItem(4, QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Ingestion Status'))
         self.table.setHorizontalHeaderItem(5, QTableWidgetItem(QIcon(''), 'Enforcement Action Report'))
 
-        #Populating Values in Table from dummy file
-        THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-        dummy_file = os.path.join(THIS_FOLDER, 'dummyFileConfig.txt')
 
-        dummyFileConfig = [line.split(',') for line in open(dummy_file,'r').readlines()]
-        self.table.setRowCount(len(dummyFileConfig))
 
-        i = 0
+
         emptyHeader = QTableWidgetItem()
-
-        self.table.setObjectName(u"tableWidget")
-        self.table.setMinimumSize(QSize(680, 55))
         self.table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
-        self.table.setShowGrid(True)
         self.table.setGridStyle(Qt.SolidLine)
-        self.table.setSortingEnabled(False)
-        self.table.setWordWrap(True)
         self.table.horizontalHeader().setCascadingSectionResizes(True)
         self.table.horizontalHeader().setProperty("showSortIndicator", False)
         self.table.horizontalHeader().setStretchLastSection(True)

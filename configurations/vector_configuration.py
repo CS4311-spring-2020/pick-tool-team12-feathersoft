@@ -7,11 +7,18 @@ import os
 
 
 class VectorConfiguration(QWidget):
+
+
+    vector_added = pyqtSignal(bool)
+    vector_deleted = pyqtSignal(bool)
+
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 482, 432)
         self.setWindowTitle("Vector Configuration")
         self.UI()
+
+
 
     def UI(self):
         self.main_layout = QGridLayout(self)
@@ -32,7 +39,7 @@ class VectorConfiguration(QWidget):
         self.button_layout.layout().addWidget(self.deleteButton)
 
 
-        self.table = QTableWidget(5, 3, self)
+        self.table = QTableWidget(0, 3, self)
         self.main_layout.addWidget(self.table)
         self.main_layout.addWidget(self.button_layout)
         # self.table.verticalHeader().setVisible(False)
@@ -97,6 +104,8 @@ class VectorConfiguration(QWidget):
                 self.table.takeItem(row,j)
             self.table.removeRow(row)
 
+        self.vector_deleted.emit(True)
+
     def add_vector(self):
         row_index = self.table.rowCount() + 1
         self.table.setRowCount(row_index)
@@ -105,6 +114,10 @@ class VectorConfiguration(QWidget):
             checkbox = QTableWidgetItem()
             checkbox.setCheckState(Qt.Unchecked)
             self.table.setItem(self.table.rowCount()-1, 2, checkbox)
+
+        self.vector_added.emit(True)
+
+
 
     def edit_vector(self):
         if self.table.selectedItems():
