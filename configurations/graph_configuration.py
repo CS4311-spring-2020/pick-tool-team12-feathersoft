@@ -22,9 +22,9 @@ class GraphConfigurationWindow(QMainWindow):
         graphics_toolbar.addAction('Delete Node', self.do_nothing)
         graphics_toolbar.addAction('Edit Node', self.do_nothing)
         graphics_toolbar.addAction('Set Node Color',self.do_nothing)
-
+        self.window = NodeEditorWindow()
         self.addToolBar(Qt.RightToolBarArea, graphics_toolbar)
-        self.setCentralWidget(NodeEditorWindow())
+        self.setCentralWidget(self.window)
 
     def do_nothing(self):
         pass

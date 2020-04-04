@@ -17,6 +17,8 @@ from configurations.change_configuration import ChangeConfigurationWindow
 from configurations.graph_format_configuration import GraphFormatConfiguration
 from configurations.tab_format_configuration import TabFormatConfiguration
 from configurations.custom_widgets import CheckableComboBox
+from configurations.rwo.vector import Vector
+from configurations.rwo.node import Node
 
 
 class PMR(QMainWindow):
@@ -70,7 +72,7 @@ class PMR(QMainWindow):
         # Populate the log file table after logs a have been ingested
         self.event_configuration.logs_ingested.connect(self.populate_log_files)
 
-        # Popluate enforcement action reports
+        # Populate enforcement action reports
         self.event_configuration.reports_generated.connect(self.populate_er)
 
         # Populate the log entries table after ingestion
@@ -81,6 +83,12 @@ class PMR(QMainWindow):
 
         # Update the log entries table vector list each time a vector deleted.
         self.vector_configuration.vector_deleted.connect(self.update_log_entry_vectors)
+
+        # Update the vector db when vectors are checked
+        self.vector_configuration.vector_selected.connect(self.update_vector_db)
+
+        # Update the node table when significant log entries are flagged
+        self.log_entry_configuration._log_entry_flagged.connect(self.update_nodes)
 
         self.addToolBar(Qt.LeftToolBarArea, self.configurations_toolbar)
         self.setCentralWidget(self.event_configuration)
@@ -124,7 +132,7 @@ class PMR(QMainWindow):
 
     def disable_toolbar(self):
         for action in self.configurations_toolbar.actions():
-            action.setEnabled(False if action.text() !='Event Configuration' else True)
+            action.setEnabled(False if action.text() != 'Event Configuration' else True)
 
     def enable_toolbar(self):
         for action in self.configurations_toolbar.actions():
@@ -144,17 +152,88 @@ class PMR(QMainWindow):
         for i in range(self.log_entry_configuration.table.rowCount()):
             combobox = CheckableComboBox()
             combobox.addItems(size)
-            self.log_entry_configuration.table.setCellWidget(i,6,combobox)
+            self.log_entry_configuration.table.setCellWidget(i, 6, combobox)
 
-        # for i in range(self.vector_db_configuration_non_lead.table.rowCount()):
-        #     combobox = CheckableComboBox()
-        #     combobox.addItems(size)
-        #     self.vector_db_configuration_non_lead.table.setCellWidget(i,1,combobox)
+    def update_vector_db(self):
+        selected_vectors = set()
+        for i in range(self.vector_configuration.table.rowCount()):
+            if self.vector_configuration.table.cellWidget(i,2).isChecked():
+                name, desc = self.vector_configuration.table.item(i,0).text(),self.vector_configuration.table.item(i,1).text()
+                if name is not None and desc is not None:
+                    selected_vectors.add(Vector(name,desc))
+
+        self.vector_db_configuration_non_lead.table.setRowCount(len(selected_vectors))
+        for i in range(len(selected_vectors)):
+            vec = selected_vectors.pop()
+            self.vector_db_configuration_non_lead.table.setItem(i, 0, QTableWidgetItem(vec.get_vector_name))
+            self.vector_db_configuration_non_lead.table.setItem(i, 1, QTableWidgetItem(vec.get_vector_description))
+            self.vector_db_configuration_non_lead.table.setCellWidget(i, 2, QCheckBox())
+
+    def update_nodes(self):
+        selected_nodes = set()
+        for i in range(self.log_entry_configuration.table.rowCount()):
+            if self.log_entry_configuration.table.cellWidget(i,7).isChecked():
+                node_id = str(i + 1)
+                node_name = "Node " + str(i + 1)
+                node_timestamp = self.log_entry_configuration.table.item(i,2).text()
+                node_description = str(i) + 'th' + ' Node flagged'
+                log_entry_reference = self.log_entry_configuration.table.item(i,4).text()
+                if 'white' in log_entry_reference:
+                    log_entry_source = 'white'
+                elif 'red' in log_entry_reference:
+                    log_entry_source = 'red'
+                else:
+                    log_entry_source = 'blue'
+
+                event_type = log_entry_source
+                if 'white' in log_entry_reference:
+                    icon_type = 'white'
+                elif 'red' in log_entry_reference:
+                    icon_type = 'red'
+                else:
+                    icon_type = 'blue'
+                source = log_entry_reference
+                node_visibility = True
+                selected_nodes.add(Node(node_id, node_name, node_timestamp, node_description, log_entry_reference,
+                                        log_entry_source, event_type, icon_type, source, node_visibility))
+
+        table = self.graph_builder_configuration.window.table
+        table.setRowCount(len(selected_nodes))
+        for i in range(table.rowCount()):
+            node = selected_nodes.pop()
+            table.setItem(i,0,QTableWidgetItem(node.get_node_id))
+            table.setItem(i, 1, QTableWidgetItem(node.get_node_id))
+            table.setItem(i, 2, QTableWidgetItem(node.get_node_name))
+            table.setItem(i, 3, QTableWidgetItem(node.get_node_timestamp))
+            table.setItem(i, 4, QTableWidgetItem(node.get_node_description))
+            table.setItem(i, 5, QTableWidgetItem(node.get_log_entry_reference))
+            table.setItem(i, 6, QTableWidgetItem(node.get_source))
+            table.setItem(i, 7, QTableWidgetItem(node.get_event_type))
+            table.setItem(i, 8, QTableWidgetItem(node.get_icon_type))
+            table.setItem(i, 9, QTableWidgetItem(node.get_visibility))
+
+        for i in range(table.rowCount()):
+            self.graph_builder_configuration.window.addNode()
+
+
+
+
+
+
+
         #
-        # for i in range(self.vector_db_configuration_non_lead.table.rowCount()):
-        #     combobox = CheckableComboBox()
-        #     combobox.addItems(size)
-        #     self.vector_db_configuration_lead.table.setCellWidget(i,1,combobox)
+        # self.vector_db_configuration_non_lead.table.setRowCount(len(selected_vectors))
+        # for i in range(len(selected_vectors)):
+        #     vec = selected_vectors.pop()
+        #     self.vector_db_configuration_non_lead.table.setItem(i,0,QTableWidgetItem(vec.get_vector_name))
+        #     self.vector_db_configuration_non_lead.table.setItem(i, 1,
+        #                                                         QTableWidgetItem(vec.get_vector_description))
+        #     self.vector_db_configuration_non_lead.table.setCellWidget(i, 2,
+        #                                                         QCheckBox())
+
+
+
+
 
 
 

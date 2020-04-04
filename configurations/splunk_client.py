@@ -89,8 +89,9 @@ class SplunkIntegrator():
 
 
 if __name__ == '__main__':
-    #client = SplunkIntegrator('localhost', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
-    print(int('hi'))
+    client = SplunkIntegrator('192.168.81.1', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
+    client.create_index('sw2')
+
 
 
 

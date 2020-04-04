@@ -112,7 +112,6 @@ class EventConfigurationWindow(QWidget):
         self.established_connections = QLabel('')
         self.team_layout.layout().addRow('Established Connections', self.established_connections)
         self.lead_checkbox = QCheckBox()
-        #self.lead_checkbox.stateChanged.connect(self.configure_lead_fields)
         self.lead_checkbox.setObjectName('Check')
         self.team_layout.layout().addRow('Lead', self.lead_checkbox)
         self.connect_button = QPushButton('Connect',clicked=self.validate_credentials)
@@ -304,17 +303,25 @@ class EventConfigurationWindow(QWidget):
                                      f" A folder labeled red was not found in the root directory\n"
                                      f"Please make sure your folders are properly labeled.")
 
+
+
             if not has_blue:
                 QMessageBox.critical(self, "Root Directory Structure Error",
                                      f" A folder labeled blue was not found in the root directory\n"
                                      f"Please make sure your folders are properly labeled.")
+
 
             if not has_white:
                 QMessageBox.critical(self, "Root Directory Structure Error",
                                      f" A folder labeled white was not found in the root directory\n"
                                      f"Please make sure your folders are properly labeled.")
 
+
             else:
+
+                self.red_directory_edit.setText(self.root_directory_edit.text() + '/red')
+                self.blue_directory_edit.setText(self.root_directory_edit.text() + '/blue')
+                self.white_directory_edit.setText(self.root_directory_edit.text() + '/white')
                 buttonReply = QMessageBox.question(self,'PyQt5 message',
                                                    "Begin Ingestion?",
                                                    QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
@@ -326,12 +333,13 @@ class EventConfigurationWindow(QWidget):
                     self.directory_configuration_layout.layout().addRow('', label)
 
                 self.root_structure_validated = True
-                if buttonReply == QMessageBox.Yes and self.ip_validated and self.root_structure_validated:
-                    toolbar_unlocked = True
-                    self.configured.emit(toolbar_unlocked)
-                    self.begin_ingestion(count=500)
-                else:
-                    QMessageBox.critical(self,"Event and Team not Validated",
+                if buttonReply == QMessageBox.Yes:
+                    if self.ip_validated and self.root_structure_validated:
+                        toolbar_unlocked = True
+                        self.configured.emit(toolbar_unlocked)
+                        self.begin_ingestion(count=500)
+                    else:
+                        QMessageBox.critical(self,"Event and Team not Validated",
                                          "Please make sure event configuration and team configurations are "
                                          "validated before ingestion")
 

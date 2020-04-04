@@ -2,6 +2,9 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from configurations.custom_widgets import CheckableComboBox
+
+
 
 
 class VectorDBConfigurationNonLead(QWidget):
@@ -12,14 +15,6 @@ class VectorDBConfigurationNonLead(QWidget):
         self.UI()
 
     def UI(self):
-        # mainMenu = QMenuBar(self)
-        # mainMenu.addMenu('File')
-        # mainMenu.addMenu('Edit')
-        # mainMenu.addMenu('View')
-        # mainMenu.addMenu('Search')
-        # mainMenu.addMenu('Tools')
-        # mainMenu.addMenu('Help')
-
         textLead = QLabel('Connection status to lead:')
         textLead.setFont(QFont('MS Shell Dlg 2', 14))
         textLead.move(30,30)
@@ -38,17 +33,13 @@ class VectorDBConfigurationNonLead(QWidget):
 
         layout = QVBoxLayout()
         
-        self.table = QTableWidget(self)
-        self.table.setColumnCount(4)
-        self.table.setRowCount(15)
+        self.table = QTableWidget(0,4,self)
         self.table.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector"))
         self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Description"))
         self.table.setHorizontalHeaderItem(2,QTableWidgetItem(""))
         self.table.setHorizontalHeaderItem(3,QTableWidgetItem("Graph"))
 
-        self.table2 = QTableWidget(self)
-        self.table2.setColumnCount(4)
-        self.table2.setRowCount(15)
+        self.table2 = QTableWidget(0,4,self)
         self.table2.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector"))
         self.table2.setHorizontalHeaderItem(1, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Description"))
         self.table2.setHorizontalHeaderItem(2, QTableWidgetItem(""))
@@ -65,44 +56,6 @@ class VectorDBConfigurationNonLead(QWidget):
         self.header2.setSectionResizeMode(1, QHeaderView.ResizeToContents)
         self.header2.setSectionResizeMode(2, QHeaderView.ResizeToContents)
 
-        for i in range(self.table.rowCount()):
-
-            checkbox_Push = QTableWidgetItem()
-            checkbox_Push.setCheckState(Qt.Unchecked)
-            combobox_Push = QComboBox()
-            combobox_Push.addItems(['','1','2','3'])
-
-            tableitem_Push = QComboBox()
-            tableitem_Push.addItems(['', '1', '2', '3'])
-
-            tableitem_2_Push = QTableWidgetItem()
-            tableitem_2_Push.setData(Qt.DisplayRole, 'This is the example of text')
-
-
-            checkbox = QTableWidgetItem()
-            checkbox.setCheckState(Qt.Unchecked)
-            combobox = QComboBox()
-            combobox.addItems(['', '1', '2', '3'])
-
-            tableitem = QComboBox()
-            tableitem.addItems(['', '1', '2', '3'])
-
-            tableitem_2 = QTableWidgetItem()
-            tableitem_2.setData(Qt.DisplayRole, 'This is the example of text')
-
-
-            self.table.setCellWidget(i,0,tableitem)
-            self.table.setItem(i, 1, tableitem_2)
-            self.table.setCellWidget(i,3,combobox)
-            self.table.setItem(i,2,checkbox)
-
-            self.table2.setCellWidget(i, 0, tableitem_Push)
-            self.table2.setItem(i, 1, tableitem_2_Push)
-            self.table2.setCellWidget(i, 3, combobox_Push)
-            self.table2.setItem(i, 2, checkbox_Push)
-
-        # self.table.setGeometry(500,100,400, 300)
-        # self.table2.setGeometry(30,100,400, 300)
 
 
         buttonPush = QPushButton(self)
@@ -145,10 +98,3 @@ class VectorDBConfigurationNonLead(QWidget):
         layout.setSpacing(10)
         self.setLayout(layout)
 
-        #self.show()
-
-
-if __name__ == '__main__':
-    App = QApplication(sys.argv)
-    window = VectorDBConfigurationNonLead()
-    sys.exit(App.exec())

@@ -14,6 +14,7 @@ from configurations.filter_configuration import FilterConfigurationWindow
 
 class LogEntryConfigurationWindow(QWidget):
 
+    _log_entry_flagged = pyqtSignal()
     def __init__(self):
         super().__init__()
         self.setGeometry(200, 400, 800, 620)
@@ -59,16 +60,14 @@ class LogEntryConfigurationWindow(QWidget):
         # Hiding the row labels in the table
         self.table.verticalHeader().setVisible(False)
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
-        menuBar = QMenuBar()
-        self.filter_options = menuBar.addMenu('Filter Options')
+        self.menuBar = QMenuBar()
+        self.filter_options = self.menuBar.addMenu('Filter Options')
         self.fa = QAction('Filter')
         self.fa.setShortcut('Ctrl+F')
         self.filter_options.addAction(self.fa)
         self.filter_options.triggered[QAction].connect(self.filter_action)
         self.layout.addWidget(self.label)
         self.layout.addWidget(self.table)
-
-
         self.setLayout(self.layout)
 
     def populate_table(self, entries):
@@ -84,8 +83,6 @@ class LogEntryConfigurationWindow(QWidget):
                                                                                        .get_log_entry_timestamp))))
             self.table.setItem(i,0,list_value)
             self.table.setItem(i,1,time_stamp)
-            checkbox = QTableWidgetItem()
-            checkbox.setCheckState(Qt.Unchecked)
             combobox = QComboBox()
 
             self.table.setItem(i, 2, QTableWidgetItem(entries[i].get_log_entry_content, Qt.DisplayRole))
@@ -93,7 +90,14 @@ class LogEntryConfigurationWindow(QWidget):
             self.table.setItem(i, 4, QTableWidgetItem(entries[i].get_source, Qt.DisplayRole))
             self.table.setItem(i, 5, QTableWidgetItem(entries[i].get_source_type, Qt.DisplayRole))
             self.table.setCellWidget(i,6,combobox)
-            self.table.setItem(i,7,checkbox)
+            checkbox = QCheckBox()
+            checkbox.setCheckState(Qt.Unchecked)
+            checkbox.clicked.connect(self.update_graph)
+            self.table.setCellWidget(i,7,checkbox)
+
+
+    def update_graph(self):
+        self._log_entry_flagged.emit()
 
     def filter_action(self):
         self.filter.show()
@@ -113,12 +117,14 @@ class LogEntryConfigurationWindow(QWidget):
                 if self.slot_clicks[col] % 2 == 0:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/checked.png'))
                     for row in range(self.table.rowCount()):
-                        self.table.item(row,7).setCheckState(Qt.Checked)
+                        self.table.cellWidget(row,7).setCheckState(Qt.Checked)
+                        self._log_entry_flagged.emit()
+
 
                 else:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/unchecked.png'))
                     for row in range(self.table.rowCount()):
-                        self.table.item(row,7).setCheckState(Qt.Unchecked)
+                        self.table.cellWidget(row,7).setCheckState(Qt.Unchecked)
             else:
                 items = [item.text() for item in self.table.selectedItems()]
             valid_col = col < 6

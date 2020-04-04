@@ -9,13 +9,15 @@ import os
 class VectorConfiguration(QWidget):
 
 
-    vector_added = pyqtSignal(bool)
-    vector_deleted = pyqtSignal(bool)
+    vector_added = pyqtSignal()
+    vector_deleted = pyqtSignal()
+    vector_selected = pyqtSignal()
 
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 482, 432)
         self.setWindowTitle("Vector Configuration")
+        self.selected_vectors = set()
         self.UI()
 
 
@@ -39,29 +41,30 @@ class VectorConfiguration(QWidget):
         self.button_layout.layout().addWidget(self.deleteButton)
 
 
-        self.table = QTableWidget(0, 3, self)
+        self.table = QTableWidget(1, 3, self)
         self.main_layout.addWidget(self.table)
         self.main_layout.addWidget(self.button_layout)
         # self.table.verticalHeader().setVisible(False)
         self.table.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector Name"))
         self.table.setHorizontalHeaderItem(1, QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector Description"))
-        self.table.setHorizontalHeaderItem(2, QTableWidgetItem(QIcon('icons/unchecked'), "Select"))
+        self.table.setHorizontalHeaderItem(2, QTableWidgetItem(QIcon('icons/unchecked'), ""))
 
         self.slot_clicks = [1] * self.table.columnCount()
 
-
-
         for i in range(self.table.rowCount()):
-            checkbox = QTableWidgetItem()
+            checkbox = QCheckBox()
             checkbox.setCheckState(Qt.Unchecked)
-            self.table.setItem(i, 2, checkbox)
+            checkbox.clicked.connect(self.update_vector_db)
+            self.table.setItem(i,0,QTableWidgetItem())
+            self.table.setItem(i,1,QTableWidgetItem())
+            self.table.setCellWidget(i, 2, checkbox)
 
 
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
         self.table.horizontalHeader().setProperty("showSortIndicator", False)
         self.header = self.table.horizontalHeader()
-        self.header.setStretchLastSection(True)
-        self.table.setColumnWidth(1,300)
+        #self.header.setStretchLastSection(True)
+
 
         for i in range(self.table.columnCount()):
            self.header.setSectionResizeMode(i, QHeaderView.Stretch)
@@ -69,6 +72,8 @@ class VectorConfiguration(QWidget):
 
         self.setLayout(self.main_layout)
 
+    def update_vector_db(self):
+        self.vector_selected.emit()
 
     def header_clicked(self):
         if not self.table.rowCount() == 0:
@@ -78,11 +83,12 @@ class VectorConfiguration(QWidget):
                 if self.slot_clicks[col] % 2 == 0:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/checked.png'))
                     for row in range(self.table.rowCount()):
-                        self.table.item(row, col).setCheckState(Qt.Checked)
+                        self.table.cellWidget(row, col).setCheckState(Qt.Checked)
+                        self.vector_selected.emit()
                 else:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/unchecked.png'))
                     for row in range(self.table.rowCount()):
-                        self.table.item(row, col).setCheckState(Qt.Unchecked)
+                        self.table.cellWidget(row, col).setCheckState(Qt.Unchecked)
 
             else:
                 items = [item.text() for item in self.table.selectedItems()]
@@ -104,20 +110,18 @@ class VectorConfiguration(QWidget):
                 self.table.takeItem(row,j)
             self.table.removeRow(row)
 
-        self.vector_deleted.emit(True)
+        self.vector_deleted.emit()
 
     def add_vector(self):
         row_index = self.table.rowCount() + 1
         self.table.setRowCount(row_index)
 
         for i in range(row_index):
-            checkbox = QTableWidgetItem()
+            checkbox = QCheckBox()
             checkbox.setCheckState(Qt.Unchecked)
-            self.table.setItem(self.table.rowCount()-1, 2, checkbox)
-
-        self.vector_added.emit(True)
-
-
+            checkbox.clicked.connect(self.update_vector_db)
+            self.table.setCellWidget(self.table.rowCount()-1, 2, checkbox)
+        self.vector_added.emit()
 
     def edit_vector(self):
         if self.table.selectedItems():
