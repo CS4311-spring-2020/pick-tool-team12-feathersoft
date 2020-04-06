@@ -33,7 +33,7 @@ class EventConfigurationWindow(QWidget):
     # This signal tells the UI to populate the enforcement action reports for the log file table after ingestion.
     reports_generated = pyqtSignal(bool)
 
-    def __init__(self,parent=QMainWindow):
+    def __init__(self, parent=QMainWindow):
 
         """
         :param parent: The parent of this window.

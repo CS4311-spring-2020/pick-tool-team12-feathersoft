@@ -64,7 +64,7 @@ class PMR(QMainWindow):
         # Disable access to the rest of the screens until an event has been configured.
         # This is because it would not make sense to continue until an event is valid.
 
-        self.disable_toolbar()
+        #self.disable_toolbar()
 
         # Enable the rest of the toolbar after event has been configured
         self.event_configuration.configured.connect(self.enable_toolbar)

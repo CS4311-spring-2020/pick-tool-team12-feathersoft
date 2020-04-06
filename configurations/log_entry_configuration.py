@@ -15,6 +15,8 @@ from configurations.filter_configuration import FilterConfigurationWindow
 class LogEntryConfigurationWindow(QWidget):
 
     _log_entry_flagged = pyqtSignal()
+
+
     def __init__(self):
         super().__init__()
         self.setGeometry(200, 400, 800, 620)

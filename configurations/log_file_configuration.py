@@ -9,6 +9,8 @@ import os
     The log file configuration will be used to display the various log files ingested into the system as well as their
     enforcement action reports.
 """
+
+
 class LogFileConfigurationWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -36,9 +38,6 @@ class LogFileConfigurationWindow(QWidget):
         self.table.setHorizontalHeaderItem(3, QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Validation Status'))
         self.table.setHorizontalHeaderItem(4, QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Ingestion Status'))
         self.table.setHorizontalHeaderItem(5, QTableWidgetItem(QIcon(''), 'Enforcement Action Report'))
-
-
-
 
         emptyHeader = QTableWidgetItem()
         self.table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)

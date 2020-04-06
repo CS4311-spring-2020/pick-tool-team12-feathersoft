@@ -7,6 +7,7 @@ from configurations.node_scene import *
 from configurations.node_graphics_scene import *
 from configurations.node_graphics_view import QDMGraphicsView
 from configurations.graph_node import *
+import QGraphViz as qgv
 
 
 class GraphConfigurationWindow(QMainWindow):
@@ -35,6 +36,7 @@ class NodeEditorWindow(QWidget):
         super().__init__(parent)
 
         self.initUI()
+
 
 
     def initUI(self):
@@ -69,6 +71,8 @@ class NodeEditorWindow(QWidget):
         # self.view.setScene(self.scene)
         self.setWindowTitle('Node Editor')
 
+        self.scene.addNode(Node(self.scene,'title',[1,2,3],[1]))
+
         self.layout.addWidget(self.view,1)
 
         self.setWindowTitle('Graph View')
@@ -86,7 +90,7 @@ class NodeEditorWindow(QWidget):
             self.close()
 
     def addNode(self):
-        node = Node(self.scene, 'Node')
+        node = Node(self.scene, 'Node', inputs=[1,1,1],outputs=[1])
 
     def mousePressEvent(self, QMouseEvent):
         if QMouseEvent.button == Qt.RightButton:

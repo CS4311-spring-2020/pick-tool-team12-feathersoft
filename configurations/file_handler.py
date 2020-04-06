@@ -11,7 +11,6 @@ from datetime import datetime, timedelta
 import datefinder
 
 
-
 class FileConverter():
     """
         The FileConverter class provides all options needed to convert non-textual files in to text-based log files
@@ -64,6 +63,8 @@ class FileConverter():
             file = video_file.split('.')[0] + '.wav'
             audio.write_audiofile(file)
             return self.convert_audio_to_text(file)
+
+
 
     def convert_image_to_text(self, image_file):
         """
@@ -126,7 +127,6 @@ class FileCleanser():
         if file:
             lines = open(file, encoding='utf_8').readlines()
 
-
             apache = [re.findall(r'\[(\d{2})/([a-zA-Z]{3})/(\d{4}):(\d{2}):(\d{2}):(\d{2})]',line) for line in lines]
             valid_times = []
             if apache:
@@ -135,8 +135,6 @@ class FileCleanser():
                         valid_times.append(month + ' ' + day + ' ' + year + ' ' + hour + ':' + min + ':' + sec)
 
             # Replace all unwanted characters with empty strings using regular expressions to match unwanted patterns.
-
-
             lines = [re.sub(r'[\x7f\x80]', '', line) for line in lines]
             lines = [re.sub(r'[^\sA-Za-z0-9.: /=\-\n\[\]]+', '', line) for line in lines]
 
@@ -144,8 +142,8 @@ class FileCleanser():
 
             if len(valid_times) > 0:
                 lines = [re.sub(r'(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})', ' ', line) for line in lines]
-                lines = [re.sub(r'\[(\d{2})/([a-zA-Z]{3})/(\d{4}):(\d{2}):(\d{2}):(\d{2})]', valid_times[i], lines[i]) for
-                         i in range(len(lines))]
+                lines = [re.sub(r'\[(\d{2})/([a-zA-Z]{3})/(\d{4}):(\d{2}):(\d{2}):(\d{2})]', valid_times[i], lines[i])
+                         for i in range(len(lines))]
             with open(file, 'w')as f:
                 f.writelines(line for line in lines if line.strip())
                 # Remove all empty lines.
