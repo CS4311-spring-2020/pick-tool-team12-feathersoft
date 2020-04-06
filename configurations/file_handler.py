@@ -78,7 +78,7 @@ class FileConverter():
                 The path to the executable program must be provided within the method before text is extracted.
                 Please be sure to install tesseract on your OS and configure your path env variable before running.
             """
-            pt.pytesseract.tesseract_cmd = "/usr/bin/tesseract"
+            pt.pytesseract.tesseract_cmd = "C:\Program Files\Tesseract-OCR"
 
             # Open image file.
             image = Image.open(image_file)

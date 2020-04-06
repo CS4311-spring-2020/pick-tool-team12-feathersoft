@@ -89,7 +89,7 @@ class SplunkIntegrator():
 
 
 if __name__ == '__main__':
-    client = SplunkIntegrator('localhost', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
+    client = SplunkIntegrator('localhost', 8089, 'main', 'asosa19', 'feathersoft')
 
 
 

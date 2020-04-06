@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="Fixed yet another issue with validation.">
+    <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/graph/graph_tut.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/file_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/file_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/root/sample_audio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/root/sample_audio.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/splunk_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/splunk_client.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,81 +18,78 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/root/sample_audio.txt">
+        <entry file="file://$PROJECT_DIR$/configurations/splunk_client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="73" selection-start-column="73" selection-end-column="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/event_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3672">
-              <caret line="228" column="88" selection-start-line="228" selection-start-column="88" selection-end-line="228" selection-end-column="88" />
+            <state relative-caret-position="1462">
+              <caret line="91" column="82" selection-start-line="91" selection-start-column="82" selection-end-line="91" selection-end-column="82" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#0#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/filter_configuration.py">
+        <entry file="file://$PROJECT_DIR$/configurations/pmr_v2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1982">
-              <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+            <state relative-caret-position="833">
+              <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.jpg">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.log">
-          <provider selected="true" editor-type-id="LogFileEditorProvider">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configurations/log_file_configuration.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1649">
-              <caret line="102" selection-start-line="102" selection-end-line="102" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/configurations/file_handler.py">
+        <entry file="file://$PROJECT_DIR$/graph/graph_tut.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="677">
-              <caret line="137" column="34" lean-forward="true" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
+            <state relative-caret-position="68">
+              <caret line="46" selection-start-line="46" selection-end-line="68" selection-end-column="54" />
               <folding>
-                <element signature="e#0#31#0" expanded="true" />
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configurations/root/www1/access.log">
+          <provider selected="true" editor-type-id="LogFileEditorProvider">
+            <state relative-caret-position="306">
+              <caret line="18" column="36" selection-end-line="101" selection-end-column="338" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configurations/root/www1/secure.log">
+          <provider selected="true" editor-type-id="LogFileEditorProvider">
+            <state relative-caret-position="1768">
+              <caret line="104" selection-end-line="160" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configurations/root/www2/access.log">
+          <provider selected="true" editor-type-id="LogFileEditorProvider">
+            <state relative-caret-position="1938">
+              <caret line="114" column="315" selection-end-line="114" selection-end-column="315" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/configurations/root/www3/secure.log">
+          <provider selected="true" editor-type-id="LogFileEditorProvider" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="58" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
+              <caret line="1" column="56" selection-start-line="1" selection-start-column="56" selection-end-line="1" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -151,22 +152,23 @@
         <option value="$PROJECT_DIR$/configurations/log_entry_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/relationship_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/pmr_v2.py" />
-        <option value="$PROJECT_DIR$/configurations/splunk_client.py" />
         <option value="$PROJECT_DIR$/configurations/root/sample_audio.txt" />
         <option value="$PROJECT_DIR$/configurations/root/mailsv/secure.log" />
         <option value="$PROJECT_DIR$/configurations/root/sample_image.txt" />
         <option value="$PROJECT_DIR$/configurations/root/www1/secure.log" />
-        <option value="$PROJECT_DIR$/configurations/file_handler.py" />
         <option value="$PROJECT_DIR$/configurations/root/sample_image.log" />
         <option value="$PROJECT_DIR$/configurations/log_file_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/event_configuration.py" />
         <option value="$PROJECT_DIR$/configurations/filter_configuration.py" />
+        <option value="$PROJECT_DIR$/configurations/file_handler.py" />
+        <option value="$PROJECT_DIR$/configurations/splunk_client.py" />
+        <option value="$PROJECT_DIR$/graph/graph_tut.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="140" />
-    <option name="width" value="980" />
+    <option name="x" value="950" />
+    <option name="width" value="979" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectId" id="1Zp4XrCER1GsTWi1BmteunoFqsP" />
@@ -200,6 +202,12 @@
               <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
               <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
               <item name="configurations" type="462c0819:PsiDirectoryNode" />
+              <item name="icons" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
+              <item name="configurations" type="462c0819:PsiDirectoryNode" />
               <item name="root" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -222,6 +230,18 @@
               <item name="configurations" type="462c0819:PsiDirectoryNode" />
               <item name="root" type="462c0819:PsiDirectoryNode" />
               <item name="www2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
+              <item name="configurations" type="462c0819:PsiDirectoryNode" />
+              <item name="root" type="462c0819:PsiDirectoryNode" />
+              <item name="www3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pick-tool-team12-feathersoft" type="462c0819:PsiDirectoryNode" />
+              <item name="graph" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pick-tool-team12-feathersoft" type="b2602c69:ProjectViewProjectNode" />
@@ -271,7 +291,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pmr_v2">
+  <component name="RunManager" selected="Python.graph_tut">
     <configuration name="event_configuration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="pick-tool-team12-feathersoft" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -306,6 +326,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/file_handler.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="graph_tut" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pick-tool-team12-feathersoft" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/graph" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/graph/graph_tut.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -356,41 +397,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tab_format_configuration" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="pick-tool-team12-feathersoft" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/configurations" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/configurations/tab_format_configuration.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.event_configuration" />
       <item itemvalue="Python.file_handler" />
+      <item itemvalue="Python.graph_tut" />
       <item itemvalue="Python.pmr_v2" />
       <item itemvalue="Python.splunk_client" />
-      <item itemvalue="Python.tab_format_configuration" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.graph_tut" />
+        <item itemvalue="Python.splunk_client" />
         <item itemvalue="Python.pmr_v2" />
         <item itemvalue="Python.file_handler" />
-        <item itemvalue="Python.splunk_client" />
         <item itemvalue="Python.event_configuration" />
-        <item itemvalue="Python.tab_format_configuration" />
       </list>
     </recent_temporary>
   </component>
@@ -404,13 +424,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580431996380</updated>
-    </task>
-    <task id="LOCAL-00005" summary="updated the related real world objects files">
-      <created>1580689993653</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1580689993653</updated>
     </task>
     <task id="LOCAL-00006" summary="''">
       <created>1580697610336</created>
@@ -748,7 +761,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585723095129</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Fixed yet another issue with validation.">
+      <created>1585838168414</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1585838168414</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TodoView">
@@ -763,18 +783,18 @@
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19022457" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1367239" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4980185" weight="0.32748538" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49603698" weight="0.21783626" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49603698" weight="0.21491228" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39619884" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32952926" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32748538" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.497358" visible="true" weight="0.31725147" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.497358" weight="0.31725147" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.503963" side_tool="true" weight="0.39181286" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32748538" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -884,8 +904,6 @@
     <state x="723" y="407" width="455" height="163" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.31.1902.908@0.31.1902.908" timestamp="1585518043718" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/configurations/cleansing_script/tests/07_OSC_0_setwi_input.txt" />
-    <entry file="file://$PROJECT_DIR$/configurations/cleansing_script/tests/08_insert_blank_expected_output.txt" />
     <entry file="file://$PROJECT_DIR$/configurations/cleansing_script/tests/08_insert_blank_input.txt" />
     <entry file="file://$PROJECT_DIR$/configurations/cleansing_script/tests/09_insert_blank_input.txt" />
     <entry file="file://$PROJECT_DIR$/configurations/cleansing_script/tests/10_insert_blank_input.txt" />
@@ -1031,26 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/pmr_v2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-533">
-          <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/splunk_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="86" column="53" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/relationship_configuration.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-380">
@@ -1058,32 +1056,6 @@
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/mailsv/secure.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="-102" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/www2/access.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="408">
-          <caret line="114" column="315" selection-start-line="114" selection-start-column="315" selection-end-line="114" selection-end-column="315" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/www1/access.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="1717">
-          <caret line="101" column="338" selection-start-line="101" selection-start-column="338" selection-end-line="101" selection-end-column="338" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/root/www1/secure.log">
-      <provider selected="true" editor-type-id="LogFileEditorProvider">
-        <state relative-caret-position="1768">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
         </state>
       </provider>
     </entry>
@@ -1098,6 +1070,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3672">
           <caret line="228" column="88" selection-start-line="228" selection-start-column="88" selection-end-line="228" selection-end-column="88" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/filter_configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -1124,10 +1106,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/file_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/mailsv/secure.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/splunk_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1462">
+          <caret line="91" column="82" selection-start-line="91" selection-start-column="82" selection-end-line="91" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/pmr_v2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="68" column="63" selection-start-line="68" selection-start-column="63" selection-end-line="68" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/www1/access.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="306">
+          <caret line="18" column="36" selection-end-line="101" selection-end-column="338" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/www1/secure.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="1768">
+          <caret line="104" selection-end-line="160" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/www2/access.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider">
+        <state relative-caret-position="1938">
+          <caret line="114" column="315" selection-end-line="114" selection-end-column="315" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configurations/root/www3/secure.log">
+      <provider selected="true" editor-type-id="LogFileEditorProvider" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/configurations/root/sample_image.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="58" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
+          <caret line="1" column="56" selection-start-line="1" selection-start-column="56" selection-end-line="1" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -1144,22 +1183,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/filter_configuration.py">
+    <entry file="file://$PROJECT_DIR$/graph/graph_tut.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1982">
-          <caret line="22" column="50" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+        <state relative-caret-position="68">
+          <caret line="46" selection-start-line="46" selection-end-line="68" selection-end-column="54" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configurations/file_handler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="677">
-          <caret line="137" column="34" lean-forward="true" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
