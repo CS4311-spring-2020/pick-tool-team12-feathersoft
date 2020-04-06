@@ -20,8 +20,6 @@ class SplunkIntegrator():
         self.file_validator = FileValidator(datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
                                             datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
 
-
-
         # Create a Service instance and log in
 
         self.service = client.connect(
@@ -30,13 +28,29 @@ class SplunkIntegrator():
             username=self._username,
             password=self._password)
 
-
     # Takes a file as input and uploads to splunk
 
     def create_index(self,index_name):
         self.service.indexes.create(index_name)
 
-    def set_index(self,index_name):
+    def get_users(self):
+        kwargs_normalsearch = {"exec_mode": "normal",
+                               "earliest_time": "-1m",
+                               "latest_time": "now",}
+        query = "| rest /services/authentication/current-context splunk_server=local|table username "
+        job = self.service.jobs.create(query=query,**kwargs_normalsearch)
+
+        # # Print the users' real names, usernames, and roles
+        # print("Users:")
+        # for user in users:
+        #     print("%s (%s)" % (user.realname, user.name))
+        #     for role in user.role_entities:
+        #         print(" - ", role.name)
+        job_results = results.ResultsReader(job.results())
+        for job in job_results:
+            print(job)
+
+    def set_index(self, index_name):
         self._index = index_name
 
     def upload_file(self,path,index):
@@ -58,6 +72,31 @@ class SplunkIntegrator():
         for job in self.service.jobs:
             print(job)
 
+    def create_user(self, username, password):
+        # Create a new user
+        newuser = self.service.users.create(username=username,
+                                       password=password,
+                                       roles=["user"])
+        # Print the user's properties
+        print("Properties of the new user '" + newuser.name + "':\n")
+        print("Full name:  ", newuser["realname"])
+        print("Default app:", newuser["defaultApp"])
+        print("Time zone:  ", newuser["tz"])
+        print("Role:")
+        # Print the roles for the user
+        for role in newuser.role_entities:
+            print(" - ", role.name)
+
+        # Change some properties and update the server
+        kwargs = {"realname": "Test User",
+                  "defaultApp": "launcher",
+                  "tz": "Europe/Paris",
+                  "roles": "can_delete"}
+        newuser.update(**kwargs).refresh()
+
+        # Print updated info
+        print("\nUpdated properties")
+
     def download_log_files(self,count):
         # Retrieve search jobs
         jobs = self.service.jobs
@@ -74,22 +113,36 @@ class SplunkIntegrator():
         i = 0
         for result in job_results:
             if True:
-                self.entries.append(SignificantLogEntry(i,result['_indextime'],result['index'],result['host'],result['source'],result['sourcetype']))
+                self.entries.append(SignificantLogEntry(i, result['_indextime'], result['index'], result['host'],
+                                                        result['source'], result['sourcetype']))
             i += 1
 
         return self.entries
 
-    def cleanse_file(self,file):
+    def cleanse_file(self, file):
         return self.file_cleanser.cleanse_file(file)
 
-    def validate_file(self,file,event_start, event_end):
+    def enable_roles(self, role):
+        permissions = ''
+        role = self.service.roles[role]
+        role.grant('change_own_password', 'search', 'input_file', 'admin_all_objects',
+                   'rest_apps_management', 'rest_apps_view', 'rest_properties_get', 'rest_properties_set',
+                   'edit_sourcetypes')
+
+    def validate_file(self, file, event_start, event_end):
         self.file_validator.start_timestamp = event_start
         self.file_validator.end_timestamp = event_end
         return self.file_validator.validate_file(file)
 
 
 if __name__ == '__main__':
-    client = SplunkIntegrator('localhost', 8089, 'main', 'asosa19', 'feathersoft')
+    #client = SplunkIntegrator('192.168.81.1', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
+    #client.create_user('sroach','catvideos')
+    client2 = SplunkIntegrator('192.168.81.1', 8089, 'main', 'asosa19', 'feathersoft')
+    client3 = SplunkIntegrator('192.168.81.1', 8089, 'main', 'asosa19', 'feathersoft')
+    client.get_users()
+
+
 
 
 

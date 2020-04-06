@@ -10,3 +10,11 @@ class Vector:
         self._vector_name = vector_name
         self._vector_description = vector_description
 
+    @property
+    def get_vector_name(self):
+        return self._vector_name
+
+    @property
+    def get_vector_description(self):
+        return self._vector_description
+

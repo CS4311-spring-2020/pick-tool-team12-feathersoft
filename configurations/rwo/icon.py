@@ -1,6 +1,11 @@
 
 class Icon:
 
+    """
+    Attributes:
+        icon_name:
+        file_path:
+    """
     def __init__(self, icon_name, file_path):
         """
 

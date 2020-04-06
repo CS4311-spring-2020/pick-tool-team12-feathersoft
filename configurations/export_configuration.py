@@ -4,8 +4,6 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 class ExportConfigurationWindow(QWidget):
-
-
     def __init__(self):
         super().__init__()
         self.setGeometry(650,300, 600,400)

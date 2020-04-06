@@ -1,4 +1,4 @@
-from node_graphics_scene import QDMGraphicsScene
+from configurations.node_graphics_scene import QDMGraphicsScene
 
 class Scene:
 

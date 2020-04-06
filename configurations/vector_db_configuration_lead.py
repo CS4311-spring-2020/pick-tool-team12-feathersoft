@@ -62,12 +62,12 @@ class VectorDBConfigurationLead(QWidget):
             comboboxGraph = QComboBox()
             comboboxGraph.addItems(['', '1', '2'])
 
-            tableitemVector = QTableWidget()
-            tableitemVector.setRowCount(4)
-            tableitemVector.setVerticalHeaderItem(0,QTableWidgetItem('Vector 1'))
-            tableitemVector.setVerticalHeaderItem(1, QTableWidgetItem('Vector 2'))
-            tableitemVector.setVerticalHeaderItem(2, QTableWidgetItem('Vector 3'))
-            tableitemVector.setVerticalHeaderItem(3, QTableWidgetItem('Vector 4'))
+            self.table = QTableWidget()
+            self.table.setRowCount(4)
+            self.table.setVerticalHeaderItem(0,QTableWidgetItem('Vector 1'))
+            self.table.setVerticalHeaderItem(1, QTableWidgetItem('Vector 2'))
+            self.table.setVerticalHeaderItem(2, QTableWidgetItem('Vector 3'))
+            self.table.setVerticalHeaderItem(3, QTableWidgetItem('Vector 4'))
 
             tableitem_IP = QTableWidgetItem()
             tableitem_IP.setData(Qt.DisplayRole, '127.0.0.1')
@@ -88,7 +88,7 @@ class VectorDBConfigurationLead(QWidget):
 
             approvalTable.setItem(i,0,tableitem_IP)
             approvalTable.setCellWidget(i, 1, tableitemTimestamp)
-            approvalTable.setCellWidget(i, 2, tableitemVector)
+            approvalTable.setCellWidget(i, 2, self.table)
             approvalTable.setItem(i, 3, tableitemDescription)
             approvalTable.setItem(i, 4, tableitemSummary)
             approvalTable.setCellWidget(i,5,comboboxGraph)

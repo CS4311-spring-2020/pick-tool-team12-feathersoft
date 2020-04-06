@@ -5,6 +5,11 @@ from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import os
 
+"""
+    The log file configuration will be used to display the various log files ingested into the system as well as their
+    enforcement action reports.
+"""
+
 
 class LogFileConfigurationWindow(QWidget):
     def __init__(self):
@@ -24,9 +29,8 @@ class LogFileConfigurationWindow(QWidget):
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
 
         self.table = QTableWidget(self)
-        if (self.table.columnCount() < 6):
-            self.table.setColumnCount(6)
 
+        self.table.setColumnCount(6)
         #Setting Headers for Log File Table
         self.table.setHorizontalHeaderItem(0, QTableWidgetItem(QIcon('icons/up_arrow.png'),'File Name'))
         self.table.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Source'))
@@ -35,23 +39,9 @@ class LogFileConfigurationWindow(QWidget):
         self.table.setHorizontalHeaderItem(4, QTableWidgetItem(QIcon('icons/up_arrow.png'), 'Ingestion Status'))
         self.table.setHorizontalHeaderItem(5, QTableWidgetItem(QIcon(''), 'Enforcement Action Report'))
 
-        #Populating Values in Table from dummy file
-        THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-        dummy_file = os.path.join(THIS_FOLDER, 'dummyFileConfig.txt')
-
-        dummyFileConfig = [line.split(',') for line in open(dummy_file,'r').readlines()]
-        self.table.setRowCount(len(dummyFileConfig))
-
-        i = 0
         emptyHeader = QTableWidgetItem()
-
-        self.table.setObjectName(u"tableWidget")
-        self.table.setMinimumSize(QSize(680, 55))
         self.table.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
-        self.table.setShowGrid(True)
         self.table.setGridStyle(Qt.SolidLine)
-        self.table.setSortingEnabled(False)
-        self.table.setWordWrap(True)
         self.table.horizontalHeader().setCascadingSectionResizes(True)
         self.table.horizontalHeader().setProperty("showSortIndicator", False)
         self.table.horizontalHeader().setStretchLastSection(True)
@@ -78,20 +68,14 @@ class LogFileConfigurationWindow(QWidget):
         self.e.populate_table(self.er_reports[index])
         self.e.show()
 
-
-
-        # self.w = EnforcementActionReport()
-        # self.w.show()
-
-
     def populate_table(self,log_files):
         self.table.setRowCount(len(log_files))
         for i in range(len(log_files)):
-                logNameItem = QTableWidgetItem(log_files[i].name.split('/')[-1])
-                sourceItem = QTableWidgetItem(str(log_files[i].name))
-                cleansedItem = QTableWidgetItem(str(log_files[i].cleansing_status))
-                validatedItem = QTableWidgetItem(str(log_files[i].validation_status))
-                ingestedItem = QTableWidgetItem(str(log_files[i].ingestion_status))
+                logNameItem = QTableWidgetItem(log_files[i].get_name.split('/')[-1])
+                sourceItem = QTableWidgetItem(str(log_files[i].get_name))
+                cleansedItem = QTableWidgetItem(str(log_files[i].get_cleansing_status))
+                validatedItem = QTableWidgetItem(str(log_files[i].get_validation_status))
+                ingestedItem = QTableWidgetItem(str(log_files[i].get_ingestion_status))
                 self.table.setItem(i, 0, logNameItem)
                 self.table.setItem(i, 1, sourceItem)
                 self.table.setItem(i, 2, cleansedItem)
@@ -99,9 +83,6 @@ class LogFileConfigurationWindow(QWidget):
                 self.table.setItem(i, 4, ingestedItem)
                 self.table.setCellWidget(i, 5, QPushButton('View'))
                 self.table.cellWidget(i,5).clicked.connect(self.display)
-
-
-
 
     def header_clicked(self):
         if not self.table.rowCount() == 0:
@@ -138,32 +119,17 @@ class EnforcementActionReport(QWidget):
         self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
 
 
-        #Creating table for enforcement action report window
+        # Creating table for enforcement action report window
         self.reportTable = QTableWidget(self)
-        if (self.reportTable.columnCount() < 2):
-            self.reportTable.setColumnCount(2)
 
-        #Creating headers for columns in table
+        # Creating headers for columns in table
+
         lineNumHeader = QTableWidgetItem('Line Number')
         self.reportTable.setHorizontalHeaderItem(0, lineNumHeader)
         errorMsgHeader = QTableWidgetItem('Error Message')
         self.reportTable.setHorizontalHeaderItem(1, errorMsgHeader)
 
-
-
-        THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-        dummy_file = os.path.join(THIS_FOLDER, 'dummyEnforcementReport.txt')
-
-        dummyEnforcementReport = [line.split(':') for line in open(dummy_file,'r').readlines()]
-        self.reportTable.setRowCount(len(dummyEnforcementReport))
-
-        i = 0
         emptyHeader = QTableWidgetItem()
-
-
-        self.reportTable.setObjectName(u"reportTable")
-        self.reportTable.setSortingEnabled(True)
-        self.reportTable.horizontalHeader().setProperty("showSortIndicator", True)
         self.reportTable.horizontalHeader().setStretchLastSection(True)
         self.reportTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 

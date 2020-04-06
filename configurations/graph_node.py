@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
+from configurations.node_socket import Socket
 
 
 class QDMGraphicsNode(QGraphicsItem):
@@ -30,8 +31,12 @@ class QDMGraphicsNode(QGraphicsItem):
         self.initTitle()
         self.title = self.node.title
 
+        # init sockets
+        self.initSockets()
+
         # init contents
         self.initContents()
+
 
         self.initUI()
 
@@ -72,6 +77,10 @@ class QDMGraphicsNode(QGraphicsItem):
         self._title = value
         self.title_item.setPlainText(self.title)
 
+
+    def initSockets(self):
+        pass
+
     def paint(self, QPainter, QStyleOptionGraphicsItem, widget=None):
 
         # title
@@ -105,7 +114,11 @@ class QDMGraphicsNode(QGraphicsItem):
 
 class Node():
 
-    def __init__(self, scene, title):
+    def __init__(self, scene, title, inputs=None, outputs=None):
+        if outputs is None:
+            outputs = []
+        if inputs is None:
+            inputs = []
         self.scene = scene
 
         self.title = title
@@ -118,8 +131,12 @@ class Node():
 
         self.grNode.title = title
 
-        self.input = []
-        self.output = []
+        self.inputs = inputs
+        self.outputs = outputs
+
+        for item in inputs:
+            socket = Socket(node=self)
+            self.inputs.append(socket)
 
 
 class QDMNodeContentWidget(QWidget):
@@ -134,8 +151,14 @@ class QDMNodeContentWidget(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.layout)
 
-        self.wdg_label = QLabel('Some Title')
+        self.wdg_label = QLabel('Name')
         self.layout.addWidget(self.wdg_label)
-        self.layout.addWidget(QTextEdit('foo'))
+        self.layout.addWidget(QLabel('Description'))
+        self.layout.addWidget(QLabel('Description'))
+        self.layout.addWidget(QLabel('Description'))
+
+
+
+
 
 
