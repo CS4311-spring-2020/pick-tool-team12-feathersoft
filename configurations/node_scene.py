@@ -5,7 +5,8 @@ class Scene:
     def __init__(self):
         self.nodes = []
         self.edges = []
-
+        self.x = 0
+        self.y = 0
         self.scene_width = 64000
         self.scene_height = 64000
 
@@ -28,4 +29,9 @@ class Scene:
 
     def removeEdge(self, edge):
         self.edges.remove(edge)
+
+
+
+
+
 

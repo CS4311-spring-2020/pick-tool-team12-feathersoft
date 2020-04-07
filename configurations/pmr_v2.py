@@ -64,7 +64,7 @@ class PMR(QMainWindow):
         # Disable access to the rest of the screens until an event has been configured.
         # This is because it would not make sense to continue until an event is valid.
 
-        #self.disable_toolbar()
+        self.disable_toolbar()
 
         # Enable the rest of the toolbar after event has been configured
         self.event_configuration.configured.connect(self.enable_toolbar)
@@ -158,9 +158,9 @@ class PMR(QMainWindow):
         selected_vectors = set()
         for i in range(self.vector_configuration.table.rowCount()):
             if self.vector_configuration.table.cellWidget(i,2).isChecked():
-                name, desc = self.vector_configuration.table.item(i,0).text(),self.vector_configuration.table.item(i,1).text()
+                name, desc = self.vector_configuration.table.item(i,0),self.vector_configuration.table.item(i,1)
                 if name is not None and desc is not None:
-                    selected_vectors.add(Vector(name,desc))
+                    selected_vectors.add(Vector(name.text(),desc.text()))
 
         self.vector_db_configuration_non_lead.table.setRowCount(len(selected_vectors))
         for i in range(len(selected_vectors)):

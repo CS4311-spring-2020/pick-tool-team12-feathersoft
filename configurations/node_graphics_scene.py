@@ -7,7 +7,6 @@ import math
 class QDMGraphicsScene(QGraphicsScene):
     def __init__(self, scene, parent=None):
         super().__init__(parent)
-
         self.scene = scene
 
         # settings
@@ -66,6 +65,13 @@ class QDMGraphicsScene(QGraphicsScene):
 
         painter.setPen(self._pen_dark)
         painter.drawLines(*lines_dark)
+
+
+    # def mouseMoveEvent(self, event):
+    #     self.x = event.scenePos().x()
+    #     self.y = event.scenePos().y()
+    #
+    #     print(event.scenePos().x(),event.scenePos().y())
 
 
 

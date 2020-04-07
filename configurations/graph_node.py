@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-from configurations.node_socket import Socket
+from configurations.node_socket import *
+import os
 
 
 class QDMGraphicsNode(QGraphicsItem):
@@ -45,8 +46,8 @@ class QDMGraphicsNode(QGraphicsItem):
       return QRectF(
           0,
           0,
-          2 * self.edge_size + self.width,
-          2 * self.edge_size + self.height
+          self.width,
+          self.height
       )
 
     def initUI(self):
@@ -114,36 +115,55 @@ class QDMGraphicsNode(QGraphicsItem):
 
 class Node():
 
-    def __init__(self, scene, title, inputs=None, outputs=None):
-        if outputs is None:
-            outputs = []
-        if inputs is None:
-            inputs = []
+    def __init__(self, scene, title, icon, inputs=[], outputs=[]):
         self.scene = scene
 
         self.title = title
-
-        self.content = QDMNodeContentWidget()
+        self.icon = icon
+        self.content = QDMNodeContentWidget(self.icon)
         self.grNode = QDMGraphicsNode(self)
 
         self.scene.addNode(self)
         self.scene.grScene.addItem(self.grNode)
 
         self.grNode.title = title
+        self.num_inputs = len(inputs)
+        self.output_args = outputs
+        self.inputs = []
+        self.outputs = []
 
-        self.inputs = inputs
-        self.outputs = outputs
-
+        counter = 0
         for item in inputs:
-            socket = Socket(node=self)
+            socket = Socket(node=self, index=counter,position=LEFT_TOP)
+            counter += 1
             self.inputs.append(socket)
+
+        counter = 0
+        for item in outputs:
+            socket = Socket(node=self, index=counter,position=RIGHT_TOP)
+            counter += 1
+            self.outputs.append(socket)
+
+
+    @property
+    def pos(self):
+        return self.grNode.pos()
+
+    def setPosition(self,x,y):
+        self.grNode.setPos(x,y)
+
+    def getSocketPosition(self, index, position):
+        x = 0 if position in (LEFT_TOP,LEFT_MIDDLE,LEFT_BOTTOM) else self.grNode.width
+        y = (self.grNode.edge_size + index * (self.grNode.height/self.num_inputs))
+
+        return x,y
 
 
 class QDMNodeContentWidget(QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, icon, parent=None):
         super().__init__(parent)
-
+        self.icon = icon
         self.initUI()
 
     def initUI(self):
@@ -151,11 +171,11 @@ class QDMNodeContentWidget(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.layout)
 
-        self.wdg_label = QLabel('Name')
+        self.pixmap = QPixmap(os.path.abspath(self.icon)).scaled(QSize(160, 200))
+        self.wdg_label = QLabel()
+        self.wdg_label.setPixmap(self.pixmap)
         self.layout.addWidget(self.wdg_label)
-        self.layout.addWidget(QLabel('Description'))
-        self.layout.addWidget(QLabel('Description'))
-        self.layout.addWidget(QLabel('Description'))
+
 
 
 

@@ -41,7 +41,7 @@ class VectorConfiguration(QWidget):
         self.button_layout.layout().addWidget(self.deleteButton)
 
 
-        self.table = QTableWidget(1, 3, self)
+        self.table = QTableWidget(0, 3, self)
         self.main_layout.addWidget(self.table)
         self.main_layout.addWidget(self.button_layout)
         # self.table.verticalHeader().setVisible(False)
@@ -55,8 +55,8 @@ class VectorConfiguration(QWidget):
             checkbox = QCheckBox()
             checkbox.setCheckState(Qt.Unchecked)
             checkbox.clicked.connect(self.update_vector_db)
-            self.table.setItem(i,0,QTableWidgetItem())
-            self.table.setItem(i,1,QTableWidgetItem())
+            self.table.setCellWidget(i,0,QTextEdit())
+            self.table.setCellWidget(i,1,QTextEdit())
             self.table.setCellWidget(i, 2, checkbox)
 
 
@@ -76,7 +76,7 @@ class VectorConfiguration(QWidget):
         self.vector_selected.emit()
 
     def header_clicked(self):
-        if not self.table.rowCount() == 0:
+        if self.table.rowCount() > 0:
             col = self.table.currentColumn()
             self.slot_clicks[col] += 1
             if col == 2:
@@ -84,7 +84,8 @@ class VectorConfiguration(QWidget):
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/checked.png'))
                     for row in range(self.table.rowCount()):
                         self.table.cellWidget(row, col).setCheckState(Qt.Checked)
-                        self.vector_selected.emit()
+                        if self.table.item(row, 0) and self.table.item(row, 1):
+                            self.vector_selected.emit()
                 else:
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/unchecked.png'))
                     for row in range(self.table.rowCount()):

@@ -19,6 +19,7 @@ class QDMGraphicsView(QGraphicsView):
         self.zoom = 10
         self.zoomStep = 1
         self.zoomRange = [0, 10]
+        self.setMouseTracking(True)
 
     def initUI(self):
         self.setRenderHints(QPainter.Antialiasing | QPainter.HighQualityAntialiasing | QPainter.TextAntialiasing | QPainter.SmoothPixmapTransform)
@@ -74,6 +75,12 @@ class QDMGraphicsView(QGraphicsView):
         # Set Scene scale
         if not clamped or self.zoomClamp is False:
             self.scale(zoomFactor, zoomFactor)
+    #
+    # def mouseMoveEvent(self, event):
+    #     self.grScene.x = event.x()
+    #     self.grScene.y = event.y()
+    #
+    #     print(event.x(), event.y())
 
 
 
