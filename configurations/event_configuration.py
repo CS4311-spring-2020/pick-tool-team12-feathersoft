@@ -368,7 +368,7 @@ class EventConfigurationWindow(QWidget):
             validation_status = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
             acknowledgement_status = cleansing_status and validation_status
             if acknowledgement_status:
-                self.splunk_client.upload_file(file, 'demo')
+                self.splunk_client.upload_file(file, self.splunk_index_line_edit.text().strip())
                 ingestion_status = acknowledgement_status and cleansing_status and validation_status
             else:
                 ingestion_status = False

@@ -93,17 +93,17 @@ class FilterConfigurationWindow(QWidget):
 
         self.event_type_button_group = QButtonGroup()
 
-        self.event_red_button = QRadioButton('Red', self)
+        self.event_red_button = QRadioButton('red', self)
         self.event_red_button.setObjectName(u"redButton2")
         self.event_red_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.event_red_button, 6, 1, 1, 1)
 
-        self.event_blue_button = QRadioButton('Blue', self)
+        self.event_blue_button = QRadioButton('blue', self)
         self.event_blue_button.setObjectName(u"blueButton2")
         self.event_blue_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.event_blue_button, 7, 1, 1, 1)
 
-        self.event_white_button = QRadioButton('White', self)
+        self.event_white_button = QRadioButton('white', self)
         self.event_white_button.setObjectName(u"whiteButton2")
         self.event_white_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.event_white_button, 8, 1, 1, 1)

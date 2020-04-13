@@ -103,7 +103,7 @@ class SplunkIntegrator():
         # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
         # Query criteria
-        query = "search * root"
+        query = "search *source=red"
 
         # Create search job
         job = jobs.create(query, **blocking_search)
@@ -139,8 +139,8 @@ if __name__ == '__main__':
     #client = SplunkIntegrator('192.168.81.1', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
     #client.create_user('sroach','catvideos')
     client2 = SplunkIntegrator('192.168.81.1', 8089, 'main', 'asosa19', 'feathersoft')
-    client3 = SplunkIntegrator('192.168.81.1', 8089, 'main', 'asosa19', 'feathersoft')
-    client.get_users()
+    client3 = SplunkIntegrator('192.168.81.1', 8089, 'main', 'Feathersoft', 'stevenroach')
+    client2.download_log_files(10)
 
 
 

@@ -62,13 +62,13 @@ class LogEntryConfigurationWindow(QWidget):
         # Hiding the row labels in the table
         self.table.verticalHeader().setVisible(False)
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
-        self.menuBar = QMenuBar()
-        self.filter_options = self.menuBar.addMenu('Filter Options')
-        self.fa = QAction('Filter')
-        self.fa.setShortcut('Ctrl+F')
-        self.filter_options.addAction(self.fa)
-        self.filter_options.triggered[QAction].connect(self.filter_action)
-        self.layout.addWidget(self.label)
+        self.widget = QWidget()
+        self.layout2 = QHBoxLayout()
+        self.layout2.addWidget(self.label)
+        self.filter_button = QPushButton('Filter',clicked=self.filter_action)
+        self.layout2.addWidget(self.filter_button)
+        self.widget.setLayout(self.layout2)
+        self.layout.addWidget(self.widget)
         self.layout.addWidget(self.table)
         self.setLayout(self.layout)
 
@@ -105,9 +105,33 @@ class LogEntryConfigurationWindow(QWidget):
         self.filter.show()
         self.filter.closeEvent = self.apply_filter
 
+    def in_source(self,source,entry):
+        return any(value in entry.get_source for value in source)
+
+    def in_source_type(self,source_type, entry):
+        return any(value in entry.get_source_type for value in source_type)
+
+    def in_keyword(self,keywords,entry):
+        return any(value in entry.get_content for value in keywords)
+
+    def in_timestamp_range(self,start,end,string):
+        pass
+
+
+
     def apply_filter(self, event):
         criteria = self.filter.filter_criteria
-        filtered_logs = []
+        filtered_entries = set()
+
+        keywords = list(criteria['Keywords'])
+        creator = list(criteria['Creator'])
+        event_type = list(criteria['Event Type'])
+        timestamp = list(criteria['Timestamp'])
+
+        log = filter(self.in_source,self.entries)
+        print(log)
+
+
 
     def header_clicked(self):
         if not self.table.rowCount() == 0:
