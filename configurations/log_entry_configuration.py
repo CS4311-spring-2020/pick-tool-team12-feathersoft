@@ -137,16 +137,6 @@ class LogEntryConfigurationWindow(QWidget):
         filter_creator = [entry for entry in self.entries if self.in_source(creator, entry)]
         valid_timestamps = [entry for entry in self.entries if self.in_timestamp_range(timestamp[0], timestamp[1],
                                                                                        entry.get_log_entry_timestamp)]
-
-        for entry in filter_source:
-            print(entry)
-
-        for entry in filter_creator:
-            print(entry)
-
-        for entry in valid_timestamps:
-            print(entry)
-
         for entry in filter_source:
             self.filtered_entries.append(entry)
 
@@ -157,7 +147,6 @@ class LogEntryConfigurationWindow(QWidget):
             self.filtered_entries.append(entry)
 
         self.table.setRowCount(0)
-
         self.populate_table(self.filtered_entries)
 
     def header_clicked(self):

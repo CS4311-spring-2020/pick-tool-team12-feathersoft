@@ -12,7 +12,6 @@ from PyQt5.QtWidgets import QDateTimeEdit
 
 class FilterConfigurationWindow(QWidget):
 
-
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 474, 664)
@@ -22,7 +21,7 @@ class FilterConfigurationWindow(QWidget):
         self.filter_criteria['Keywords'] = set()
         self.filter_criteria['Creator'] = set()
         self.filter_criteria['Event Type'] = set()
-        self.filter_criteria['Timestamp'] = list()
+        self.filter_criteria['Timestamp'] = [None] * 2
         self.ui()
 
     # The ui method is used to generate the window
@@ -135,7 +134,6 @@ class FilterConfigurationWindow(QWidget):
         self.creator_label.setObjectName(u"creatorLabel")
         self.creator_label.setFont(font)
         self.gridLayout.addWidget(self.creator_label, 3, 0, 1, 1)
-        #self.show()
 
     # Handling click events for the creator buttons
     def creator_button_group_clicked(self):
@@ -162,9 +160,6 @@ class FilterConfigurationWindow(QWidget):
 
     # #Handling apply button event
     def apply_button_clicked(self):
-        self.filter_criteria["Timestamp"].append(self.start_timestamp_edit.text())
-        self.filter_criteria["Timestamp"].append(self.end_timestamp_edit.text())
+        self.filter_criteria["Timestamp"][0] = self.start_timestamp_edit.text()
+        self.filter_criteria["Timestamp"][1] = self.end_timestamp_edit.text()
         self.close()
-
-
-

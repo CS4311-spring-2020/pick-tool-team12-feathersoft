@@ -157,15 +157,3 @@ class SplunkIntegrator():
 
         else:
             return 'root'
-
-
-if __name__ == '__main__':
-    client3 = SplunkIntegrator('192.168.81.1', 8089, 'main', 'Feathersoft', 'stevenroach')
-    client3.download_log_files(100, 'demo')
-    client3.create_index('demo2')
-
-
-
-
-
-
