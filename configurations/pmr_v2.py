@@ -35,7 +35,7 @@ class PMR(QMainWindow):
         self.event_configuration = EventConfigurationWindow()
         self.vector_configuration = VectorConfiguration()
         self.log_file_configuration = LogFileConfigurationWindow()
-        self.log_entry_configuration = LogEntryConfigurationWindow()
+        self.log_entry_configuration = LogEntryConfigurationWindow(self.event_configuration.files)
         self.export_configuration = ExportConfigurationWindow()
         self.change_configuration = ChangeConfigurationWindow()
         self.vector_db_configuration_lead = VectorDBConfigurationLead()

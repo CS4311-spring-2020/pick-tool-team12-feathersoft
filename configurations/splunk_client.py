@@ -97,13 +97,14 @@ class SplunkIntegrator():
         # Print updated info
         print("\nUpdated properties")
 
-    def download_log_files(self,count):
+    def download_log_files(self,count, index):
         # Retrieve search jobs
+        self.set_index(index)
         jobs = self.service.jobs
         # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
         # Query criteria
-        query = "search *source=red"
+        query = "search root "
 
         # Create search job
         job = jobs.create(query, **blocking_search)
@@ -116,7 +117,8 @@ class SplunkIntegrator():
                 self.entries.append(SignificantLogEntry(i, result['_indextime'], result['index'], result['host'],
                                                         result['source'], result['sourcetype']))
             i += 1
-
+        for entry in self.entries:
+            print(entry.get_source.split("\\")[1])
         return self.entries
 
     def cleanse_file(self, file):
@@ -136,11 +138,8 @@ class SplunkIntegrator():
 
 
 if __name__ == '__main__':
-    #client = SplunkIntegrator('192.168.81.1', 8089, 'feathersoft', 'Feathersoft', 'stevenroach')
-    #client.create_user('sroach','catvideos')
-    client2 = SplunkIntegrator('192.168.81.1', 8089, 'main', 'asosa19', 'feathersoft')
     client3 = SplunkIntegrator('192.168.81.1', 8089, 'main', 'Feathersoft', 'stevenroach')
-    client2.download_log_files(10)
+    client3.download_log_files(100, 'demo')
 
 
 

@@ -5,7 +5,7 @@ from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import os
 import time
-import datetime
+from datetime import datetime, timedelta
 from configurations.filter_configuration import FilterConfigurationWindow
 
 
@@ -17,11 +17,12 @@ class LogEntryConfigurationWindow(QWidget):
     _log_entry_flagged = pyqtSignal()
 
 
-    def __init__(self):
+    def __init__(self,log_files):
         super().__init__()
         self.setGeometry(200, 400, 800, 620)
         self.setWindowTitle("Log Entry Configuration")
         self.filter = FilterConfigurationWindow()
+        self.logs = log_files
         self.UI()
 
     def UI(self):
@@ -58,7 +59,6 @@ class LogEntryConfigurationWindow(QWidget):
         self.header.setStretchLastSection(True)
         self.header.setCascadingSectionResizes(True)
 
-
         # Hiding the row labels in the table
         self.table.verticalHeader().setVisible(False)
         self.table.horizontalHeader().sectionClicked.connect(self.header_clicked)
@@ -81,8 +81,7 @@ class LogEntryConfigurationWindow(QWidget):
             list_value = QTableWidgetItem()
             list_value.setData(Qt.DisplayRole, int(entries[i].get_log_entry_number))
             time_stamp = QTableWidgetItem()
-            time_stamp.setData(Qt.DisplayRole, str(datetime.datetime.fromtimestamp(int(entries[i]
-                                                                                       .get_log_entry_timestamp))))
+            time_stamp.setData(Qt.DisplayRole, str(datetime.fromtimestamp(int(entries[i].get_log_entry_timestamp))))
             self.table.setItem(i,0,list_value)
             self.table.setItem(i,1,time_stamp)
             combobox = QComboBox()
@@ -97,7 +96,6 @@ class LogEntryConfigurationWindow(QWidget):
             checkbox.clicked.connect(self.update_graph)
             self.table.setCellWidget(i,7,checkbox)
 
-
     def update_graph(self):
         self._log_entry_flagged.emit()
 
@@ -106,30 +104,60 @@ class LogEntryConfigurationWindow(QWidget):
         self.filter.closeEvent = self.apply_filter
 
     def in_source(self,source,entry):
-        return any(value in entry.get_source for value in source)
+        return any(value in self.find_filepath(entry.get_source.split('\\')[1]) for value in source)
 
     def in_source_type(self,source_type, entry):
-        return any(value in entry.get_source_type for value in source_type)
+        return any(value in self.find_filepath(entry.get_source_type) for value in source_type)
 
     def in_keyword(self,keywords,entry):
-        return any(value in entry.get_content for value in keywords)
+        return any(value in entry.get_source or entry.get_source_type or entry.get_content for value in keywords)
 
     def in_timestamp_range(self,start,end,string):
-        pass
+        formatting = '%m/%d/%y %H:%M %p'
+        return datetime.strptime(start.strip(),formatting) <= datetime.fromtimestamp(int(string)) <= \
+               datetime.strptime(end.strip(),formatting)
 
 
+    def find_filepath(self,search):
+        for file in self.logs:
+            if search in file:
+                return file
 
     def apply_filter(self, event):
         criteria = self.filter.filter_criteria
         filtered_entries = set()
-
         keywords = list(criteria['Keywords'])
         creator = list(criteria['Creator'])
         event_type = list(criteria['Event Type'])
-        timestamp = list(criteria['Timestamp'])
+        timestamp = criteria['Timestamp']
+        filter_source = [entry for entry in self.entries if self.in_source(event_type, entry)]
+        filter_creator = [entry for entry in self.entries if self.in_source_type(creator, entry)]
+        valid_timestamps = [entry for entry in self.entries if self.in_timestamp_range(timestamp[0],timestamp[1],
+                                                                                       entry.get_log_entry_timestamp)]
 
-        log = filter(self.in_source,self.entries)
-        print(log)
+
+        for entry in filter_source:
+            print(entry)
+
+        for entry in filter_creator:
+            print(entry)
+
+        for entry in valid_timestamps:
+            print(entry)
+
+
+
+
+        filtered_entries.add(entry for entry in filter_source)
+        filtered_entries.add(entry for entry in filter_creator)
+        filtered_entries.add(entry for entry in valid_timestamps)
+
+        filtered_entries = list(filtered_entries)
+        print(filtered_entries)
+        for entry in filtered_entries:
+            print(entry)
+        # self.table.setRowCount(0)
+        # self.populate_table(filtered_entries)
 
 
 

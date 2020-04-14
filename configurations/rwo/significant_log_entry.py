@@ -60,3 +60,6 @@ class SignificantLogEntry:
     def get_source_type(self):
         return self._source_type
 
+    def __str__(self):
+        return f"Number: {self._log_entry_number} \nTimestamp: {self._log_entry_timestamp} + \n + Content: {self._log_entry_content} \n " \
+               f"Host: {self._host}\n Source: {self._source}\n Source Type {self._source_type}"

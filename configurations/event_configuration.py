@@ -94,14 +94,10 @@ class EventConfigurationWindow(QWidget):
         self.lead_ip_address_line_edit = QLineEdit()
         self.lead_ip_address_line_edit.setObjectName('Lead')
         self.server_port_line_edit = QLineEdit()
-        #self.server_port_line_edit.setEnabled(False)
         self.splunk_index_line_edit = QLineEdit()
-        #self.splunk_index_line_edit.setEnabled(False)
         self.splunk_username_line_edit = QLineEdit()
-        #self.splunk_username_line_edit.setEnabled(False)
         self.splunk_password_line_edit = QLineEdit()
         self.splunk_password_line_edit.setEchoMode(QLineEdit.Password)
-        #self.splunk_password_line_edit.setEnabled(False)
 
         self.team_layout.layout().addRow('Lead IP Address', self.lead_ip_address_line_edit)
         self.team_layout.layout().addRow('Server Port', self.server_port_line_edit)
@@ -162,17 +158,6 @@ class EventConfigurationWindow(QWidget):
         self.layout.addWidget(self.team_layout)
         self.layout.addWidget(self.directory_configuration_layout)
         self.setLayout(self.layout)
-
-
-    # def configure_lead_fields(self):
-    #     children = self.team_layout.children()
-    #     if self.lead_checkbox.isChecked():
-    #         for i in range(len(children)):
-    #             if not children[i].isEnabled():
-    #                 children[i].setEnabled(True)
-    #     else:
-    #         for i in range(4,12):
-    #             children[i].setEnabled(False)
 
 
     def validate_timestamp(self):
@@ -269,7 +254,6 @@ class EventConfigurationWindow(QWidget):
                         except ValueError:
                             QMessageBox.critical(self, 'Port Number Error',
                                                  'Port Number must be numerical')
-
 
     def open_file(self):
         file = str(QFileDialog.getExistingDirectory(QFileDialog(), "Select Directory",
@@ -373,7 +357,7 @@ class EventConfigurationWindow(QWidget):
             else:
                 ingestion_status = False
             self.logs.append(LogFile(file, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
-        self.splunk_client.download_log_files(count=count)
+        self.splunk_client.download_log_files(count=count,index=self.splunk_index_line_edit.text().strip())
         self.ingestion_complete.emit(True)
         self.logs_ingested.emit(True)
         self.reports_generated.emit(True)

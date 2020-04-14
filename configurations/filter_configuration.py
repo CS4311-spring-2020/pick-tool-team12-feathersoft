@@ -1,6 +1,9 @@
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+import datetime
+
+from PyQt5.QtWidgets import QDateTimeEdit
 
 """ The filter configuration widget is used to collect filter criteria
     from an analyst to apply to a table.
@@ -8,6 +11,8 @@ from PyQt5.QtGui import *
 
 
 class FilterConfigurationWindow(QWidget):
+
+
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 474, 664)
@@ -17,7 +22,7 @@ class FilterConfigurationWindow(QWidget):
         self.filter_criteria['Keywords'] = set()
         self.filter_criteria['Creator'] = set()
         self.filter_criteria['Event Type'] = set()
-        self.filter_criteria['Timestamp'] = [0,0]
+        self.filter_criteria['Timestamp'] = list()
         self.ui()
 
     # The ui method is used to generate the window
@@ -28,6 +33,7 @@ class FilterConfigurationWindow(QWidget):
 
         # Creating and positioning start timestamp
         self.start_timestamp_edit = QDateTimeEdit(self)
+        self.start_timestamp_edit.setCalendarPopup(True)
         self.start_timestamp_edit.setObjectName(u"startTimestampEdit")
         self.gridLayout.addWidget(self.start_timestamp_edit, 10, 1, 1, 1)
 
@@ -116,15 +122,16 @@ class FilterConfigurationWindow(QWidget):
         self.event_type_button_group.buttonClicked.connect(self.event_type_button_group_clicked)
 
         self.end_timestamp_edit = QDateTimeEdit(self)
+        self.end_timestamp_edit.setCalendarPopup(True)
         self.end_timestamp_edit.setObjectName(u"endTimestampEdit")
         self.gridLayout.addWidget(self.end_timestamp_edit, 12, 1, 1, 1)
 
-        self.event_type_label = QLabel('Event Type', self)
+        self.event_type_label = QLabel('Source Type', self)
         self.event_type_label.setObjectName(u"eventTypeLabel")
         self.event_type_label.setFont(font)
         self.gridLayout.addWidget(self.event_type_label, 6, 0, 1, 1)
 
-        self.creator_label = QLabel('Creator:', self)
+        self.creator_label = QLabel('Source:', self)
         self.creator_label.setObjectName(u"creatorLabel")
         self.creator_label.setFont(font)
         self.gridLayout.addWidget(self.creator_label, 3, 0, 1, 1)
@@ -153,17 +160,14 @@ class FilterConfigurationWindow(QWidget):
             elif not btn.isChecked() and btn.text() in self.filter_criteria['Event Type']:
                 self.filter_criteria['Event Type'].remove(btn.text())
 
-        print(self.filter_criteria['Event Type'])
 
     # #Handling apply button event
     def apply_button_clicked(self):
-        # Finally add the timestamps to the filter criteria and exit
-        self.filter_criteria['Timestamp'][0] = self.start_timestamp_edit.dateTime().toUTC().toString()
-        self.filter_criteria['Timestamp'][1] = self.end_timestamp_edit.dateTime().toUTC().toString()
-        # Parse any keywords entered into the search criteria
-        self.filter_criteria['Keyword'] = [self.lineEdit.text().split()]
-        print(self.filter_criteria)
-        print(sorted(self.filter_criteria['Timestamp']))
+        self.filter_criteria["Timestamp"].append(self.start_timestamp_edit.text())
+        self.filter_criteria["Timestamp"].append(self.end_timestamp_edit.text())
+        # print(self.filter_criteria["Timestamp"])
+        # print(datetime.datetime.strptime(self.filter_criteria["Timestamp"][0], '%m/%d/%y %H:%M %p'))
+        # print(datetime.datetime.strptime(self.filter_criteria["Timestamp"][1],'%m/%d/%y %H:%M %p'))
         self.close()
 
 
