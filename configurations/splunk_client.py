@@ -114,11 +114,13 @@ class SplunkIntegrator():
         i = 0
         for result in job_results:
             if True:
-                self.entries.append(SignificantLogEntry(i, result['_indextime'], result['index'], result['host'],
-                                                        result['source'], result['sourcetype']))
+                self.entries.append(SignificantLogEntry(i, result['_indextime'],
+                                                        result['_raw'], result['host'],
+                                                        self.find_source_file('root',result['source']),
+                                                        self.find_event_source('root',result['source'])))
             i += 1
         for entry in self.entries:
-            print(entry.get_source.split("\\")[1])
+            print(entry)
         return self.entries
 
     def cleanse_file(self, file):
@@ -136,11 +138,31 @@ class SplunkIntegrator():
         self.file_validator.end_timestamp = event_end
         return self.file_validator.validate_file(file)
 
+    def find_source_file(self,root_folder, entry):
+        for filepath, folder, dir in os.walk(root_folder):
+            for file in dir:
+                path = os.path.join(filepath,file)
+                if entry.split('\\')[1] in path:
+                    return path
+
+    def find_event_source(self, root_folder, entry):
+        if 'white' in self.find_source_file(root_folder,entry):
+            return 'white'
+
+        elif 'red' in self.find_source_file(root_folder, entry):
+            return 'red'
+
+        elif 'blue' in self.find_source_file(root_folder, entry):
+            return 'blue'
+
+        else:
+            return 'root'
+
 
 if __name__ == '__main__':
     client3 = SplunkIntegrator('192.168.81.1', 8089, 'main', 'Feathersoft', 'stevenroach')
     client3.download_log_files(100, 'demo')
-
+    client3.create_index('demo2')
 
 
 

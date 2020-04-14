@@ -217,29 +217,6 @@ class PMR(QMainWindow):
             self.graph_builder_configuration.window.addNode()
 
 
-
-
-
-
-
-        #
-        # self.vector_db_configuration_non_lead.table.setRowCount(len(selected_vectors))
-        # for i in range(len(selected_vectors)):
-        #     vec = selected_vectors.pop()
-        #     self.vector_db_configuration_non_lead.table.setItem(i,0,QTableWidgetItem(vec.get_vector_name))
-        #     self.vector_db_configuration_non_lead.table.setItem(i, 1,
-        #                                                         QTableWidgetItem(vec.get_vector_description))
-        #     self.vector_db_configuration_non_lead.table.setCellWidget(i, 2,
-        #                                                         QCheckBox())
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyle('Ubuntu')

@@ -42,17 +42,17 @@ class FilterConfigurationWindow(QWidget):
 
         self.creator_button_group = QButtonGroup()
 
-        self.creator_red_button = QRadioButton('Red', self)
+        self.creator_red_button = QRadioButton('red', self)
         self.creator_red_button.setObjectName(u"redButton1")
         self.creator_red_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.creator_red_button, 3, 1, 1, 1)
 
-        self.creator_blue_button = QRadioButton('Blue', self)
+        self.creator_blue_button = QRadioButton('blue', self)
         self.creator_blue_button.setObjectName(u"blueButton1")
         self.creator_blue_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.creator_blue_button, 4, 1, 1, 1)
 
-        self.creator_white_button = QRadioButton('White', self)
+        self.creator_white_button = QRadioButton('white', self)
         self.creator_white_button.setObjectName(u"whiteButton1")
         self.creator_white_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.creator_white_button, 5, 1, 1, 1)
@@ -160,14 +160,10 @@ class FilterConfigurationWindow(QWidget):
             elif not btn.isChecked() and btn.text() in self.filter_criteria['Event Type']:
                 self.filter_criteria['Event Type'].remove(btn.text())
 
-
     # #Handling apply button event
     def apply_button_clicked(self):
         self.filter_criteria["Timestamp"].append(self.start_timestamp_edit.text())
         self.filter_criteria["Timestamp"].append(self.end_timestamp_edit.text())
-        # print(self.filter_criteria["Timestamp"])
-        # print(datetime.datetime.strptime(self.filter_criteria["Timestamp"][0], '%m/%d/%y %H:%M %p'))
-        # print(datetime.datetime.strptime(self.filter_criteria["Timestamp"][1],'%m/%d/%y %H:%M %p'))
         self.close()
 
 

@@ -1,6 +1,4 @@
-
 class SignificantLogEntry:
-
     """
     The significant log entry class represents a log entry created by Splunk to be associated to a vector by a user.
     Attributes:
@@ -61,5 +59,9 @@ class SignificantLogEntry:
         return self._source_type
 
     def __str__(self):
-        return f"Number: {self._log_entry_number} \nTimestamp: {self._log_entry_timestamp} + \n + Content: {self._log_entry_content} \n " \
-               f"Host: {self._host}\n Source: {self._source}\n Source Type {self._source_type}"
+        return f"Number: {self._log_entry_number} \n" \
+               f"Timestamp: {self._log_entry_timestamp} \n " \
+               f"Content: {self._log_entry_content} \n " \
+               f"Host: {self._host}\n " \
+               f"Source: {self._source}\n " \
+               f"Source Type: {self._source_type}"

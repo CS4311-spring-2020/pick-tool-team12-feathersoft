@@ -5,7 +5,7 @@ from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 
 
-class CheckableComboBox(QComboBox):
+class CheckableComboBox(QComboBox,QWidget):
 
     # Subclass Delegate to increase item height
     class Delegate(QStyledItemDelegate):
@@ -121,3 +121,4 @@ class CheckableComboBox(QComboBox):
             if self.model().item(i).checkState() == Qt.Checked:
                 res.append(self.model().item(i).data())
         return res
+

@@ -11,10 +11,11 @@ from configurations.splunk_client import SplunkIntegrator
 from configurations.rwo.significant_log_entry import SignificantLogEntry
 from configurations.rwo.log_file import LogFile
 from configurations.rwo.event_configuration import EventConfiguration
+from splunklib import *
+from splunklib.binding import AuthenticationError
 
 
 class EventConfigurationWindow(QWidget):
-
     """ The Event Configuration class is a UI Window that accepts all necessary input to
         to create an event and ingest and provide log files and entries to the rest of the configurations.
     """
@@ -87,7 +88,6 @@ class EventConfigurationWindow(QWidget):
 
         self.save_event_button.clicked.connect(self.validate_timestamp)
 
-
         self.team_layout.layout().addRow(QLabel('Team Configuration', alignment=Qt.AlignLeft,
                                                 font=QFont('MS Shell Dlg 2', 12)))
 
@@ -110,9 +110,8 @@ class EventConfigurationWindow(QWidget):
         self.lead_checkbox = QCheckBox()
         self.lead_checkbox.setObjectName('Check')
         self.team_layout.layout().addRow('Lead', self.lead_checkbox)
-        self.connect_button = QPushButton('Connect',clicked=self.validate_credentials)
-        self.team_layout.layout().addRow('',self.connect_button)
-
+        self.connect_button = QPushButton('Connect', clicked=self.validate_credentials)
+        self.team_layout.layout().addRow('', self.connect_button)
 
         # dc layout
 
@@ -124,7 +123,6 @@ class EventConfigurationWindow(QWidget):
         self.root_directory_button = QPushButton(self, clicked=self.open_file, icon=QIcon('icons/folder.png'))
         self.root_directory_layout.layout().addWidget(self.root_directory_edit)
         self.root_directory_layout.layout().addWidget(self.root_directory_button)
-
 
         self.red_directory_layout = QWidget()
         self.red_directory_layout.setLayout(QHBoxLayout())
@@ -151,14 +149,13 @@ class EventConfigurationWindow(QWidget):
         self.directory_configuration_layout.layout().addRow('Red Team Folder', self.red_directory_layout)
         self.directory_configuration_layout.layout().addRow('Blue Team Folder', self.blue_directory_layout)
         self.directory_configuration_layout.layout().addRow('White Team Folder', self.white_directory_layout)
-        self.directory_configuration_layout.layout().addRow('', QPushButton('Ingest', clicked=self.validate_root_structure))
-
+        self.directory_configuration_layout.layout().addRow('',
+                                                            QPushButton('Ingest', clicked=self.validate_root_structure))
 
         self.layout.addWidget(self.event_layout)
         self.layout.addWidget(self.team_layout)
         self.layout.addWidget(self.directory_configuration_layout)
         self.setLayout(self.layout)
-
 
     def validate_timestamp(self):
         valid_name = self.name.text() != ''
@@ -173,11 +170,11 @@ class EventConfigurationWindow(QWidget):
                 label = QLabel('Event Timestamp Validated ✔.')
                 label.setStyleSheet("QLabel { color: green}")
                 if not self.time_stamp_validated:
-                    self.event_layout.layout().addRow('',label)
+                    self.event_layout.layout().addRow('', label)
                 self.time_stamp_validated = True
 
             elif buttonReply == QMessageBox.No:
-                QMessageBox.information(self, 'No','Please be sure the information entered is correct')
+                QMessageBox.information(self, 'No', 'Please be sure the information entered is correct')
 
         else:
             if not valid_name:
@@ -226,34 +223,38 @@ class EventConfigurationWindow(QWidget):
 
                 else:
 
-                        try:
-                            lead = self.lead_ip_address_line_edit.text().strip()
-                            port = int(self.server_port_line_edit.text().strip())
-                            index = self.splunk_index_line_edit.text().strip()
-                            username = self.splunk_username_line_edit.text().strip()
-                            password = self.splunk_password_line_edit.text().strip()
-                            self.splunk_client = SplunkIntegrator(lead,port,index,username,password)
+                    try:
+                        lead = self.lead_ip_address_line_edit.text().strip()
+                        port = int(self.server_port_line_edit.text().strip())
+                        index = self.splunk_index_line_edit.text().strip()
+                        username = self.splunk_username_line_edit.text().strip()
+                        password = self.splunk_password_line_edit.text().strip()
+                        self.splunk_client = SplunkIntegrator(lead, port, index, username, password)
 
-                            QMessageBox.information(self,
-                                                    'Connection Successful',
-                                                    f'Connection to server from IP {self.lead_ip_address_line_edit.text()}'
-                                                    f' established !')
+                        QMessageBox.information(self,
+                                                'Connection Successful',
+                                                f'Connection to server from IP {self.lead_ip_address_line_edit.text()}'
+                                                f' established !')
 
-                            if not self.ip_validated:
-                                label = QLabel('Lead IP Validated ✔.')
-                                label.setStyleSheet("QLabel { color: green}")
-                                self.team_layout.layout().addRow('', label)
-                            self.lead_ip_address_line_edit.setEnabled(False)
-                            self.ip_validated = True
-                            self.established_connections.setText(str(1))
-                        except ConnectionError:
-                            QMessageBox.critical(self, 'Connection Error',
-                                                 'A connection could not be established at this time.\n'
-                                                 + 'Please confirm that the server is active and running\n'+
-                                                 'and that login info is correct.')
-                        except ValueError:
-                            QMessageBox.critical(self, 'Port Number Error',
-                                                 'Port Number must be numerical')
+                        if not self.ip_validated:
+                            label = QLabel('Lead IP Validated ✔.')
+                            label.setStyleSheet("QLabel { color: green}")
+                            self.team_layout.layout().addRow('', label)
+                        self.lead_ip_address_line_edit.setEnabled(False)
+                        self.ip_validated = True
+                        self.established_connections.setText(str(1))
+                    except ConnectionError:
+                        QMessageBox.critical(self, 'Connection Error',
+                                             'A connection could not be established at this time.\n'
+                                             + 'Please confirm that the server is active and running\n' +
+                                             'and that login info is correct.')
+                    except ValueError:
+                        QMessageBox.critical(self, 'Port Number Error',
+                                             'Port Number must be numerical')
+
+                    except AuthenticationError:
+                        QMessageBox.critical(self, 'Login Failed', 'Login failed.\n'
+                                                            'Please confirm that the information entered is correct.')
 
     def open_file(self):
         file = str(QFileDialog.getExistingDirectory(QFileDialog(), "Select Directory",
@@ -278,7 +279,7 @@ class EventConfigurationWindow(QWidget):
             has_red, has_blue, has_white = 'red' in folders, 'blue' in folders, 'white' in folders
 
             if not valid_folder_count:
-                QMessageBox.critical(self,"Root Directory Structure Error",
+                QMessageBox.critical(self, "Root Directory Structure Error",
                                      f"Root Directory currently has {len(folders)} folders\n"
                                      f"Please choose a directory with at least 3 folders")
 
@@ -287,26 +288,22 @@ class EventConfigurationWindow(QWidget):
                                      f" A folder labeled red was not found in the root directory\n"
                                      f"Please make sure your folders are properly labeled.")
 
-
-
             if not has_blue:
                 QMessageBox.critical(self, "Root Directory Structure Error",
                                      f" A folder labeled blue was not found in the root directory\n"
                                      f"Please make sure your folders are properly labeled.")
-
 
             if not has_white:
                 QMessageBox.critical(self, "Root Directory Structure Error",
                                      f" A folder labeled white was not found in the root directory\n"
                                      f"Please make sure your folders are properly labeled.")
 
-
             else:
 
                 self.red_directory_edit.setText(self.root_directory_edit.text() + '/red')
                 self.blue_directory_edit.setText(self.root_directory_edit.text() + '/blue')
                 self.white_directory_edit.setText(self.root_directory_edit.text() + '/white')
-                buttonReply = QMessageBox.question(self,'PyQt5 message',
+                buttonReply = QMessageBox.question(self, 'PyQt5 message',
                                                    "Begin Ingestion?",
                                                    QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
                                                    QMessageBox.Cancel)
@@ -323,18 +320,18 @@ class EventConfigurationWindow(QWidget):
                         self.configured.emit(toolbar_unlocked)
                         self.begin_ingestion(count=500)
                     else:
-                        QMessageBox.critical(self,"Event and Team not Validated",
-                                         "Please make sure event configuration and team configurations are "
-                                         "validated before ingestion")
+                        QMessageBox.critical(self, "Event and Team not Validated",
+                                             "Please make sure event configuration and team configurations are "
+                                             "validated before ingestion")
 
-    def begin_ingestion(self,count):
+    def begin_ingestion(self, count):
         audio = ['mp3', 'wav']
         video = ['mp4']
         image = ['jpg', 'pdf', 'pnthg']
-        cleansing_status, validation_status, ingestion_status, acknowledgement_status = False,False,False,False
+        cleansing_status, validation_status, ingestion_status, acknowledgement_status = False, False, False, False
         for filepath, folder, dir in os.walk('root'):
             for file in dir:
-                path = os.path.join(filepath ,file)
+                path = os.path.join(filepath, file)
                 ext = path.split('.')[1]
                 if ext in audio:
                     converted = self.splunk_client.file_converter.convert_audio_to_text(path)
@@ -356,10 +353,9 @@ class EventConfigurationWindow(QWidget):
                 ingestion_status = acknowledgement_status and cleansing_status and validation_status
             else:
                 ingestion_status = False
-            self.logs.append(LogFile(file, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
-        self.splunk_client.download_log_files(count=count,index=self.splunk_index_line_edit.text().strip())
+            self.logs.append(
+                LogFile(file, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
+        self.splunk_client.download_log_files(count=count, index=self.splunk_index_line_edit.text().strip())
         self.ingestion_complete.emit(True)
         self.logs_ingested.emit(True)
         self.reports_generated.emit(True)
-
-
