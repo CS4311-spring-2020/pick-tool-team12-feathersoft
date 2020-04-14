@@ -125,7 +125,7 @@ class LogEntryConfigurationWindow(QWidget):
 
     def apply_filter(self, event):
         criteria = self.filter.filter_criteria
-        filtered_entries = set()
+        filtered_entries = list()
         keywords = list(criteria['Keywords'])
         creator = list(criteria['Creator'])
         event_type = list(criteria['Event Type'])
@@ -145,19 +145,20 @@ class LogEntryConfigurationWindow(QWidget):
         for entry in valid_timestamps:
             print(entry)
 
+        for entry in filter_source:
+            filtered_entries.append(entry)
 
+        for entry in filter_creator:
+            filtered_entries.append(entry)
 
+        for entry in valid_timestamps:
+            filtered_entries.append(entry)
 
-        filtered_entries.add(entry for entry in filter_source)
-        filtered_entries.add(entry for entry in filter_creator)
-        filtered_entries.add(entry for entry in valid_timestamps)
-
-        filtered_entries = list(filtered_entries)
         print(filtered_entries)
         for entry in filtered_entries:
             print(entry)
-        # self.table.setRowCount(0)
-        # self.populate_table(filtered_entries)
+        self.table.setRowCount(0)
+        self.populate_table(filtered_entries)
 
 
 
