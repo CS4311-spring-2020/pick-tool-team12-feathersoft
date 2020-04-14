@@ -14,8 +14,6 @@ from configurations.icon_configuration import IconConfiguration
 from configurations.graph_configuration import GraphConfigurationWindow
 from configurations.export_configuration import ExportConfigurationWindow
 from configurations.change_configuration import ChangeConfigurationWindow
-from configurations.graph_format_configuration import GraphFormatConfiguration
-from configurations.tab_format_configuration import TabFormatConfiguration
 from configurations.custom_widgets import CheckableComboBox
 from configurations.rwo.vector import Vector
 from configurations.rwo.node import Node
@@ -42,8 +40,6 @@ class PMR(QMainWindow):
         self.vector_db_configuration_non_lead = VectorDBConfigurationNonLead()
         self.icon_configuration = IconConfiguration()
         self.graph_builder_configuration = GraphConfigurationWindow()
-        self.graph_format_configuration = GraphFormatConfiguration()
-        self.tab_format_configuration = TabFormatConfiguration()
         self.relationship_configuration = RelationshipConfigurationWindow()
 
         self.configurations_toolbar = QToolBar('PMR')
