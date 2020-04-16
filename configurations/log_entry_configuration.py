@@ -14,6 +14,7 @@ from configurations.filter_configuration import FilterConfigurationWindow
 
 class LogEntryConfigurationWindow(QWidget):
     _log_entry_flagged = pyqtSignal()
+    _table_reverted = pyqtSignal()
 
     def __init__(self, log_files):
         super().__init__()
@@ -73,8 +74,7 @@ class LogEntryConfigurationWindow(QWidget):
         self.setLayout(self.layout)
 
     def revert_table(self):
-        self.table.setRowCount(0)
-        self.populate_table(self.entries)
+        self._table_reverted.emit()
 
     def populate_table(self, entries):
         self.entries = entries

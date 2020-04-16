@@ -3,7 +3,12 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QFileDialog, QDialog, QApplication, QWidget, QMainWindow, QVBoxLayout, QHBoxLayout, \
     QFormLayout, QComboBox, QPushButton, QInputDialog, QLineEdit, QLabel
+from configurations.node_socket import *
 
+MODE_NO_OPERATION = 1
+MODE_EDGE_DRAG = 2
+
+EDGE_DRAG_START = 10
 
 class QDMGraphicsView(QGraphicsView):
     def __init__(self, scene, parent=None):
@@ -13,6 +18,8 @@ class QDMGraphicsView(QGraphicsView):
         self.initUI()
 
         self.setScene(self.grScene)
+
+        self.mode = MODE_NO_OPERATION
 
         self.zoomInFactor = 1.25
         self.zoomClamp = False
@@ -41,12 +48,58 @@ class QDMGraphicsView(QGraphicsView):
 
 
     def middleMouseButtonPress(self,event):
-        releaseEvent = QMouseEvent(QEvent.MouseButtonRelease, event.localPos(), event.screenPos())
+        item = self.getItemAtClick(event)
 
-        self.setDragMode(QGraphicsView)
+        self.last_click_scene_pos = self.mapToScene(event.pos())
+        if type(item) is QDMGraphicsSocket:
+            if self.mode == MODE_NO_OPERATION:
+                self.mode = MODE_EDGE_DRAG
+                self.edgeDragStart(item)
+                return
+
+
+        if self.mode == MODE_EDGE_DRAG:
+            res = self.edgeDragEnd(item)
+            if res:
+                return
+
+        super().mousePressEvent(event)
+
+
+    def distanceBetweenClickAndReleaseOff(self,event):
+        new_pos_release_scene_pos = self.mapToScene(event.pos())
+        dist_scene_pos = self.last_click_scene_pos
+
+        return (dist_scene_pos.x() * dist_scene_pos.x() + dist_scene_pos.y() * dist_scene_pos.y()) > EDGE_DRAG_START * EDGE_DRAG_START
 
     def middleMouseButtonReleased(self, event):
-        print("MMB released")
+
+        item = self.getItemAtClick(event)
+
+        if self.mode == MODE_EDGE_DRAG:
+            if self.distanceBetweenClickAndReleaseOff(event):
+                res = self.edgeDragEnd(item)
+                if res:
+                    return
+
+
+        super().mouseReleaseEvent(event)
+
+    def getItemAtClick(self, event):
+        pos = event.pos()
+        obj = self.itemAt(pos)
+        return obj
+
+    def edgeDragEnd(self,item):
+        self.mode = MODE_NO_OPERATION
+        if type(item) is QDMGraphicsSocket:
+            return True
+
+        return False
+
+    def edgeDragStart(self,item):
+        pass
+
 
 
     # Adding the zoom functionality

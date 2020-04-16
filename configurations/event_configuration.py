@@ -229,7 +229,8 @@ class EventConfigurationWindow(QWidget):
                         index = self.splunk_index_line_edit.text().strip()
                         username = self.splunk_username_line_edit.text().strip()
                         password = self.splunk_password_line_edit.text().strip()
-                        self.splunk_client = SplunkIntegrator(lead, port, index, username, password)
+                        self.splunk_client = SplunkIntegrator()
+                        self.splunk_client.connect(lead, port,username, password,None)
 
                         QMessageBox.information(self,
                                                 'Connection Successful',
@@ -241,6 +242,7 @@ class EventConfigurationWindow(QWidget):
                             label.setStyleSheet("QLabel { color: green}")
                             self.team_layout.layout().addRow('', label)
                         self.lead_ip_address_line_edit.setEnabled(False)
+                        self.lead_checkbox.setEnabled(False)
                         self.ip_validated = True
                         self.established_connections.setText(str(1))
                     except ConnectionError:

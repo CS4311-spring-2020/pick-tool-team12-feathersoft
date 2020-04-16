@@ -28,12 +28,10 @@ class FilterConfigurationWindow(QWidget):
     def ui(self):
         # Creating layout to store widgets
         self.gridLayout = QGridLayout(self)
-        self.gridLayout.setObjectName(u"gridLayout")
 
         # Creating and positioning start timestamp
         self.start_timestamp_edit = QDateTimeEdit(self)
         self.start_timestamp_edit.setCalendarPopup(True)
-        self.start_timestamp_edit.setObjectName(u"startTimestampEdit")
         self.gridLayout.addWidget(self.start_timestamp_edit, 10, 1, 1, 1)
 
         "Creating a group for the creator buttons so that we don't need an " \
@@ -42,18 +40,12 @@ class FilterConfigurationWindow(QWidget):
         self.creator_button_group = QButtonGroup()
 
         self.creator_red_button = QRadioButton('red', self)
-        self.creator_red_button.setObjectName(u"redButton1")
-        self.creator_red_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.creator_red_button, 3, 1, 1, 1)
 
         self.creator_blue_button = QRadioButton('blue', self)
-        self.creator_blue_button.setObjectName(u"blueButton1")
-        self.creator_blue_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.creator_blue_button, 4, 1, 1, 1)
 
         self.creator_white_button = QRadioButton('white', self)
-        self.creator_white_button.setObjectName(u"whiteButton1")
-        self.creator_white_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.creator_white_button, 5, 1, 1, 1)
 
         self.creator_button_group.addButton(self.creator_red_button)
@@ -73,22 +65,18 @@ class FilterConfigurationWindow(QWidget):
         self.gridLayout.addWidget(self.start_timestamp_label, 10, 0, 1, 1)
 
         self.end_timestamp_label = QLabel('End Timestamp:', self)
-        self.end_timestamp_label.setObjectName(u"endTimestampLabel")
         self.end_timestamp_label.setFont(font)
         self.gridLayout.addWidget(self.end_timestamp_label, 12, 0, 1, 1)
 
         self.apply_button = QPushButton('Apply Filter', self)
-        self.apply_button.setObjectName(u"applyButton")
         self.gridLayout.addWidget(self.apply_button, 13, 0, 1, 1)
 
         self.apply_button.clicked.connect(self.apply_button_clicked)
 
         self.lineEdit = QLineEdit(self)
-        self.lineEdit.setObjectName(u"lineEdit")
         self.gridLayout.addWidget(self.lineEdit, 0, 1, 1, 1)
 
         self.filterConfigurationLabel = QLabel('Filter Configuration',self)
-        self.filterConfigurationLabel.setObjectName(u"filterConfigurationLabel")
         font1 = QFont()
         font1.setPointSize(17)
         font1.setBold(True)
@@ -99,17 +87,14 @@ class FilterConfigurationWindow(QWidget):
         self.event_type_button_group = QButtonGroup()
 
         self.event_red_button = QRadioButton('red', self)
-        self.event_red_button.setObjectName(u"redButton2")
         self.event_red_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.event_red_button, 6, 1, 1, 1)
 
         self.event_blue_button = QRadioButton('blue', self)
-        self.event_blue_button.setObjectName(u"blueButton2")
         self.event_blue_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.event_blue_button, 7, 1, 1, 1)
 
         self.event_white_button = QRadioButton('white', self)
-        self.event_white_button.setObjectName(u"whiteButton2")
         self.event_white_button.setAutoExclusive(False)
         self.gridLayout.addWidget(self.event_white_button, 8, 1, 1, 1)
 
@@ -122,16 +107,13 @@ class FilterConfigurationWindow(QWidget):
 
         self.end_timestamp_edit = QDateTimeEdit(self)
         self.end_timestamp_edit.setCalendarPopup(True)
-        self.end_timestamp_edit.setObjectName(u"endTimestampEdit")
         self.gridLayout.addWidget(self.end_timestamp_edit, 12, 1, 1, 1)
 
         self.event_type_label = QLabel('Source Type', self)
-        self.event_type_label.setObjectName(u"eventTypeLabel")
         self.event_type_label.setFont(font)
         self.gridLayout.addWidget(self.event_type_label, 6, 0, 1, 1)
 
         self.creator_label = QLabel('Source:', self)
-        self.creator_label.setObjectName(u"creatorLabel")
         self.creator_label.setFont(font)
         self.gridLayout.addWidget(self.creator_label, 3, 0, 1, 1)
 

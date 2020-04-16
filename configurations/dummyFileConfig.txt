@@ -1,5 +1,0 @@
-LogFile1.docx,Red Team,Cleansed,Validated,Ingested
-LogFile3.txt,Blue Team,Not Cleansed,Not Validated,Not Ingested
-LogFile4.txt,Blue Team,Not Cleansed,Not Validated,Not Ingested
-LogFile5.txt,White Team,Cleansed,Validated,Not Ingested
-LogFile6.txt,Blue Team,Not Cleansed,Not Validated,Not Ingested

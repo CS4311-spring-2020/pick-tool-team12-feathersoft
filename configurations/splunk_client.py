@@ -1,5 +1,7 @@
+import splunklib
 import splunklib.client as client
 import splunklib.results as results
+import splunklib.binding as binding
 import os
 from configurations.rwo.significant_log_entry import SignificantLogEntry
 from configurations.file_handler import *
@@ -8,12 +10,7 @@ import datetime
 
 class SplunkIntegrator():
 
-    def __init__(self,host,port,index,username,password):
-        self._host = host
-        self._port = port
-        self._index = index
-        self._username = username
-        self._password = password
+    def __init__(self):
         self.entries = list()
         self.file_cleanser = FileCleanser()
         self.file_converter = FileConverter()
@@ -22,33 +19,34 @@ class SplunkIntegrator():
 
         # Create a Service instance and log in
 
-        self.service = client.connect(
-            host=self._host,
-            port=self._port,
-            username=self._username,
-            password=self._password)
 
     # Takes a file as input and uploads to splunk
 
     def create_index(self,index_name):
         self.service.indexes.create(index_name)
 
-    def get_users(self):
-        kwargs_normalsearch = {"exec_mode": "normal",
-                               "earliest_time": "-1m",
-                               "latest_time": "now",}
-        query = "| rest /services/authentication/current-context splunk_server=local|table username "
-        job = self.service.jobs.create(query=query,**kwargs_normalsearch)
+    def connect(self,host,port,username,password,token):
+        self.service = splunklib.client.connect(
+            host=host,
+            port=port,
+            username=username,
+            password=password,
+            sharing='user',
+            token=token)
 
-        # # Print the users' real names, usernames, and roles
-        # print("Users:")
-        # for user in users:
-        #     print("%s (%s)" % (user.realname, user.name))
-        #     for role in user.role_entities:
-        #         print(" - ", role.name)
+    def connect_via_token(self,token):
+        self.service = splunklib.client.connect(token=token)
+
+    def get_users(self,lead_ip):
+        query = f'search index=demo3 clientip!="{lead_ip}"'
+        blocking_search = {"exec_mode": "blocking",
+                           "earliest_time": "-24h",
+                           "latest_time": "now"}
+        job = self.service.jobs.create(query=query,**blocking_search)
         job_results = results.ResultsReader(job.results())
-        for job in job_results:
-            print(job)
+        ip = [job['clientip'] for job in job_results]
+        print(len(set(ip)))
+
 
     def set_index(self, index_name):
         self._index = index_name
@@ -76,7 +74,7 @@ class SplunkIntegrator():
         # Create a new user
         newuser = self.service.users.create(username=username,
                                        password=password,
-                                       roles=["user"])
+                                       roles=["admin"])
         # Print the user's properties
         print("Properties of the new user '" + newuser.name + "':\n")
         print("Full name:  ", newuser["realname"])
@@ -90,8 +88,7 @@ class SplunkIntegrator():
         # Change some properties and update the server
         kwargs = {"realname": "Test User",
                   "defaultApp": "launcher",
-                  "tz": "Europe/Paris",
-                  "roles": "can_delete"}
+                  "tz": "Europe/Paris"}
         newuser.update(**kwargs).refresh()
 
         # Print updated info
@@ -119,9 +116,9 @@ class SplunkIntegrator():
                                                         self.find_source_file('root',result['source']),
                                                         self.find_event_source('root',result['source'])))
             i += 1
+
         for entry in self.entries:
             print(entry)
-        return self.entries
 
     def cleanse_file(self, file):
         return self.file_cleanser.cleanse_file(file)
@@ -129,9 +126,31 @@ class SplunkIntegrator():
     def enable_roles(self, role):
         permissions = ''
         role = self.service.roles[role]
-        role.grant('change_own_password', 'search', 'input_file', 'admin_all_objects',
-                   'rest_apps_management', 'rest_apps_view', 'rest_properties_get', 'rest_properties_set',
-                   'edit_sourcetypes')
+        role.grant('accelerate_datamodel', 'accelerate_search', 'admin_all_objects'
+                   'change_authentication','change_own_password', 'delete_by_keyword',
+                   'edit_deployment_client', 'edit_deployment_server', 'edit_dist_peer',
+                   'edit_forwarders','edit_httpauths', 'edit_indexer_cluster', 'edit_input_defaults',
+                   'edit_monitor', 'edit_roles', 'edit_roles_grantable','edit_scirpted',
+                   'edit_search_head_clustering', 'edit_search_schedule_priority',
+                   'edit_search_schedule_window','edit_search_scheduler', 'edit_search_server',
+                   'edit_server_crl', 'edit_sourcetypes', 'edit_splunktcp', 'edit_splunk_ssl',
+                   'edit_splunktcp_token', 'edit_tcp', 'edit_tcp_token', 'edit_telemetry_settings',
+                   'edit_token_http', 'edit_upd', 'edit_user', 'edit_view_html', 'edit_web_settings',
+                   'embed_report','export_results_is_visible','extra_x509_validation','get_diag',
+                   'get_metadata','get_typeahead','indexes_edit','input_file','license_edit',
+                   'licencse_tab','license_view_warnings','license_accelerate_search',
+                   'list_deployment_client','list_deployment_server','list_forwarders',
+                   'list_httpauths','list_indexer_cluster','list_indexerdiscovery', 'list_inpuuts',
+                   'list_introspection','list_search_head_clustering','list_search_scheduler',
+                   'list_settings', 'list_storage_passwords', 'output_file','pattern_detect',
+                   'request_remote_tok','rest_apps_management','rest_apps_view','rest_properties_get',
+                   'rest_properties_set','restart_splunkkd','rtsearch','run_debug_commands',
+                   'run_multi_phased_searches','schedule_search','search','search_process_config_refresh',
+                   'srchFilter','srchIndexesAllowed','srchIndexesDefault','srchJobsQuota','srchMaxTime',
+                   'use_file_operator','web_debug')
+
+    def get_session_token(self):
+        return self.service.token
 
     def validate_file(self, file, event_start, event_end):
         self.file_validator.start_timestamp = event_start
@@ -157,3 +176,27 @@ class SplunkIntegrator():
 
         else:
             return 'root'
+
+if __name__ == '__main__':
+    client = SplunkIntegrator()
+    client.connect('192.168.81.1',8089,'sergio','stevenroach',None)
+    #query = 'search index=_internal sourcetype=splunkd_access host= NOT ( user="splunk_system_user" OR ' \
+           # 'user="-") NOT clientip="127.0.0.1" NOT clientip IN()'
+    # query = 'search clientip!="127.0.0.1"'
+    # blocking_search = {"exec_mode": "blocking"}
+    # jobs = client.service.jobs
+    # job = jobs.create(query,**blocking_search)
+    # results = results.ResultsReader(job.results(count=10))
+    # for result in results:
+    #    print(result)
+    client.get_users('192.168.81.1')
+    #client.create_user('Dr.Roach','stevenroach')
+    #client.create_user('cristian','stevenroach')
+    #client.create_user('jesus','stevenroach')
+    #client.create_user('leslie','stevenroach')
+
+
+
+
+
+

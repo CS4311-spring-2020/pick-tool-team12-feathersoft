@@ -41,6 +41,10 @@ class QDMGraphicsNode(QGraphicsItem):
 
         self.initUI()
 
+    def mouseMoveEvent(self, event: 'QGraphicsSceneMouseEvent') -> None:
+        super().mouseMoveEvent(event)
+        self.node.updateConnectedEdges()
+
     def boundingRect(self):
 
       return QRectF(
@@ -134,7 +138,7 @@ class Node():
 
         counter = 0
         for item in inputs:
-            socket = Socket(node=self, index=counter,position=LEFT_TOP)
+            socket = Socket(node=self, index=counter,position=LEFT_TOP, socket_type=item)
             counter += 1
             self.inputs.append(socket)
 
@@ -156,7 +160,14 @@ class Node():
         x = 0 if position in (LEFT_TOP,LEFT_MIDDLE,LEFT_BOTTOM) else self.grNode.width
         y = (self.grNode.edge_size + index * (self.grNode.height/self.num_inputs))
 
-        return x,y
+        return [x, y]
+
+
+
+    def updateConnectedEdges(self):
+        for socket in self.inputs + self.outputs:
+            if socket.hasEdge():
+                socket.edge.updatePostions()
 
 
 class QDMNodeContentWidget(QWidget):

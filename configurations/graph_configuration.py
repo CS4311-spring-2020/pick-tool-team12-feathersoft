@@ -7,6 +7,7 @@ from configurations.node_scene import *
 from configurations.node_graphics_scene import *
 from configurations.node_graphics_view import QDMGraphicsView
 from configurations.graph_node import *
+from configurations.node_edge import *
 
 
 
@@ -94,6 +95,9 @@ class NodeEditorWindow(QWidget):
     def addNode(self):
         node = Node(self.scene, 'Node', icon='icons/red_circle.png', inputs=[1] * 30,outputs=[1] * 30)
         node.setPosition(100,200)
+
+    def addEdge(self):
+        pass
 
     def mousePressEvent(self, QMouseEvent):
         if QMouseEvent.button == Qt.RightButton:

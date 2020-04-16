@@ -87,6 +87,9 @@ class PMR(QMainWindow):
         # Update the node table when significant log entries are flagged
         self.log_entry_configuration._log_entry_flagged.connect(self.update_nodes)
 
+        # Undo log entries table filter
+        self.log_entry_configuration._table_reverted.connect(self.revert_table)
+
         self.addToolBar(Qt.LeftToolBarArea, self.configurations_toolbar)
         self.setCentralWidget(self.event_configuration)
         self.statusBar().showMessage('Event Configuration')
@@ -211,6 +214,9 @@ class PMR(QMainWindow):
 
         for i in range(table.rowCount()):
             self.graph_builder_configuration.window.addNode()
+
+    def revert_table(self):
+        self.log_entry_configuration.populate_table(self.event_configuration.splunk_client.entries)
 
 
 if __name__ == "__main__":
