@@ -20,8 +20,12 @@ The Lethality, Survivability, and HSI Directorate (LSH) recognizes the complexit
   
 ## Dependencies
   `Python version 3.7`
+  
   `pytesseract 0.3.3 and up. Tesseract-OCR must also be installed on your computer.`
+  
   `ffmpeg 1.4 and up. ffmpeg software must also be installed your computer.`
+  
   `SpeechRecognition 3.8.1 and up.`
+  
    
   
