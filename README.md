@@ -17,3 +17,8 @@ The Lethality, Survivability, and HSI Directorate (LSH) recognizes the complexit
   * Adrian Sosa
 
   * Jesus Gomez
+  
+## Dependencies
+  * `Python 3.7 and up`
+  * `pytesseract`
+  
