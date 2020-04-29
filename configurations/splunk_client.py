@@ -70,11 +70,31 @@ class SplunkIntegrator():
         for job in self.service.jobs:
             print(job)
 
-    def create_user(self, username, password):
+    def get_connected_users(self):
+        query = ' | rest /services/authentication/httpauth-tokens | ' \
+                'search (NOT userName="splunk-system-user") searchId="" ' \
+                '| table userName splunk_server timeAccessed'
+
+        query = '| rest /services/authentication/httpauth-tokens splunk_server=local'
+
+        query = ' | rest /services/authentication/httpauth-tokens splunk_server=local | stats max(updated) by userName'
+        #query = 'search source="wineventlog:security" action=success Logon_Type=2 (EventCode=4624 OR EventCode=4634 OR EventCode=4779 OR EventCode=4800 OR EventCode=4801 OR EventCode=4802 OR EventCode=4803 OR EventCode=4804 ) user!="anonymous logon" user!="DWM-*" user!="UMFD-*" user!=SYSTEM user!=*$ (Logon_Type=2 OR Logon_Type=7 OR Logon_Type=10)| convert timeformat="%a %B %d %Y" ctime(_time) AS Date | streamstats earliest(_time) AS login, latest(_time) AS logout by Date, host| eval session_duration=logout-login | eval h=floor(session_duration/3600) | eval m=floor((session_duration-(h*3600))/60) | eval SessionDuration=h."h ".m."m " | convert timeformat=" %m/%d/%y - %I:%M %P" ctime(login) AS login | convert timeformat=" %m/%d/%y - %I:%M %P" ctime(logout) AS logout | stats count AS auth_event_count, earliest(login) as login, max(SessionDuration) AS sesion_duration, latest(logout) as logout, values(Logon_Type) AS logon_types by Date, host, user'
+
+        query = ' search index=_internal source=*web_access.log* /app/   | rex "GET\s\/[^\/]+\/app\/(?P<app>[^\/]+)\/(?P<view>[^\s|?]+) "  | search app=* view=*| stats count by user app view'
+        #query = ' | rest /services/authentication/httpauth-tokens splunk_server=local | stats max(updated) by userName'
+        blocking_search = {"exec_mode": "blocking"}
+        job = self.service.jobs.create(query=query, **blocking_search)
+        job_results = results.ResultsReader(job.results())
+        connected_users = [job for job in job_results]
+        for user in connected_users:
+            print(user)
+        print(len(connected_users))
+
+    def create_user(self, username, password, role):
         # Create a new user
         newuser = self.service.users.create(username=username,
                                        password=password,
-                                       roles=["admin"])
+                                       roles=[f"{role}"])
         # Print the user's properties
         print("Properties of the new user '" + newuser.name + "':\n")
         print("Full name:  ", newuser["realname"])
@@ -177,23 +197,14 @@ class SplunkIntegrator():
         else:
             return 'root'
 
+
 if __name__ == '__main__':
     client = SplunkIntegrator()
-    client.connect('192.168.81.1',8089,'sergio','stevenroach',None)
-    #query = 'search index=_internal sourcetype=splunkd_access host= NOT ( user="splunk_system_user" OR ' \
-           # 'user="-") NOT clientip="127.0.0.1" NOT clientip IN()'
-    # query = 'search clientip!="127.0.0.1"'
-    # blocking_search = {"exec_mode": "blocking"}
-    # jobs = client.service.jobs
-    # job = jobs.create(query,**blocking_search)
-    # results = results.ResultsReader(job.results(count=10))
-    # for result in results:
-    #    print(result)
-    client.get_users('192.168.81.1')
-    #client.create_user('Dr.Roach','stevenroach')
-    #client.create_user('cristian','stevenroach')
-    #client.create_user('jesus','stevenroach')
-    #client.create_user('leslie','stevenroach')
+    client.connect('192.168.81.1',8089,'Feathersoft','stevenroach',None)
+    #client.create_user('olac','stevenroach','user')
+
+    #client.create_index('demo4')
+
 
 
 

@@ -147,6 +147,7 @@ class PMR(QMainWindow):
     def populate_er(self):
         self.log_file_configuration.er_reports = self.event_configuration.splunk_client.file_validator.reports
 
+
     def update_log_entry_vectors(self):
         size = [str(i) for i in range(int(self.vector_configuration.table.rowCount()))]
         for i in range(self.log_entry_configuration.table.rowCount()):

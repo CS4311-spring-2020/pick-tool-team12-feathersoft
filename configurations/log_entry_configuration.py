@@ -74,7 +74,8 @@ class LogEntryConfigurationWindow(QWidget):
         self.setLayout(self.layout)
 
     def revert_table(self):
-        self._table_reverted.emit()
+        for i in range(len(self.table.rowCount())):
+            self.table.showRow(i)
 
     def populate_table(self, entries):
         self.entries = entries
@@ -116,9 +117,10 @@ class LogEntryConfigurationWindow(QWidget):
     def in_keyword(self, keywords, entry):
         return any(value in entry.get_source or entry.get_source_type or entry.get_content for value in keywords)
 
-    def in_timestamp_range(self, start, end, string):
+    def in_timestamp_range(self, start, end, entry):
         formatting = '%m/%d/%y %H:%M %p'
-        return datetime.strptime(start.strip(), formatting) <= datetime.fromtimestamp(int(string)) <= \
+        return datetime.strptime(start.strip(), formatting) <= \
+               datetime.fromtimestamp(int(entry.get_log_entry_timestamp)) <= \
                datetime.strptime(end.strip(), formatting)
 
     def find_filepath(self, search):
@@ -133,21 +135,14 @@ class LogEntryConfigurationWindow(QWidget):
         creator = list(criteria['Creator'])
         event_type = list(criteria['Event Type'])
         timestamp = criteria['Timestamp']
-        filter_source = [entry for entry in self.entries if self.in_source(event_type, entry)]
-        filter_creator = [entry for entry in self.entries if self.in_source(creator, entry)]
-        valid_timestamps = [entry for entry in self.entries if self.in_timestamp_range(timestamp[0], timestamp[1],
-                                                                                       entry.get_log_entry_timestamp)]
-        for entry in filter_source:
-            self.filtered_entries.append(entry)
 
-        for entry in filter_creator:
-            self.filtered_entries.append(entry)
+        for i in range(len(self.table.rowCount())):
+            entry = self.entries[i]
+            if not (self.in_source(keywords,entry) and self.in_source_type(event_type,entry)
+                and self.in_keyword(keywords,entry) and self.in_timestamp_range(timestamp[0],timestamp[1],entry)):
+                    self.table.hideRow(i)
 
-        for entry in valid_timestamps:
-            self.filtered_entries.append(entry)
 
-        self.table.setRowCount(0)
-        self.populate_table(self.filtered_entries)
 
     def header_clicked(self):
         if not self.table.rowCount() == 0:

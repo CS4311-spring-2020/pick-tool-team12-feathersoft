@@ -120,7 +120,7 @@ class EnforcementActionReport(QWidget):
 
 
         # Creating table for enforcement action report window
-        self.reportTable = QTableWidget(self)
+        self.reportTable = QTableWidget(0,2,self)
 
         # Creating headers for columns in table
 
@@ -154,21 +154,18 @@ class EnforcementActionReport(QWidget):
         self.setLayout(self.gridLayout)
 
     def populate_table(self,er_report):
-        self.reportTable.setRowCount(3)
+        rows = [(key, er_report[key]) for key in er_report.keys() if er_report[key] != []]
+        self.reportTable.setRowCount(len(rows))
         i = 0
-        for key in er_report.keys():
-            indexes = ''.join(str(i) + ' ' for i in er_report[key])
+        for i in range(len(rows)):
+            key,report = rows[i]
+            indexes = ''.join(str(i) + ' ' for i in report)
             self.reportTable.setItem(i,0,QTableWidgetItem(indexes))
             self.reportTable.setItem(i,1,QTableWidgetItem(key))
             i += 1
 
-
-
-
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-
     window = LogFileConfigurationWindow()
     sys.exit(app.exec())
 

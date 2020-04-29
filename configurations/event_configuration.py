@@ -258,6 +258,11 @@ class EventConfigurationWindow(QWidget):
                         QMessageBox.critical(self, 'Login Failed', 'Login failed.\n'
                                                             'Please confirm that the information entered is correct.')
 
+                    except OSError:
+                        QMessageBox.critical(self, 'Network Unreachable', 'Network Unreachable '
+                                                     'Please confirm that the information entered is correct.')
+
+
     def open_file(self):
         file = str(QFileDialog.getExistingDirectory(QFileDialog(), "Select Directory",
                                                     directory=os.path.realpath(os.getcwd())))
