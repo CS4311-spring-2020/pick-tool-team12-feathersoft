@@ -142,6 +142,8 @@ class FilterConfigurationWindow(QWidget):
 
     # #Handling apply button event
     def apply_button_clicked(self):
+        if self.lineEdit.text() != '':
+            self.filter_criteria['Keywords'] = set(self.lineEdit.text().split())
         self.filter_criteria["Timestamp"][0] = self.start_timestamp_edit.text()
         self.filter_criteria["Timestamp"][1] = self.end_timestamp_edit.text()
         self.close()

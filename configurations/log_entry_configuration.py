@@ -115,7 +115,9 @@ class LogEntryConfigurationWindow(QWidget):
         return any(value in self.find_filepath(entry.get_source_type) for value in source_type)
 
     def in_keyword(self, keywords, entry):
-        return any(value in entry.get_source or entry.get_source_type or entry.get_content for value in keywords)
+        return any(value in entry.get_source or value in entry.get_source_type or value in entry.get_log_entry_content
+                   or value in entry.get_host or value in entry.get_log_entry_timestamp or value
+                   in str(entry.get_log_entry_number) for value in keywords)
 
     def in_timestamp_range(self, start, end, entry):
         formatting = '%m/%d/%y %H:%M %p'
@@ -132,15 +134,42 @@ class LogEntryConfigurationWindow(QWidget):
         criteria = self.filter.filter_criteria
         self.filtered_entries = list()
         keywords = list(criteria['Keywords'])
+        print(keywords)
         creator = list(criteria['Creator'])
         event_type = list(criteria['Event Type'])
         timestamp = criteria['Timestamp']
 
         for i in range(self.table.rowCount()):
             entry = self.entries[i]
-            if not (self.in_source(keywords,entry) and self.in_source_type(event_type,entry)
-                and self.in_keyword(keywords,entry) and self.in_timestamp_range(timestamp[0],timestamp[1],entry)):
+            if len(keywords) > 0:
+                if not self.in_keyword(keywords,entry):
                     self.table.hideRow(i)
+                else:
+                    self.table.showRow(i)
+
+            if len(creator) > 0:
+                if not self.in_source(creator,entry):
+                    self.table.hideRow(i)
+
+                else:
+                    self.table.showRow(i)
+
+            if len(event_type) > 0:
+                if not self.in_source_type(event_type,entry):
+                    self.table.hideRow(i)
+
+                else:
+                    self.table.showRow(i)
+
+            if timestamp[0] != timestamp[1]:
+                if not self.in_timestamp_range(timestamp[0],timestamp[1],entry):
+                    self.table.hideRow(i)
+
+                else:
+                    self.table.showRow(i)
+
+
+
 
 
 

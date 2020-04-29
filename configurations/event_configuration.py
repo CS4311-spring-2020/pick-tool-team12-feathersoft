@@ -318,7 +318,7 @@ class EventConfigurationWindow(QWidget):
                     if self.ip_validated and self.root_structure_validated:
                         toolbar_unlocked = True
                         self.configured.emit(toolbar_unlocked)
-                        self.begin_ingestion(count=500)
+                        self.begin_ingestion(count=100)
                     else:
                         QMessageBox.critical(self, "Event and Team not Validated",
                                              "Please make sure event configuration and team configurations are "

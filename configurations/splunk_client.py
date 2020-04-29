@@ -202,9 +202,9 @@ class SplunkIntegrator():
 if __name__ == '__main__':
     client = SplunkIntegrator()
     client.connect()
-    client.set_index('main')
+    client.create_index('demo5')
     print(client.view_indexes())
-    client.download_log_files(100)
+
     #client.create_user('olac','stevenroach','user')
 
     #client.create_index('demo4')
