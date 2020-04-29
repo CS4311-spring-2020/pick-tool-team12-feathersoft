@@ -74,7 +74,7 @@ class LogEntryConfigurationWindow(QWidget):
         self.setLayout(self.layout)
 
     def revert_table(self):
-        for i in range(len(self.table.rowCount())):
+        for i in range(self.table.rowCount()):
             self.table.showRow(i)
 
     def populate_table(self, entries):
@@ -136,7 +136,7 @@ class LogEntryConfigurationWindow(QWidget):
         event_type = list(criteria['Event Type'])
         timestamp = criteria['Timestamp']
 
-        for i in range(len(self.table.rowCount())):
+        for i in range(self.table.rowCount()):
             entry = self.entries[i]
             if not (self.in_source(keywords,entry) and self.in_source_type(event_type,entry)
                 and self.in_keyword(keywords,entry) and self.in_timestamp_range(timestamp[0],timestamp[1],entry)):

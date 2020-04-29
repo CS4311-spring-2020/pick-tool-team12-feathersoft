@@ -93,17 +93,12 @@ class EventConfigurationWindow(QWidget):
 
         self.lead_ip_address_line_edit = QLineEdit()
         self.lead_ip_address_line_edit.setObjectName('Lead')
-        self.server_port_line_edit = QLineEdit()
-        self.splunk_index_line_edit = QLineEdit()
-        self.splunk_username_line_edit = QLineEdit()
-        self.splunk_password_line_edit = QLineEdit()
-        self.splunk_password_line_edit.setEchoMode(QLineEdit.Password)
+
+
 
         self.team_layout.layout().addRow('Lead IP Address', self.lead_ip_address_line_edit)
-        self.team_layout.layout().addRow('Server Port', self.server_port_line_edit)
-        self.team_layout.layout().addRow('Splunk Index', self.splunk_index_line_edit)
-        self.team_layout.layout().addRow('Splunk Username', self.splunk_username_line_edit)
-        self.team_layout.layout().addRow('Splunk Password', self.splunk_password_line_edit)
+
+
 
         self.established_connections = QLabel('')
         self.team_layout.layout().addRow('Established Connections', self.established_connections)
@@ -225,12 +220,10 @@ class EventConfigurationWindow(QWidget):
 
                     try:
                         lead = self.lead_ip_address_line_edit.text().strip()
-                        port = int(self.server_port_line_edit.text().strip())
-                        index = self.splunk_index_line_edit.text().strip()
-                        username = self.splunk_username_line_edit.text().strip()
-                        password = self.splunk_password_line_edit.text().strip()
+
                         self.splunk_client = SplunkIntegrator()
-                        self.splunk_client.connect(lead, port,username, password,None)
+                        self.splunk_client.connect()
+
 
                         QMessageBox.information(self,
                                                 'Connection Successful',
@@ -351,18 +344,26 @@ class EventConfigurationWindow(QWidget):
                 if converted:
                     self.files.add(converted)
 
-        for file in self.files:
-            cleansing_status = self.splunk_client.cleanse_file(file)
-            validation_status = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
-            acknowledgement_status = cleansing_status and validation_status
-            if acknowledgement_status:
-                self.splunk_client.upload_file(file, self.splunk_index_line_edit.text().strip())
-                ingestion_status = acknowledgement_status and cleansing_status and validation_status
-            else:
-                ingestion_status = False
-            self.logs.append(
-                LogFile(file, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
-        self.splunk_client.download_log_files(count=count, index=self.splunk_index_line_edit.text().strip())
+        try:
+            for file in self.files:
+
+                cleansing_status = self.splunk_client.cleanse_file(file)
+                validation_status = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
+                acknowledgement_status = cleansing_status and validation_status
+                if acknowledgement_status:
+                    self.splunk_client.upload_file(file, self.splunk_client.credentials[2])
+                    ingestion_status = acknowledgement_status and cleansing_status and validation_status
+                else:
+                    ingestion_status = False
+                self.logs.append(
+                    LogFile(file, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
+        except AuthenticationError:
+            QMessageBox.critical(self, "Authentication Error","Request Aborted: not logged in")
+
+
+
+
+        self.splunk_client.download_log_files(count=count)
         self.ingestion_complete.emit(True)
         self.logs_ingested.emit(True)
         self.reports_generated.emit(True)

@@ -17,6 +17,11 @@ class SplunkIntegrator():
         self.file_validator = FileValidator(datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
                                             datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
 
+        self.conf_path = "auth/conf.txt"
+
+
+
+
         # Create a Service instance and log in
 
 
@@ -25,14 +30,11 @@ class SplunkIntegrator():
     def create_index(self,index_name):
         self.service.indexes.create(index_name)
 
-    def connect(self,host,port,username,password,token):
-        self.service = splunklib.client.connect(
-            host=host,
-            port=port,
-            username=username,
-            password=password,
-            sharing='user',
-            token=token)
+    def connect(self):
+        self.credentials = open(self.conf_path).readline().split(' ')
+        self.service = splunklib.client.Service(host=self.credentials[0],port=self.credentials[1])
+
+    
 
     def connect_via_token(self,token):
         self.service = splunklib.client.connect(token=token)
@@ -114,9 +116,8 @@ class SplunkIntegrator():
         # Print updated info
         print("\nUpdated properties")
 
-    def download_log_files(self,count, index):
+    def download_log_files(self,count):
         # Retrieve search jobs
-        self.set_index(index)
         jobs = self.service.jobs
         # blocks until search is finished
         blocking_search = {"exec_mode":"blocking"}
@@ -200,7 +201,10 @@ class SplunkIntegrator():
 
 if __name__ == '__main__':
     client = SplunkIntegrator()
-    client.connect('192.168.81.1',8089,'Feathersoft','stevenroach',None)
+    client.connect()
+    client.set_index('main')
+    print(client.view_indexes())
+    client.download_log_files(100)
     #client.create_user('olac','stevenroach','user')
 
     #client.create_index('demo4')
