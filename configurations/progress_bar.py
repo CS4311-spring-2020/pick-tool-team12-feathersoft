@@ -13,49 +13,25 @@ class ProgressBarWindow(QMainWindow):
 
     def __init__(self):
         super(QMainWindow, self).__init__()
-        self.setGeometry(50, 50, 500, 300)
+        self.setGeometry(50, 50, 700, 200)
         self.setWindowTitle("PyQT tuts!")
         self.setWindowIcon(QIcon('pythonlogo.png'))
 
-        extractAction = QAction("&GET TO THE CHOPPAH!!!", self)
-        extractAction.setShortcut("Ctrl+Q")
-        extractAction.setStatusTip('Leave The App')
-        extractAction.triggered.connect(self.close_application)
+
 
         self.statusBar()
 
-        mainMenu = self.menuBar()
-        fileMenu = mainMenu.addMenu('&File')
-        fileMenu.addAction(extractAction)
+
 
         self.home()
 
     def home(self):
-        btn = QPushButton("Quit", self)
-        btn.clicked.connect(self.close_application)
-        btn.resize(btn.minimumSizeHint())
-        btn.move(0, 100)
-
-        extractAction = QAction(QIcon('todachoppa.png'), 'Flee the Scene', self)
-        extractAction.triggered.connect(self.close_application)
-
-        self.toolBar = self.addToolBar("Extraction")
-        self.toolBar.addAction(extractAction)
-
-        checkBox = QCheckBox('Shrink Window', self)
-        checkBox.move(100, 25)
-        checkBox.stateChanged.connect(self.enlarge_window)
-
         self.progress = QProgressBar(self)
-        self.progress.setGeometry(200, 80, 250, 20)
-
-        self.btn = QPushButton("Download", self)
-        self.btn.move(200, 120)
-        self.btn.clicked.connect(self.download)
-
-
+        self.progress.setGeometry(50, 50, 600, 40)
+        self.show()
 
     def download(self,files,client,start,end,logs):
+        self.setWindowModality(Qt.WindowModal)
         self.completed = 0
         try:
             audio = ['mp3', 'wav']
@@ -92,32 +68,8 @@ class ProgressBarWindow(QMainWindow):
             self.completed += 100/len(onlyfiles)
             self.progress.setValue(self.completed)
 
-
         except AuthenticationError:
             QMessageBox.critical(self, "Authentication Error", "Request Aborted: not logged in")
-
-        self.close()
-
-        # while self.completed < 100 and i < len(files):
-        #     self.completed += 0.0001
-        #     self.progress.setValue(self.completed)
-
-
-    def enlarge_window(self, state):
-        if state == Qt.Checked:
-            self.setGeometry(50, 50, 1000, 600)
-        else:
-            self.setGeometry(50, 50, 500, 300)
-
-    def close_application(self):
-        choice = QMessageBox.question(self, 'Extract!',
-                                            "Get into the chopper?",
-                                            QMessageBox.Yes | QMessageBox.No)
-        if choice == QMessageBox.Yes:
-            print("Extracting Naaaaaaoooww!!!!")
-            sys.exit()
-        else:
-            pass
 
 
 if __name__ == '__main__':

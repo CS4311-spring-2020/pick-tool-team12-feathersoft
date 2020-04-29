@@ -361,7 +361,6 @@ class EventConfigurationWindow(QWidget):
         #     QMessageBox.critical(self, "Authentication Error","Request Aborted: not logged in")
 
         self.progress_bar = ProgressBarWindow()
-        self.progress_bar.show()
         self.progress_bar.download(self.files,self.splunk_client,self.start_date.text(),self.end_date.text(),self.logs)
 
         self.splunk_client.download_log_files(count=count)
