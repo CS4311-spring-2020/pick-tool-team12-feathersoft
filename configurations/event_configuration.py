@@ -13,6 +13,7 @@ from configurations.rwo.log_file import LogFile
 from configurations.rwo.event_configuration import EventConfiguration
 from splunklib import *
 from splunklib.binding import AuthenticationError
+from configurations.progress_bar import ProgressBarWindow
 
 
 class EventConfigurationWindow(QWidget):
@@ -255,7 +256,6 @@ class EventConfigurationWindow(QWidget):
                         QMessageBox.critical(self, 'Network Unreachable', 'Network Unreachable '
                                                      'Please confirm that the information entered is correct.')
 
-
     def open_file(self):
         file = str(QFileDialog.getExistingDirectory(QFileDialog(), "Select Directory",
                                                     directory=os.path.realpath(os.getcwd())))
@@ -325,43 +325,44 @@ class EventConfigurationWindow(QWidget):
                                              "validated before ingestion")
 
     def begin_ingestion(self, count):
-        audio = ['mp3', 'wav']
-        video = ['mp4']
-        image = ['jpg', 'pdf', 'pnthg']
-        cleansing_status, validation_status, ingestion_status, acknowledgement_status = False, False, False, False
-        for filepath, folder, dir in os.walk('root'):
-            for file in dir:
-                path = os.path.join(filepath, file)
-                ext = path.split('.')[1]
-                if ext in audio:
-                    converted = self.splunk_client.file_converter.convert_audio_to_text(path)
-                elif ext in video:
-                    converted = self.splunk_client.file_converter.convert_video_to_audio(path)
-                elif ext in image:
-                    converted = self.splunk_client.file_converter.convert_image_to_text(path)
-                else:
-                    converted = path
-                if converted:
-                    self.files.add(converted)
+        # audio = ['mp3', 'wav']
+        # video = ['mp4']
+        # image = ['jpg', 'pdf', 'png']
+        # cleansing_status, validation_status, ingestion_status, acknowledgement_status = False, False, False, False
+        # for filepath, folder, dir in os.walk('root'):
+        #     for file in dir:
+        #         path = os.path.join(filepath, file)
+        #         ext = path.split('.')[1]
+        #         if ext in audio:
+        #             converted = self.splunk_client.file_converter.convert_audio_to_text(path)
+        #         elif ext in video:
+        #             converted = self.splunk_client.file_converter.convert_video_to_audio(path)
+        #         elif ext in image:
+        #             converted = self.splunk_client.file_converter.convert_image_to_text(path)
+        #         else:
+        #             converted = path
+        #         if converted:
+        #             self.files.add(converted)
 
-        try:
-            for file in self.files:
+        # try:
+        #     for file in self.files:
+        #
+        #         cleansing_status = self.splunk_client.cleanse_file(file)
+        #         validation_status = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
+        #         acknowledgement_status = cleansing_status and validation_status
+        #         if acknowledgement_status:
+        #             self.splunk_client.upload_file(file, self.splunk_client.credentials[2])
+        #             ingestion_status = acknowledgement_status and cleansing_status and validation_status
+        #         else:
+        #             ingestion_status = False
+        #         self.logs.append(
+        #             LogFile(file, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
+        # except AuthenticationError:
+        #     QMessageBox.critical(self, "Authentication Error","Request Aborted: not logged in")
 
-                cleansing_status = self.splunk_client.cleanse_file(file)
-                validation_status = self.splunk_client.validate_file(file, self.start_date.text(), self.end_date.text())
-                acknowledgement_status = cleansing_status and validation_status
-                if acknowledgement_status:
-                    self.splunk_client.upload_file(file, self.splunk_client.credentials[2])
-                    ingestion_status = acknowledgement_status and cleansing_status and validation_status
-                else:
-                    ingestion_status = False
-                self.logs.append(
-                    LogFile(file, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
-        except AuthenticationError:
-            QMessageBox.critical(self, "Authentication Error","Request Aborted: not logged in")
-
-
-
+        self.progress_bar = ProgressBarWindow()
+        self.progress_bar.show()
+        self.progress_bar.download(self.files,self.splunk_client,self.start_date.text(),self.end_date.text(),self.logs)
 
         self.splunk_client.download_log_files(count=count)
         self.ingestion_complete.emit(True)
