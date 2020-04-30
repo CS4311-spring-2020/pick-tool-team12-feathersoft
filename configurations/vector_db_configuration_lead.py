@@ -16,16 +16,7 @@ class VectorDBConfigurationLead(QWidget):
         self.UI()
         self.load_commits()
 
-
     def UI(self):
-        # self.mainMenu = QMenuBar(self)
-        # self.mainMenu.addMenu('File')
-        # self.mainMenu.addMenu('Edit')
-        # self.mainMenu.addMenu('View')
-        # self.mainMenu.addMenu('Search')
-        # self.mainMenu.addMenu('Tools')
-        # self.mainMenu.addMenu('Help')
-
         textLead = QLabel('Approval Sync: Pending', self)
         textLead.setFont(QFont('MS Shell Dlg 2', 14))
         textLead.move(30,30)
@@ -52,29 +43,21 @@ class VectorDBConfigurationLead(QWidget):
 
         # Defining our DB
         self.db = self.cluster["test"]
-
         self.collection = self.db["test"]
-
-
         header = self.approvalTable.horizontalHeader()
         header.setStretchLastSection(True)
-
-
 
         for i in range(self.approvalTable.columnCount()):
             header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
         self.approvalTable.setGeometry(50,100,900, 400)
 
-        buttonCommit = QPushButton(self)
+        buttonCommit = QPushButton(self,clicked=self.commit_to_database)
         buttonCommit.setGeometry(830,60,70,30)
-        buttonCommit.setText('Commit',clicked=self.commit_to_database)
+        buttonCommit.setText('Commit')
         vbox.addWidget(textLead)
         vbox.addWidget(self.approvalTable)
         vbox.addWidget(buttonCommit)
-
-
-
         self.setLayout(vbox)
 
     def load_commits(self):
@@ -94,10 +77,26 @@ class VectorDBConfigurationLead(QWidget):
             self.approvalTable.setItem(i, 6, QTableWidgetItem(self.results[i]['_status']))
 
     def commit_to_database(self):
-        pass
+        self.db = self.cluster["vector_db_test"]
+        self.collection = self.db["vdb_test"]
+
+        model = self.approvalTable.selectionModel()
+        selected_rows = model.selectedRows()
+        try:
+            for row in selected_rows:
+                result = self.results[row.row()]
+                entry = {"_ip_address": result['_ip_address'], "_time_stamp": result['_time_stamp'], "_name":
+                result['_name'], "_desc": result['_desc'],"_commit": result['_commit'],
+                         "_graph": result['_graph'], "_status": result['_status']}
+                self.collection.insert_one(entry)
+
+        except KeyError:
+            pass
+
+        except ConnectionError:
+            pass
 
 
-# if __name__ == '__main__':
-#     App = QApplication(sys.argv)
-#     window = VectorDBConfigurationLead()
-#     sys.exit(App.exec())
+
+
+

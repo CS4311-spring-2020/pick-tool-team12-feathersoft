@@ -2,6 +2,8 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from pymongo import MongoClient
+
 from configurations.custom_widgets import CheckableComboBox
 
 
@@ -15,6 +17,13 @@ class VectorDBConfigurationNonLead(QWidget):
         self.setWindowTitle("Vector Database Configuration")
         self.UI()
         self.vectors = []
+        self.cluster = \
+            MongoClient(
+                "mongodb+srv://Feathersoft:stevenroach@cluster0-700yf.mongodb.net/test?retryWrites=true&w=majority")
+
+        # Defining our DB
+        self.db = self.cluster["vector_db_test"]
+        self.collection = self.db["vdb_test"]
 
     def UI(self):
         textLead = QLabel('Connection status to lead:')
@@ -60,13 +69,13 @@ class VectorDBConfigurationNonLead(QWidget):
 
 
 
-        buttonPush = QPushButton(self)
+        buttonPush = QPushButton(self,clicked=self.pushed)
         buttonPush.setGeometry(350,65,70,30)
         buttonPush.setText('Push')
-        buttonPush.clicked.connect(self.pushed)
 
 
-        buttonPull = QPushButton(self)
+
+        buttonPull = QPushButton(self,clicked=self.pull)
         buttonPull.setGeometry(820, 65, 70, 30)
         buttonPull.setText('Pull')
 
@@ -104,4 +113,19 @@ class VectorDBConfigurationNonLead(QWidget):
 
     def pushed(self):
         self._push_signal.emit()
+
+    def pull(self):
+        self.results = self.collection.find()
+        j = 0
+
+        self.results = list(self.results)
+        self.table2.setRowCount(len(self.results))
+
+        for i in range(self.table2.rowCount()):
+            self.table2.setItem(i, 0, QTableWidgetItem(self.results[i]['_name']))
+            self.table2.setItem(i, 1, QTableWidgetItem(self.results[i]['_desc']))
+            self.table2.setItem(i, 3, QTableWidgetItem(self.results[i]['_graph']))
+
+
+
 
