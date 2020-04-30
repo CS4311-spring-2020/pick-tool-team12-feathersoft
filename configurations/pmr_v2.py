@@ -239,7 +239,6 @@ class PMR(QMainWindow):
                                     self.vector_db_configuration_non_lead.table.item(i, 1), \
                                     self.vector_db_configuration_non_lead.table.item(i, 3)
 
-
                 if name and desc and graph:
                     selected_vectors.add((name.text(), desc.text(), graph.text()))
 
@@ -251,9 +250,7 @@ class PMR(QMainWindow):
             timestampStr = dateTimeObj.strftime('%m/%d/%y %H:%M %p')
             entry = {"_ip_address":ip_address,"_time_stamp":timestampStr,"_name":name,"_desc":desc,"_commit":"Selected",
                      "_graph":graph,"_status":"pending"}
-
             self.collection.insert_one(entry)
-
 
 
 if __name__ == "__main__":

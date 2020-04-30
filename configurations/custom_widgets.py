@@ -6,6 +6,9 @@ from PyQt5.QtCore import *
 
 
 class CheckableComboBox(QComboBox,QWidget):
+    """
+    This subclass of QComboBox allows a multi-select option for the ComboBox
+    """
 
     # Subclass Delegate to increase item height
     class Delegate(QStyledItemDelegate):

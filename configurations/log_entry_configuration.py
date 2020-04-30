@@ -9,10 +9,11 @@ from datetime import datetime, timedelta
 from configurations.custom_widgets import CheckableComboBox
 from configurations.filter_configuration import FilterConfigurationWindow
 
-"""This class will be used to build the UI Window for the Log Entry Configuration"""
-
 
 class LogEntryConfigurationWindow(QWidget):
+    """This class will be used to build the UI Window for the Log Entry Configuration"""
+
+    # Signals to emit
     _log_entry_flagged = pyqtSignal()
     _table_reverted = pyqtSignal()
 
@@ -25,6 +26,7 @@ class LogEntryConfigurationWindow(QWidget):
         self.UI()
 
     def UI(self):
+
         # Creating the label for the window
         self.label = QLabel('Log Entry Configuration', self)
         # Setting the window's font
@@ -142,36 +144,31 @@ class LogEntryConfigurationWindow(QWidget):
         for i in range(self.table.rowCount()):
             entry = self.entries[i]
             if len(keywords) > 0:
-                if not self.in_keyword(keywords,entry):
+                if not self.in_keyword(keywords, entry):
                     self.table.hideRow(i)
                 else:
                     self.table.showRow(i)
 
             if len(creator) > 0:
-                if not self.in_source(creator,entry):
+                if not self.in_source(creator, entry):
                     self.table.hideRow(i)
 
                 else:
                     self.table.showRow(i)
 
             if len(event_type) > 0:
-                if not self.in_source_type(event_type,entry):
+                if not self.in_source_type(event_type, entry):
                     self.table.hideRow(i)
 
                 else:
                     self.table.showRow(i)
 
             if timestamp[0] != timestamp[1]:
-                if not self.in_timestamp_range(timestamp[0],timestamp[1],entry):
+                if not self.in_timestamp_range(timestamp[0], timestamp[1], entry):
                     self.table.hideRow(i)
 
                 else:
                     self.table.showRow(i)
-
-
-
-
-
 
     def header_clicked(self):
         if not self.table.rowCount() == 0:

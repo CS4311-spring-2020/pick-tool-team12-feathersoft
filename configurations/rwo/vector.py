@@ -1,5 +1,8 @@
 
 class Vector:
+    """
+
+    """
 
     def __init__(self, vector_name, vector_description):
         """

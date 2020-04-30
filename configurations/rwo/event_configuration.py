@@ -32,7 +32,8 @@ class EventConfiguration:
              white_team_folder:(str) Name of the folder where all the white team log files are stored.
              blue_team_folder: (str) Name of the folder where all the blue team log files are stored.
              lead: (bool) Indicator of the host machine where the master vector DB is stored.
-             lead_ip_address: (str) Required; Editable	Identifier of the host machine where the master vector DB is stored.
+             lead_ip_address: (str) Required; Editable	Identifier of the host machine where the master vector DB is
+             stored.
              connections_established (int) Number of established connections to the host machine.
 
             """

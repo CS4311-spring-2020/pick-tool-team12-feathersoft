@@ -5,12 +5,13 @@ import datetime
 
 from PyQt5.QtWidgets import QDateTimeEdit
 
-""" The filter configuration widget is used to collect filter criteria
-    from an analyst to apply to a table.
-"""
+
 
 
 class FilterConfigurationWindow(QWidget):
+    """ The filter configuration widget is used to collect filter criteria
+        from an analyst to apply to a table.
+    """
 
     def __init__(self):
         super().__init__()

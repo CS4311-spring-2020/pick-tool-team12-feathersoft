@@ -1,14 +1,14 @@
-import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-from configurations.change_configuration import ChangeConfigurationWindow
 from pymongo import MongoClient
 
 # A cluster is the machine that holds our database
 
 
 class VectorDBConfigurationLead(QWidget):
+    """
+
+    """
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 900, 700)
@@ -17,6 +17,10 @@ class VectorDBConfigurationLead(QWidget):
         self.load_commits()
 
     def UI(self):
+        """
+
+        :return:
+        """
         textLead = QLabel('Approval Sync: Pending', self)
         textLead.setFont(QFont('MS Shell Dlg 2', 14))
         textLead.move(30,30)
@@ -61,10 +65,11 @@ class VectorDBConfigurationLead(QWidget):
         self.setLayout(vbox)
 
     def load_commits(self):
-        self.results = self.collection.find()
-        j = 0
+        """
 
-        self.results = list(self.results)
+        :return:
+        """
+        self.results = list(self.collection.find())
         self.approvalTable.setRowCount(len(self.results))
 
         for i in range(self.approvalTable.rowCount()):
@@ -77,6 +82,10 @@ class VectorDBConfigurationLead(QWidget):
             self.approvalTable.setItem(i, 6, QTableWidgetItem(self.results[i]['_status']))
 
     def commit_to_database(self):
+        """
+
+        :return:
+        """
         self.db = self.cluster["vector_db_test"]
         self.collection = self.db["vdb_test"]
 

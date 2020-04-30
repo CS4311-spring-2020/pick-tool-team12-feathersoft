@@ -115,10 +115,7 @@ class VectorDBConfigurationNonLead(QWidget):
         self._push_signal.emit()
 
     def pull(self):
-        self.results = self.collection.find()
-        j = 0
-
-        self.results = list(self.results)
+        self.results = list(self.collection.find())
         self.table2.setRowCount(len(self.results))
 
         for i in range(self.table2.rowCount()):

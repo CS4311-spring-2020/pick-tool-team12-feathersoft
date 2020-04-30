@@ -4,6 +4,10 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
 class ExportConfigurationWindow(QWidget):
+    """
+        The Export Configuration Window is used to allow the user to select the format they want to export the graph
+        into.
+    """
     def __init__(self):
         super().__init__()
         self.setGeometry(650,300, 600,400)

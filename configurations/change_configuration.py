@@ -3,7 +3,11 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 
+
 class ChangeConfigurationWindow(QWidget):
+    """
+    The Change Configuration Window is responsible for tracking and logging changes made in th system.
+    """
 
     def __init__(self):
         super().__init__()
@@ -17,12 +21,9 @@ class ChangeConfigurationWindow(QWidget):
         label.move(50, 70)
         text_area = QTextEdit(self)
         text_area.setFixedWidth(500)
-        text_area.move(50,100)
+        text_area.move(50, 100)
         undo_btn = QPushButton('UNDO', self)
         undo_btn.move(50, 330)
         commit_btn = QPushButton('COMMIT', self)
-        commit_btn.move(450,330)
-        #self.show()
-
-
-
+        commit_btn.move(450, 330)
+        # self.show()

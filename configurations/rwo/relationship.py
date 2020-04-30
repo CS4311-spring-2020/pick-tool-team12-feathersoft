@@ -1,6 +1,8 @@
 
 class Relationship:
+    """
 
+    """
     def __init__(self, relationship_id, parent_id):
         """
 

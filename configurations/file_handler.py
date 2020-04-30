@@ -46,8 +46,9 @@ class FileConverter():
 
                 lines = open(audio_file.split('.')[0] + '.txt').readlines()
                 with open(audio_file.split('.')[0] + '.txt', 'w')as f:
-                    f.writelines(datetime.utcfromtimestamp(os.path.getmtime(audio_file)).strftime('%m/%d/%y %H:%M %p') + ' '
-                                 + line for line in lines if line.strip())
+                    f.writelines(
+                        datetime.utcfromtimestamp(os.path.getmtime(audio_file)).strftime('%m/%d/%y %H:%M %p') + ' '
+                        + line for line in lines if line.strip())
                     f.truncate()
 
             return converted
@@ -63,8 +64,6 @@ class FileConverter():
             file = video_file.split('.')[0] + '.wav'
             audio.write_audiofile(file)
             return self.convert_audio_to_text(file)
-
-
 
     def convert_image_to_text(self, image_file):
         """
@@ -110,7 +109,6 @@ class FileConverter():
 
 
 class FileCleanser():
-
     """
         The FileCleanser class is used to perform the cleansing operation on a log file.
         It should remove any unwanted characters as well as empty lines for every line in the file.
@@ -127,7 +125,7 @@ class FileCleanser():
         if file:
             lines = open(file, encoding='utf_8').readlines()
 
-            apache = [re.findall(r'\[(\d{2})/([a-zA-Z]{3})/(\d{4}):(\d{2}):(\d{2}):(\d{2})]',line) for line in lines]
+            apache = [re.findall(r'\[(\d{2})/([a-zA-Z]{3})/(\d{4}):(\d{2}):(\d{2}):(\d{2})]', line) for line in lines]
             valid_times = []
             if apache:
                 for apache_timestamp in apache:
@@ -152,14 +150,13 @@ class FileCleanser():
 
 
 class FileValidator():
-
     """
         The FileValidator class is responsible for performing the validation operation of a log file.
         (i.e Checking for empty lines, missing timestamps and ensuring all timestamps in the file are within
         range of the start and end dates provided in the event configuration.)
     """
 
-    def __init__(self,event_start, event_end):
+    def __init__(self, event_start, event_end):
 
         """
 
@@ -171,7 +168,7 @@ class FileValidator():
         self.end_timestamp = event_end
         self.reports = list()
 
-    def validate_file(self,file):
+    def validate_file(self, file):
 
         """
         :param file:(str) The file to be validated.
@@ -194,39 +191,38 @@ class FileValidator():
             # Getting all indexes that contain missing timestamps (i.e) empty line or missing timestamps
             enforcement_action_report['missing_time_stamp'] = \
                 [i for i in range(len(lines)) if len(lines[i].strip()) ==
-                    0 or not len(list(datefinder.find_dates(lines[i])))]
+                 0 or not len(list(datefinder.find_dates(lines[i])))]
 
             # Getting all indexes that fall outside the timestamp range from the event configuration.
             # (i.e all non start_time <= current_time <==end_time)
             enforcement_action_report['invalid_time_stamp'] = \
                 [i for i in range(len(lines)) if len(list(datefinder.find_dates(lines[i]))) > 0
-                    and not datetime.strptime(self.start_timestamp.strip(), formatting)
-                    <= list(datefinder.find_dates(lines[i]))[0]
-                    <= datetime.strptime(self.end_timestamp.strip(), formatting)]
+                 and not datetime.strptime(self.start_timestamp.strip(), formatting)
+                         <= list(datefinder.find_dates(lines[i]))[0]
+                         <= datetime.strptime(self.end_timestamp.strip(), formatting)]
 
             # If the file extension is CVS and  it came from the white directory..
             if '.csv' in file and 'white' in file:
-
                 # Take the average of the year month and date values
                 year = (int(datetime.strptime(self.start_timestamp.strip(), formatting).year) + \
-                           int(datetime.strptime(self.start_timestamp.strip(), formatting).year)) // 2
+                        int(datetime.strptime(self.start_timestamp.strip(), formatting).year)) // 2
 
                 month = (int(datetime.strptime(self.start_timestamp.strip(), formatting).month) + \
-                            int(datetime.strptime(self.start_timestamp.strip(), formatting).month)) // 2
+                         int(datetime.strptime(self.start_timestamp.strip(), formatting).month)) // 2
 
                 date = (int(datetime.strptime(self.start_timestamp.strip(), formatting).day) + \
-                            int(datetime.strptime(self.start_timestamp.strip(), formatting).day)) // 2
+                        int(datetime.strptime(self.start_timestamp.strip(), formatting).day)) // 2
 
                 # Subtract 23:59 from the upper bound.
-                upper_bound = datetime(year, month,date) - timedelta(0,23,59)
+                upper_bound = datetime(year, month, date) - timedelta(0, 23, 59)
                 # Add 23:59 to the lower bound.
-                lower_bound = datetime(year, month,date) + timedelta(0,23,59)
+                lower_bound = datetime(year, month, date) + timedelta(0, 23, 59)
 
                 # Invalid CVS files timestamps are those that fall outside the range of start <= current < end
                 enforcement_action_report['invalid_time_stamp_cvs'] = \
                     [i for i in range(len(lines)) if list(datefinder.find_dates(lines[i]))[0]
                      and not upper_bound <= datetime.strptime(list(datefinder.find_dates(lines[i]))[0])
-                     <= lower_bound]
+                             <= lower_bound]
 
             # File validator will keep track of all enforcement action reports
             self.reports.append(enforcement_action_report)
@@ -234,9 +230,6 @@ class FileValidator():
             return all(value == [] for value in enforcement_action_report.values())
 
 
-
 if __name__ == '__main__':
     fc = FileCleanser()
     fc.cleanse_file('root/white/www1/secure.log')
-
-

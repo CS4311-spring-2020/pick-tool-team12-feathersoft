@@ -1,6 +1,10 @@
 
 class Node:
 
+    """
+
+    """
+
     def __init__(self, node_id, node_name, node_timestamp, node_description, log_entry_reference, log_creator,
                  event_type,icon_type,source,visibility):
         """

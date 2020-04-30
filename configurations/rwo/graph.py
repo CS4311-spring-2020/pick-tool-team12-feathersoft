@@ -4,8 +4,8 @@ class Graph:
     """
         Class used to represent a graph object for the PICK PMR tool.
         Attributes:
-        _export_format:
-        _orientation:
+        _export_format: Format in which the graph image will be exported
+        _orientation: The method in which the graph will be displayed
         _interval_units:
         _interval:
         _position_of_nodes:

@@ -3,8 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/root/red/mailsv/sample_audio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/root/red/mailsv/sample_audio.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/root/white/www3/sample_video.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/root/white/www3/sample_video.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/change_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/change_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/custom_widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/custom_widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/directory_configuration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/event_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/event_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/export_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/export_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/file_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/file_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/filter_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/filter_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/log_entry_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_entry_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/log_file_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/log_file_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/pmr_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/pmr_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/rwo/event_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/rwo/event_configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/rwo/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/rwo/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/rwo/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/rwo/node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/rwo/node_visibility.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/rwo/node_visibility.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/rwo/relationship.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/rwo/relationship.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/rwo/vector.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/rwo/vector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/splunk_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/splunk_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configurations/test_graph.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/vector_configuration_non_lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_configuration_non_lead.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/vector_db_configuration_lead.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/vector_db_configuration_lead.py" afterDir="false" />
     </list>
@@ -200,13 +216,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580431996380</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Added some resources for the team">
-      <created>1580958046576</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1580958046576</updated>
     </task>
     <task id="LOCAL-00019" summary="wired all windows together in pmr.py">
       <created>1581020622239</created>
@@ -544,7 +553,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588230267449</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Integrated MongoDB support for pushing and pulling vector to and from the vector database.">
+      <created>1588232548738</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1588232548739</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -593,11 +609,11 @@
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state x="693" y="245" width="534" height="506" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.31.1920.926@0.31.1920.926" timestamp="1586902273536" />
-    <state x="566" y="53" width="807" height="872" key="CommitChangelistDialog2" timestamp="1588230265930">
+    <state x="566" y="53" width="807" height="872" key="CommitChangelistDialog2" timestamp="1588232548221">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state x="561" y="53" width="779" height="872" key="CommitChangelistDialog2/0.31.1902.908@0.31.1902.908" timestamp="1586844577220" />
-    <state x="566" y="53" width="807" height="872" key="CommitChangelistDialog2/0.31.1920.926@0.31.1920.926" timestamp="1588230265930" />
+    <state x="566" y="53" width="807" height="872" key="CommitChangelistDialog2/0.31.1920.926@0.31.1920.926" timestamp="1588232548221" />
     <state width="1897" height="181" key="GridCell.Tab.0.bottom" timestamp="1588232269218">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
@@ -668,11 +684,11 @@
     <state x="445" y="129" width="1013" height="733" key="SettingsEditor/0.31.1902.908@0.31.1902.908" timestamp="1585518537907" />
     <state x="449" y="131" width="1022" height="733" key="SettingsEditor/0.31.1920.926@0.31.1920.926" timestamp="1586815521129" />
     <state x="48" y="129" width="910" height="733" key="SettingsEditor/0.31.958.908@0.31.958.908" timestamp="1586077115874" />
-    <state x="555" y="232" width="810" height="531" key="Vcs.Push.Dialog.v2" timestamp="1588230276785">
+    <state x="555" y="232" width="810" height="531" key="Vcs.Push.Dialog.v2" timestamp="1588232552901">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state x="550" y="228" width="810" height="531" key="Vcs.Push.Dialog.v2/0.31.1902.908@0.31.1902.908" timestamp="1586844582511" />
-    <state x="555" y="232" width="810" height="531" key="Vcs.Push.Dialog.v2/0.31.1920.926@0.31.1920.926" timestamp="1588230276785" />
+    <state x="555" y="232" width="810" height="531" key="Vcs.Push.Dialog.v2/0.31.1920.926@0.31.1920.926" timestamp="1588232552901" />
     <state x="121" y="209" key="com.intellij.ide.util.TipDialog" timestamp="1588218531599">
       <screen x="0" y="31" width="800" height="569" />
     </state>
