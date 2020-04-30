@@ -3,6 +3,10 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from configurations.change_configuration import ChangeConfigurationWindow
+from pymongo import MongoClient
+
+# A cluster is the machine that holds our database
+
 
 class VectorDBConfigurationLead(QWidget):
     def __init__(self):
@@ -10,6 +14,8 @@ class VectorDBConfigurationLead(QWidget):
         self.setGeometry(50, 50, 900, 700)
         self.setWindowTitle("Vector Database Configuration Lead")
         self.UI()
+        self.load_commits()
+
 
     def UI(self):
         # self.mainMenu = QMenuBar(self)
@@ -29,87 +35,66 @@ class VectorDBConfigurationLead(QWidget):
         approvalText.move(30,70)
 
         vbox = QVBoxLayout()
-        approvalTable = QTableWidget(self)
-        approvalTable.setColumnCount(8)
-        approvalTable.setRowCount(20)
-        approvalTable.verticalHeader().setVisible(False)
-        approvalTable.setHorizontalHeaderItem(7, QTableWidgetItem(""))
-        approvalTable.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Source IP"))
-        approvalTable.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Request Timestamp"))
-        approvalTable.setHorizontalHeaderItem(2,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector"))
-        approvalTable.setHorizontalHeaderItem(3,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Description"))
-        approvalTable.setHorizontalHeaderItem(5,QTableWidgetItem("Graph"))
-        approvalTable.setHorizontalHeaderItem(4,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Change Summary"))
-        approvalTable.setHorizontalHeaderItem(6,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Sync Status"))
+        self.approvalTable = QTableWidget(self)
+        self.approvalTable.setColumnCount(8)
+        self.approvalTable.setHorizontalHeaderItem(7, QTableWidgetItem(""))
+        self.approvalTable.setHorizontalHeaderItem(0,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Source IP"))
+        self.approvalTable.setHorizontalHeaderItem(1,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Request Timestamp"))
+        self.approvalTable.setHorizontalHeaderItem(2,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Vector"))
+        self.approvalTable.setHorizontalHeaderItem(3,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Description"))
+        self.approvalTable.setHorizontalHeaderItem(5,QTableWidgetItem("Graph"))
+        self.approvalTable.setHorizontalHeaderItem(4,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Change Summary"))
+        self.approvalTable.setHorizontalHeaderItem(6,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Sync Status"))
+
+        self.cluster = \
+            MongoClient(
+                "mongodb+srv://Feathersoft:stevenroach@cluster0-700yf.mongodb.net/test?retryWrites=true&w=majority")
+
+        # Defining our DB
+        self.db = self.cluster["test"]
+
+        self.collection = self.db["test"]
 
 
-        header = approvalTable.horizontalHeader()
+        header = self.approvalTable.horizontalHeader()
         header.setStretchLastSection(True)
-        approvalTable.verticalHeader().setStretchLastSection(True)
 
 
-        for i in range(approvalTable.columnCount()):
+
+        for i in range(self.approvalTable.columnCount()):
             header.setSectionResizeMode(i, QHeaderView.ResizeToContents)
 
-        for i in range(approvalTable.rowCount()):
-
-            checkbox = QTableWidgetItem()
-            checkbox.setCheckState(Qt.Unchecked)
-
-            comboboxStatus = QComboBox()
-            comboboxStatus.addItems(['','Complete','Pending'])
-
-            comboboxGraph = QComboBox()
-            comboboxGraph.addItems(['', '1', '2'])
-
-            self.table = QTableWidget()
-            self.table.setRowCount(4)
-            self.table.setVerticalHeaderItem(0,QTableWidgetItem('Vector 1'))
-            self.table.setVerticalHeaderItem(1, QTableWidgetItem('Vector 2'))
-            self.table.setVerticalHeaderItem(2, QTableWidgetItem('Vector 3'))
-            self.table.setVerticalHeaderItem(3, QTableWidgetItem('Vector 4'))
-
-            tableitem_IP = QTableWidgetItem()
-            tableitem_IP.setData(Qt.DisplayRole, '127.0.0.1')
-
-            tableitemTimestamp = QTableWidget()
-            tableitemTimestamp.setRowCount(4)
-            tableitemTimestamp.setVerticalHeaderItem(0, QTableWidgetItem('12: 00 '))
-            tableitemTimestamp.setVerticalHeaderItem(1, QTableWidgetItem('12: 10'))
-            tableitemTimestamp.setVerticalHeaderItem(2, QTableWidgetItem('12: 20'))
-            tableitemTimestamp.setVerticalHeaderItem(3, QTableWidgetItem('12: 30'))
-
-            tableitemDescription = QTableWidgetItem()
-            tableitemDescription.setText( 'This text can be changed as presented')
-
-            tableitemSummary = QTableWidgetItem()
-            tableitemSummary.setData(Qt.DisplayRole, 'Last Summary')
-
-
-            approvalTable.setItem(i,0,tableitem_IP)
-            approvalTable.setCellWidget(i, 1, tableitemTimestamp)
-            approvalTable.setCellWidget(i, 2, self.table)
-            approvalTable.setItem(i, 3, tableitemDescription)
-            approvalTable.setItem(i, 4, tableitemSummary)
-            approvalTable.setCellWidget(i,5,comboboxGraph)
-            approvalTable.setCellWidget(i,6,comboboxStatus)
-            approvalTable.setItem(i,7,checkbox)
-
-
-        approvalTable.setGeometry(50,100,900, 400)
+        self.approvalTable.setGeometry(50,100,900, 400)
 
         buttonCommit = QPushButton(self)
         buttonCommit.setGeometry(830,60,70,30)
-        buttonCommit.setText('Commit')
+        buttonCommit.setText('Commit',clicked=self.commit_to_database)
         vbox.addWidget(textLead)
-        vbox.addWidget(approvalTable)
+        vbox.addWidget(self.approvalTable)
         vbox.addWidget(buttonCommit)
+
 
 
         self.setLayout(vbox)
 
+    def load_commits(self):
+        self.results = self.collection.find()
+        j = 0
 
-        #self.show()
+        self.results = list(self.results)
+        self.approvalTable.setRowCount(len(self.results))
+
+        for i in range(self.approvalTable.rowCount()):
+            self.approvalTable.setItem(i, 0, QTableWidgetItem(self.results[i]['_ip_address']))
+            self.approvalTable.setItem(i, 1, QTableWidgetItem(self.results[i]["_time_stamp"]))
+            self.approvalTable.setItem(i, 2, QTableWidgetItem(self.results[i]['_name']))
+            self.approvalTable.setItem(i, 3, QTableWidgetItem(self.results[i]['_desc']))
+            self.approvalTable.setItem(i, 4, QTableWidgetItem(self.results[i]['_commit']))
+            self.approvalTable.setItem(i, 5, QTableWidgetItem(self.results[i]['_graph']))
+            self.approvalTable.setItem(i, 6, QTableWidgetItem(self.results[i]['_status']))
+
+    def commit_to_database(self):
+        pass
 
 
 # if __name__ == '__main__':

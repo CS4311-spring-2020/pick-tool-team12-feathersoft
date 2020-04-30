@@ -5,14 +5,16 @@ from PyQt5.QtCore import *
 from configurations.custom_widgets import CheckableComboBox
 
 
-
-
 class VectorDBConfigurationNonLead(QWidget):
+
+    _push_signal = pyqtSignal()
+
     def __init__(self):
         super().__init__()
         self.setGeometry(0, 0, 800, 600)
         self.setWindowTitle("Vector Database Configuration")
         self.UI()
+        self.vectors = []
 
     def UI(self):
         textLead = QLabel('Connection status to lead:')
@@ -61,6 +63,8 @@ class VectorDBConfigurationNonLead(QWidget):
         buttonPush = QPushButton(self)
         buttonPush.setGeometry(350,65,70,30)
         buttonPush.setText('Push')
+        buttonPush.clicked.connect(self.pushed)
+
 
         buttonPull = QPushButton(self)
         buttonPull.setGeometry(820, 65, 70, 30)
@@ -97,4 +101,7 @@ class VectorDBConfigurationNonLead(QWidget):
         layout.addLayout(table2Layout)
         layout.setSpacing(10)
         self.setLayout(layout)
+
+    def pushed(self):
+        self._push_signal.emit()
 

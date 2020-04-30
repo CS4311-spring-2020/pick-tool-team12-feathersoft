@@ -17,10 +17,12 @@ from configurations.change_configuration import ChangeConfigurationWindow
 from configurations.custom_widgets import CheckableComboBox
 from configurations.rwo.vector import Vector
 from configurations.rwo.node import Node
-
+import socket
+import datetime
+from datetime import datetime
+from pymongo import MongoClient
 
 class PMR(QMainWindow):
-
     """
         The PMR class is the main window or controller between the configuration windows
     """
@@ -58,10 +60,18 @@ class PMR(QMainWindow):
         self.tools_menu = self.menubar.addMenu('Tools')
         self.file_menu.addAction('Quit')
 
+        self.cluster = \
+            MongoClient("mongodb+srv://Feathersoft:stevenroach@cluster0-700yf."
+                        "mongodb.net/test?retryWrites=true&w=majority")
+
+        self.db = self.cluster["test"]
+
+        self.collection = self.db["test"]
+
         # Disable access to the rest of the screens until an event has been configured.
         # This is because it would not make sense to continue until an event is valid.
 
-        #self.disable_toolbar()
+        # self.disable_toolbar()
 
         # Enable the rest of the toolbar after event has been configured
         self.event_configuration.configured.connect(self.enable_toolbar)
@@ -89,6 +99,9 @@ class PMR(QMainWindow):
 
         # Undo log entries table filter
         self.log_entry_configuration._table_reverted.connect(self.revert_table)
+
+        # Update lead table
+        self.vector_db_configuration_non_lead._push_signal.connect(self.update_lead_db)
 
         self.addToolBar(Qt.LeftToolBarArea, self.configurations_toolbar)
         self.setCentralWidget(self.event_configuration)
@@ -147,7 +160,6 @@ class PMR(QMainWindow):
     def populate_er(self):
         self.log_file_configuration.er_reports = self.event_configuration.splunk_client.file_validator.reports
 
-
     def update_log_entry_vectors(self):
         size = [str(i) for i in range(int(self.vector_configuration.table.rowCount()))]
         for i in range(self.log_entry_configuration.table.rowCount()):
@@ -158,10 +170,10 @@ class PMR(QMainWindow):
     def update_vector_db(self):
         selected_vectors = set()
         for i in range(self.vector_configuration.table.rowCount()):
-            if self.vector_configuration.table.cellWidget(i,2).isChecked():
-                name, desc = self.vector_configuration.table.item(i,0),self.vector_configuration.table.item(i,1)
+            if self.vector_configuration.table.cellWidget(i, 2).isChecked():
+                name, desc = self.vector_configuration.table.item(i, 0), self.vector_configuration.table.item(i, 1)
                 if name is not None and desc is not None:
-                    selected_vectors.add(Vector(name.text(),desc.text()))
+                    selected_vectors.add(Vector(name.text(), desc.text()))
 
         self.vector_db_configuration_non_lead.table.setRowCount(len(selected_vectors))
         for i in range(len(selected_vectors)):
@@ -173,12 +185,12 @@ class PMR(QMainWindow):
     def update_nodes(self):
         selected_nodes = set()
         for i in range(self.log_entry_configuration.table.rowCount()):
-            if self.log_entry_configuration.table.cellWidget(i,7).isChecked():
+            if self.log_entry_configuration.table.cellWidget(i, 7).isChecked():
                 node_id = str(i + 1)
                 node_name = "Node " + str(i + 1)
-                node_timestamp = self.log_entry_configuration.table.item(i,2).text()
+                node_timestamp = self.log_entry_configuration.table.item(i, 2).text()
                 node_description = str(i) + 'th' + ' Node flagged'
-                log_entry_reference = self.log_entry_configuration.table.item(i,4).text()
+                log_entry_reference = self.log_entry_configuration.table.item(i, 4).text()
                 if 'white' in log_entry_reference:
                     log_entry_source = 'white'
                 elif 'red' in log_entry_reference:
@@ -202,7 +214,7 @@ class PMR(QMainWindow):
         table.setRowCount(len(selected_nodes))
         for i in range(table.rowCount()):
             node = selected_nodes.pop()
-            table.setItem(i,0,QTableWidgetItem(node.get_node_id))
+            table.setItem(i, 0, QTableWidgetItem(node.get_node_id))
             table.setItem(i, 1, QTableWidgetItem(node.get_node_id))
             table.setItem(i, 2, QTableWidgetItem(node.get_node_name))
             table.setItem(i, 3, QTableWidgetItem(node.get_node_timestamp))
@@ -219,13 +231,33 @@ class PMR(QMainWindow):
     def revert_table(self):
         self.log_entry_configuration.populate_table(self.event_configuration.splunk_client.entries)
 
+    def update_lead_db(self):
+        selected_vectors = set()
+        for i in range(self.vector_db_configuration_non_lead.table.rowCount()):
+            if self.vector_db_configuration_non_lead.table.cellWidget(i, 2).isChecked():
+                name, desc, graph = self.vector_db_configuration_non_lead.table.item(i, 0), \
+                                    self.vector_db_configuration_non_lead.table.item(i, 1), \
+                                    self.vector_db_configuration_non_lead.table.item(i, 3)
+
+
+                if name and desc and graph:
+                    selected_vectors.add((name.text(), desc.text(), graph.text()))
+
+        for i in range(len(selected_vectors)):
+            name, desc, graph = selected_vectors.pop()
+            hostname = socket.gethostname()
+            ip_address = socket.gethostbyname(hostname)
+            dateTimeObj = datetime.now()
+            timestampStr = dateTimeObj.strftime('%m/%d/%y %H:%M %p')
+            entry = {"_ip_address":ip_address,"_time_stamp":timestampStr,"_name":name,"_desc":desc,"_commit":"Selected",
+                     "_graph":graph,"_status":"pending"}
+
+            self.collection.insert_one(entry)
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setStyle('Ubuntu')
     window = PMR()
     sys.exit(app.exec())
-
-
-
-
