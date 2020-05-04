@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from pymongo import MongoClient
+from pymongo.errors import ConfigurationError
 
 from configurations.custom_widgets import CheckableComboBox
 
@@ -17,13 +18,9 @@ class VectorDBConfigurationNonLead(QWidget):
         self.setWindowTitle("Vector Database Configuration")
         self.UI()
         self.vectors = []
-        self.cluster = \
-            MongoClient(
-                "mongodb+srv://Feathersoft:stevenroach@cluster0-700yf.mongodb.net/test?retryWrites=true&w=majority")
+        self.approval_db_credentials = open('auth/db_approve_auth').readline().rstrip().split(' ')
+        self.commit_db_credentials = open('auth/db_commit_auth').readline().rstrip().split(' ')
 
-        # Defining our DB
-        self.db = self.cluster["vector_db_test"]
-        self.collection = self.db["vdb_test"]
 
     def UI(self):
         textLead = QLabel('Connection status to lead:')
@@ -111,18 +108,41 @@ class VectorDBConfigurationNonLead(QWidget):
         layout.setSpacing(10)
         self.setLayout(layout)
 
+    def connect(self):
+
+        try:
+            self.cluster = \
+                MongoClient(self.commit_db_credentials[0])
+
+        # Defining our DB
+        except ConnectionError:
+            QMessageBox.critical(self, 'Connection Error', 'A connection could not be established at this time')
+        except ConfigurationError:
+            QMessageBox.critical(self, 'Configuration Error', 'Connection timeout after 20 seconds'
+                                                              'Please be sure that your mongodb server is running')
+
     def pushed(self):
         self._push_signal.emit()
 
     def pull(self):
-        self.results = list(self.collection.find())
-        self.table2.setRowCount(len(self.results))
 
-        for i in range(self.table2.rowCount()):
-            self.table2.setItem(i, 0, QTableWidgetItem(self.results[i]['_name']))
-            self.table2.setItem(i, 1, QTableWidgetItem(self.results[i]['_desc']))
-            self.table2.setItem(i, 3, QTableWidgetItem(self.results[i]['_graph']))
+        try:
+            self.connect()
+            self.db = self.cluster[self.commit_db_credentials[1]]
+            self.collection = self.db[self.commit_db_credentials[2]]
+            self.results = list(self.collection.find())
+            self.table2.setRowCount(len(self.results))
 
+            for i in range(self.table2.rowCount()):
+                self.table2.setItem(i, 0, QTableWidgetItem(self.results[i]['_name']))
+                self.table2.setItem(i, 1, QTableWidgetItem(self.results[i]['_desc']))
+                self.table2.setItem(i, 3, QTableWidgetItem(self.results[i]['_graph']))
+
+        except ConnectionError:
+            QMessageBox.critical(self, 'Connection Error', 'A connection could not be established at this time')
+        except ConfigurationError:
+            QMessageBox.critical(self, 'Configuration Error', 'Connection timeout after 20 seconds'
+                                                              'Please be sure that your mongodb server is running')
 
 
 

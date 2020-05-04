@@ -62,7 +62,7 @@ class FileConverter():
             video = VideoFileClip(video_file)
             audio = video.audio
             file = video_file.split('.')[0] + '.wav'
-            audio.write_audiofile(file)
+            audio.write_audiofile(file,verbose=False,logger=None)
             return self.convert_audio_to_text(file)
 
     def convert_image_to_text(self, image_file):
@@ -118,7 +118,7 @@ class FileCleanser():
         """
         :param file:(str) The file to be cleansed
         :return:(boolean) Original file cleansed of unwanted characters and empty lines.
-        TODO: Add functionality to remove repetitive sequences of characters (i.e CCCCCCCCCCCCCC$$$$$$%%%%%%%%%)
+
         """
 
         # Check if file is null
@@ -229,7 +229,3 @@ class FileValidator():
             # If all lists in the dictionary are empty that means no errors were found
             return all(value == [] for value in enforcement_action_report.values())
 
-
-if __name__ == '__main__':
-    fc = FileCleanser()
-    fc.cleanse_file('root/white/www1/secure.log')

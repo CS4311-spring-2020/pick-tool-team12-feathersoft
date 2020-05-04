@@ -1,12 +1,17 @@
+import QGraphViz
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 
+from pymongo.errors import ConfigurationError
+
+from configurations import rwo
 from configurations.log_entry_configuration import LogEntryConfigurationWindow
 from configurations.event_configuration import EventConfigurationWindow
 from configurations.log_file_configuration import LogFileConfigurationWindow
 from configurations.relationship_configuration import RelationshipConfigurationWindow
+from configurations.rwo import NodeVisibility
 from configurations.vector_configuration import VectorConfiguration
 from configurations.vector_db_configuration_lead import VectorDBConfigurationLead
 from configurations.vector_configuration_non_lead import VectorDBConfigurationNonLead
@@ -21,6 +26,9 @@ import socket
 import datetime
 from datetime import datetime
 from pymongo import MongoClient
+from QGraphViz.DotParser import *
+from QGraphViz.DotParser.Node import Node
+
 
 class PMR(QMainWindow):
     """
@@ -56,20 +64,10 @@ class PMR(QMainWindow):
         # MenuBar
         self.menubar = self.menuBar()
         self.file_menu = self.menubar.addMenu('File')
-        self.export_menu = self.menubar.addMenu('Export')
-        self.tools_menu = self.menubar.addMenu('Tools')
-        self.file_menu.addAction('Quit')
+        self.file_menu.addAction('Quit', self.close)
 
-        self.cluster = \
-            MongoClient("mongodb+srv://Feathersoft:stevenroach@cluster0-700yf."
-                        "mongodb.net/test?retryWrites=true&w=majority")
-
-        self.db = self.cluster["test"]
-
-        self.collection = self.db["test"]
-
-        # Disable access to the rest of the screens until an event has been configured.
-        # This is because it would not make sense to continue until an event is valid.
+        self.approval_db_credentials = open('auth/db_approve_auth').readline().rstrip().split(' ')
+        self.commit_db_credentials = open('auth/db_commit_auth').readline().rstrip().split(' ')
 
         # self.disable_toolbar()
 
@@ -102,6 +100,9 @@ class PMR(QMainWindow):
 
         # Update lead table
         self.vector_db_configuration_non_lead._push_signal.connect(self.update_lead_db)
+
+        # Revalidate files
+        self.log_file_configuration.revalidate_file.connect(self.revalidate_files)
 
         self.addToolBar(Qt.LeftToolBarArea, self.configurations_toolbar)
         self.setCentralWidget(self.event_configuration)
@@ -184,6 +185,8 @@ class PMR(QMainWindow):
 
     def update_nodes(self):
         selected_nodes = set()
+        node_item = None
+        node_properties = None
         for i in range(self.log_entry_configuration.table.rowCount()):
             if self.log_entry_configuration.table.cellWidget(i, 7).isChecked():
                 node_id = str(i + 1)
@@ -206,12 +209,18 @@ class PMR(QMainWindow):
                 else:
                     icon_type = 'blue'
                 source = log_entry_reference
-                node_visibility = True
-                selected_nodes.add(Node(node_id, node_name, node_timestamp, node_description, log_entry_reference,
+                node_visibility = NodeVisibility(True,True,True,True,True,True,True,True,True,True)
+                selected_nodes.add(rwo.Node(node_id, node_name, node_timestamp, node_description, log_entry_reference,
                                         log_entry_source, event_type, icon_type, source, node_visibility))
 
         table = self.graph_builder_configuration.window.table
         table.setRowCount(len(selected_nodes))
+        node_visibility = CheckableComboBox()
+        node_visibility.addItems(['node_visibility', 'node_id_visibility', 'node_name_visibility'
+                                                                           'node_timestamp_visibility',
+                                  'node_description_visibility',
+                                  'log_entry_reference_visibility', 'log_creator_visibility',
+                                  'event_type_visibility', 'icon_type_visibility', 'source_visibility'])
         for i in range(table.rowCount()):
             node = selected_nodes.pop()
             table.setItem(i, 0, QTableWidgetItem(node.get_node_id))
@@ -223,13 +232,39 @@ class PMR(QMainWindow):
             table.setItem(i, 6, QTableWidgetItem(node.get_source))
             table.setItem(i, 7, QTableWidgetItem(node.get_event_type))
             table.setItem(i, 8, QTableWidgetItem(node.get_icon_type))
-            table.setItem(i, 9, QTableWidgetItem(node.get_visibility))
+            table.setCellWidget(i, 9, node_visibility)
 
-        for i in range(table.rowCount()):
-            self.graph_builder_configuration.window.addNode()
+            if node not in self.graph_builder_configuration.window.qgv.core.qnodes:
+                self.graph_builder_configuration.window.add_node_param(node.get_node_id,
+                                                                 node.get_node_name,
+                                                                 node.get_node_timestamp,
+                                                                 node.get_node_description,
+                                                                 node.get_log_entry_reference,
+                                                                 node.get_log_creator,
+                                                                 node.get_event_type,
+                                                                 node.get_icon_type,
+                                                                 node.get_source,
+                                                                 node.get_visibility)
+
+            for q_node in self.graph_builder_configuration.window.qgv.core.qnodes:
+                q_node.setToolTip("Hello")
 
     def revert_table(self):
         self.log_entry_configuration.populate_table(self.event_configuration.splunk_client.entries)
+
+
+    def connect(self):
+
+        try:
+            self.cluster = \
+                MongoClient(self.commit_db_credentials[0])
+
+        # Defining our DB
+        except ConnectionError:
+            QMessageBox.critical(self, 'Connection Error', 'A connection could not be established at this time')
+        except ConfigurationError:
+            QMessageBox.critical(self, 'Configuration Error', 'Connection timeout after 20 seconds'
+                                                              'Please be sure that your mongodb server is running')
 
     def update_lead_db(self):
         selected_vectors = set()
@@ -248,9 +283,21 @@ class PMR(QMainWindow):
             ip_address = socket.gethostbyname(hostname)
             dateTimeObj = datetime.now()
             timestampStr = dateTimeObj.strftime('%m/%d/%y %H:%M %p')
-            entry = {"_ip_address":ip_address,"_time_stamp":timestampStr,"_name":name,"_desc":desc,"_commit":"Selected",
-                     "_graph":graph,"_status":"pending"}
+            entry = {"_ip_address": ip_address, "_time_stamp": timestampStr, "_name": name, "_desc": desc,
+                     "_commit": "Selected",
+                     "_graph": graph, "_status": "pending"}
+            self.connect()
+            self.db = self.cluster[self.commit_db_credentials[1]]
+            self.collection = self.db[self.commit_db_credentials[2]]
             self.collection.insert_one(entry)
+
+    def revalidate_files(self):
+        self.event_configuration.splunk_client.cleanse_file(
+            self.log_file_configuration.table.item(self.log_file_configuration.index, 1).text())
+        self.event_configuration.splunk_client.validate_file(
+            self.log_file_configuration.table.item(self.log_file_configuration.index, 1).text(),
+            self.event_configuration.start_date.text(),
+            self.event_configuration.end_date.text())
 
 
 if __name__ == "__main__":

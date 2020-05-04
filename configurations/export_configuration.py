@@ -13,18 +13,28 @@ class ExportConfigurationWindow(QWidget):
         self.setGeometry(650,300, 600,400)
         self.setWindowTitle('Export Configuration')
         self.setMaximumSize(600,400)
+        self.file_name = ''
+        self.extension = ''
         self.UI()
 
     def UI(self):
-        label = QLabel('EXPORT FORMAT',self)
-        label.move(100,75)
-        combobox = QComboBox(self)
-        combobox.setFixedWidth(400)
-        combobox.move(100,100)
-        combobox.addItems(['', '.CSV', '.DOCX', '.TXT'])
-        btn = QPushButton('Export',self)
-        btn.move(480,330)
-        #self.show()
+        self.layout = QVBoxLayout()
+        self.save_as = QLineEdit()
+        self.label = QLabel('EXPORT FORMAT',self)
+        self.combobox = QComboBox(self)
+        self.combobox.addItems(['', 'jpg', 'png', 'pdf'])
+        self.btn = QPushButton('Export',self,clicked=self.button_clicked)
+        self.layout.addWidget(self.save_as)
+        self.layout.addWidget(self.label)
+        self.layout.addWidget(self.combobox)
+        self.layout.addWidget(self.btn)
+        self.setLayout(self.layout)
+
+    def button_clicked(self):
+        self.file_name = self.save_as.text()
+        self.extension = str(self.combobox.currentText())
+        self.close()
+
 
 
 if __name__ == '__main__':

@@ -103,6 +103,7 @@ class LogEntryConfigurationWindow(QWidget):
             checkbox.clicked.connect(self.update_graph)
             self.table.setCellWidget(i, 7, checkbox)
 
+
     def update_graph(self):
         self._log_entry_flagged.emit()
 

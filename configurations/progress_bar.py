@@ -31,7 +31,6 @@ class ProgressBarWindow(QMainWindow):
         self.show()
 
     def download(self,files,client,start,end,logs):
-        self.setWindowModality(Qt.WindowModal)
         self.completed = 0
         try:
             audio = ['mp3', 'wav']
@@ -67,6 +66,7 @@ class ProgressBarWindow(QMainWindow):
                     LogFile(converted, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
             self.completed += 100/len(onlyfiles)
             self.progress.setValue(self.completed)
+            self.close()
 
         except AuthenticationError:
             QMessageBox.critical(self, "Authentication Error", "Request Aborted: not logged in")

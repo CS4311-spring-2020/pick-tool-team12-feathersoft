@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtGui import QStandardItem
 from PyQt5.QtCore import *
 import os
+from configurations.splunk_client import SplunkIntegrator
 
 
 class LogFileConfigurationWindow(QWidget):
@@ -12,11 +13,17 @@ class LogFileConfigurationWindow(QWidget):
     their enforcement action reports.
     """
 
+    revalidate_file = pyqtSignal()
     def __init__(self):
         super().__init__()
         self.setGeometry(50, 50, 482, 432)
         self.setWindowTitle("Log File Configuration")
         self.er_reports = list()
+        self.ea_report = EnforcementActionReport()
+        self.ea_report.re_ingest.connect(self.ingest_despite_errors)
+        self.ea_report.re_validate.connect(self.revalidate)
+        self.client = SplunkIntegrator()
+        self.client.connect()
         self.UI()
 
     def UI(self):
@@ -63,10 +70,9 @@ class LogFileConfigurationWindow(QWidget):
 
     def display(self):
         sender = self.sender()
-        index = self.table.indexAt(sender.pos()).row()
-        self.e = EnforcementActionReport()
-        self.e.populate_table(self.er_reports[index])
-        self.e.show()
+        self.index = self.table.indexAt(sender.pos()).row()
+        self.ea_report.populate_table(self.er_reports[self.index])
+        self.ea_report.show()
 
     def populate_table(self, log_files):
         self.table.setRowCount(len(log_files))
@@ -98,8 +104,22 @@ class LogFileConfigurationWindow(QWidget):
                     self.table.horizontalHeaderItem(col).setIcon(QIcon('icons/down_arrow.png'))
                     self.table.sortByColumn(col, Qt.DescendingOrder)
 
+    def ingest_despite_errors(self):
+        try:
+
+            self.client.upload_file(self.table.item(self.index,1).text(),self.client.credentials[2])
+
+        except ConnectionError:
+            pass
+
+    def revalidate(self):
+        self.revalidate_file.emit()
+
+
 
 class EnforcementActionReport(QWidget):
+    re_ingest = pyqtSignal()
+    re_validate = pyqtSignal()
 
     def __init__(self):
         super().__init__()
@@ -141,14 +161,17 @@ class EnforcementActionReport(QWidget):
 
         self.ingestButton = QPushButton('Ingest Despite Errors', self)
         self.ingestButton.setObjectName(u"ingestButton")
+        self.ingestButton.clicked.connect(self.re_ingest)
         self.gridLayout.addWidget(self.ingestButton, 2, 0, 1, 2)
 
         self.revalidateButton = QPushButton('Revalidate Files', self)
         self.revalidateButton.setObjectName(u"revalidateButton")
+        self.revalidateButton.clicked.connect(self.revalidate)
         self.gridLayout.addWidget(self.revalidateButton, 2, 2, 1, 2)
 
         self.cancelButton = QPushButton('Cancel', self)
         self.cancelButton.setObjectName(u"cancelButton")
+        self.cancelButton.clicked.connect(self.close)
         self.gridLayout.addWidget(self.cancelButton, 2, 4, 1, 2)
         self.setLayout(self.gridLayout)
 
@@ -162,6 +185,16 @@ class EnforcementActionReport(QWidget):
             self.reportTable.setItem(i, 0, QTableWidgetItem(indexes))
             self.reportTable.setItem(i, 1, QTableWidgetItem(key))
             i += 1
+
+    def re_ingest_file(self):
+        self.re_ingest.emit()
+
+    def close(self):
+        self.close()
+
+    def revalidate(self):
+        self.re_validate.emit()
+
 
 
 if __name__ == '__main__':

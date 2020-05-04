@@ -17,7 +17,7 @@ class SplunkIntegrator():
         self.file_validator = FileValidator(datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
                                             datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
 
-        self.conf_path = "auth/conf.txt"
+        self.conf_path = "auth/splunk_auth.txt"
 
         # Create a Service instance and log in
 

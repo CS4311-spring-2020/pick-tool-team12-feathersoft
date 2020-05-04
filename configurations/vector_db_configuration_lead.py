@@ -3,6 +3,7 @@ from PyQt5.QtGui import *
 from pymongo import MongoClient
 
 # A cluster is the machine that holds our database
+from pymongo.errors import ConfigurationError
 
 
 class VectorDBConfigurationLead(QWidget):
@@ -13,8 +14,10 @@ class VectorDBConfigurationLead(QWidget):
         super().__init__()
         self.setGeometry(50, 50, 900, 700)
         self.setWindowTitle("Vector Database Configuration Lead")
+        self.approval_db_credentials = open('auth/db_approve_auth').readline().rstrip().split(' ')
+        self.commit_db_credentials = open('auth/db_commit_auth').readline().rstrip().split(' ')
         self.UI()
-        self.load_commits()
+
 
     def UI(self):
         """
@@ -28,7 +31,7 @@ class VectorDBConfigurationLead(QWidget):
         approvalText = QLabel('Approval Vector DB Table', self)
         approvalText.setFont(QFont('MS Shell Dlg 2', 12))
         approvalText.move(30,70)
-
+        self.load_commit_btn = QPushButton('Load Commits',clicked=self.load_commits)
         vbox = QVBoxLayout()
         self.approvalTable = QTableWidget(self)
         self.approvalTable.setColumnCount(8)
@@ -41,13 +44,7 @@ class VectorDBConfigurationLead(QWidget):
         self.approvalTable.setHorizontalHeaderItem(4,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Change Summary"))
         self.approvalTable.setHorizontalHeaderItem(6,QTableWidgetItem(QIcon('icons/up_arrow.png'), "Sync Status"))
 
-        self.cluster = \
-            MongoClient(
-                "mongodb+srv://Feathersoft:stevenroach@cluster0-700yf.mongodb.net/test?retryWrites=true&w=majority")
 
-        # Defining our DB
-        self.db = self.cluster["test"]
-        self.collection = self.db["test"]
         header = self.approvalTable.horizontalHeader()
         header.setStretchLastSection(True)
 
@@ -60,34 +57,60 @@ class VectorDBConfigurationLead(QWidget):
         buttonCommit.setGeometry(830,60,70,30)
         buttonCommit.setText('Commit')
         vbox.addWidget(textLead)
+        vbox.addWidget(self.load_commit_btn)
         vbox.addWidget(self.approvalTable)
         vbox.addWidget(buttonCommit)
         self.setLayout(vbox)
 
+    def connect(self):
+
+        try:
+            self.cluster = \
+                MongoClient(self.commit_db_credentials[0])
+
+        # Defining our DB
+        except ConnectionError:
+            QMessageBox.critical(self, 'Connection Error', 'A connection could not be established at this time')
+        except ConfigurationError:
+            QMessageBox.critical(self, 'Configuration Error', 'Connection timeout after 20 seconds'
+                                                              'Please be sure that your mongodb server is running')
+
     def load_commits(self):
         """
-
         :return:
         """
-        self.results = list(self.collection.find())
-        self.approvalTable.setRowCount(len(self.results))
 
-        for i in range(self.approvalTable.rowCount()):
-            self.approvalTable.setItem(i, 0, QTableWidgetItem(self.results[i]['_ip_address']))
-            self.approvalTable.setItem(i, 1, QTableWidgetItem(self.results[i]["_time_stamp"]))
-            self.approvalTable.setItem(i, 2, QTableWidgetItem(self.results[i]['_name']))
-            self.approvalTable.setItem(i, 3, QTableWidgetItem(self.results[i]['_desc']))
-            self.approvalTable.setItem(i, 4, QTableWidgetItem(self.results[i]['_commit']))
-            self.approvalTable.setItem(i, 5, QTableWidgetItem(self.results[i]['_graph']))
-            self.approvalTable.setItem(i, 6, QTableWidgetItem(self.results[i]['_status']))
+        try:
+            self.connect()
+            self.db = self.cluster[self.commit_db_credentials[1]]
+            self.collection = self.db[self.commit_db_credentials[2]]
+            self.results = list(self.collection.find())
+            self.approvalTable.setRowCount(len(self.results))
+
+            for i in range(self.approvalTable.rowCount()):
+                self.approvalTable.setItem(i, 0, QTableWidgetItem(self.results[i]['_ip_address']))
+                self.approvalTable.setItem(i, 1, QTableWidgetItem(self.results[i]["_time_stamp"]))
+                self.approvalTable.setItem(i, 2, QTableWidgetItem(self.results[i]['_name']))
+                self.approvalTable.setItem(i, 3, QTableWidgetItem(self.results[i]['_desc']))
+                self.approvalTable.setItem(i, 4, QTableWidgetItem(self.results[i]['_commit']))
+                self.approvalTable.setItem(i, 5, QTableWidgetItem(self.results[i]['_graph']))
+                self.approvalTable.setItem(i, 6, QTableWidgetItem(self.results[i]['_status']))
+
+        except KeyError:
+            QMessageBox.critical(self, 'Key Error', 'The key entered was not found in the database')
+        except ConnectionError:
+            QMessageBox.critical(self, 'Connection Error', 'A connection could not be established at this time')
+        except ConfigurationError:
+            QMessageBox.critical(self, 'Configuration Error', 'Connection timeout after 20 seconds'
+                                                              'Please be sure that your mongodb server is running')
 
     def commit_to_database(self):
         """
 
         :return:
         """
-        self.db = self.cluster["vector_db_test"]
-        self.collection = self.db["vdb_test"]
+        self.db = self.cluster[self.approval_db_credentials[1]]
+        self.collection = self.db[self.approval_db_credentials[2]]
 
         model = self.approvalTable.selectionModel()
         selected_rows = model.selectedRows()
@@ -103,7 +126,12 @@ class VectorDBConfigurationLead(QWidget):
             pass
 
         except ConnectionError:
-            pass
+            QMessageBox.critical(self, 'Connection Error', 'A connection could not be established at this time')
+        except ConfigurationError:
+            QMessageBox.critical(self, 'Configuration Error', 'Empty Event Name\n'
+                                 + 'Please enter a non-empty event name')
+
+
 
 
 

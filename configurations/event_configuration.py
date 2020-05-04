@@ -9,6 +9,7 @@ from splunklib.binding import AuthenticationError
 from configurations.progress_bar import ProgressBarWindow
 
 
+
 class EventConfigurationWindow(QWidget):
     """ The Event Configuration class is a UI Window that accepts all necessary input to
         to create an event and ingest and provide log files and entries to the rest of the configurations.
@@ -394,7 +395,7 @@ class EventConfigurationWindow(QWidget):
                     if self.ip_validated and self.root_structure_validated:
                         # Unlock the main toolbar after the files have been ingested
                         toolbar_unlocked = True
-                        self.begin_ingestion(count=100)
+                        self.begin_ingestion(count=500)
                         self.configured.emit(toolbar_unlocked)
 
                     else:

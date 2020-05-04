@@ -7,10 +7,7 @@ class Node:
 
     def __init__(self, node_id, node_name, node_timestamp, node_description, log_entry_reference, log_creator,
                  event_type,icon_type,source,visibility):
-        """
 
-        :param kwargs:
-        """
         self._node_id = node_id
         self._node_name = node_name
         self._node_timestamp = node_timestamp
