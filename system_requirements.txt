@@ -1,0 +1,10 @@
+
+python3 python3-all-dev python3-pip build-essential swig git libpulse-dev libasound2-dev
+python-dev
+libcairo2-dev libjpeg-dev libgif-dev
+libgirepository1.0-dev
+g++
+ffmpeg
+tesseract-ocr
+libtesseract-dev
+

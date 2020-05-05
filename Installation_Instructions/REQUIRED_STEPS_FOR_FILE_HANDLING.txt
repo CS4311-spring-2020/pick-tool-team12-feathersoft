@@ -1,3 +1,18 @@
+Download Splunk from
+https://www.splunk.com/en_us/download.html
+
+Download Splunk SDK from
+https://github.com/splunk/splunk-sdk-python/releases
+
+Please run system_requirements.txt by using the following command
+sudo apt-get install < system_requirements.txt
+
+Python packages for the system can be found in requirements.txt
+To install python packages use the following command
+pip install -r requirements.txt
+
+
+
 Installing ffmpeg on Linux (Used for pydub and speech recognition)
 
 $ sudo add-apt-repository ppa:mc3man/trusty-media
@@ -34,13 +49,3 @@ source /etc/profile
 Verify swig installation.
 $ swig -version
 SWIG Version 3.0.12
-
-Installing Tesseract on Linux
-
-sudo apt-get update
-sudo apt-get install tesseract-ocr
-sudo apt-get install libtesseract-dev
-
-Then install tesseract python libraries
-pip install tesseract
-pip install tesseract-ocr
