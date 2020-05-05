@@ -30,7 +30,8 @@ class SplunkIntegrator():
         self.service = splunklib.client.Service(host=self.credentials[0], port=self.credentials[1])
 
     def connect_enterprise(self,username,password):
-        self.service = splunklib.client.Service(host=self.credentials[0],port=self.credentials[1],username=username,password=password)
+        self.service = splunklib.client.connect(host=self.credentials[0],port=self.credentials[1],username=username,
+                                                password=password)
 
     def connect_via_token(self, token):
         self.service = splunklib.client.connect(token=token)

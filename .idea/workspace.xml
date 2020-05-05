@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6562b990-7d75-405b-b010-61e31807e0ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/event_configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/event_configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/root/red/mailsv/sample_audio.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/root/red/mailsv/sample_audio.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configurations/root/white/www3/sample_video.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/root/white/www3/sample_video.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configurations/splunk_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/configurations/splunk_client.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -192,13 +189,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580431996380</updated>
-    </task>
-    <task id="LOCAL-00022" summary="wired all windows together in pmr.py">
-      <created>1582073820493</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1582073820493</updated>
     </task>
     <task id="LOCAL-00023" summary="wired all windows together in pmr.py">
       <created>1582078737327</created>
@@ -536,11 +526,17 @@
       <option name="project" value="LOCAL" />
       <updated>1588647310783</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Added login functionality for enterprise and free users.">
+      <created>1588661334371</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1588661334371</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added movable widgets to the graph view" />
     <MESSAGE value="Added edit,add,and delete vector fucntionality to the vector configuration class." />
     <MESSAGE value="Connected event, team, and directory configuration" />
     <MESSAGE value="Connected the graphical and tabular formats together." />
@@ -565,7 +561,8 @@
     <MESSAGE value="Added more documentation to the files." />
     <MESSAGE value="Added export functionality to the graph." />
     <MESSAGE value="Added graphviz support." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added graphviz support." />
+    <MESSAGE value="Added login functionality for enterprise and free users." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added login functionality for enterprise and free users." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="158" width="810" height="680" key="#Log_Highlighting_(ideolog)" timestamp="1585554957909">
@@ -671,11 +668,11 @@
     <state x="449" y="131" width="1022" height="733" key="SettingsEditor/0.31.1920.926@0.31.1920.926" timestamp="1588539186107" />
     <state x="0" y="31" width="800" height="572" key="SettingsEditor/0.31.800.569@0.31.800.569" timestamp="1588535352576" />
     <state x="48" y="129" width="910" height="733" key="SettingsEditor/0.31.958.908@0.31.958.908" timestamp="1586077115874" />
-    <state x="555" y="232" width="810" height="531" key="Vcs.Push.Dialog.v2" timestamp="1588661258725">
+    <state x="555" y="232" width="810" height="531" key="Vcs.Push.Dialog.v2" timestamp="1588661783480">
       <screen x="0" y="31" width="1920" height="926" />
     </state>
     <state x="550" y="228" width="810" height="531" key="Vcs.Push.Dialog.v2/0.31.1902.908@0.31.1902.908" timestamp="1588647314431" />
-    <state x="555" y="232" width="810" height="531" key="Vcs.Push.Dialog.v2/0.31.1920.926@0.31.1920.926" timestamp="1588661258725" />
+    <state x="555" y="232" width="810" height="531" key="Vcs.Push.Dialog.v2/0.31.1920.926@0.31.1920.926" timestamp="1588661783480" />
     <state x="121" y="209" key="com.intellij.ide.util.TipDialog" timestamp="1588660040322">
       <screen x="0" y="31" width="800" height="569" />
     </state>
