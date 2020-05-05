@@ -47,10 +47,7 @@ class EventConfigurationWindow(QWidget):
         self.root_structure_validated = False
         self.logs = []
         self.files = set()
-        self.splunk_port = ''
-        self.splunk_index = ''
-        self.splunk_username = ''
-        self.splunk_password = ''
+        self.splunk_client = SplunkIntegrator()
         self.UI()
 
     def UI(self):
@@ -96,10 +93,6 @@ class EventConfigurationWindow(QWidget):
         self.team_layout.layout().addRow(QLabel('Team Configuration', alignment=Qt.AlignLeft,
                                                 font=QFont('MS Shell Dlg 2', 12)))
 
-        self.lead_ip_address_line_edit = QLineEdit()
-        self.lead_ip_address_line_edit.setObjectName('Lead')
-
-        self.team_layout.layout().addRow('Lead IP Address', self.lead_ip_address_line_edit)
 
         self.established_connections = QLabel('')
         self.team_layout.layout().addRow('Established Connections', self.established_connections)
@@ -209,22 +202,22 @@ class EventConfigurationWindow(QWidget):
 
         if not self.ip_validated:
             # If we haven't already connected
-            if self.lead_ip_address_line_edit.isEnabled():
+            if self.splunk_client.credentials[0]:
                 result = None
                 try:
                     # Check if the entered IP address matches valid IPV4 structure
                     result = [0 <= int(x) < 256 for x in
                               re.split('\.', re.match(r'^\d+\.\d+\.\d+\.\d+$',
-                                                      self.lead_ip_address_line_edit.text()).group(0))].count(True) == 4
+                                                      self.splunk_client.credentials[0]).group(0))].count(True) == 4
                 except AttributeError:
                     result = False
 
                 # Check if the IP of the user connecting to the server matches the IP of the lead analyst
                 self.non_lead_analyst = (self.lead_checkbox.isChecked() and socket.gethostbyname(socket.gethostname())
-                                    != self.lead_ip_address_line_edit.text())
+                                    != self.splunk_client.credentials[0])
 
                 # Check if the IP address field has a value
-                empty_ip = self.lead_ip_address_line_edit.text() == ''
+                empty_ip = self.splunk_client.credentials[0] == ''
 
                 # Display an error message if a non-lead is attempting to connect as the lead.
                 if self.non_lead_analyst:
@@ -251,7 +244,7 @@ class EventConfigurationWindow(QWidget):
 
                     try:
                         # Get the value entered into the "Lead IP Address field"
-                        lead = self.lead_ip_address_line_edit.text().strip()
+                        lead = self.splunk_client.credentials[0]
 
                         # Create a splunk instance and connect to the server.
                         self.splunk_client = SplunkIntegrator()
@@ -260,7 +253,7 @@ class EventConfigurationWindow(QWidget):
                         # Alert the user that a successful connection has been established.
                         QMessageBox.information(self,
                                                 'Connection Successful',
-                                                f'Connection to server from IP {self.lead_ip_address_line_edit.text()}'
+                                                f'Connection to server from IP {socket.gethostname()}'
                                                 f' established !')
 
                         # If we haven't already established a connection..
@@ -270,7 +263,7 @@ class EventConfigurationWindow(QWidget):
                             label.setStyleSheet("QLabel { color: green}")
                             self.team_layout.layout().addRow('', label)
                         # Disable the option to re-connect
-                        self.lead_ip_address_line_edit.setEnabled(False)
+                        #self.lead_ip_address_line_edit.setEnabled(False)
                         self.lead_checkbox.setEnabled(False)
                         # Flag the ip-validation
                         self.ip_validated = True
@@ -430,7 +423,7 @@ class EventConfigurationWindow(QWidget):
                                                       blue_team_folder=self.blue_directory_edit.text().strip(),
                                                       white_team_folder=self.white_directory_edit.text().strip(),
                                                       lead=self.non_lead_analyst,
-                                                      ip_address=self.lead_ip_address_line_edit.text().strip(),
+                                                      ip_address=self.splunk_client.credentials[0],
                                                       connection_established=True
                                                       )
 

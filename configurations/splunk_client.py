@@ -18,7 +18,7 @@ class SplunkIntegrator():
                                             datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
 
         self.conf_path = "auth/splunk_auth.txt"
-
+        self.credentials = open(self.conf_path).readline().split(' ')
         # Create a Service instance and log in
 
         # Takes a file as input and uploads to splunk
@@ -27,8 +27,10 @@ class SplunkIntegrator():
         self.service.indexes.create(index_name)
 
     def connect(self):
-        self.credentials = open(self.conf_path).readline().split(' ')
         self.service = splunklib.client.Service(host=self.credentials[0], port=self.credentials[1])
+
+    def connect_enterprise(self,username,password):
+        self.service = splunklib.client.Service(host=self.credentials[0],port=self.credentials[1],username=username,password=password)
 
     def connect_via_token(self, token):
         self.service = splunklib.client.connect(token=token)
@@ -207,6 +209,5 @@ class SplunkIntegrator():
 if __name__ == '__main__':
     client = SplunkIntegrator()
     client.connect()
-    client.create_index('demo5')
     print(client.view_indexes())
 
