@@ -171,7 +171,7 @@ class EnforcementActionReport(QWidget):
 
         self.cancelButton = QPushButton('Cancel', self)
         self.cancelButton.setObjectName(u"cancelButton")
-        self.cancelButton.clicked.connect(self.close)
+        self.cancelButton.clicked.connect(self.window().close)
         self.gridLayout.addWidget(self.cancelButton, 2, 4, 1, 2)
         self.setLayout(self.gridLayout)
 

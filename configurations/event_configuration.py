@@ -11,7 +11,6 @@ from splunklib.binding import AuthenticationError
 from configurations.progress_bar import ProgressBarWindow
 
 
-
 class EventConfigurationWindow(QWidget):
     """ The Event Configuration class is a UI Window that accepts all necessary input to
         to create an event and ingest and provide log files and entries to the rest of the configurations.
@@ -30,9 +29,6 @@ class EventConfigurationWindow(QWidget):
     logs_ingested = pyqtSignal(bool)
     # This signal tells the UI to populate the enforcement action reports for the log file table after ingestion.
     reports_generated = pyqtSignal(bool)
-
-
-
 
     def __init__(self, parent=QMainWindow):
 
@@ -92,7 +88,6 @@ class EventConfigurationWindow(QWidget):
 
         self.team_layout.layout().addRow(QLabel('Team Configuration', alignment=Qt.AlignLeft,
                                                 font=QFont('MS Shell Dlg 2', 12)))
-
 
         self.established_connections = QLabel('')
         self.team_layout.layout().addRow('Established Connections', self.established_connections)
@@ -206,15 +201,16 @@ class EventConfigurationWindow(QWidget):
                 result = None
                 try:
                     # Check if the entered IP address matches valid IPV4 structure
-                    result = [0 <= int(x) < 256 for x in
+                    result = ([0 <= int(x) < 256 for x in
                               re.split('\.', re.match(r'^\d+\.\d+\.\d+\.\d+$',
-                                                      self.splunk_client.credentials[0]).group(0))].count(True) == 4
+                                                      self.splunk_client.credentials[0]).group(0))].count(True) == 4)\
+                             or self.splunk_client.credentials[0] == "localhost"
                 except AttributeError:
                     result = False
 
                 # Check if the IP of the user connecting to the server matches the IP of the lead analyst
                 self.non_lead_analyst = (self.lead_checkbox.isChecked() and socket.gethostbyname(socket.gethostname())
-                                    != self.splunk_client.credentials[0])
+                                         != self.splunk_client.credentials[0])
 
                 # Check if the IP address field has a value
                 empty_ip = self.splunk_client.credentials[0] == ''
@@ -263,7 +259,7 @@ class EventConfigurationWindow(QWidget):
                             label.setStyleSheet("QLabel { color: green}")
                             self.team_layout.layout().addRow('', label)
                         # Disable the option to re-connect
-                        #self.lead_ip_address_line_edit.setEnabled(False)
+                        # self.lead_ip_address_line_edit.setEnabled(False)
                         self.lead_checkbox.setEnabled(False)
                         # Flag the ip-validation
                         self.ip_validated = True
@@ -410,7 +406,11 @@ class EventConfigurationWindow(QWidget):
         self.progress_bar.download(self.files, self.splunk_client, self.start_date.text(), self.end_date.text(),
                                    self.logs)
 
-        self.splunk_client.download_log_files(count=count)
+        try:
+            self.splunk_client.download_log_files(count=count)
+
+        except IndexError:
+            QMessageBox.critical(f"Index out of bounds",f"Please sure your index has at least {count} entries")
         self.ingestion_complete.emit(True)
         self.logs_ingested.emit(True)
         self.reports_generated.emit(True)
@@ -428,4 +428,3 @@ class EventConfigurationWindow(QWidget):
                                                       )
 
         self.configured.emit(True)
-
