@@ -4,6 +4,8 @@ from PyQt5.QtCore import *
 import re
 import os
 import socket
+
+from configurations.rwo import EventConfiguration
 from configurations.splunk_client import SplunkIntegrator
 from splunklib.binding import AuthenticationError
 from configurations.progress_bar import ProgressBarWindow
@@ -28,6 +30,9 @@ class EventConfigurationWindow(QWidget):
     logs_ingested = pyqtSignal(bool)
     # This signal tells the UI to populate the enforcement action reports for the log file table after ingestion.
     reports_generated = pyqtSignal(bool)
+
+
+
 
     def __init__(self, parent=QMainWindow):
 
@@ -215,14 +220,14 @@ class EventConfigurationWindow(QWidget):
                     result = False
 
                 # Check if the IP of the user connecting to the server matches the IP of the lead analyst
-                non_lead_analyst = (self.lead_checkbox.isChecked() and socket.gethostbyname(socket.gethostname())
+                self.non_lead_analyst = (self.lead_checkbox.isChecked() and socket.gethostbyname(socket.gethostname())
                                     != self.lead_ip_address_line_edit.text())
 
                 # Check if the IP address field has a value
                 empty_ip = self.lead_ip_address_line_edit.text() == ''
 
                 # Display an error message if a non-lead is attempting to connect as the lead.
-                if non_lead_analyst:
+                if self.non_lead_analyst:
                     QMessageBox.critical(self, 'Connection Error',
                                          f'Non-Lead attempting to connect as lead\n'
                                          + 'Check lead box if lead IP entered\n'
@@ -396,7 +401,6 @@ class EventConfigurationWindow(QWidget):
                         # Unlock the main toolbar after the files have been ingested
                         toolbar_unlocked = True
                         self.begin_ingestion(count=500)
-                        self.configured.emit(toolbar_unlocked)
 
                     else:
                         QMessageBox.critical(self, "Event and Team not Validated",
@@ -417,3 +421,18 @@ class EventConfigurationWindow(QWidget):
         self.ingestion_complete.emit(True)
         self.logs_ingested.emit(True)
         self.reports_generated.emit(True)
+        self.event_configuration = EventConfiguration(event_name=self.name.text().strip(),
+                                                      event_description=self.description.text().strip(),
+                                                      event_start_timestamp=self.start_date.text().strip(),
+                                                      event_end_timestamp=self.end_date.text().strip(),
+                                                      root_directory=self.root_directory_edit.text().strip(),
+                                                      red_team_folder=self.red_directory_edit.text().strip(),
+                                                      blue_team_folder=self.blue_directory_edit.text().strip(),
+                                                      white_team_folder=self.white_directory_edit.text().strip(),
+                                                      lead=self.non_lead_analyst,
+                                                      ip_address=self.lead_ip_address_line_edit.text().strip(),
+                                                      connection_established=True
+                                                      )
+
+        self.configured.emit(True)
+

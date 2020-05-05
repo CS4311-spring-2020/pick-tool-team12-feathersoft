@@ -3,6 +3,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+from QGraphViz import DotParser
 from QGraphViz.DotParser import Graph
 from QGraphViz.Engines import Dot
 from QGraphViz.QGraphViz import QGraphVizManipulationMode, QGraphViz
@@ -35,6 +36,8 @@ class NodeEditorWindow(QWidget):
     nodes: dict
     relationships: dict
     export_signal = pyqtSignal()
+    node_added = pyqtSignal()
+    node_deleted = pyqtSignal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -42,6 +45,7 @@ class NodeEditorWindow(QWidget):
         self.vectors = {}
         self.nodes = {}
         self.relationships = {}
+        self.graph_nodes = []
 
         self.scene_width = 64000
         self.scene_height = 64000
@@ -50,6 +54,7 @@ class NodeEditorWindow(QWidget):
         self.export_window = ExportConfigurationWindow()
         self.export_signal.connect(self.export_image)
         self.ok = True
+        self.node_count = 0
     def initUI(self):
         self.setGeometry(200, 200, 800, 600)
 
@@ -240,6 +245,7 @@ class NodeEditorWindow(QWidget):
                 self.qgv.addNode(self.qgv.engine.graph, dlg.node_name, label=dlg.node_label, shape=dlg.node_type)
                 self.qgv.build()
 
+            self.node_added.emit()
 
         def remove_node():
             self.qgv.manipulation_mode = QGraphVizManipulationMode.Node_remove_Mode
@@ -313,10 +319,7 @@ class NodeEditorWindow(QWidget):
 
         # self.addDebugContent()
 
-    def add_node_param(self,node_id, node_name, node_timestamp, node_description, log_entry_reference,
-                       log_entry_source, event_type, icon_type, source, node_visibility):
-        n = rwo.Node(node_id, node_name, node_timestamp, node_description, log_entry_reference,
-                 log_entry_source, event_type, icon_type, source, node_visibility)
+    def add_node_param(self, node_name, node_description, event_type):
         img = ''
         if 'blue' in event_type:
             img = 'icons/blue_circle.png'
@@ -327,7 +330,9 @@ class NodeEditorWindow(QWidget):
         if 'white' in event_type:
             img = 'icons/white_circle.png'
 
-        self.qgv.addNode(self.qgv.engine.graph, node_name, label=node_timestamp, shape=img)
+        node = self.qgv.core.addNode(self.qgv.engine.graph, node_name=node_name, label=node_description, shape=img)
+        self.graph_nodes.append(node.name)
+
         self.qgv.build()
 
 

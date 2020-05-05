@@ -64,10 +64,14 @@ class PMR(QMainWindow):
         # MenuBar
         self.menubar = self.menuBar()
         self.file_menu = self.menubar.addMenu('File')
+        self.file_menu.addAction('Save',self.save)
         self.file_menu.addAction('Quit', self.close)
+
 
         self.approval_db_credentials = open('auth/db_approve_auth').readline().rstrip().split(' ')
         self.commit_db_credentials = open('auth/db_commit_auth').readline().rstrip().split(' ')
+
+        self.event_configuration_obj = None
 
         # self.disable_toolbar()
 
@@ -152,6 +156,8 @@ class PMR(QMainWindow):
         for action in self.configurations_toolbar.actions():
             action.setEnabled(True)
 
+        self.event_configuration_obj = self.event_configuration.event_configuration
+
     def populate_log_entries(self):
         self.log_entry_configuration.populate_table(self.event_configuration.splunk_client.entries)
 
@@ -191,8 +197,8 @@ class PMR(QMainWindow):
             if self.log_entry_configuration.table.cellWidget(i, 7).isChecked():
                 node_id = str(i + 1)
                 node_name = "Node " + str(i + 1)
-                node_timestamp = self.log_entry_configuration.table.item(i, 2).text()
-                node_description = str(i) + 'th' + ' Node flagged'
+                node_timestamp = self.log_entry_configuration.table.item(i, 1).text()
+                node_description = self.log_entry_configuration.table.item(i,2)
                 log_entry_reference = self.log_entry_configuration.table.item(i, 4).text()
                 if 'white' in log_entry_reference:
                     log_entry_source = 'white'
@@ -209,52 +215,47 @@ class PMR(QMainWindow):
                 else:
                     icon_type = 'blue'
                 source = log_entry_reference
-                node_visibility = NodeVisibility(True,True,True,True,True,True,True,True,True,True)
+                node_visibility = NodeVisibility(True, True, True, True, True, True, True, True, True, True)
                 selected_nodes.add(rwo.Node(node_id, node_name, node_timestamp, node_description, log_entry_reference,
-                                        log_entry_source, event_type, icon_type, source, node_visibility))
+                                            log_entry_source, event_type, icon_type, source, node_visibility))
 
         table = self.graph_builder_configuration.window.table
         table.setRowCount(len(selected_nodes))
-        node_visibility = CheckableComboBox()
-        node_visibility.addItems(['node_visibility', 'node_id_visibility', 'node_name_visibility'
-                                                                           'node_timestamp_visibility',
-                                  'node_description_visibility',
-                                  'log_entry_reference_visibility', 'log_creator_visibility',
-                                  'event_type_visibility', 'icon_type_visibility', 'source_visibility'])
+
+
         for i in range(table.rowCount()):
             node = selected_nodes.pop()
             table.setItem(i, 0, QTableWidgetItem(node.get_node_id))
-            table.setItem(i, 1, QTableWidgetItem(node.get_node_id))
-            table.setItem(i, 2, QTableWidgetItem(node.get_node_name))
-            table.setItem(i, 3, QTableWidgetItem(node.get_node_timestamp))
-            table.setItem(i, 4, QTableWidgetItem(node.get_node_description))
-            table.setItem(i, 5, QTableWidgetItem(node.get_log_entry_reference))
-            table.setItem(i, 6, QTableWidgetItem(node.get_source))
-            table.setItem(i, 7, QTableWidgetItem(node.get_event_type))
-            table.setItem(i, 8, QTableWidgetItem(node.get_icon_type))
+            table.setItem(i, 1, QTableWidgetItem(node.get_node_name))
+            table.setItem(i, 2, QTableWidgetItem(node.get_node_timestamp))
+            table.setItem(i, 3, QTableWidgetItem(node.get_node_description))
+            table.setItem(i, 4, QTableWidgetItem(node.get_log_entry_reference))
+            table.setItem(i, 5, QTableWidgetItem(node.get_source))
+            table.setItem(i, 6, QTableWidgetItem(node.get_event_type))
+            table.setItem(i, 7, QTableWidgetItem(node._icon_type))
+            table.setItem(i, 8, QTableWidgetItem(node.get_source))
+            node_visibility = CheckableComboBox()
+            node_visibility.addItems(['node_visibility', 'node_id_visibility', 'node_name_visibility'
+                                                                               'node_timestamp_visibility',
+                                      'node_description_visibility',
+                                      'log_entry_reference_visibility', 'log_creator_visibility',
+                                      'event_type_visibility', 'icon_type_visibility', 'source_visibility'])
             table.setCellWidget(i, 9, node_visibility)
 
-            if node not in self.graph_builder_configuration.window.qgv.core.qnodes:
-                self.graph_builder_configuration.window.add_node_param(node.get_node_id,
-                                                                 node.get_node_name,
-                                                                 node.get_node_timestamp,
-                                                                 node.get_node_description,
-                                                                 node.get_log_entry_reference,
-                                                                 node.get_log_creator,
-                                                                 node.get_event_type,
-                                                                 node.get_icon_type,
-                                                                 node.get_source,
-                                                                 node.get_visibility)
 
-            for q_node in self.graph_builder_configuration.window.qgv.core.qnodes:
-                q_node.setToolTip("Hello")
+            if node.get_node_name not in self.graph_builder_configuration.window.graph_nodes:
+                    self.graph_builder_configuration.window.add_node_param(
+                                                                           node.get_node_name,
+                                                                           node.get_node_timestamp,
+                                                                           node.get_event_type
+
+                                                                          )
+
 
     def revert_table(self):
         self.log_entry_configuration.populate_table(self.event_configuration.splunk_client.entries)
 
-
     def connect(self):
-
         try:
             self.cluster = \
                 MongoClient(self.commit_db_credentials[0])
@@ -298,6 +299,9 @@ class PMR(QMainWindow):
             self.log_file_configuration.table.item(self.log_file_configuration.index, 1).text(),
             self.event_configuration.start_date.text(),
             self.event_configuration.end_date.text())
+
+    def save(self):
+        pass
 
 
 if __name__ == "__main__":

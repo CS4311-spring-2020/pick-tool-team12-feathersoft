@@ -11,9 +11,9 @@ db = cluster["test"]
 
 collection = db["test"]
 
-# Add data to database
-# doc = {"_id": 0, "name":"tim", "score":5}
-# collection.insert_one(doc)
+# Add data to database example
+doc = {"_id": 0, "name":"tim", "score":5}
+collection.insert_one(doc)
 
 # Retrieve data
 results = collection.find({})
