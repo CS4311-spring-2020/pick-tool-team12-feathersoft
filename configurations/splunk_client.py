@@ -143,6 +143,8 @@ class SplunkIntegrator():
                                                         result['_raw'], result['host'],
                                                         self.find_source_file('root', result['source']),
                                                         self.find_event_source('root', result['source'])))
+
+            print(result['source'])
             i += 1
 
         for entry in self.entries:
@@ -190,7 +192,8 @@ class SplunkIntegrator():
         for filepath, folder, dir in os.walk(root_folder):
             for file in dir:
                 path = os.path.join(filepath, file)
-                if entry.split('\\')[1] in path:
+                print(path)
+                if any(data in path for data in entry.split('/')):
                     return path
 
     def find_event_source(self, root_folder, entry):

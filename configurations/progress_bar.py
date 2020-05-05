@@ -39,7 +39,6 @@ class ProgressBarWindow(QMainWindow):
 
         return i
 
-
     def download(self,files,client,start,end,logs):
         self.completed = 0
         try:
