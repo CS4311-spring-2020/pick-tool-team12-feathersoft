@@ -30,7 +30,7 @@ class SplunkIntegrator():
         self.service = splunklib.client.Service(host=self.credentials[0], port=self.credentials[1])
 
     def connect_enterprise(self,username,password):
-        self.service = splunklib.client.connect(host=self.credentials[0],port=self.credentials[1],username=username,
+        self.service = splunklib.client.connect(host=self.credentials[0], port=self.credentials[1], username=username,
                                                 password=password)
 
     def connect_via_token(self, token):
@@ -146,7 +146,7 @@ class SplunkIntegrator():
             i += 1
 
         for entry in self.entries:
-            print(entry)
+            print()
 
     def cleanse_file(self, file):
         return self.file_cleanser.cleanse_file(file)
@@ -210,5 +210,7 @@ class SplunkIntegrator():
 if __name__ == '__main__':
     client = SplunkIntegrator()
     client.connect()
-    print(client.view_indexes())
+    client.download_log_files(10)
+
+
 

@@ -30,6 +30,16 @@ class ProgressBarWindow(QMainWindow):
         self.progress.setGeometry(50, 50, 600, 40)
         self.show()
 
+    def count_files(self,dir):
+        i = 0
+        for filepath, folder, dir in os.walk('root'):
+            for file in dir:
+                path = os.path.join(filepath, file)
+                i += 1
+
+        return i
+
+
     def download(self,files,client,start,end,logs):
         self.completed = 0
         try:
@@ -38,10 +48,11 @@ class ProgressBarWindow(QMainWindow):
             image = ['jpg', 'pdf', 'png']
             cleansing_status, validation_status, ingestion_status, acknowledgement_status = False, False, False, False
             converted = ''
-            onlyfiles = next(os.walk('root'))[2]
+            num_files = self.count_files('root')
             for filepath, folder, dir in os.walk('root'):
                 for file in dir:
                     path = os.path.join(filepath, file)
+                    print(path)
                     ext = path.split('.')[1]
                     if ext in audio:
                         converted = client.file_converter.convert_audio_to_text(path)
@@ -64,8 +75,8 @@ class ProgressBarWindow(QMainWindow):
                     ingestion_status = False
                 logs.append(
                     LogFile(converted, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
-            self.completed += 100/len(onlyfiles)
-            self.progress.setValue(self.completed)
+                self.completed += 100/num_files
+                self.progress.setValue(self.completed)
             self.close()
 
         except AuthenticationError:
