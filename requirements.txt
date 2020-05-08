@@ -1,6 +1,6 @@
 certifi==2020.4.5.1
 chardet==3.0.4
-CherryTree==0.38.8
+CherryTree==0.1.1
 colorama==0.4.3
 configparser==3.5.0b2
 cryptography==2.8
@@ -22,7 +22,7 @@ PyGObject==3.34.0
 pylibemu==0.3.3
 pyOpenSSL==19.0.0
 pythonaes==1.0
-PyV8==1.0.dev0
+PyV8==0.5
 QGraphViz==0.0.50
 requests==2.23.0
 six==1.14.0

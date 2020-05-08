@@ -241,11 +241,15 @@ class NodeEditorWindow(QWidget):
             dlg.exec_()
 
             # node_name, okPressed = QInputDialog.getText(wi, "Node name","Node name:", QLineEdit.Normal, "")
-            if self.ok and dlg.node_name != '':
-                self.qgv.addNode(self.qgv.engine.graph, dlg.node_name, label=dlg.node_label, shape=dlg.node_type)
-                self.qgv.build()
+            #TODO if cancel is selected, we can no longer add nodes
+            if self.ok:
+                if dlg.node_name != '' and dlg.node_label!='':
+                    self.qgv.addNode(self.qgv.engine.graph, dlg.node_name, label=dlg.node_label, shape=dlg.node_type)
+                    self.qgv.build()
+                    self.node_added.emit()
+                else:
+                    QMessageBox.information(self, 'Incorrect Input', 'Node must have a name and a label.')
 
-            self.node_added.emit()
 
         def remove_node():
             self.qgv.manipulation_mode = QGraphVizManipulationMode.Node_remove_Mode

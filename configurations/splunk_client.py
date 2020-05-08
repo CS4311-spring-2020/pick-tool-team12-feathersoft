@@ -189,14 +189,17 @@ class SplunkIntegrator():
         return self.file_validator.validate_file(file)
 
     def find_source_file(self, root_folder, entry):
+        # Finds the location of a file given the root folder, and returns the full path.
         for filepath, folder, dir in os.walk(root_folder):
             for file in dir:
                 path = os.path.join(filepath, file)
                 print(path)
                 if any(data in path for data in entry.split('/')):
                     return path
+        return ''
 
     def find_event_source(self, root_folder, entry):
+        # Checks an entry from the database, and attempts to find its source/parent folder
         if 'white' in self.find_source_file(root_folder, entry):
             return 'white'
 
