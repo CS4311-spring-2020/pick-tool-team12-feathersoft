@@ -139,16 +139,9 @@ class SplunkIntegrator():
         i = 0
         for result in job_results:
             if True:
-                self.entries.append(SignificantLogEntry(i, result['_indextime'],
+                self.entries.append(SignificantLogEntry(result['_serial'], result['_indextime'],
                                                         result['_raw'], result['host'],
-                                                        self.find_source_file('root', result['source']),
-                                                        self.find_event_source('root', result['source'])))
-
-            print(result['source'])
-            i += 1
-
-        for entry in self.entries:
-            print()
+                                                        result['source'], result['sourcetype']))
 
     def cleanse_file(self, file):
         return self.file_cleanser.cleanse_file(file)
@@ -193,8 +186,7 @@ class SplunkIntegrator():
         for filepath, folder, dir in os.walk(root_folder):
             for file in dir:
                 path = os.path.join(filepath, file)
-                print(path)
-                if any(data in path for data in entry.split('/')):
+                if entry.split('\\')[1] in path:
                     return path
         return ''
 

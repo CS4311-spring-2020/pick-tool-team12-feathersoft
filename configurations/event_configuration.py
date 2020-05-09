@@ -5,10 +5,10 @@ import re
 import os
 import socket
 
-from configurations.rwo import EventConfiguration
+from configurations.rwo import EventConfiguration, LogFile
 from configurations.splunk_client import SplunkIntegrator
 from splunklib.binding import AuthenticationError
-from configurations.progress_bar import ProgressBarWindow
+
 
 
 class EventConfigurationWindow(QWidget):
@@ -22,13 +22,13 @@ class EventConfigurationWindow(QWidget):
     """
 
     # This signal tells the UI when to unlock the toolbar.
-    configured = pyqtSignal(bool)
+    configured = pyqtSignal()
     # This signal tells the UI to populate the log entries table after ingestion.
-    ingestion_complete = pyqtSignal(bool)
+    ingestion_complete = pyqtSignal()
     # This signal tells the UI to populate the log file table after ingestion.
-    logs_ingested = pyqtSignal(bool)
+    logs_ingested = pyqtSignal()
     # This signal tells the UI to populate the enforcement action reports for the log file table after ingestion.
-    reports_generated = pyqtSignal(bool)
+    reports_generated = pyqtSignal()
 
     def __init__(self, parent=QMainWindow):
 
@@ -41,7 +41,7 @@ class EventConfigurationWindow(QWidget):
         self.time_stamp_validated = False
         self.ip_validated = False
         self.root_structure_validated = False
-        self.logs = []
+        self.logs = set()
         self.files = set()
         self.splunk_client = SplunkIntegrator()
         self.UI()
@@ -367,6 +367,8 @@ class EventConfigurationWindow(QWidget):
                 self.blue_directory_edit.setText(self.root_directory_edit.text() + '/blue')
                 self.white_directory_edit.setText(self.root_directory_edit.text() + '/white')
 
+
+
                 # Prompt the user to begin ingestion
                 buttonReply = QMessageBox.question(self, 'PyQt5 message',
                                                    "Begin Ingestion?",
@@ -389,6 +391,18 @@ class EventConfigurationWindow(QWidget):
                     if self.ip_validated and self.root_structure_validated:
                         # Unlock the main toolbar after the files have been ingested
                         toolbar_unlocked = True
+                        self.event_configuration = EventConfiguration(event_name=self.name.text().strip(),
+                                                                      event_description=self.description.text().strip(),
+                                                                      event_start_timestamp=self.start_date.text().strip(),
+                                                                      event_end_timestamp=self.end_date.text().strip(),
+                                                                      root_directory=self.root_directory_edit.text().strip(),
+                                                                      red_team_folder=self.red_directory_edit.text().strip(),
+                                                                      blue_team_folder=self.blue_directory_edit.text().strip(),
+                                                                      white_team_folder=self.white_directory_edit.text().strip(),
+                                                                      lead=self.non_lead_analyst,
+                                                                      ip_address=self.splunk_client.credentials[0],
+                                                                      connection_established=True
+                                                                      )
                         self.begin_ingestion(count=500)
 
                     else:
@@ -396,35 +410,93 @@ class EventConfigurationWindow(QWidget):
                                              "Please make sure event configuration and team configurations are "
                                              "validated before ingestion")
 
+    def generate_files(self, dir):
+        for filepath, folder, dir in os.walk(dir):
+            for file in dir:
+                path = os.path.join(filepath, file)
+                self.files.add(path)
+
+    def count_files(self,dir):
+        i = 0
+        for filepath, folder, dir in os.walk('root'):
+            for file in dir:
+                path = os.path.join(filepath, file)
+
+                i += 1
+
+        return i
+
     def begin_ingestion(self, count):
         """
         This method ingests log files into the system, populating our log file and log entry tables
         :param count: The number of entries to be displayed in the table
         :return:
         """
-        self.progress_bar = ProgressBarWindow()
-        self.progress_bar.download(self.files, self.splunk_client, self.start_date.text(), self.end_date.text(),
-                                   self.logs)
+        self.label_animation = QLabel(self)
+        self.label_animation.setWindowFlags(Qt.FramelessWindowHint)
+        self.label_animation.setMask(QPixmap('Loading_2.gif').mask())
+        self.movie = QMovie('Loading_2.gif')
+        self.label_animation.setMovie(self.movie)
+
+        try:
+            timer = QTimer(self)
+            self.movie.start()
+            self.label.show()
+            audio = ['mp3', 'wav']
+            video = ['mp4']
+            image = ['jpg', 'pdf', 'png']
+            converted = ''
+            for filepath, folder, dir in os.walk(self.root_directory_edit.text().strip()):
+                cleansing_status, validation_status, ingestion_status, acknowledgement_status = False, False, False, \
+                                                                                                False
+                for file in dir:
+                    path = os.path.join(filepath, file)
+                    print(path)
+                    ext = path.split('.')[1]
+                    if ext in audio:
+                        converted = self.splunk_client.file_converter.convert_audio_to_text(path)
+                    elif ext in video:
+                        converted = self.splunk_client.file_converter.convert_video_to_audio(path)
+                    elif ext in image:
+                        converted = self.splunk_client.file_converter.convert_image_to_text(path)
+                    else:
+                        converted = path
+                    if converted:
+                        self.files.add(converted)
+
+            for file in self.files:
+                cleansing_status = self.splunk_client.cleanse_file(file)
+                validation_status = self.splunk_client.validate_file(converted, self.start_date.text(),
+                                                                     self.end_date.text())
+                acknowledgement_status = cleansing_status and validation_status
+                if acknowledgement_status:
+                    self.splunk_client.upload_file(file, self.splunk_client.credentials[2])
+                    ingestion_status = acknowledgement_status and cleansing_status and validation_status
+                else:
+                    ingestion_status = False
+                self.logs.add(
+                    LogFile(file, cleansing_status, validation_status, ingestion_status, acknowledgement_status))
+
+            self.movie.stop()
+            self.label.close()
+
+
+        except AuthenticationError:
+            QMessageBox.critical(self, "Authentication Error", "Request Aborted: not logged in")
 
         try:
             self.splunk_client.download_log_files(count=count)
 
         except IndexError:
             QMessageBox.critical(f"Index out of bounds",f"Please sure your index has at least {count} entries")
-        self.ingestion_complete.emit(True)
-        self.logs_ingested.emit(True)
-        self.reports_generated.emit(True)
-        self.event_configuration = EventConfiguration(event_name=self.name.text().strip(),
-                                                      event_description=self.description.text().strip(),
-                                                      event_start_timestamp=self.start_date.text().strip(),
-                                                      event_end_timestamp=self.end_date.text().strip(),
-                                                      root_directory=self.root_directory_edit.text().strip(),
-                                                      red_team_folder=self.red_directory_edit.text().strip(),
-                                                      blue_team_folder=self.blue_directory_edit.text().strip(),
-                                                      white_team_folder=self.white_directory_edit.text().strip(),
-                                                      lead=self.non_lead_analyst,
-                                                      ip_address=self.splunk_client.credentials[0],
-                                                      connection_established=True
-                                                      )
 
-        self.configured.emit(True)
+
+
+        self.configured.emit()
+        self.ingestion_complete.emit()
+        self.logs_ingested.emit()
+        self.reports_generated.emit()
+
+
+
+

@@ -8,7 +8,7 @@ import time
 from datetime import datetime, timedelta
 from configurations.custom_widgets import CheckableComboBox
 from configurations.filter_configuration import FilterConfigurationWindow
-
+from configurations.rwo import EventConfiguration
 
 class LogEntryConfigurationWindow(QWidget):
     """This class will be used to build the UI Window for the Log Entry Configuration"""
@@ -79,7 +79,7 @@ class LogEntryConfigurationWindow(QWidget):
         for i in range(self.table.rowCount()):
             self.table.showRow(i)
 
-    def populate_table(self, entries):
+    def populate_table(self, entries, event_configuration):
         self.entries = entries
         self.table.setRowCount(len(entries))
         for i in range(len(entries)):
@@ -96,7 +96,10 @@ class LogEntryConfigurationWindow(QWidget):
             self.table.setItem(i, 2, QTableWidgetItem(entries[i].get_log_entry_content, Qt.DisplayRole))
             self.table.setItem(i, 3, QTableWidgetItem(entries[i].get_host, Qt.DisplayRole))
             self.table.setItem(i, 4, QTableWidgetItem(entries[i].get_source, Qt.DisplayRole))
-            self.table.setItem(i, 5, QTableWidgetItem(entries[i].get_source_type, Qt.DisplayRole))
+            self.table.setItem(i, 5,
+                               QTableWidgetItem(event_configuration.find_event_source
+                                                (event_configuration._root_directory, entries[i].get_source_type),
+                                                Qt.DisplayRole))
             self.table.setCellWidget(i, 6, combobox)
             checkbox = QCheckBox()
             checkbox.setCheckState(Qt.Unchecked)

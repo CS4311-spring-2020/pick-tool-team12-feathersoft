@@ -73,7 +73,7 @@ class PMR(QMainWindow):
 
         self.event_configuration_obj = None
 
-        # self.disable_toolbar()
+        self.disable_toolbar()
 
         # Enable the rest of the toolbar after event has been configured
         self.event_configuration.configured.connect(self.enable_toolbar)
@@ -156,10 +156,10 @@ class PMR(QMainWindow):
         for action in self.configurations_toolbar.actions():
             action.setEnabled(True)
 
-        self.event_configuration_obj = self.event_configuration.event_configuration
-
     def populate_log_entries(self):
-        self.log_entry_configuration.populate_table(self.event_configuration.splunk_client.entries)
+        self.event_configuration_obj = self.event_configuration.event_configuration
+        self.log_entry_configuration.populate_table(self.event_configuration.splunk_client.entries,
+                                                    self.event_configuration_obj)
 
     def populate_log_files(self):
         self.log_file_configuration.populate_table(self.event_configuration.logs)
