@@ -136,12 +136,11 @@ class SplunkIntegrator():
 
         # Parse results
         job_results = results.ResultsReader(job.results(count=count))
-        i = 0
         for result in job_results:
             if True:
                 self.entries.append(SignificantLogEntry(result['_serial'], result['_indextime'],
                                                         result['_raw'], result['host'],
-                                                        result['source'], result['sourcetype']))
+                                                        result['source'], result['source']))
 
     def cleanse_file(self, file):
         return self.file_cleanser.cleanse_file(file)
@@ -181,34 +180,13 @@ class SplunkIntegrator():
         self.file_validator.end_timestamp = event_end
         return self.file_validator.validate_file(file)
 
-    def find_source_file(self, root_folder, entry):
-        # Finds the location of a file given the root folder, and returns the full path.
-        for filepath, folder, dir in os.walk(root_folder):
-            for file in dir:
-                path = os.path.join(filepath, file)
-                if entry.split('\\')[1] in path:
-                    return path
-        return ''
 
-    def find_event_source(self, root_folder, entry):
-        # Checks an entry from the database, and attempts to find its source/parent folder
-        if 'white' in self.find_source_file(root_folder, entry):
-            return 'white'
-
-        elif 'red' in self.find_source_file(root_folder, entry):
-            return 'red'
-
-        elif 'blue' in self.find_source_file(root_folder, entry):
-            return 'blue'
-
-        else:
-            return 'root'
 
 
 if __name__ == '__main__':
     client = SplunkIntegrator()
     client.connect()
-    client.download_log_files(10)
+
 
 
 

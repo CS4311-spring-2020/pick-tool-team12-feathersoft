@@ -98,13 +98,14 @@ class LogEntryConfigurationWindow(QWidget):
             self.table.setItem(i, 4, QTableWidgetItem(entries[i].get_source, Qt.DisplayRole))
             self.table.setItem(i, 5,
                                QTableWidgetItem(event_configuration.find_event_source
-                                                (event_configuration._root_directory, entries[i].get_source_type),
+                                                (entries[i].get_source_type),
                                                 Qt.DisplayRole))
             self.table.setCellWidget(i, 6, combobox)
             checkbox = QCheckBox()
             checkbox.setCheckState(Qt.Unchecked)
             checkbox.clicked.connect(self.update_graph)
             self.table.setCellWidget(i, 7, checkbox)
+            print(i)
 
 
     def update_graph(self):

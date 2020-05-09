@@ -200,12 +200,7 @@ class PMR(QMainWindow):
                 node_timestamp = self.log_entry_configuration.table.item(i, 1).text()
                 node_description = self.log_entry_configuration.table.item(i,2)
                 log_entry_reference = self.log_entry_configuration.table.item(i, 4).text()
-                if 'white' in log_entry_reference:
-                    log_entry_source = 'white'
-                elif 'red' in log_entry_reference:
-                    log_entry_source = 'red'
-                else:
-                    log_entry_source = 'blue'
+                log_entry_source = self.log_entry_configuration.table.item(i,5).text()
 
                 event_type = log_entry_source
                 if 'white' in log_entry_reference:

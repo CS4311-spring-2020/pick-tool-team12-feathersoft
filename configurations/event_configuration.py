@@ -463,7 +463,7 @@ class EventConfigurationWindow(QWidget):
                         converted = path
                     if converted:
                         self.files.add(converted)
-
+            self.event_configuration.logs = self.files
             for file in self.files:
                 cleansing_status = self.splunk_client.cleanse_file(file)
                 validation_status = self.splunk_client.validate_file(converted, self.start_date.text(),

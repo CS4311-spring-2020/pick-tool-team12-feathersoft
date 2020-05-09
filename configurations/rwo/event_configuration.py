@@ -49,26 +49,28 @@ class EventConfiguration:
         self._lead = kwargs['lead']
         self._leads_ip_address = kwargs['ip_address']
         self._connection_established = kwargs['connection_established']
+        self.logs = []
 
-    def find_source_file(self, search_dir, entry):
-        for filepath, folder, dir in os.walk(search_dir):
-            for file in dir:
-                path = os.path.join(filepath, file)
-                if entry in path:
-                    return path
+    def find_source_file(self, entry):
+        print(entry)
+        for log in self.logs:
+            print(log)
+            if log.find(entry):
+                return log
 
-    def find_event_source(self, root_folder, entry):
-        if 'white' in self.find_source_file(root_folder, entry):
-            return 'white'
+    def find_event_source(self, entry):
+        print(entry)
+        source = ['red','blue','white']
+        for log in self.logs:
+            path = log.split('/')
+            test = path[-2] + "/" + path[-1]
+            if test in entry:
+                for s in source:
+                    if s in path:
+                        return s
 
-        elif 'red' in self.find_source_file(root_folder, entry):
-            return 'red'
 
-        elif 'blue' in self.find_source_file(root_folder, entry):
-            return 'blue'
 
-        else:
-            return 'root'
 
 
 
